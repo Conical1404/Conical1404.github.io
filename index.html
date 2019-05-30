@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/任意模数NTT/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/类欧几里得算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conical">
@@ -309,7 +309,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/30/任意模数NTT/" class="post-title-link" itemprop="url">任意模数NTT</a>
+                <a href="/2019/05/30/类欧几里得算法/" class="post-title-link" itemprop="url">类欧几里得算法</a>
               
             
           </h1>
@@ -334,7 +334,7 @@
                 
               
 
-              <time title="创建时间：2019-05-30 22:24:23 / 修改时间：22:40:21" itemprop="dateCreated datePublished" datetime="2019-05-30T22:24:23+08:00">2019-05-30</time>
+              <time title="创建时间：2019-05-30 23:46:33 / 修改时间：23:47:12" itemprop="dateCreated datePublished" datetime="2019-05-30T23:46:33+08:00">2019-05-30</time>
             
 
             
@@ -373,61 +373,16 @@
 
       
         
+          <h1 id="类欧几里得算法"><a href="#类欧几里得算法" class="headerlink" title="类欧几里得算法"></a>类欧几里得算法</h1>
+          <!--noindex-->
           
-            <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。</p>
-<p>$n\le 10^5,P\le10^9+9$</p>
-<h2 id="解法一：三模数NTT"><a href="#解法一：三模数NTT" class="headerlink" title="解法一：三模数NTT"></a>解法一：三模数NTT</h2><p>考虑选取三个能够进行 <code>NTT</code> 的并且积 $&gt;10^{23}$ 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-ans\equiv a_1\bmod m_1\\
-ans\equiv a_2\bmod m_2\\
-ans\equiv a_3 \bmod m_3
-\end{cases}</script><p>如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程：</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-ans\equiv A\bmod M\\
-ans\equiv a_3\bmod m_3
-\end{cases}</script><p>将合并后的方程写成不定方程代入第三个方程：</p>
-<script type="math/tex; mode=display">
-kM+A\equiv a_3\bmod m_3</script><p>由于 $m_3$ 是质数，$M$ 一定存在逆元：</p>
-<script type="math/tex; mode=display">
-k\equiv(a_3-A)\cdot M^{-1}\bmod m_3</script><p>解出 $k$ 之后在 $\bmod P$ 意义下计算 $Ans$ 即可。</p>
-<h2 id="解法二：拆系数FFT"><a href="#解法二：拆系数FFT" class="headerlink" title="解法二：拆系数FFT"></a>解法二：拆系数FFT</h2><p>考虑将多项式系数拆分成 $kM+b$ 的形式，观察卷积后的形式：</p>
-<script type="math/tex; mode=display">
-(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2</script><p>显然，当 $M$ 取 $\sqrt P$ 时，每一项系数不超过 $P$。将两个多项式拆开卷积，只需 $7$ 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
-<h3 id="DFT与IDFT合并"><a href="#DFT与IDFT合并" class="headerlink" title="DFT与IDFT合并"></a>DFT与IDFT合并</h3><p>考虑对长度为 $n$ 的实多项式 $A(x),B(x)$ 进行 <code>dft</code>，假设 $n$ 已调整成 $2$ 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
-<p>我们定义：</p>
-<script type="math/tex; mode=display">
-P(x)=A(x)+iB(x)\\
-Q(x)=A(x)-iB(x)</script><p>令 $F_p[k],F_q[k]$ 分别表示 $P,Q$  做 <code>dft</code> 后的第 $k$ 项，即：$F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)$，其中 $\omega$ 是 $n$ 次单位根。</p>
-<p>为了方便表示，下文中用 $X$ 代替 $\frac {2\pi jk}{n}$ ，${\rm conj}(x)$ 表示 $x$ 的共轭复数。</p>
-<script type="math/tex; mode=display">
-\begin{align}
-F_p[k]&=A(\omega_n^k)+iB(\omega_n^k)\\
-&=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
-&=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
-&=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
-&=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
-&=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
-&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
-&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
-&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
-&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
-&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
-&={\rm conj}(F_p[n - k])
-\end{align}</script><p>于是仅用一次 <code>DFT</code> 就可计算出 $F_p,F_q$。令 ${\rm DFT}(P[k])$ 表示对 $P(x)$ 进行 <code>DFT</code> 后的第 $k$ 项，就有：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-{\rm DFT}(A[k])&=\frac{F_p[k]+F_q[k]}{2}\\
-{\rm DFT}(B[k])&=i\frac{F_p[k]-F_q[k]}{2}\\
-\end{align}</script><p>那么就将两次 <code>DFT</code> 合并为了一次。</p>
-<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 $P,Q$ ，再 <code>dft</code> 出 $F_p,F_q$，并根据上式计算出 ${\rm DFT}(A)$ 与 ${\rm DFT}(B)$。而我们现在已知 ${\rm DFT}(A)$ 和 ${\rm DFT}(B)$，根据上式亦可逆推出 $F_p,F_q$，<code>IDFT</code> 得到 $P,Q$，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
-<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 $7$ 次 <code>dft</code>，利用上述优化，即可优化到 $4$ 次 <code>dft</code>，常数大大减小。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/30/类欧几里得算法/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -482,7 +437,7 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/杜教筛/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conical">
@@ -502,7 +457,7 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/30/test/" class="post-title-link" itemprop="url">test</a>
+                <a href="/2019/05/30/杜教筛/" class="post-title-link" itemprop="url">杜教筛</a>
               
             
           </h1>
@@ -527,7 +482,7 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
                 
               
 
-              <time title="创建时间：2019-05-30 01:11:48 / 修改时间：22:30:42" itemprop="dateCreated datePublished" datetime="2019-05-30T01:11:48+08:00">2019-05-30</time>
+              <time title="创建时间：2019-05-30 23:44:36 / 修改时间：23:46:20" itemprop="dateCreated datePublished" datetime="2019-05-30T23:44:36+08:00">2019-05-30</time>
             
 
             
@@ -566,10 +521,609 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
 
       
         
+          <h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><p>杜教筛是一类解决特殊积性函数前缀和的算法。</p>
+          <!--noindex-->
           
-            <h3 id="这是一篇博客"><a href="#这是一篇博客" class="headerlink" title="这是一篇博客"></a>这是一篇博客</h3><p>这是一篇博客</p>
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/30/杜教筛/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/多项式多点求值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conical">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陌上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/30/多项式多点求值/" class="post-title-link" itemprop="url">多项式多点求值</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-30 23:43:53 / 修改时间：23:44:21" itemprop="dateCreated datePublished" datetime="2019-05-30T23:43:53+08:00">2019-05-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
 
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="多项式多点求值"><a href="#多项式多点求值" class="headerlink" title="多项式多点求值"></a>多项式多点求值</h1><p>给定多项式 $A(x)$ 和 $n$ 个点 $\{x_i\}$，求 $A(x)$ 在各个点处的值。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/30/多项式多点求值/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/多项式开根/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conical">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陌上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/30/多项式开根/" class="post-title-link" itemprop="url">多项式开根</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-30 23:42:57 / 修改时间：23:43:28" itemprop="dateCreated datePublished" datetime="2019-05-30T23:42:57+08:00">2019-05-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="多项式开根"><a href="#多项式开根" class="headerlink" title="多项式开根"></a>多项式开根</h1><p>给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $B^2(x)\equiv A(x)\pmod {x^n}$。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/30/多项式开根/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/多项式求逆/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conical">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陌上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/30/多项式求逆/" class="post-title-link" itemprop="url">多项式求逆</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-30 23:36:48 / 修改时间：23:43:39" itemprop="dateCreated datePublished" datetime="2019-05-30T23:36:48+08:00">2019-05-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="多项式求逆"><a href="#多项式求逆" class="headerlink" title="多项式求逆"></a>多项式求逆</h1><p>给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $A(x)B(x)\equiv1\pmod {x^n}$。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/30/多项式求逆/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/任意模数NTT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conical">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陌上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/30/任意模数NTT/" class="post-title-link" itemprop="url">任意模数NTT</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-30 22:24:23 / 修改时间：23:40:50" itemprop="dateCreated datePublished" datetime="2019-05-30T22:24:23+08:00">2019-05-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。</p>
+<p>$n\le 10^5,P\le10^9+9$</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/30/任意模数NTT/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -652,7 +1206,7 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -660,6 +1214,23 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
               
             </nav>
           
@@ -853,6 +1424,14 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
 
   
   
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     

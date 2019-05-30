@@ -96,24 +96,25 @@
 
 
 
-  <meta name="description" content="这是一篇博客这是一篇博客">
+  <meta name="description" content="多项式求逆给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $A(x)B(x)\equiv1\pmod {x^n}$。">
+<meta name="keywords" content="多项式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2019/05/30/test/index.html">
+<meta property="og:title" content="多项式求逆">
+<meta property="og:url" content="http://yoursite.com/2019/05/30/多项式求逆/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="这是一篇博客这是一篇博客">
+<meta property="og:description" content="多项式求逆给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $A(x)B(x)\equiv1\pmod {x^n}$。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-30T14:30:42.052Z">
+<meta property="og:updated_time" content="2019-05-30T15:43:39.514Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
-<meta name="twitter:description" content="这是一篇博客这是一篇博客">
+<meta name="twitter:title" content="多项式求逆">
+<meta name="twitter:description" content="多项式求逆给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $A(x)B(x)\equiv1\pmod {x^n}$。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/30/test/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/30/多项式求逆/">
 
 
 
@@ -123,7 +124,7 @@
   };
 </script>
 
-  <title>test | 陌上</title>
+  <title>多项式求逆 | 陌上</title>
   
 
 
@@ -292,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/多项式求逆/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conical">
@@ -309,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test
+          <h1 class="post-title" itemprop="name headline">多项式求逆
 
               
             
@@ -335,7 +336,7 @@
                 
               
 
-              <time title="创建时间：2019-05-30 01:11:48 / 修改时间：22:30:42" itemprop="dateCreated datePublished" datetime="2019-05-30T01:11:48+08:00">2019-05-30</time>
+              <time title="创建时间：2019-05-30 23:36:48 / 修改时间：23:43:39" itemprop="dateCreated datePublished" datetime="2019-05-30T23:36:48+08:00">2019-05-30</time>
             
 
             
@@ -373,7 +374,19 @@
       
 
       
-        <h3 id="这是一篇博客"><a href="#这是一篇博客" class="headerlink" title="这是一篇博客"></a>这是一篇博客</h3><p>这是一篇博客</p>
+        <h1 id="多项式求逆"><a href="#多项式求逆" class="headerlink" title="多项式求逆"></a>多项式求逆</h1><p>给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $A(x)B(x)\equiv1\pmod {x^n}$。</p>
+<a id="more"></a>
+<p>由定义可得：</p>
+<script type="math/tex; mode=display">
+A(x)B(x)\equiv1\pmod {x ^n}\tag{1}</script><p>设 $B’(x)$ 满足 $A(x)B’(x)\equiv1\bmod x^{\lceil \frac n 2\rceil}$，就有：</p>
+<script type="math/tex; mode=display">
+A(x)B'(x)\equiv1\pmod {x^{\lceil\frac n 2\rceil}}\tag{2}</script><p>由 $(1)$ 可得：</p>
+<script type="math/tex; mode=display">
+A(x)B(x)\equiv 1\pmod {x ^{\lceil \frac n 2\rceil}\tag{3}}</script><p>$(3)-(2)$ 得：</p>
+<script type="math/tex; mode=display">
+B(x)-B'(x)\equiv0\pmod {x ^{\lceil\frac n 2\rceil}}</script><p>平方后两边同乘 $A(x)$，移项得：</p>
+<script type="math/tex; mode=display">
+B(x)\equiv 2B'(x)+A(x)B'^2(x)\pmod {x^n}</script><p>倍增求解即可。</p>
 
       
     </div>
@@ -395,6 +408,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/多项式/" rel="tag"># 多项式</a>
+          
+        </div>
+      
 
       
       
@@ -404,14 +423,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/30/任意模数NTT/" rel="next" title="任意模数NTT">
+                <i class="fa fa-chevron-left"></i> 任意模数NTT
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/30/任意模数NTT/" rel="prev" title="任意模数NTT">
-                任意模数NTT <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/30/多项式开根/" rel="prev" title="多项式开根">
+                多项式开根 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -482,7 +505,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -490,6 +513,23 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
               
             </nav>
           
@@ -522,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#这是一篇博客"><span class="nav-number">1.</span> <span class="nav-text">这是一篇博客</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多项式求逆"><span class="nav-number">1.</span> <span class="nav-text">多项式求逆</span></a></li></ol></div>
             
 
           </div>
