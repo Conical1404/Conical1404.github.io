@@ -96,24 +96,24 @@
 
 
 
-  <meta name="description" content="这是一篇博客这是一篇博客">
+  <meta name="description" content="问题描述求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$ 解法一：三模数NTT考虑选取三个能够进行 NTT 的并且积 $&amp;gt;10^{23}$ 的模数进行 NTT。这样的话，我们就得到了三个同余方程：$$\begin{cases}ans\equiv a_1\bmod m_1\ans\equiv a_2\bmod m_2\">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2019/05/30/test/index.html">
+<meta property="og:title" content="任意模数NTT">
+<meta property="og:url" content="http://yoursite.com/2019/05/30/任意模数NTT/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="这是一篇博客这是一篇博客">
+<meta property="og:description" content="问题描述求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$ 解法一：三模数NTT考虑选取三个能够进行 NTT 的并且积 $&amp;gt;10^{23}$ 的模数进行 NTT。这样的话，我们就得到了三个同余方程：$$\begin{cases}ans\equiv a_1\bmod m_1\ans\equiv a_2\bmod m_2\">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-30T14:30:42.052Z">
+<meta property="og:updated_time" content="2019-05-30T14:34:10.408Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
-<meta name="twitter:description" content="这是一篇博客这是一篇博客">
+<meta name="twitter:title" content="任意模数NTT">
+<meta name="twitter:description" content="问题描述求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$ 解法一：三模数NTT考虑选取三个能够进行 NTT 的并且积 $&amp;gt;10^{23}$ 的模数进行 NTT。这样的话，我们就得到了三个同余方程：$$\begin{cases}ans\equiv a_1\bmod m_1\ans\equiv a_2\bmod m_2\">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/30/test/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/30/任意模数NTT/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>test | 陌上</title>
+  <title>任意模数NTT | 陌上</title>
   
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/任意模数NTT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conical">
@@ -309,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test
+          <h1 class="post-title" itemprop="name headline">任意模数NTT
 
               
             
@@ -335,7 +335,7 @@
                 
               
 
-              <time title="创建时间：2019-05-30 01:11:48 / 修改时间：22:30:42" itemprop="dateCreated datePublished" datetime="2019-05-30T01:11:48+08:00">2019-05-30</time>
+              <time title="创建时间：2019-05-30 22:24:23 / 修改时间：22:34:10" itemprop="dateCreated datePublished" datetime="2019-05-30T22:24:23+08:00">2019-05-30</time>
             
 
             
@@ -373,7 +373,18 @@
       
 
       
-        <h3 id="这是一篇博客"><a href="#这是一篇博客" class="headerlink" title="这是一篇博客"></a>这是一篇博客</h3><p>这是一篇博客</p>
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。</p>
+<p>$n\le 10^5,P\le10^9+9$</p>
+<h2 id="解法一：三模数NTT"><a href="#解法一：三模数NTT" class="headerlink" title="解法一：三模数NTT"></a>解法一：三模数NTT</h2><p>考虑选取三个能够进行 <code>NTT</code> 的并且积 $&gt;10^{23}$ 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程：<br>$$<br>\begin{cases}<br>ans\equiv a_1\bmod m_1\<br>ans\equiv a_2\bmod m_2\<br>ans\equiv a_3 \bmod m_3<br>\end{cases}<br>$$<br>如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程：<br>$$<br>\begin{cases}<br>ans\equiv A\bmod M\<br>ans\equiv a_3\bmod m_3<br>\end{cases}<br>$$<br>将合并后的方程写成不定方程代入第三个方程：<br>$$<br>kM+A\equiv a_3\bmod m_3<br>$$<br>由于 $m_3$ 是质数，$M$ 一定存在逆元：<br>$$<br>k\equiv(a_3-A)\cdot M^{-1}\bmod m_3<br>$$<br>解出 $k$ 之后在 $\bmod P$ 意义下计算 $Ans$ 即可。</p>
+<h2 id="解法二：拆系数FFT"><a href="#解法二：拆系数FFT" class="headerlink" title="解法二：拆系数FFT"></a>解法二：拆系数FFT</h2><p>考虑将多项式系数拆分成 $kM+b$ 的形式，观察卷积后的形式：<br>$$<br>(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2<br>$$<br>显然，当 $M$ 取 $\sqrt P$ 时，每一项系数不超过 $P$。将两个多项式拆开卷积，只需 $7$ 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
+<h3 id="DFT与IDFT合并"><a href="#DFT与IDFT合并" class="headerlink" title="DFT与IDFT合并"></a>DFT与IDFT合并</h3><p>考虑对长度为 $n$ 的实多项式 $A(x),B(x)$ 进行 <code>dft</code>，假设 $n$ 已调整成 $2$ 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
+<p>我们定义：<br>$$<br>P(x)=A(x)+iB(x)\<br>Q(x)=A(x)-iB(x)<br>$$</p>
+<p>令 $F_p[k],F_q[k]$ 分别表示 $P,Q$  做 <code>dft</code> 后的第 $k$ 项，即：$F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)$，其中 $\omega$ 是 $n$ 次单位根。</p>
+<p>为了方便表示，下文中用 $X$ 代替 $\frac {2\pi jk}{n}$ ，${\rm conj}(x)$ 表示 $x$ 的共轭复数。<br>$$<br>\begin{align}<br>F_p[k]&amp;=A(\omega_n^k)+iB(\omega_n^k)\<br>&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\<br>&amp;=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\<br>&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\<br>&amp;=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\<br>&amp;=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\<br>&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\<br>&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\<br>&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\<br>&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\<br>&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\<br>&amp;={\rm conj}(F_p[n - k])<br>\end{align}<br>$$</p>
+<p>于是仅用一次 <code>DFT</code> 就可计算出 $F_p,F_q$。令 ${\rm DFT}(P[k])$ 表示对 $P(x)$ 进行 <code>DFT</code> 后的第 $k$ 项，就有：<br>$$<br>\begin{align}<br>{\rm DFT}(A[k])&amp;=\frac{F_p[k]+F_q[k]}{2}\<br>{\rm DFT}(B[k])&amp;=i\frac{F_p[k]-F_q[k]}{2}\<br>\end{align}<br>$$<br>那么就将两次 <code>DFT</code> 合并为了一次。</p>
+<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 $P,Q$ ，再 <code>dft</code> 出 $F_p,F_q$，并根据上式计算出 ${\rm DFT}(A)$ 与 ${\rm DFT}(B)$。而我们现在已知 ${\rm DFT}(A)$ 和 ${\rm DFT}(B)$，根据上式亦可逆推出 $F_p,F_q$，<code>IDFT</code> 得到 $P,Q$，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
+<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 $7$ 次 <code>dft</code>，利用上述优化，即可优化到 $4$ 次 <code>dft</code>，常数大大减小。</p>
 
       
     </div>
@@ -404,15 +415,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/30/test/" rel="next" title="test">
+                <i class="fa fa-chevron-left"></i> test
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/30/任意模数NTT/" rel="prev" title="任意模数NTT">
-                任意模数NTT <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#这是一篇博客"><span class="nav-number">1.</span> <span class="nav-text">这是一篇博客</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法一：三模数NTT"><span class="nav-number">2.</span> <span class="nav-text">解法一：三模数NTT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二：拆系数FFT"><span class="nav-number">3.</span> <span class="nav-text">解法二：拆系数FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFT与IDFT合并"><span class="nav-number">3.1.</span> <span class="nav-text">DFT与IDFT合并</span></a></li></ol></li></ol></div>
             
 
           </div>
