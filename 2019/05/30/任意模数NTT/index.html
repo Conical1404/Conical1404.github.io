@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="问题描述求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
+  <meta name="description" content="求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
 <meta name="keywords" content="多项式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="任意模数NTT">
 <meta property="og:url" content="http://yoursite.com/2019/05/30/任意模数NTT/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="问题描述求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
+<meta property="og:description" content="求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-30T15:40:50.659Z">
+<meta property="og:updated_time" content="2019-05-31T16:00:09.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="任意模数NTT">
-<meta name="twitter:description" content="问题描述求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
+<meta name="twitter:description" content="求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
 
 
 
@@ -336,12 +336,24 @@
                 
               
 
-              <time title="创建时间：2019-05-30 22:24:23 / 修改时间：23:40:50" itemprop="dateCreated datePublished" datetime="2019-05-30T22:24:23+08:00">2019-05-30</time>
+              <time title="创建时间：2019-05-30 22:24:23" itemprop="dateCreated datePublished" datetime="2019-05-30T22:24:23+08:00">2019-05-30</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-01 00:00:09" itemprop="dateModified" datetime="2019-06-01T00:00:09+08:00">2019-06-01</time>
               
             
           </span>
@@ -381,7 +393,7 @@
       
 
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。</p>
+        <p>求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。</p>
 <p>$n\le 10^5,P\le10^9+9$</p>
 <a id="more"></a>
 <h2 id="解法一：三模数NTT"><a href="#解法一：三模数NTT" class="headerlink" title="解法一：三模数NTT"></a>解法一：三模数NTT</h2><p>考虑选取三个能够进行 <code>NTT</code> 的并且积 $&gt;10^{23}$ 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程：</p>
@@ -609,7 +621,7 @@ F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法一：三模数NTT"><span class="nav-number">2.</span> <span class="nav-text">解法一：三模数NTT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二：拆系数FFT"><span class="nav-number">3.</span> <span class="nav-text">解法二：拆系数FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFT与IDFT合并"><span class="nav-number">3.1.</span> <span class="nav-text">DFT与IDFT合并</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解法一：三模数NTT"><span class="nav-number">1.</span> <span class="nav-text">解法一：三模数NTT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二：拆系数FFT"><span class="nav-number">2.</span> <span class="nav-text">解法二：拆系数FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFT与IDFT合并"><span class="nav-number">2.1.</span> <span class="nav-text">DFT与IDFT合并</span></a></li></ol></li></ol></div>
             
 
           </div>
