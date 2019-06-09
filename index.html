@@ -289,6 +289,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/Lydsy1712月赛泛做/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Conical">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陌上">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/09/Lydsy1712月赛泛做/" class="post-title-link" itemprop="url">Lydsy1712月赛泛做</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-09 19:33:58 / 修改时间：22:49:56" itemprop="dateCreated datePublished" datetime="2019-06-09T19:33:58+08:00">2019-06-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>见 <a href="https://www.lydsy.com/JudgeOnline/upload/201712/prob12.pdf" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="Problem-A-彩虹溜冰鞋"><a href="#Problem-A-彩虹溜冰鞋" class="headerlink" title="Problem A. 彩虹溜冰鞋"></a>Problem A. 彩虹溜冰鞋</h2><p>首先可以直接计算出终点坐标。不难发现，倒着模拟 $r+c$  轮即可求出最终局面。</p>
+<p>时间复杂度 $\mathcal O((r+c)^2)$</p>
+<h2 id="Problem-B-线段树的匹配"><a href="#Problem-B-线段树的匹配" class="headerlink" title="Problem B. 线段树的匹配"></a>Problem B. 线段树的匹配</h2><p>显然有一个简单的 $\mathcal O(n)$ 做法。容易发现，一个子树的答案只与这个子树对应区间的大小有关。有一个结论是，线段树每一层最多有两种大小的子树。可以用归纳法证明。记搜即可，复杂度 $\mathcal O(\log n).$</p>
+<h2 id="Problem-C-波浪序列"><a href="#Problem-C-波浪序列" class="headerlink" title="Problem C. 波浪序列"></a>Problem C. 波浪序列</h2><p>DP of DP.</p>
+<p>首先有一个显然的暴力做法，设 $f_{i,j,0/1}$ 表示 $a$ 序列匹配到第 $i$ 个位置，$b$ 序列匹配到第 $j$ 个位置，当前状态是上升还是下降的方案数，转移枚举下一个匹配位置，复杂度 $\mathcal O(kn^2m^2)$，无法通过。</p>
+<p>状态数似乎已经没有优化的余地了，我们考虑从转移下手。我们不妨对枚举转移的过程进行 DP。设 $g_{i,y,k}$ 表示从所有 $f_{x,y,k}$ 开始决策，匹配到 $a$ 中的位置为 $i$ 的方案数。同时设 $h_{i,j,k}$ 表示从所有 $f_{x.y,k}$ 开始决策，已经经过了 $g$ 的枚举，下一个匹配到 $b$ 中的位置为 $j$ 的方案数。每次转移要么从这里开始决策，要么转移到 $i+1$ 或 $j + 1$，时间复杂度 $\mathcal O(nmk)$.</p>
+<p>总结：枚举两个序列匹配的问题，每个合法状态都是这个一对 $(i,j)$ 匹配。此时可以从决策点先枚举其中一维向下走，再枚举另一维，将 DP 的转移变成 $\mathcal O(1)$.</p>
+<h2 id="Problem-D-小-Q-的书架"><a href="#Problem-D-小-Q-的书架" class="headerlink" title="Problem D. 小 Q 的书架"></a>Problem D. 小 Q 的书架</h2><p>首先有一个经典的结论，一个序列排序所需最小交换次数即为逆序对数。有一个 DP 即为 $f_{i,j}$ 表示 $[1,j]$ 分成 $i$ 段的答案，那么就有 $f_{i,j}=\min\limits_{k&lt;j} \{f_{i-1,k}+cost(k+1,i)\}$，其中 $cost(l,r)$ 表示 $[l,r]$ 内的逆序对数量。不难发现转移满足单调性，可以分治。现在的问题就是动态维护区间的逆序对数。莫队即可。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/杜教筛/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1082,7 +1232,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1103,7 +1253,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -1318,6 +1470,8 @@
 
   
   
+    
+      
     
       
     

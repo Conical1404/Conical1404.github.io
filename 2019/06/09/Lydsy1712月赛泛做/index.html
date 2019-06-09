@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="给定多项式 $A(x)$ 和 $n$ 个点 $\{x_i\}$，求 $A(x)$ 在各个点处的值。">
-<meta name="keywords" content="多项式">
+  <meta name="description" content="题面见 这里。 Problem A. 彩虹溜冰鞋首先可以直接计算出终点坐标。不难发现，倒着模拟 $r+c$  轮即可求出最终局面。 时间复杂度 $\mathcal O((r+c)^2)$ Problem B. 线段树的匹配显然有一个简单的 $\mathcal O(n)$ 做法。容易发现，一个子树的答案只与这个子树对应区间的大小有关。有一个结论是，线段树每一层最多有两种大小的子树。可以用归纳法证明。">
+<meta name="keywords" content="BZOJ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多项式多点求值">
-<meta property="og:url" content="http://yoursite.com/2019/05/30/多项式多点求值/index.html">
+<meta property="og:title" content="Lydsy1712月赛泛做">
+<meta property="og:url" content="http://yoursite.com/2019/06/09/Lydsy1712月赛泛做/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="给定多项式 $A(x)$ 和 $n$ 个点 $\{x_i\}$，求 $A(x)$ 在各个点处的值。">
+<meta property="og:description" content="题面见 这里。 Problem A. 彩虹溜冰鞋首先可以直接计算出终点坐标。不难发现，倒着模拟 $r+c$  轮即可求出最终局面。 时间复杂度 $\mathcal O((r+c)^2)$ Problem B. 线段树的匹配显然有一个简单的 $\mathcal O(n)$ 做法。容易发现，一个子树的答案只与这个子树对应区间的大小有关。有一个结论是，线段树每一层最多有两种大小的子树。可以用归纳法证明。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-30T15:51:31.214Z">
+<meta property="og:updated_time" content="2019-06-09T14:49:56.494Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多项式多点求值">
-<meta name="twitter:description" content="给定多项式 $A(x)$ 和 $n$ 个点 $\{x_i\}$，求 $A(x)$ 在各个点处的值。">
+<meta name="twitter:title" content="Lydsy1712月赛泛做">
+<meta name="twitter:description" content="题面见 这里。 Problem A. 彩虹溜冰鞋首先可以直接计算出终点坐标。不难发现，倒着模拟 $r+c$  轮即可求出最终局面。 时间复杂度 $\mathcal O((r+c)^2)$ Problem B. 线段树的匹配显然有一个简单的 $\mathcal O(n)$ 做法。容易发现，一个子树的答案只与这个子树对应区间的大小有关。有一个结论是，线段树每一层最多有两种大小的子树。可以用归纳法证明。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/30/多项式多点求值/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/09/Lydsy1712月赛泛做/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>多项式多点求值 | 陌上</title>
+  <title>Lydsy1712月赛泛做 | 陌上</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/多项式多点求值/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/Lydsy1712月赛泛做/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conical">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多项式多点求值
+          <h1 class="post-title" itemprop="name headline">Lydsy1712月赛泛做
 
               
             
@@ -336,7 +336,7 @@
                 
               
 
-              <time title="创建时间：2019-05-30 23:43:53 / 修改时间：23:51:31" itemprop="dateCreated datePublished" datetime="2019-05-30T23:43:53+08:00">2019-05-30</time>
+              <time title="创建时间：2019-06-09 19:33:58 / 修改时间：22:49:56" itemprop="dateCreated datePublished" datetime="2019-06-09T19:33:58+08:00">2019-06-09</time>
             
 
             
@@ -381,26 +381,16 @@
       
 
       
-        <p>给定多项式 $A(x)$ 和 $n$ 个点 $\{x_i\}$，求 $A(x)$ 在各个点处的值。</p>
-<a id="more"></a>
-<p>从多项式求逆、开根、取对数等操作的算法来看，这些多项式的算法有一个共同点，就是利用折半的思路，分治解决问题。类似地，我们考虑解决多点求值问题。</p>
-<p>首先，我们对点集折半：</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray*} X^{[0]} &=& \{x_0, x_1, \cdots, x_{\lfloor \frac{n}{2} \rfloor}\} \\ X^{[1]} &=& \{x_{\lfloor \frac{n}{2} \rfloor+1},x_{\lfloor \frac{n}{2} \rfloor+2}, \cdots, x_{n-1}\} \end{eqnarray*}</script><p>同时，为了保证复杂度，我们要对 $A(x)$ 也进行折半。不妨设 $ A^{[0]}(x)$ 表示对 $X^{[0]}$ 插值得到的多项式，$A^{1}(x)$ 同理。考虑构造如下多项式：</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray*} P^{[0]}(x) &=& \prod_{i=0}^{\lfloor \frac{n}{2} \rfloor} (x-x_i) \\ P^{[1]}(x) &=& \prod_{i=\lfloor \frac{n}{2} \rfloor+1}^{n-1} (x-x_i) \end{eqnarray*}</script><p>那么，我们就有：</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray*}
-A(x) &=& D^{[0]}(x)P^{[0]}(x)+A^{[0]}(x)\\ 
-&=& D^{[1]}(x)P^{[1]}(x)+A^{[1]}(x)
-\end{eqnarray*}</script><p>也即：</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray*}
-A(x) &\equiv& A^{[0]}(x)\pmod {P^{[0]}(x)}\\ 
-A(x) &\equiv& A^{[1]}(x)\pmod {P^{[1]}(x)}
-\end{eqnarray*}</script><p>做多项式取模即可。多项式取模复杂度 $\mathcal O(n\log n)$，因此总复杂度就为：</p>
-<script type="math/tex; mode=display">
-T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)</script>
+        <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>见 <a href="https://www.lydsy.com/JudgeOnline/upload/201712/prob12.pdf" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="Problem-A-彩虹溜冰鞋"><a href="#Problem-A-彩虹溜冰鞋" class="headerlink" title="Problem A. 彩虹溜冰鞋"></a>Problem A. 彩虹溜冰鞋</h2><p>首先可以直接计算出终点坐标。不难发现，倒着模拟 $r+c$  轮即可求出最终局面。</p>
+<p>时间复杂度 $\mathcal O((r+c)^2)$</p>
+<h2 id="Problem-B-线段树的匹配"><a href="#Problem-B-线段树的匹配" class="headerlink" title="Problem B. 线段树的匹配"></a>Problem B. 线段树的匹配</h2><p>显然有一个简单的 $\mathcal O(n)$ 做法。容易发现，一个子树的答案只与这个子树对应区间的大小有关。有一个结论是，线段树每一层最多有两种大小的子树。可以用归纳法证明。记搜即可，复杂度 $\mathcal O(\log n).$</p>
+<h2 id="Problem-C-波浪序列"><a href="#Problem-C-波浪序列" class="headerlink" title="Problem C. 波浪序列"></a>Problem C. 波浪序列</h2><p>DP of DP.</p>
+<p>首先有一个显然的暴力做法，设 $f_{i,j,0/1}$ 表示 $a$ 序列匹配到第 $i$ 个位置，$b$ 序列匹配到第 $j$ 个位置，当前状态是上升还是下降的方案数，转移枚举下一个匹配位置，复杂度 $\mathcal O(kn^2m^2)$，无法通过。</p>
+<p>状态数似乎已经没有优化的余地了，我们考虑从转移下手。我们不妨对枚举转移的过程进行 DP。设 $g_{i,y,k}$ 表示从所有 $f_{x,y,k}$ 开始决策，匹配到 $a$ 中的位置为 $i$ 的方案数。同时设 $h_{i,j,k}$ 表示从所有 $f_{x.y,k}$ 开始决策，已经经过了 $g$ 的枚举，下一个匹配到 $b$ 中的位置为 $j$ 的方案数。每次转移要么从这里开始决策，要么转移到 $i+1$ 或 $j + 1$，时间复杂度 $\mathcal O(nmk)$.</p>
+<p>总结：枚举两个序列匹配的问题，每个合法状态都是这个一对 $(i,j)$ 匹配。此时可以从决策点先枚举其中一维向下走，再枚举另一维，将 DP 的转移变成 $\mathcal O(1)$.</p>
+<h2 id="Problem-D-小-Q-的书架"><a href="#Problem-D-小-Q-的书架" class="headerlink" title="Problem D. 小 Q 的书架"></a>Problem D. 小 Q 的书架</h2><p>首先有一个经典的结论，一个序列排序所需最小交换次数即为逆序对数。有一个 DP 即为 $f_{i,j}$ 表示 $[1,j]$ 分成 $i$ 段的答案，那么就有 $f_{i,j}=\min\limits_{k&lt;j} \{f_{i-1,k}+cost(k+1,i)\}$，其中 $cost(l,r)$ 表示 $[l,r]$ 内的逆序对数量。不难发现转移满足单调性，可以分治。现在的问题就是动态维护区间的逆序对数。莫队即可。</p>
+
       
     </div>
 
@@ -423,7 +413,7 @@ T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)</script>
       
         <div class="post-tags">
           
-            <a href="/tags/多项式/" rel="tag"># 多项式</a>
+            <a href="/tags/BZOJ/" rel="tag"># BZOJ</a>
           
         </div>
       
@@ -436,8 +426,8 @@ T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)</script>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/30/多项式开根/" rel="next" title="多项式开根">
-                <i class="fa fa-chevron-left"></i> 多项式开根
+              <a href="/2019/05/30/杜教筛/" rel="next" title="杜教筛">
+                <i class="fa fa-chevron-left"></i> 杜教筛
               </a>
             
           </div>
@@ -445,10 +435,6 @@ T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)</script>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/30/杜教筛/" rel="prev" title="杜教筛">
-                杜教筛 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -497,8 +483,17 @@ T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)</script>
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -561,6 +556,23 @@ T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)</script>
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-A-彩虹溜冰鞋"><span class="nav-number">2.</span> <span class="nav-text">Problem A. 彩虹溜冰鞋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-B-线段树的匹配"><span class="nav-number">3.</span> <span class="nav-text">Problem B. 线段树的匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-C-波浪序列"><span class="nav-number">4.</span> <span class="nav-text">Problem C. 波浪序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-D-小-Q-的书架"><span class="nav-number">5.</span> <span class="nav-text">Problem D. 小 Q 的书架</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
