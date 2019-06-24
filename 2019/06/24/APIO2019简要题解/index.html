@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里 T1. 奇怪装置留坑 T2. 桥梁题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。 看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排">
+  <meta name="description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里">
 <meta name="keywords" content="APIO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="APIO2019简要题解">
 <meta property="og:url" content="http://yoursite.com/2019/06/24/APIO2019简要题解/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里 T1. 奇怪装置留坑 T2. 桥梁题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。 看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排">
+<meta property="og:description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-24T13:19:29.871Z">
+<meta property="og:updated_time" content="2019-06-24T15:57:22.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="APIO2019简要题解">
-<meta name="twitter:description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里 T1. 奇怪装置留坑 T2. 桥梁题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。 看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排">
+<meta name="twitter:description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里">
 
 
 
@@ -336,7 +336,7 @@
                 
               
 
-              <time title="创建时间：2019-06-24 20:49:11 / 修改时间：21:19:29" itemprop="dateCreated datePublished" datetime="2019-06-24T20:49:11+08:00">2019-06-24</time>
+              <time title="创建时间：2019-06-24 20:49:11 / 修改时间：23:57:22" itemprop="dateCreated datePublished" datetime="2019-06-24T20:49:11+08:00">2019-06-24</time>
             
 
             
@@ -383,7 +383,11 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。</p>
 <p>题面见 <a href="https://loj.ac/problems/search?keyword=APIO+2019" target="_blank" rel="noopener">这里</a></p>
-<h2 id="T1-奇怪装置"><a href="#T1-奇怪装置" class="headerlink" title="T1. 奇怪装置"></a>T1. 奇怪装置</h2><p>留坑</p>
+<a id="more"></a>
+<h2 id="T1-奇怪装置"><a href="#T1-奇怪装置" class="headerlink" title="T1. 奇怪装置"></a>T1. 奇怪装置</h2><p>题意不想说了。</p>
+<p>不难推出来，对应的 $(x,y)$ 相等的两个时刻 $t_1,t_2$ 一定满足：</p>
+<script type="math/tex; mode=display">
+t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B)}</script><p>线段求交就好了。</p>
 <h2 id="T2-桥梁"><a href="#T2-桥梁" class="headerlink" title="T2. 桥梁"></a>T2. 桥梁</h2><p>题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。</p>
 <p>看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排序，依次加入每条边，用并查集维护连通块即可。我们将 $S$ 个修改和它们之间的询问离线下来一起做。先把所有修改的边删去用之前的方案求出初始答案，再对每个询问依次考虑 $S$ 个修改后的边的影响即可。复杂度 $\mathcal O(m\alpha\frac{q}{S}+qS\alpha)$，显然 $S$ 取 $\sqrt q$ 时复杂度最优为 $\mathcal O(m\alpha\sqrt q).$</p>
 <h2 id="T3-路灯"><a href="#T3-路灯" class="headerlink" title="T3. 路灯"></a>T3. 路灯</h2><p>题意：$n$ 盏灯，每次改变一盏灯的开关状态或询问两盏灯之间在之前多少个时刻内全亮着。</p>
