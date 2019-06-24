@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="杜教筛是解决一类特殊积性函数前缀和的算法。">
-<meta name="keywords" content="数论,筛法">
+  <meta name="description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里 T1. 奇怪装置留坑 T2. 桥梁题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。 看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排">
+<meta name="keywords" content="APIO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杜教筛">
-<meta property="og:url" content="http://yoursite.com/2019/05/30/杜教筛/index.html">
+<meta property="og:title" content="APIO2019简要题解">
+<meta property="og:url" content="http://yoursite.com/2019/06/24/APIO2019简要题解/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="杜教筛是解决一类特殊积性函数前缀和的算法。">
+<meta property="og:description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里 T1. 奇怪装置留坑 T2. 桥梁题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。 看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-31T15:59:58.662Z">
+<meta property="og:updated_time" content="2019-06-24T13:19:29.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杜教筛">
-<meta name="twitter:description" content="杜教筛是解决一类特殊积性函数前缀和的算法。">
+<meta name="twitter:title" content="APIO2019简要题解">
+<meta name="twitter:description" content="前言这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。 题面见 这里 T1. 奇怪装置留坑 T2. 桥梁题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。 看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/30/杜教筛/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/24/APIO2019简要题解/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>杜教筛 | 陌上</title>
+  <title>APIO2019简要题解 | 陌上</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/杜教筛/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/APIO2019简要题解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conical">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">杜教筛
+          <h1 class="post-title" itemprop="name headline">APIO2019简要题解
 
               
             
@@ -336,24 +336,12 @@
                 
               
 
-              <time title="创建时间：2019-05-30 23:44:36" itemprop="dateCreated datePublished" datetime="2019-05-30T23:44:36+08:00">2019-05-30</time>
+              <time title="创建时间：2019-06-24 20:49:11 / 修改时间：21:19:29" itemprop="dateCreated datePublished" datetime="2019-06-24T20:49:11+08:00">2019-06-24</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-31 23:59:58" itemprop="dateModified" datetime="2019-05-31T23:59:58+08:00">2019-05-31</time>
               
             
           </span>
@@ -393,33 +381,13 @@
       
 
       
-        <p>杜教筛是解决一类特殊积性函数前缀和的算法。</p>
-<a id="more"></a>
-<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p><strong>一些积性函数：</strong></p>
-<p>$\mu(n)$：莫比乌斯函数</p>
-<p>$\varphi(n)$：欧拉函数</p>
-<p>$d(n)$：约数个数</p>
-<p>$\sigma(n)$：约数和函数</p>
-<p>$\epsilon(n)$：一元函数，$\epsilon(n)=[n==1]$</p>
-<p>$I(n)$：恒等函数，$I(n)=1$</p>
-<p>$id(n)$：单位函数，$id(n)=n$</p>
-<p><strong>狄利克雷卷积：</strong> </p>
-<ul>
-<li>定义两个数论函数 $f$ 和 $g$ 的狄利克雷卷积为：$(f*g)[n]=\sum_{d|n}f(d)\cdot g(\frac n d)$</li>
-<li>运算规律：交换律、结合律、分配律</li>
-</ul>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>杜教筛用于解决一类<strong>特殊的</strong>积性函数前缀和，即：$\sum\limits_{i=1}^n f(i)$.</p>
-<p>我们构造两个积性函数 $g$ 和 $h$，使得 $h=f*g$；同时我们记 $S(n)=\sum\limits_{i=1}^n f(i)$：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum_{i=1}^n h(i)&=\sum_{i=1}^n\sum_{d|n} g(d)f(\frac i d)\\
-&=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac n d\rfloor}f(i)\\
-&=\sum_{d=1}^ng(d)\cdot S(\lfloor\frac n d\rfloor)
-\end{align}</script><p>将 $S(n)$ 一项移到左边，就有：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
-\end{align}</script><p>那么，如果我们能够快速计算出 $h$ 的前缀和，并且预处理 $S$ 的前 $n^{\frac 2 3}$ 项，就能够在 $\mathcal{O(n^{\frac 2 3})}$ 的复杂度内解决问题。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次没有报名 APIO，这次又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。</p>
+<p>题面见 <a href="https://loj.ac/problems/search?keyword=APIO+2019" target="_blank" rel="noopener">这里</a></p>
+<h2 id="T1-奇怪装置"><a href="#T1-奇怪装置" class="headerlink" title="T1. 奇怪装置"></a>T1. 奇怪装置</h2><p>留坑</p>
+<h2 id="T2-桥梁"><a href="#T2-桥梁" class="headerlink" title="T2. 桥梁"></a>T2. 桥梁</h2><p>题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。</p>
+<p>看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排序，依次加入每条边，用并查集维护连通块即可。我们将 $S$ 个修改和它们之间的询问离线下来一起做。先把所有修改的边删去用之前的方案求出初始答案，再对每个询问依次考虑 $S$ 个修改后的边的影响即可。复杂度 $\mathcal O(m\alpha\frac{q}{S}+qS\alpha)$，显然 $S$ 取 $\sqrt q$ 时复杂度最优为 $\mathcal O(m\alpha\sqrt q).$</p>
+<h2 id="T3-路灯"><a href="#T3-路灯" class="headerlink" title="T3. 路灯"></a>T3. 路灯</h2><p>题意：$n$ 盏灯，每次改变一盏灯的开关状态或询问两盏灯之间在之前多少个时刻内全亮着。</p>
+<p>首先可以想到利用 set 来维护连续段，每次合并或者分裂的时候二维线段树维护标记。具体来说，时刻 $i$ 合并两个区间 $[l,mid]$ 和 $(mid,r]$ 时，对于左端点在 $[l,mid]$，右端点在 $(mid,r]$ 的区间加上 $q-i+1$，分裂一个区间也类似。总复杂度 $\mathcal O(q\log^2 n).$ 由于是不强制在线，可以写 CDQ 分治 + 树状数组，常数会小一点。</p>
 
       
     </div>
@@ -443,9 +411,7 @@ S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
       
         <div class="post-tags">
           
-            <a href="/tags/数论/" rel="tag"># 数论</a>
-          
-            <a href="/tags/筛法/" rel="tag"># 筛法</a>
+            <a href="/tags/APIO/" rel="tag"># APIO</a>
           
         </div>
       
@@ -458,8 +424,8 @@ S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/30/多项式多点求值/" rel="next" title="多项式多点求值">
-                <i class="fa fa-chevron-left"></i> 多项式多点求值
+              <a href="/2019/06/09/Lydsy1712月赛泛做/" rel="next" title="Lydsy1712月赛泛做">
+                <i class="fa fa-chevron-left"></i> Lydsy1712月赛泛做
               </a>
             
           </div>
@@ -467,10 +433,6 @@ S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/09/Lydsy1712月赛泛做/" rel="prev" title="Lydsy1712月赛泛做">
-                Lydsy1712月赛泛做 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -605,7 +567,7 @@ S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前置知识"><span class="nav-number">1.</span> <span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">2.</span> <span class="nav-text">算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T1-奇怪装置"><span class="nav-number">2.</span> <span class="nav-text">T1. 奇怪装置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T2-桥梁"><span class="nav-number">3.</span> <span class="nav-text">T2. 桥梁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T3-路灯"><span class="nav-number">4.</span> <span class="nav-text">T3. 路灯</span></a></li></ol></div>
             
 
           </div>
