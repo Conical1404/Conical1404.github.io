@@ -96,24 +96,24 @@
 
 
 
-  <meta name="description" content="题意给定长度为 $n$ 的序列 $\{a\}$ 和长度为 $n-1$ 的排列 $\{p\}$，令 $b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})$，再令 $b’_i=b_{p_i},c’_i=c_{p_i}$。给定 $\{b’\},\{c’\}$ ，求一个合法的 $\{a\}$ 或判断无解。 $n\le10^5$">
+  <meta name="description" content="数据结构 [ ] 线段树 [ ] 平衡树 [ ] K-D Tree [ ] 左偏树 [ ] 可持久化数据结构 [ ] 主席树 [ ] *可持久化平衡树 [ ] 可持久化trie [ ] 可持久化左偏树   [ ] 根号算法 [ ] LCT  数论 [ ] exgcd [ ] CRT &amp;amp; exCRT [ ] Lucas &amp;amp; exLucas [ ] Miller-Rabin &amp;amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CF1152E简要题解">
-<meta property="og:url" content="http://yoursite.com/2019/07/05/CF1152E简要题解/index.html">
+<meta property="og:title" content="NOI前最后一轮复习">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/NOI前最后一轮复习/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="题意给定长度为 $n$ 的序列 $\{a\}$ 和长度为 $n-1$ 的排列 $\{p\}$，令 $b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})$，再令 $b’_i=b_{p_i},c’_i=c_{p_i}$。给定 $\{b’\},\{c’\}$ ，求一个合法的 $\{a\}$ 或判断无解。 $n\le10^5$">
+<meta property="og:description" content="数据结构 [ ] 线段树 [ ] 平衡树 [ ] K-D Tree [ ] 左偏树 [ ] 可持久化数据结构 [ ] 主席树 [ ] *可持久化平衡树 [ ] 可持久化trie [ ] 可持久化左偏树   [ ] 根号算法 [ ] LCT  数论 [ ] exgcd [ ] CRT &amp;amp; exCRT [ ] Lucas &amp;amp; exLucas [ ] Miller-Rabin &amp;amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-04T17:41:31.202Z">
+<meta property="og:updated_time" content="2019-07-11T01:16:08.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CF1152E简要题解">
-<meta name="twitter:description" content="题意给定长度为 $n$ 的序列 $\{a\}$ 和长度为 $n-1$ 的排列 $\{p\}$，令 $b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})$，再令 $b’_i=b_{p_i},c’_i=c_{p_i}$。给定 $\{b’\},\{c’\}$ ，求一个合法的 $\{a\}$ 或判断无解。 $n\le10^5$">
+<meta name="twitter:title" content="NOI前最后一轮复习">
+<meta name="twitter:description" content="数据结构 [ ] 线段树 [ ] 平衡树 [ ] K-D Tree [ ] 左偏树 [ ] 可持久化数据结构 [ ] 主席树 [ ] *可持久化平衡树 [ ] 可持久化trie [ ] 可持久化左偏树   [ ] 根号算法 [ ] LCT  数论 [ ] exgcd [ ] CRT &amp;amp; exCRT [ ] Lucas &amp;amp; exLucas [ ] Miller-Rabin &amp;amp;">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/05/CF1152E简要题解/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/NOI前最后一轮复习/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>CF1152E简要题解 | 陌上</title>
+  <title>NOI前最后一轮复习 | 陌上</title>
   
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/05/CF1152E简要题解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/NOI前最后一轮复习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Conical">
@@ -309,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CF1152E简要题解
+          <h1 class="post-title" itemprop="name headline">NOI前最后一轮复习
 
               
             
@@ -335,12 +335,24 @@
                 
               
 
-              <time title="创建时间：2019-07-05 01:00:41 / 修改时间：01:41:31" itemprop="dateCreated datePublished" datetime="2019-07-05T01:00:41+08:00">2019-07-05</time>
+              <time title="创建时间：2019-07-10 21:52:13" itemprop="dateCreated datePublished" datetime="2019-07-10T21:52:13+08:00">2019-07-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-11 09:16:08" itemprop="dateModified" datetime="2019-07-11T09:16:08+08:00">2019-07-11</time>
               
             
           </span>
@@ -380,12 +392,60 @@
       
 
       
-        <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定长度为 $n$ 的序列 $\{a\}$ 和长度为 $n-1$ 的排列 $\{p\}$，令 $b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})$，再令 $b’_i=b_{p_i},c’_i=c_{p_i}$。给定 $\{b’\},\{c’\}$ ，求一个合法的 $\{a\}$ 或判断无解。</p>
-<p>$n\le10^5$</p>
-<a id="more"></a>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>神仙结论题。将 $b’_i$ 和 $c’_i$ 之间连边，则若存在长度为 $n$ 的欧拉路径则有解。</p>
-<p>证明显然，显然 $b’_i$ 和 $c’_i$ 在 $\{a\}$ 中相邻，于是就做完了。</p>
-<p>注意判断无解。</p>
+        <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+<li>[ ] 线段树</li>
+<li>[ ] 平衡树</li>
+<li>[ ] K-D Tree</li>
+<li>[ ] 左偏树</li>
+<li>[ ] 可持久化数据结构<ul>
+<li>[ ] 主席树</li>
+<li>[ ] *可持久化平衡树</li>
+<li>[ ] 可持久化trie</li>
+<li>[ ] 可持久化左偏树</li>
+</ul>
+</li>
+<li>[ ] 根号算法</li>
+<li>[ ] LCT</li>
+</ul>
+<h2 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h2><ul>
+<li>[ ] exgcd</li>
+<li>[ ] CRT &amp; exCRT</li>
+<li>[ ] Lucas &amp; exLucas</li>
+<li>[ ] Miller-Rabin &amp; Pollard-rho</li>
+<li>[ ] BSGS &amp; exBSGS</li>
+<li>[ ] 莫比乌斯反演</li>
+<li>[ ] 高斯消元及矩阵求逆</li>
+<li>[ ] 杜教筛</li>
+<li>[ ] *洲阁筛和min25筛</li>
+</ul>
+<h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><ul>
+<li>[ ] FFT &amp; NTT</li>
+<li>[ ] *求逆，ln，exp等</li>
+<li>[ ] FWT</li>
+<li>[ ] 生成函数</li>
+</ul>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
+<li>[ ] 后缀数组</li>
+<li>[ ] 后缀自动机</li>
+<li>[ ] manacher</li>
+<li>[ ] AC自动机 &amp; KMP</li>
+<li>[ ] 回文自动机</li>
+</ul>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><ul>
+<li>[ ] 最短路 &amp; 生成树</li>
+<li>[ ] Kruskal 重构树</li>
+<li>[ ] 强连通分量，点双，边双</li>
+<li>[ ] 网络流</li>
+<li>[ ] 2-SAT，差分约束</li>
+<li>[ ] prufer序列</li>
+<li>[ ] 点分治，动态点分治</li>
+<li>[ ] 虚树</li>
+</ul>
+<h2 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h2><ul>
+<li>[ ] 凸包</li>
+<li>[ ] 半平面交</li>
+<li>[ ] 辛普森积分</li>
+</ul>
 
       
     </div>
@@ -416,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/03/ICPC-World-Finals-2017-简要题解/" rel="next" title="ICPC World Finals 2017 简要题解">
-                <i class="fa fa-chevron-left"></i> ICPC World Finals 2017 简要题解
+              <a href="/2019/07/05/CF1060F简要题解/" rel="next" title="CF1060F简要题解">
+                <i class="fa fa-chevron-left"></i> CF1060F简要题解
               </a>
             
           </div>
@@ -425,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/05/CF1060F简要题解/" rel="prev" title="CF1060F简要题解">
-                CF1060F简要题解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -571,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数论"><span class="nav-number">2.</span> <span class="nav-text">数论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多项式"><span class="nav-number">3.</span> <span class="nav-text">多项式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">4.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图论"><span class="nav-number">5.</span> <span class="nav-text">图论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算几何"><span class="nav-number">6.</span> <span class="nav-text">计算几何</span></a></li></ol></div>
             
 
           </div>
