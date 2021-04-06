@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="线性代数学习笔记 0 前言 高考结束了。无论如何，这都将是新的开始。 这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。 这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 Liner algebra 第一次读英文教材，在这里记录一点东西吧 有些地方直接口胡翻译的，懒得">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数学习笔记">
+<meta property="og:url" content="http://conical1404.github.io/2020/08/14/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="陌上">
+<meta property="og:description" content="线性代数学习笔记 0 前言 高考结束了。无论如何，这都将是新的开始。 这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。 这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 Liner algebra 第一次读英文教材，在这里记录一点东西吧 有些地方直接口胡翻译的，懒得">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-14T03:58:45.000Z">
+<meta property="article:modified_time" content="2020-08-14T04:06:35.796Z">
+<meta property="article:author" content="Conical">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://conical1404.github.io/2020/08/14/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>线性代数学习笔记 | 陌上</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">陌上</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://conical1404.github.io/2020/08/14/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Conical">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陌上">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线性代数学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-14 11:58:45 / 修改时间：12:06:35" itemprop="dateCreated datePublished" datetime="2020-08-14T11:58:45+08:00">2020-08-14</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="线性代数学习笔记">线性代数学习笔记</h1>
+<h2 id="前言">0 前言</h2>
+<p>高考结束了。无论如何，这都将是新的开始。</p>
+<p>这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。</p>
+<p>这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 <em>Liner algebra</em></p>
+<p>第一次读英文教材，在这里记录一点东西吧</p>
+<p>有些地方直接口胡翻译的，懒得查术语了（雾）</p>
+<span id="more"></span>
+<h2 id="向量与向量空间">1 向量与向量空间</h2>
+<h3 id="向量">1.1 向量</h3>
+<ol type="1">
+<li><p>定义：类似物理中矢量的定义，存在方向与大小的量称为 <span class="math inline">\(\text{vector}\)</span>（向量）.</p></li>
+<li><p>运算：</p>
+<ul>
+<li>加法：平行四边形法则.</li>
+<li>数量乘法.</li>
+</ul></li>
+<li><p>性质：</p>
+<ol type="1">
+<li><p>对于任意向量 <span class="math inline">\(x,y\)</span>， <span class="math inline">\(x + y = y + x.\)</span></p></li>
+<li>对于任意向量 <span class="math inline">\(x, y, z\)</span>， <span class="math inline">\((x + y) + z = x + (y + z).\)</span></li>
+<li>存在零向量 <span class="math inline">\(\textit 0\)</span> 使得 <span class="math inline">\(x + \textit 0 = x\)</span> 对所有向量 <span class="math inline">\(x\)</span> 成立.</li>
+<li>对任意向量 <span class="math inline">\(x\)</span>, 存在向量 <span class="math inline">\(y\)</span> 使得 <span class="math inline">\(x + y = \textit 0\)</span> .</li>
+<li>对任意向量 <span class="math inline">\(x\)</span>, <span class="math inline">\(1x = x.\)</span></li>
+<li>对任意实数 <span class="math inline">\(a, b\)</span> 及向量 <span class="math inline">\(x\)</span>，<span class="math inline">\((ab)x = a(bx).\)</span></li>
+<li>对任意实数 <span class="math inline">\(a\)</span> 及向量 <span class="math inline">\(x,y\)</span>，<span class="math inline">\(a(x + y) = ax + ay.\)</span></li>
+<li><p>对任意实数 <span class="math inline">\(a, b\)</span> 及向量 <span class="math inline">\(x\)</span>，<span class="math inline">\((a + b)x = ax + bx.\)</span></p></li>
+</ol></li>
+</ol>
+<h3 id="向量空间">1.2 向量空间</h3>
+<ol type="1">
+<li><p><span class="math inline">\(\text{vector space}\)</span>（向量空间），又称 <span class="math inline">\(\text{liner space}\)</span> （线性空间）.</p></li>
+<li><p>定义：定义在域 <span class="math inline">\(F\)</span> 上的向量空间 <span class="math inline">\(\rm V\)</span> 由一个集合组成，在该集合上加法与数量乘法均存在定义，对于 <span class="math inline">\(\forall x,y\in \rm V\)</span>， 有唯一的 <span class="math inline">\(x+y\in \rm V\)</span>， <span class="math inline">\(\forall a\in F,x\in \rm V\)</span>，有唯一的 <span class="math inline">\(ax\in \rm V\)</span>，且 <span class="math inline">\(\rm V\)</span> 中的元素满足向量对应的八条性质.</p></li>
+<li><p><span class="math inline">\(F\)</span> 中的元素称为标量，<span class="math inline">\(\rm V\)</span> 中的元素称为向量.</p>
+<p>注意，此处的向量定义与物理学中矢量定义不同，为抽象化的一般概念，表示向量空间中的元素.</p></li>
+</ol>
+<h3 id="子空间">1.3 子空间</h3>
+<ol type="1">
+<li><p>定义：若域 <span class="math inline">\(F\)</span> 上的向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(\rm W\)</span> 满足在 <span class="math inline">\(\rm V\)</span> 中的加法与数量乘法定义下 ， <span class="math inline">\(\rm W\)</span> 也为 <span class="math inline">\(F\)</span> 的向量空间，则称 <span class="math inline">\(\rm W\)</span> 为 <span class="math inline">\(\rm V\)</span> 的 <span class="math inline">\(\text{subspace}\)</span> （子空间）.</p></li>
+<li><p>显然，<span class="math inline">\(\rm V\)</span> 与 <span class="math inline">\(\{\textit0\ \}\)</span> 都为 <span class="math inline">\(\rm V\)</span> 的子空间。特别地，称 <span class="math inline">\(\{\textit0\ \}\)</span> 为 <span class="math inline">\(\rm V\)</span> 的零子空间.</p></li>
+<li><p>子空间的判定 对于任意一个向量空间的子集，性质 <span class="math inline">\((1)(2)(5)(6)(7)(8)\)</span> 显然是恒成立的。因此，这里我们只需要讨论下述性质：</p>
+<ul>
+<li><span class="math inline">\(\forall x,y \in \rm W,x+y\in \rm W.\)</span>（加法封闭性）</li>
+<li><span class="math inline">\(\forall c \in F,x\in \rm W,cx\in \rm W.\)</span>（数量乘法封闭性）</li>
+<li><span class="math inline">\(\rm W\)</span> 中存在零向量 <span class="math inline">\(\textit 0\ &#39;.\)</span></li>
+<li><span class="math inline">\(\rm W\)</span> 中的任意元素存在加法逆元.</li>
+</ul>
+<p>易证 <span class="math inline">\(\textit 0=\textit 0\ &#39;\)</span>，则此时 <span class="math inline">\(\rm W\)</span> 中任意元素一定都存在加法逆元，故只需满足：</p>
+<ul>
+<li><span class="math inline">\(\forall x,y\in \rm W,x+y\in \rm W.\)</span></li>
+<li><span class="math inline">\(\forall c\in F,x\in \rm W,cx\in \rm W.\)</span></li>
+<li><span class="math inline">\(\textit 0\in \rm W.\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(\rm V\)</span> 的任意两个子空间的交集仍是 <span class="math inline">\(\rm V\)</span> 的子空间.</p></li>
+</ol>
+<h3 id="线性组合与线性方程组">1.4 线性组合与线性方程组</h3>
+<h4 id="线性组合">1.4.1 线性组合</h4>
+<ol type="1">
+<li>定义：对于一个向量空间 <span class="math inline">\(\rm V\)</span> 及其非空子集 <span class="math inline">\(S\)</span>，向量 <span class="math inline">\(v\in \rm V\)</span> 称为 <span class="math inline">\(S\)</span> 中向量的线性组合当且仅当存在有限个向量 <span class="math inline">\(u_1,u_2,\dots,u_n\in S\)</span> 及标量 <span class="math inline">\(a_1,a_2,\dots,a_n\in F\)</span> 使得 <span class="math inline">\(v=a_1u_1+a_2u_2+\dots+a_nu_n\)</span>。则称 <span class="math inline">\(v\)</span> 为 <span class="math inline">\(u_1,u_2,\dots,u_n\)</span> 的 <span class="math inline">\(\texttt{liner combinations}\)</span> （线性组合)，<span class="math inline">\(a_1,a_2,\dots,a_n\)</span> 为这个线性组合的系数.</li>
+<li><span class="math inline">\(\textit 0\)</span> 是 <span class="math inline">\(\rm V\)</span> 的任意非空子集的线性组合.</li>
+</ol>
+<h4 id="线性方程组">1.4.2 线性方程组</h4>
+<ol type="1">
+<li>线性组合的解可转化为线性方程组的解.</li>
+<li>高斯消元解线性方程组.</li>
+</ol>
+<h4 id="张成空间">1.4.3 张成空间</h4>
+<ol type="1">
+<li>定义：对于一个向量空间 <span class="math inline">\(\rm V\)</span> 的非空子集 <span class="math inline">\(S\)</span>，所有 <span class="math inline">\(S\)</span> 的线性组合构成的集合称为 <span class="math inline">\(S\)</span> 的张成空间，记为 <span class="math inline">\({\rm span}(S).\)</span> 方便起见，我们定义 <span class="math inline">\({\rm span}(\varnothing)=\{\textit 0\ \}.\)</span></li>
+<li>向量空间 <span class="math inline">\(\rm V\)</span> 的任意子集 <span class="math inline">\(S\)</span> 的张成空间为 <span class="math inline">\(\rm V\)</span> 的子空间.</li>
+<li>对于向量空间 <span class="math inline">\(\rm V\)</span> 的子空间 <span class="math inline">\(\rm W\)</span>，若 <span class="math inline">\(S\subseteq\rm W\)</span>，则有 <span class="math inline">\({\rm span}(S)\subseteq \rm W.\)</span></li>
+<li>若 <span class="math inline">\({\rm span}(S)=\rm V\)</span>，则称 <span class="math inline">\(S\)</span> 为 <span class="math inline">\(\rm V\)</span> 的生成集.</li>
+</ol>
+<h3 id="线性相关与线性无关">1.5 线性相关与线性无关</h3>
+<h4 id="线性相关">1.5.1 线性相关</h4>
+<ol type="1">
+<li>对于 <span class="math inline">\(\textit 0\)</span> 的一个线性组合，若其系数全为 <span class="math inline">\(0\)</span>，则称其是 <span class="math inline">\(\texttt{trival}\)</span> 的；反之，则称其是 <span class="math inline">\(\texttt{nontrival}\)</span> 的.</li>
+<li>定义：对于向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(S\)</span>，若 <span class="math inline">\(\textit 0\)</span> 为 <span class="math inline">\(S\)</span> 中有限个向量的 <span class="math inline">\(\texttt{nontrival}\)</span> 线性组合，则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\texttt{lineraly dependent}\)</span> （线性相关的），也可称 <span class="math inline">\(S\)</span> 中的向量是线性相关的.</li>
+<li>由定义易得，若 <span class="math inline">\(S\)</span> 是线性相关的，则 <span class="math inline">\(S\)</span> 中的某个（或某些）向量可表示为其他向量的线性组合.</li>
+</ol>
+<h4 id="线性无关">1.5.2 线性无关</h4>
+<ol type="1">
+<li>定义：对于向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(S\)</span>，若 <span class="math inline">\(S\)</span> 不是线性相关的，则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\texttt{lineraly independent}\)</span>（线性无关的），也可称 <span class="math inline">\(S\)</span> 中的向量是线性无关的.</li>
+<li>对于任意向量空间，下述推论成立：
+<ul>
+<li>空集是线性无关的；</li>
+<li>由一个非零向量组成的集合是线性无关的；</li>
+<li>一个集合是线性无关的，当且仅当其上 <span class="math inline">\(\textit 0\)</span> 的唯一线性组合是 <span class="math inline">\(\texttt{trival}\)</span> 的.</li>
+</ul></li>
+</ol>
+<h4 id="推论">1.5.3 推论</h4>
+<ol type="1">
+<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，若 <span class="math inline">\(S_1,S_2\subseteq \rm V\)</span>，且 <span class="math inline">\(S_1\)</span> 是线性相关的，则 <span class="math inline">\(S_2\)</span> 一定是线性相关的.</li>
+<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，若 <span class="math inline">\(S_1,S_2\subseteq \rm V\)</span>，且 <span class="math inline">\(S_2\)</span> 是线性无关的，则 <span class="math inline">\(S_1\)</span> 一定是线性无关的.</li>
+<li>若 <span class="math inline">\(S\)</span> 的任意真子集均不为 <span class="math inline">\({\rm span}(S)\)</span> 的生成集，则 <span class="math inline">\(S\)</span> 是线性无关的，反之亦成立.</li>
+<li>设 <span class="math inline">\(S\)</span> 为向量空间 <span class="math inline">\(\rm V\)</span> 的一个线性无关的子集，<span class="math inline">\(v\)</span> 为满足 <span class="math inline">\(v\in \rm V\)</span> 且 <span class="math inline">\(v\notin S\)</span> 的向量，则 <span class="math inline">\(S\ \cup\{v\}\)</span> 为线性相关的当且仅当 <span class="math inline">\(v\in {\rm span}(S).\)</span></li>
+</ol>
+<h3 id="基与维度">1.6 基与维度</h3>
+<h4 id="基">1.6.1 基</h4>
+<ol type="1">
+<li>定义：向量空间 <span class="math inline">\(\rm V\)</span> 的 <span class="math inline">\(\texttt{basis}\)</span> （基） <span class="math inline">\(\beta\)</span> 为一个线性无关的能够生成 <span class="math inline">\(\rm V\)</span> 的集合.</li>
+<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，它的一个子集 <span class="math inline">\(\beta=\{u_1,u_2,\dots,u_n\}\)</span> 为 <span class="math inline">\(\rm V\)</span> 的基当且仅当对于 <span class="math inline">\(\forall v\in \rm V\)</span>，均存在唯一的 <span class="math inline">\(\beta\)</span> 上的线性组合，即存在唯一的 <span class="math inline">\(a_1,a_2,\dots,a_n\)</span>，使得 <span class="math inline">\(v=a_1u_1+a_2u_2+\dots+a_nu_n\)</span>. 故 <span class="math inline">\(v\)</span> 可以唯一地表示为一个 <span class="math inline">\(n\)</span> 元组 <span class="math inline">\((u_1,u_2,\dots,u_n).\)</span></li>
+<li>若向量空间 <span class="math inline">\(\rm V\)</span> 可由一个有限集合 <span class="math inline">\(S\)</span> 生成，则存在 <span class="math inline">\(S\)</span> 的某个（或某些）子集为 <span class="math inline">\(\rm V\)</span> 的基，因此 <span class="math inline">\(\rm V\)</span> 有一个有限基.</li>
+</ol>
+<h4 id="替换定理">1.6.2 替换定理</h4>
+<ol type="1">
+<li><p>定义：设 <span class="math inline">\(\rm V\)</span> 是一个由包含 <span class="math inline">\(n\)</span> 个向量的集合 <span class="math inline">\(G\)</span> 生成的向量空间，<span class="math inline">\(L\)</span> 为 <span class="math inline">\(\rm V\)</span> 的一个包含 <span class="math inline">\(m\)</span> 个向量的线性无关的子集，则有 <span class="math inline">\(m\le n\)</span> 且存在 <span class="math inline">\(G\)</span> 的一个包含 <span class="math inline">\(n-m\)</span> 个向量的子集 <span class="math inline">\(H\)</span>，使得 <span class="math inline">\(L\ \cup H\)</span> 能够生成 <span class="math inline">\(\rm V.\)</span></p></li>
+<li><p>推论 <span class="math inline">\(1\)</span>：若向量空间 <span class="math inline">\(\rm V\)</span> 存在一个有限基，则 <span class="math inline">\(\rm V\)</span> 的所有基大小均相等.</p>
+<p>证明：设 <span class="math inline">\(\rm V\)</span> 存在一个大小为 <span class="math inline">\(n\)</span> 的基 <span class="math inline">\(\beta\)</span> 和一个大小为 <span class="math inline">\(m\)</span> 的基 <span class="math inline">\(\gamma.\)</span> 若 <span class="math inline">\(m\gt n\)</span>，则一定可以取出 <span class="math inline">\(\gamma\)</span> 的一个大小为 <span class="math inline">\(n+1\)</span> 的子集 <span class="math inline">\(S\)</span>，易知 <span class="math inline">\(S\)</span> 是线性无关的，则由置换定理，<span class="math inline">\(n+1\le n\)</span>，矛盾；若 <span class="math inline">\(m\lt n\)</span>，则同样可得出 <span class="math inline">\(m+1\le m\)</span>，矛盾；故一定有 <span class="math inline">\(m=n.\)</span></p></li>
+<li><p>推论 <span class="math inline">\(2\)</span>：</p>
+<p><span class="math inline">\(\texttt{(a)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意生成集包含至少 <span class="math inline">\(n\)</span> 个向量，包含恰好 <span class="math inline">\(n\)</span> 个向量的生成集为 <span class="math inline">\(\rm V\)</span> 的基.</p>
+<p><span class="math inline">\(\texttt{(b)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意包含恰好 <span class="math inline">\(n\)</span> 个向量的线性无关的子集为 <span class="math inline">\(\rm V\)</span> 的基.</p>
+<p><span class="math inline">\(\texttt{(c)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意线性无关的子集均可扩展为 <span class="math inline">\(\rm V\)</span> 的基.</p></li>
+</ol>
+<h4 id="维度">1.6.3 维度</h4>
+<ol type="1">
+<li><p>对于存在一个有限基的向量空间 <span class="math inline">\(\rm V\)</span>，其基的大小称为这个向量空间的 <span class="math inline">\(\texttt{dimension}\)</span>（维度），用 <span class="math inline">\({\rm dim}({\rm V})\)</span> 表示，并称 <span class="math inline">\(\rm V\)</span> 是 <span class="math inline">\(\texttt{finite dimensional}\)</span>（有限维的）。反之，则称其为 <span class="math inline">\(\texttt{infinite dimensional}\)</span>（无限维的）.</p>
+<p>由替换定理推论 <span class="math inline">\(1\)</span> 可知，<span class="math inline">\(\rm V\)</span> 的维度是唯一的.</p></li>
+<li><p>对于向量空间 <span class="math inline">\(\rm V\)</span> 及其子空间 <span class="math inline">\(\rm W\)</span>，一定有 <span class="math inline">\(\rm dim(W)\le dim(V)\)</span>，且当 <span class="math inline">\(\rm dim(W)=dim(V)\)</span> 时，<span class="math inline">\(\rm W=V.\)</span></p>
+<p>推论：<span class="math inline">\(\rm W\)</span> 的任意基可以扩展为 <span class="math inline">\(\rm V\)</span> 的基.</p></li>
+</ol>
+<h4 id="拉格朗日插值公式">1.6.4 拉格朗日插值公式</h4>
+<p>设 <span class="math inline">\(c_0,c_1,\dots,c_n\)</span> 为域 <span class="math inline">\(F\)</span> 上的特定数，定义 <span class="math inline">\(\texttt{Lagrange polynomials}\)</span>（拉格朗日多项式）<span class="math inline">\(f_0(x),f_1(x),\dots,f_n(x)\)</span> 为： <span class="math display">\[
+f_i(x)=\frac{(x-c_0)\cdots(x-c_{i-1})(x-c_{i+1})\cdots(x-c_n)}
+{(c_i-c_0)\cdots(c_i-c_{i-1})(c_i-c_{i+1})\cdots(c_i-c_n)}=
+\prod_{k=0\\k\neq i}^{n} \frac{x-c_k}{c_i-c_k}
+\]</span> 注意到 <span class="math inline">\(f_i(x)\)</span> 是一个 <span class="math inline">\(n\)</span> 次多项式，因此有 <span class="math inline">\(f_i\in {\rm P}_n(F).\)</span> 将 <span class="math inline">\(f_i(x)\)</span> 视为一个多项式函数 <span class="math inline">\(f_i:F\rightarrow F\)</span>，则有： <span class="math display">\[
+f_i(c_j)=
+\begin{cases}
+0 &amp; i\neq j\\
+1 &amp; i=j.
+\end{cases}
+\]</span> 由此可证明 <span class="math inline">\(\beta =\{f_0,f_1,\cdots,f_n\}\)</span> 是 <span class="math inline">\({\rm P}_n(F)\)</span> 的线性无关子集. 不妨设： <span class="math display">\[
+\sum_{i=0}^{n}a_if_i=\textit 0
+\]</span> 其中 <span class="math inline">\(\textit 0\)</span> 表示零函数，则有： <span class="math display">\[
+\sum_{i=0}^{n}a_if_i(c_j)=0\ \ \ \ (j=0,1,\dots,n)
+\]</span> 又因为： <span class="math display">\[
+\sum_{i=0}^{n}a_if_i(c_j)=a_j\ \ \ \ (j=1,1,\dots,n)
+\]</span> 故 <span class="math inline">\(\forall j\in [0,n],a_j=0\)</span> 恒成立，则 <span class="math inline">\(\beta\)</span> 为 <span class="math inline">\({\rm P}_n(F)\)</span> 的线性无关子集，又因为 <span class="math inline">\({\rm P}_n(F)\)</span> 的维度为 <span class="math inline">\(n+1\)</span>，<span class="math inline">\(\beta\)</span> 为 <span class="math inline">\({\rm P}_n(F)\)</span> 的基. 那么，对于 <span class="math inline">\(\forall g\in {\rm P}_n(F)\)</span>，均有： <span class="math display">\[
+g=\sum_{i=0}^n b_if_i
+\]</span> 又因为： <span class="math display">\[
+g(c_j)=\sum_{i=0}^nb_if_i(c_j)=b_j
+\]</span> 则有： <span class="math display">\[
+g=\sum_{i=0}^n g(c_i)f_i
+\]</span> 上式即 <span class="math inline">\(\texttt{The Lagrange Interpolation Formula}\)</span>（拉格朗日插值公式），在已知 <span class="math inline">\(c_0,c_1,\dots,c_n\)</span> 及 <span class="math inline">\(g(c_0),g(c_1),\dots,g(c_n)\)</span> 时，由拉格朗日插值公式容易求出 <span class="math inline">\(g.\)</span></p>
+<h3 id="最大线性无关子集">1.7 最大线性无关子集</h3>
+<h4 id="一些术语">1.7.1 一些术语</h4>
+<ol type="1">
+<li>令 <span class="math inline">\(\mathcal{F}\)</span></li>
+</ol>
+<h2 id="线性变换与矩阵">2 线性变换与矩阵</h2>
+<h3 id="线性变换零空间与值空间">2.1 线性变换，零空间与值空间</h3>
+<h4 id="线性变换">2.1.1 线性变换</h4>
+<ol type="1">
+<li><p><span class="math inline">\({\rm T}:\rm V\rightarrow W\)</span> 表示域 <span class="math inline">\(\rm V\)</span> 对其邻域 <span class="math inline">\(\rm W\)</span> 的函数 <span class="math inline">\(\rm T\)</span> .</p></li>
+<li><p>定义：设 <span class="math inline">\(\rm V\)</span> 与 <span class="math inline">\(\rm W\)</span> 是 <span class="math inline">\(F\)</span> 上的向量空间，我们称函数 <span class="math inline">\(\rm T:V\rightarrow W\)</span> 是一个 <span class="math inline">\(\rm V\)</span> 到 <span class="math inline">\(\rm W\)</span> 的线性变换，当且仅当对于 <span class="math inline">\(\forall x,y\in {\rm V},c\in F\)</span>，都有：</p>
+<p><span class="math inline">\(\texttt{(a)}\ \ {\rm T}(x+y)={\rm T}(x)+{\rm T}(y)\)</span></p>
+<p><span class="math inline">\(\texttt{(b)}\ \ {\rm T}(cx)=c{\rm T}(x)\)</span></p>
+<p>一般简称函数 <span class="math inline">\(\rm T\)</span> 是线性的.</p></li>
+<li><p>性质：</p>
+<ol type="1">
+<li><p>若 <span class="math inline">\(\rm T\)</span> 是线性的，则 <span class="math inline">\({\rm T}(\textit 0\ )=\textit 0.\)</span></p></li>
+<li><p><span class="math inline">\(\rm T\)</span> 是线性的，当且仅当 <span class="math inline">\({\rm T}(cx+y)=c{\rm T}(x)+{\rm T}(y)\)</span> 恒成立.</p></li>
+<li><p>若 <span class="math inline">\(\rm T\)</span> 是线性的，则 <span class="math inline">\({\rm T}(x-y)={\rm T}(x)-{\rm T}(y).\)</span></p></li>
+<li><p><span class="math inline">\(\rm T\)</span> 是线性的，当且仅当对于任意 <span class="math inline">\(x_1,x_2,\dots,x_n\in {\rm V}\)</span> 及 <span class="math inline">\(a_1,a_2,\dots,a_n\in F\)</span>，都有： <span class="math display">\[
+{\rm T}\left(\sum_{i=1}^n a_ix_i\right)=\sum_{i=1}^n a_i{\rm T}(x_i).
+\]</span></p></li>
+</ol></li>
+</ol>
+<p>未完待续。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag"><i class="fa fa-tag"></i> 线性代数</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/07/10/NOI%E5%89%8D%E6%9C%80%E5%90%8E%E4%B8%80%E8%BD%AE%E5%A4%8D%E4%B9%A0/" rel="prev" title="NOI前最后一轮复习">
+      <i class="fa fa-chevron-left"></i> NOI前最后一轮复习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/02/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="《深入理解计算机系统》读书笔记">
+      《深入理解计算机系统》读书笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">线性代数学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">0 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B8%8E%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.</span> <span class="nav-text">1 向量与向量空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 向量空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 子空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.4 线性组合与线性方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1.4.1 线性组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">1.4.2 线性方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%A0%E6%88%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">1.4.3 张成空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.5 线性相关与线性无关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1.5.1 线性相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">1.5.2 线性无关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">1.5.3 推论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%B8%8E%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.2.6.</span> <span class="nav-text">1.6 基与维度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">1.6.1 基</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">1.6.2 替换定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">1.6.3 维度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">1.6.4 拉格朗日插值公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3%E5%AD%90%E9%9B%86"><span class="nav-number">1.2.7.</span> <span class="nav-text">1.7 最大线性无关子集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">1.7.1 一些术语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%9F%A9%E9%98%B5"><span class="nav-number">1.3.</span> <span class="nav-text">2 线性变换与矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E9%9B%B6%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%80%BC%E7%A9%BA%E9%97%B4"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 线性变换，零空间与值空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">2.1.1 线性变换</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Conical</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Conical</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

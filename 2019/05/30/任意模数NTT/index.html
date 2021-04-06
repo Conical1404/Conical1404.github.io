@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言 寒假入手了 CSAPP，不过因为太鸽了一直没有读。 这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。">
+  <meta name="description" content="求多项式 \(A(x)\) 和 \(B(x)\) 在模任意模数 \(P\) 意义下的卷积。 \(n\le 10^5,P\le10^9+9\)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《深入理解计算机系统》读书笔记">
-<meta property="og:url" content="http://conical1404.github.io/2021/04/02/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="任意模数NTT">
+<meta property="og:url" content="http://conical1404.github.io/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="前言 寒假入手了 CSAPP，不过因为太鸽了一直没有读。 这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。">
+<meta property="og:description" content="求多项式 \(A(x)\) 和 \(B(x)\) 在模任意模数 \(P\) 意义下的卷积。 \(n\le 10^5,P\le10^9+9\)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-02T07:29:42.000Z">
-<meta property="article:modified_time" content="2021-04-02T07:31:54.029Z">
+<meta property="article:published_time" content="2019-05-30T14:24:23.000Z">
+<meta property="article:modified_time" content="2019-05-31T16:00:09.897Z">
 <meta property="article:author" content="Conical">
-<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="多项式">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://conical1404.github.io/2021/04/02/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://conical1404.github.io/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>《深入理解计算机系统》读书笔记 | 陌上</title>
+  <title>任意模数NTT | 陌上</title>
   
 
 
@@ -175,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://conical1404.github.io/2021/04/02/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://conical1404.github.io/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《深入理解计算机系统》读书笔记
+          任意模数NTT
         </h1>
 
         <div class="post-meta">
@@ -197,10 +197,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-02 15:29:42 / 修改时间：15:31:54" itemprop="dateCreated datePublished" datetime="2021-04-02T15:29:42+08:00">2021-04-02</time>
+              <time title="创建时间：2019-05-30 22:24:23" itemprop="dateCreated datePublished" datetime="2019-05-30T22:24:23+08:00">2019-05-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-06-01 00:00:09" itemprop="dateModified" datetime="2019-06-01T00:00:09+08:00">2019-06-01</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -220,51 +226,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言">前言</h2>
-<p>寒假入手了 CSAPP，不过因为太鸽了一直没有读。</p>
-<p>这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。</p>
+        <p>求多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(B(x)\)</span> 在模任意模数 <span class="math inline">\(P\)</span> 意义下的卷积。</p>
+<p><span class="math inline">\(n\le 10^5,P\le10^9+9\)</span></p>
 <span id="more"></span>
-<h2 id="第1章-计算机系统漫游">第1章 计算机系统漫游</h2>
-<h3 id="信息就是位上下文">1.1 信息就是位+上下文</h3>
-<ul>
-<li>系统中所有的信息都是用一串比特表示的</li>
-<li>区分不同数据对象的唯一方法是我们读到这些数据对象时的上下文</li>
-</ul>
-<h3 id="程序被其他程序翻译成不同的格式">1.2 程序被其他程序翻译成不同的格式</h3>
-<ul>
-<li>高级程序的翻译过程：四个阶段
-<ul>
-<li>预处理阶段：预处理器（cpp）读取 <code>hello.c</code> 中的系统头文件，直接插入程序文本，得到 <code>hello.i</code></li>
-<li>编译阶段：编译器（ccl）将 <code>hello.i</code> 翻译成包含汇编语言程序的文本文件 <code>hello.s</code>
-<ul>
-<li>汇编语言以文本格式描述低级机器语言指令</li>
-</ul></li>
-<li>汇编阶段：汇编器（as）将程序翻译成机器语言指令，打包成可重定位目标程序的格式，保存在 <code>hello.o</code> 中
-<ul>
-<li><code>hello.o</code> 是一个二进制文件</li>
-</ul></li>
-<li>链接阶段：链接器（ld）将程序调用的函数所在的预编译文件合并到目标程序，得到可执行文件</li>
-</ul></li>
-</ul>
-<h3 id="了解编译系统如何工作是大有益处的">1.3 了解编译系统如何工作是大有益处的</h3>
-<ul>
-<li>优化程序性能</li>
-<li>理解链接时出现的错误</li>
-<li>避免安全漏洞</li>
-</ul>
-<h3 id="处理器读并解释储存在内存中的指令">1.4 处理器读并解释储存在内存中的指令</h3>
-<h4 id="系统的硬件组成">1.4.1 系统的硬件组成</h4>
-<ul>
-<li>总线
-<ul>
-<li>贯穿整个系统的一组电子管道</li>
-<li>传送定长的字节块</li>
-</ul></li>
-<li>I/O 设备</li>
-<li>主存</li>
-<li>处理器</li>
-<li></li>
-</ul>
+<h2 id="解法一三模数ntt">解法一：三模数NTT</h2>
+<p>考虑选取三个能够进行 <code>NTT</code> 的并且积 <span class="math inline">\(&gt;10^{23}\)</span> 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程： <span class="math display">\[
+\begin{cases}
+ans\equiv a_1\bmod m_1\\
+ans\equiv a_2\bmod m_2\\
+ans\equiv a_3 \bmod m_3
+\end{cases}
+\]</span> 如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程： <span class="math display">\[
+\begin{cases}
+ans\equiv A\bmod M\\
+ans\equiv a_3\bmod m_3
+\end{cases}
+\]</span> 将合并后的方程写成不定方程代入第三个方程： <span class="math display">\[
+kM+A\equiv a_3\bmod m_3
+\]</span> 由于 <span class="math inline">\(m_3\)</span> 是质数，<span class="math inline">\(M\)</span> 一定存在逆元： <span class="math display">\[
+k\equiv(a_3-A)\cdot M^{-1}\bmod m_3
+\]</span> 解出 <span class="math inline">\(k\)</span> 之后在 <span class="math inline">\(\bmod P\)</span> 意义下计算 <span class="math inline">\(Ans\)</span> 即可。</p>
+<h2 id="解法二拆系数fft">解法二：拆系数FFT</h2>
+<p>考虑将多项式系数拆分成 <span class="math inline">\(kM+b\)</span> 的形式，观察卷积后的形式： <span class="math display">\[
+(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2
+\]</span> 显然，当 <span class="math inline">\(M\)</span> 取 <span class="math inline">\(\sqrt P\)</span> 时，每一项系数不超过 <span class="math inline">\(P\)</span>。将两个多项式拆开卷积，只需 <span class="math inline">\(7\)</span> 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
+<h3 id="dft与idft合并">DFT与IDFT合并</h3>
+<p>考虑对长度为 <span class="math inline">\(n\)</span> 的实多项式 <span class="math inline">\(A(x),B(x)\)</span> 进行 <code>dft</code>，假设 <span class="math inline">\(n\)</span> 已调整成 <span class="math inline">\(2\)</span> 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
+<p>我们定义： <span class="math display">\[
+P(x)=A(x)+iB(x)\\
+Q(x)=A(x)-iB(x)
+\]</span></p>
+<p>令 <span class="math inline">\(F_p[k],F_q[k]\)</span> 分别表示 <span class="math inline">\(P,Q\)</span> 做 <code>dft</code> 后的第 <span class="math inline">\(k\)</span> 项，即：<span class="math inline">\(F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)\)</span>，其中 <span class="math inline">\(\omega\)</span> 是 <span class="math inline">\(n\)</span> 次单位根。</p>
+<p>为了方便表示，下文中用 <span class="math inline">\(X\)</span> 代替 <span class="math inline">\(\frac {2\pi jk}{n}\)</span> ，<span class="math inline">\({\rm conj}(x)\)</span> 表示 <span class="math inline">\(x\)</span> 的共轭复数。 <span class="math display">\[
+\begin{align}
+F_p[k]&amp;=A(\omega_n^k)+iB(\omega_n^k)\\
+&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
+&amp;=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
+&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
+&amp;=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
+&amp;=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
+&amp;={\rm conj}(F_p[n - k])
+\end{align}
+\]</span></p>
+<p>于是仅用一次 <code>DFT</code> 就可计算出 <span class="math inline">\(F_p,F_q\)</span>。令 <span class="math inline">\({\rm DFT}(P[k])\)</span> 表示对 <span class="math inline">\(P(x)\)</span> 进行 <code>DFT</code> 后的第 <span class="math inline">\(k\)</span> 项，就有： <span class="math display">\[
+\begin{align}
+{\rm DFT}(A[k])&amp;=\frac{F_p[k]+F_q[k]}{2}\\
+{\rm DFT}(B[k])&amp;=i\frac{F_p[k]-F_q[k]}{2}\\
+\end{align}
+\]</span> 那么就将两次 <code>DFT</code> 合并为了一次。</p>
+<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 <span class="math inline">\(P,Q\)</span> ，再 <code>dft</code> 出 <span class="math inline">\(F_p,F_q\)</span>，并根据上式计算出 <span class="math inline">\({\rm DFT}(A)\)</span> 与 <span class="math inline">\({\rm DFT}(B)\)</span>。而我们现在已知 <span class="math inline">\({\rm DFT}(A)\)</span> 和 <span class="math inline">\({\rm DFT}(B)\)</span>，根据上式亦可逆推出 <span class="math inline">\(F_p,F_q\)</span>，<code>IDFT</code> 得到 <span class="math inline">\(P,Q\)</span>，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
+<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 <span class="math inline">\(7\)</span> 次 <code>dft</code>，利用上述优化，即可优化到 <span class="math inline">\(4\)</span> 次 <code>dft</code>，常数大大减小。</p>
 
     </div>
 
@@ -275,7 +296,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 读书笔记</a>
+              <a href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 多项式</a>
           </div>
 
         
@@ -283,11 +304,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/08/14/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="线性代数学习笔记">
-      <i class="fa fa-chevron-left"></i> 线性代数学习笔记
-    </a></div>
       <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86/" rel="next" title="多项式求逆">
+      多项式求逆 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -346,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8"><span class="nav-number">2.</span> <span class="nav-text">第1章 计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%B0%B1%E6%98%AF%E4%BD%8D%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 信息就是位+上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%A2%AB%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E7%BF%BB%E8%AF%91%E6%88%90%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 程序被其他程序翻译成不同的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E6%98%AF%E5%A4%A7%E6%9C%89%E7%9B%8A%E5%A4%84%E7%9A%84"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 了解编译系统如何工作是大有益处的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E8%AF%BB%E5%B9%B6%E8%A7%A3%E9%87%8A%E5%82%A8%E5%AD%98%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 处理器读并解释储存在内存中的指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%BB%84%E6%88%90"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.4.1 系统的硬件组成</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80%E4%B8%89%E6%A8%A1%E6%95%B0ntt"><span class="nav-number">1.</span> <span class="nav-text">解法一：三模数NTT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C%E6%8B%86%E7%B3%BB%E6%95%B0fft"><span class="nav-number">2.</span> <span class="nav-text">解法二：拆系数FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dft%E4%B8%8Eidft%E5%90%88%E5%B9%B6"><span class="nav-number">2.1.</span> <span class="nav-text">DFT与IDFT合并</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
