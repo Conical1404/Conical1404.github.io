@@ -310,6 +310,8 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
     <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
 <p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
+<p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
+<span id="more"></span>
 <h2 id="第一章-绪论">第一章 绪论</h2>
 <ol type="1">
 <li>机器学习的定义：
