@@ -334,6 +334,10 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 </ol>
 <h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
 ]]></content>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>学习笔记</tag>
+      </tags>
   </entry>
   <entry>
     <title>多项式多点求值</title>
