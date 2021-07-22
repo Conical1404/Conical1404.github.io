@@ -59,19 +59,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 ]]></content>
   </entry>
   <entry>
-    <title>CF1152E简要题解</title>
-    <url>/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="题意">题意</h2>
-<p>给定长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 和长度为 <span class="math inline">\(n-1\)</span> 的排列 <span class="math inline">\(\{p\}\)</span>，令 <span class="math inline">\(b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})\)</span>，再令 <span class="math inline">\(b&#39;_i=b_{p_i},c&#39;_i=c_{p_i}\)</span>。给定 <span class="math inline">\(\{b&#39;\},\{c&#39;\}\)</span> ，求一个合法的 <span class="math inline">\(\{a\}\)</span> 或判断无解。</p>
-<p><span class="math inline">\(n\le10^5\)</span></p>
-<span id="more"></span>
-<h2 id="分析">分析</h2>
-<p>神仙结论题。将 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 之间连边，则若存在长度为 <span class="math inline">\(n\)</span> 的欧拉路径则有解。</p>
-<p>证明显然，显然 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 在 <span class="math inline">\(\{a\}\)</span> 中相邻，于是就做完了。</p>
-<p>注意判断无解。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>CF1060G简要题解</title>
     <url>/2019/07/02/CF1060G%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="题意">题意</h2>
@@ -93,6 +80,19 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
         <tag>线段树</tag>
         <tag>思维</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>CF1152E简要题解</title>
+    <url>/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="题意">题意</h2>
+<p>给定长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 和长度为 <span class="math inline">\(n-1\)</span> 的排列 <span class="math inline">\(\{p\}\)</span>，令 <span class="math inline">\(b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})\)</span>，再令 <span class="math inline">\(b&#39;_i=b_{p_i},c&#39;_i=c_{p_i}\)</span>。给定 <span class="math inline">\(\{b&#39;\},\{c&#39;\}\)</span> ，求一个合法的 <span class="math inline">\(\{a\}\)</span> 或判断无解。</p>
+<p><span class="math inline">\(n\le10^5\)</span></p>
+<span id="more"></span>
+<h2 id="分析">分析</h2>
+<p>神仙结论题。将 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 之间连边，则若存在长度为 <span class="math inline">\(n\)</span> 的欧拉路径则有解。</p>
+<p>证明显然，显然 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 在 <span class="math inline">\(\{a\}\)</span> 中相邻，于是就做完了。</p>
+<p>注意判断无解。</p>
+]]></content>
   </entry>
   <entry>
     <title>CometOJ-Contest#6 简要题解</title>
