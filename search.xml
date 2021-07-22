@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2021杭电多校第二场总结</title>
+    <url>/2021/07/22/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>两个多月没进行任何训练了，这场打得有亿点拉……和队友演了一整场，最后 6/12</p>
+<span id="more"></span>
+<p>开场看了 1001，觉得比较可做，然后就开始了演出的序幕（</p>
+<p>读完题发现 1012 和 1005 签到，快速写完后开始自闭，期间不断编假式子，自闭1h后冠州编出了 1011 的 FWT 做法，就扔掉然后开其他题。跟榜开了 1008 和 1002，发现是个裸DP和裸线段树维护二次函数，直接秒了。冠州写完 wa 了一发，于是帮忙去 debug，期间发现数据范围是绝对值，存在负数情况，然后就各种调边界……不得不说一道高维前缀和裸题能写成这样也是演过头了。</p>
+<p>1011wa了三发后，非非发现对1001题目理解有点问题，理解成了正方体表面的等边三角形个数。上场把1001切了。由于1011卡了太久，决定先丢掉。我上场开写1008，继续演，又贡献了三发罚时……</p>
+<p>然后继续开1002，太久没有写树剖了有点忘，非非帮忙拿了 kuangbin 的板子放在一边，然后根本没看，写着写着就回忆起来写法了……可以算是刻在DNA里的代码段了。也许是演了太久觉得不能再演了，写得很顺，直接1A（</p>
+<p>然后继续看1011代码，期间非非想了 1010 假做法，决定莽一波，然后样例没过……继续上场 debug，发现极值开小了一个 0……一个 0 演了一个小时，属于重症晚期，建议 ICU（</p>
+<p>调完 1011 还剩 20min，非非和冠州接着开 1010，我开始扫雷。5min后非非和冠州也加入了扫雷行列……暑假第一场演出就此落幕</p>
+<p>总的来说今天是很不在状态很演的一场，打成这样多少有点丢人，接下来不能演了，要认真打每一场（</p>
+<p>flag 立下了，希望不会倒（</p>
+]]></content>
+  </entry>
+  <entry>
     <title>APIO2019简要题解</title>
     <url>/2019/06/24/APIO2019%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
@@ -44,6 +59,19 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 ]]></content>
   </entry>
   <entry>
+    <title>CF1152E简要题解</title>
+    <url>/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="题意">题意</h2>
+<p>给定长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 和长度为 <span class="math inline">\(n-1\)</span> 的排列 <span class="math inline">\(\{p\}\)</span>，令 <span class="math inline">\(b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})\)</span>，再令 <span class="math inline">\(b&#39;_i=b_{p_i},c&#39;_i=c_{p_i}\)</span>。给定 <span class="math inline">\(\{b&#39;\},\{c&#39;\}\)</span> ，求一个合法的 <span class="math inline">\(\{a\}\)</span> 或判断无解。</p>
+<p><span class="math inline">\(n\le10^5\)</span></p>
+<span id="more"></span>
+<h2 id="分析">分析</h2>
+<p>神仙结论题。将 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 之间连边，则若存在长度为 <span class="math inline">\(n\)</span> 的欧拉路径则有解。</p>
+<p>证明显然，显然 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 在 <span class="math inline">\(\{a\}\)</span> 中相邻，于是就做完了。</p>
+<p>注意判断无解。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>CF1060G简要题解</title>
     <url>/2019/07/02/CF1060G%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="题意">题意</h2>
@@ -65,19 +93,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
         <tag>线段树</tag>
         <tag>思维</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>CF1152E简要题解</title>
-    <url>/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="题意">题意</h2>
-<p>给定长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 和长度为 <span class="math inline">\(n-1\)</span> 的排列 <span class="math inline">\(\{p\}\)</span>，令 <span class="math inline">\(b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})\)</span>，再令 <span class="math inline">\(b&#39;_i=b_{p_i},c&#39;_i=c_{p_i}\)</span>。给定 <span class="math inline">\(\{b&#39;\},\{c&#39;\}\)</span> ，求一个合法的 <span class="math inline">\(\{a\}\)</span> 或判断无解。</p>
-<p><span class="math inline">\(n\le10^5\)</span></p>
-<span id="more"></span>
-<h2 id="分析">分析</h2>
-<p>神仙结论题。将 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 之间连边，则若存在长度为 <span class="math inline">\(n\)</span> 的欧拉路径则有解。</p>
-<p>证明显然，显然 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 在 <span class="math inline">\(\{a\}\)</span> 中相邻，于是就做完了。</p>
-<p>注意判断无解。</p>
-]]></content>
   </entry>
   <entry>
     <title>CometOJ-Contest#6 简要题解</title>
@@ -102,6 +117,25 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
       <tags>
         <tag>CometOJ</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>ICPC World Finals 2017 简要题解</title>
+    <url>/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p>开坑。</p>
+<p>题面见<a href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
+<span id="more"></span>
+<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
+<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
+<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
+<p>挺有意思的一道题。</p>
+<p>首先可以直接暴搜。</p>
+<p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
+<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
+<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
+<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
+<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
+<p>坑着。</p>
+]]></content>
   </entry>
   <entry>
     <title>Lydsy1712月赛泛做</title>
@@ -138,25 +172,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
       <tags>
         <tag>BZOJ</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>ICPC World Finals 2017 简要题解</title>
-    <url>/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<p>开坑。</p>
-<p>题面见<a href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
-<span id="more"></span>
-<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
-<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
-<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
-<p>挺有意思的一道题。</p>
-<p>首先可以直接暴搜。</p>
-<p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
-<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
-<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
-<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
-<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
-<p>坑着。</p>
-]]></content>
   </entry>
   <entry>
     <title>NOI前最后一轮复习</title>
@@ -306,68 +321,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
       </tags>
   </entry>
   <entry>
-    <title>吴恩达机器学习课程学习笔记</title>
-    <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
-<p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
-<span id="more"></span>
-<h2 id="第一章-绪论">第一章 绪论</h2>
-<ol type="1">
-<li>机器学习的定义：
-<ul>
-<li>Arthur Samuel(1959). 在没有明确编程的情况下，使得计算机具有学习能力的领域</li>
-<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 <span class="math inline">\(\text E\)</span> 中学习，解决某一任务 <span class="math inline">\(\text T\)</span> ，其在 <span class="math inline">\(\text T\)</span> 上的表现以度量 <span class="math inline">\(\text P\)</span> 来评估，并且其在 <span class="math inline">\(\text T\)</span> 上用 <span class="math inline">\(\text P\)</span> 评估的表现可由 <span class="math inline">\(\text E\)</span> 提高</li>
-</ul></li>
-<li>监督学习
-<ul>
-<li>定义：在包含“正确答案”的数据集上学习解决问题的机器学习机制</li>
-<li>回归问题：预测连续输出值的问题</li>
-<li>分类问题：预测离散输出值的问题</li>
-</ul></li>
-<li>无监督学习
-<ul>
-<li>在给定数据集中寻找其类型结构的学习机制</li>
-<li>聚类算法</li>
-<li>鸡尾酒派对算法</li>
-</ul></li>
-</ol>
-<h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
-]]></content>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多项式多点求值</title>
-    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%A4%9A%E7%82%B9%E6%B1%82%E5%80%BC/</url>
-    <content><![CDATA[<p>给定多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(\{x_i\}\)</span>，求 <span class="math inline">\(A(x)\)</span> 在各个点处的值。</p>
-<span id="more"></span>
-<p>从多项式求逆、开根、取对数等操作的算法来看，这些多项式的算法有一个共同点，就是利用折半的思路，分治解决问题。类似地，我们考虑解决多点求值问题。</p>
-<p>首先，我们对点集折半： <span class="math display">\[
-\begin{eqnarray*} X^{[0]} &amp;=&amp; \{x_0, x_1, \cdots, x_{\lfloor \frac{n}{2} \rfloor}\} \\ X^{[1]} &amp;=&amp; \{x_{\lfloor \frac{n}{2} \rfloor+1},x_{\lfloor \frac{n}{2} \rfloor+2}, \cdots, x_{n-1}\} \end{eqnarray*}
-\]</span> 同时，为了保证复杂度，我们要对 <span class="math inline">\(A(x)\)</span> 也进行折半。不妨设 $ A^{[0]}(x)$ 表示对 <span class="math inline">\(X^{[0]}\)</span> 插值得到的多项式，<span class="math inline">\(A^{1}(x)\)</span> 同理。考虑构造如下多项式： <span class="math display">\[
-\begin{eqnarray*} P^{[0]}(x) &amp;=&amp; \prod_{i=0}^{\lfloor \frac{n}{2} \rfloor} (x-x_i) \\ P^{[1]}(x) &amp;=&amp; \prod_{i=\lfloor \frac{n}{2} \rfloor+1}^{n-1} (x-x_i) \end{eqnarray*}
-\]</span> 那么，我们就有： <span class="math display">\[
-\begin{eqnarray*}
-A(x) &amp;=&amp; D^{[0]}(x)P^{[0]}(x)+A^{[0]}(x)\\ 
-&amp;=&amp; D^{[1]}(x)P^{[1]}(x)+A^{[1]}(x)
-\end{eqnarray*}
-\]</span> 也即： <span class="math display">\[
-\begin{eqnarray*}
-A(x) &amp;\equiv&amp; A^{[0]}(x)\pmod {P^{[0]}(x)}\\ 
-A(x) &amp;\equiv&amp; A^{[1]}(x)\pmod {P^{[1]}(x)}
-\end{eqnarray*}
-\]</span> 做多项式取模即可。多项式取模复杂度 <span class="math inline">\(\mathcal O(n\log n)\)</span>，因此总复杂度就为： <span class="math display">\[
-T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
-\]</span></p>
-]]></content>
-      <tags>
-        <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>任意模数NTT</title>
     <url>/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/</url>
     <content><![CDATA[<p>求多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(B(x)\)</span> 在模任意模数 <span class="math inline">\(P\)</span> 意义下的卷积。</p>
@@ -430,6 +383,68 @@ F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
 \]</span> 那么就将两次 <code>DFT</code> 合并为了一次。</p>
 <p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 <span class="math inline">\(P,Q\)</span> ，再 <code>dft</code> 出 <span class="math inline">\(F_p,F_q\)</span>，并根据上式计算出 <span class="math inline">\({\rm DFT}(A)\)</span> 与 <span class="math inline">\({\rm DFT}(B)\)</span>。而我们现在已知 <span class="math inline">\({\rm DFT}(A)\)</span> 和 <span class="math inline">\({\rm DFT}(B)\)</span>，根据上式亦可逆推出 <span class="math inline">\(F_p,F_q\)</span>，<code>IDFT</code> 得到 <span class="math inline">\(P,Q\)</span>，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
 <p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 <span class="math inline">\(7\)</span> 次 <code>dft</code>，利用上述优化，即可优化到 <span class="math inline">\(4\)</span> 次 <code>dft</code>，常数大大减小。</p>
+]]></content>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>吴恩达机器学习课程学习笔记</title>
+    <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
+<p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
+<span id="more"></span>
+<h2 id="第一章-绪论">第一章 绪论</h2>
+<ol type="1">
+<li>机器学习的定义：
+<ul>
+<li>Arthur Samuel(1959). 在没有明确编程的情况下，使得计算机具有学习能力的领域</li>
+<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 <span class="math inline">\(\text E\)</span> 中学习，解决某一任务 <span class="math inline">\(\text T\)</span> ，其在 <span class="math inline">\(\text T\)</span> 上的表现以度量 <span class="math inline">\(\text P\)</span> 来评估，并且其在 <span class="math inline">\(\text T\)</span> 上用 <span class="math inline">\(\text P\)</span> 评估的表现可由 <span class="math inline">\(\text E\)</span> 提高</li>
+</ul></li>
+<li>监督学习
+<ul>
+<li>定义：在包含“正确答案”的数据集上学习解决问题的机器学习机制</li>
+<li>回归问题：预测连续输出值的问题</li>
+<li>分类问题：预测离散输出值的问题</li>
+</ul></li>
+<li>无监督学习
+<ul>
+<li>在给定数据集中寻找其类型结构的学习机制</li>
+<li>聚类算法</li>
+<li>鸡尾酒派对算法</li>
+</ul></li>
+</ol>
+<h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
+]]></content>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多项式多点求值</title>
+    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%A4%9A%E7%82%B9%E6%B1%82%E5%80%BC/</url>
+    <content><![CDATA[<p>给定多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(\{x_i\}\)</span>，求 <span class="math inline">\(A(x)\)</span> 在各个点处的值。</p>
+<span id="more"></span>
+<p>从多项式求逆、开根、取对数等操作的算法来看，这些多项式的算法有一个共同点，就是利用折半的思路，分治解决问题。类似地，我们考虑解决多点求值问题。</p>
+<p>首先，我们对点集折半： <span class="math display">\[
+\begin{eqnarray*} X^{[0]} &amp;=&amp; \{x_0, x_1, \cdots, x_{\lfloor \frac{n}{2} \rfloor}\} \\ X^{[1]} &amp;=&amp; \{x_{\lfloor \frac{n}{2} \rfloor+1},x_{\lfloor \frac{n}{2} \rfloor+2}, \cdots, x_{n-1}\} \end{eqnarray*}
+\]</span> 同时，为了保证复杂度，我们要对 <span class="math inline">\(A(x)\)</span> 也进行折半。不妨设 $ A^{[0]}(x)$ 表示对 <span class="math inline">\(X^{[0]}\)</span> 插值得到的多项式，<span class="math inline">\(A^{1}(x)\)</span> 同理。考虑构造如下多项式： <span class="math display">\[
+\begin{eqnarray*} P^{[0]}(x) &amp;=&amp; \prod_{i=0}^{\lfloor \frac{n}{2} \rfloor} (x-x_i) \\ P^{[1]}(x) &amp;=&amp; \prod_{i=\lfloor \frac{n}{2} \rfloor+1}^{n-1} (x-x_i) \end{eqnarray*}
+\]</span> 那么，我们就有： <span class="math display">\[
+\begin{eqnarray*}
+A(x) &amp;=&amp; D^{[0]}(x)P^{[0]}(x)+A^{[0]}(x)\\ 
+&amp;=&amp; D^{[1]}(x)P^{[1]}(x)+A^{[1]}(x)
+\end{eqnarray*}
+\]</span> 也即： <span class="math display">\[
+\begin{eqnarray*}
+A(x) &amp;\equiv&amp; A^{[0]}(x)\pmod {P^{[0]}(x)}\\ 
+A(x) &amp;\equiv&amp; A^{[1]}(x)\pmod {P^{[1]}(x)}
+\end{eqnarray*}
+\]</span> 做多项式取模即可。多项式取模复杂度 <span class="math inline">\(\mathcal O(n\log n)\)</span>，因此总复杂度就为： <span class="math display">\[
+T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
+\]</span></p>
 ]]></content>
       <tags>
         <tag>多项式</tag>
@@ -715,20 +730,5 @@ g=\sum_{i=0}^n g(c_i)f_i
       <tags>
         <tag>线性代数</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>2021杭电多校第二场总结</title>
-    <url>/2021/07/22/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>两个多月没进行任何训练了，这场打得有亿点拉……和队友演了一整场，最后 6/12</p>
-<span id="more"></span>
-<p>开场看了 1001，觉得比较可做，然后就开始了演出的序幕（</p>
-<p>读完题发现 1012 和 1005 签到，快速写完后开始自闭，期间不断编假式子，自闭1h后冠州编出了 1011 的 FWT 做法，就扔掉然后开其他题。跟榜开了 1008 和 1002，发现是个裸DP和裸线段树维护二次函数，直接秒了。冠州写完 wa 了一发，于是帮忙去 debug，期间发现数据范围是绝对值，存在负数情况，然后就各种调边界……不得不说一道高维前缀和裸题能写成这样也是演过头了。</p>
-<p>1011wa了三发后，非非发现对1001题目理解有点问题，理解成了正方体表面的等边三角形个数。上场把1001切了。由于1011卡了太久，决定先丢掉。我上场开写1008，继续演，又贡献了三发罚时……</p>
-<p>然后继续开1002，太久没有写树剖了有点忘，非非帮忙拿了 kuangbin 的板子放在一边，然后根本没看，写着写着就回忆起来写法了……可以算是刻在DNA里的代码段了。也许是演了太久觉得不能再演了，写得很顺，直接1A（</p>
-<p>然后继续看1011代码，期间非非想了 1010 假做法，决定莽一波，然后样例没过……继续上场 debug，发现极值开小了一个 0……一个 0 演了一个小时，属于重症晚期，建议 ICU（</p>
-<p>调完 1011 还剩 20min，非非和冠州接着开 1010，我开始扫雷。5min后非非和冠州也加入了扫雷行列……暑假第一场演出就此落幕</p>
-<p>总的来说今天是很不在状态很演的一场，打成这样多少有点丢人，接下来不能演了，要认真打每一场（</p>
-<p>flag 立下了，希望不会倒（</p>
-]]></content>
   </entry>
 </search>
