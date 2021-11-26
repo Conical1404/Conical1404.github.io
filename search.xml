@@ -67,6 +67,19 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 ]]></content>
   </entry>
   <entry>
+    <title>CF1152E简要题解</title>
+    <url>/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="题意">题意</h2>
+<p>给定长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 和长度为 <span class="math inline">\(n-1\)</span> 的排列 <span class="math inline">\(\{p\}\)</span>，令 <span class="math inline">\(b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})\)</span>，再令 <span class="math inline">\(b&#39;_i=b_{p_i},c&#39;_i=c_{p_i}\)</span>。给定 <span class="math inline">\(\{b&#39;\},\{c&#39;\}\)</span> ，求一个合法的 <span class="math inline">\(\{a\}\)</span> 或判断无解。</p>
+<p><span class="math inline">\(n\le10^5\)</span></p>
+<span id="more"></span>
+<h2 id="分析">分析</h2>
+<p>神仙结论题。将 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 之间连边，则若存在长度为 <span class="math inline">\(n\)</span> 的欧拉路径则有解。</p>
+<p>证明显然，显然 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 在 <span class="math inline">\(\{a\}\)</span> 中相邻，于是就做完了。</p>
+<p>注意判断无解。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>CF1060G简要题解</title>
     <url>/2019/07/02/CF1060G%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h2 id="题意">题意</h2>
@@ -88,19 +101,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
         <tag>线段树</tag>
         <tag>思维</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>CF1152E简要题解</title>
-    <url>/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="题意">题意</h2>
-<p>给定长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 和长度为 <span class="math inline">\(n-1\)</span> 的排列 <span class="math inline">\(\{p\}\)</span>，令 <span class="math inline">\(b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})\)</span>，再令 <span class="math inline">\(b&#39;_i=b_{p_i},c&#39;_i=c_{p_i}\)</span>。给定 <span class="math inline">\(\{b&#39;\},\{c&#39;\}\)</span> ，求一个合法的 <span class="math inline">\(\{a\}\)</span> 或判断无解。</p>
-<p><span class="math inline">\(n\le10^5\)</span></p>
-<span id="more"></span>
-<h2 id="分析">分析</h2>
-<p>神仙结论题。将 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 之间连边，则若存在长度为 <span class="math inline">\(n\)</span> 的欧拉路径则有解。</p>
-<p>证明显然，显然 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 在 <span class="math inline">\(\{a\}\)</span> 中相邻，于是就做完了。</p>
-<p>注意判断无解。</p>
-]]></content>
   </entry>
   <entry>
     <title>CometOJ-Contest#6 简要题解</title>
@@ -257,41 +257,7 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 ]]></content>
   </entry>
   <entry>
-    <title>吴恩达机器学习课程学习笔记</title>
-    <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
-<p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
-<span id="more"></span>
-<h2 id="第一章-绪论">第一章 绪论</h2>
-<ol type="1">
-<li>机器学习的定义：
-<ul>
-<li>Arthur Samuel(1959). 在没有明确编程的情况下，使得计算机具有学习能力的领域</li>
-<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 <span class="math inline">\(\text E\)</span> 中学习，解决某一任务 <span class="math inline">\(\text T\)</span> ，其在 <span class="math inline">\(\text T\)</span> 上的表现以度量 <span class="math inline">\(\text P\)</span> 来评估，并且其在 <span class="math inline">\(\text T\)</span> 上用 <span class="math inline">\(\text P\)</span> 评估的表现可由 <span class="math inline">\(\text E\)</span> 提高</li>
-</ul></li>
-<li>监督学习
-<ul>
-<li>定义：在包含“正确答案”的数据集上学习解决问题的机器学习机制</li>
-<li>回归问题：预测连续输出值的问题</li>
-<li>分类问题：预测离散输出值的问题</li>
-</ul></li>
-<li>无监督学习
-<ul>
-<li>在给定数据集中寻找其类型结构的学习机制</li>
-<li>聚类算法</li>
-<li>鸡尾酒派对算法</li>
-</ul></li>
-</ol>
-<h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
-]]></content>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
+    <title>《深入理解计算机系统》读书笔记</title>
     <url>/2021/04/02/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
 <p>寒假入手了 CSAPP，不过因为太鸽了一直没有读。</p>
@@ -662,6 +628,40 @@ F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
 ]]></content>
       <tags>
         <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>吴恩达机器学习课程学习笔记</title>
+    <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
+<p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
+<span id="more"></span>
+<h2 id="第一章-绪论">第一章 绪论</h2>
+<ol type="1">
+<li>机器学习的定义：
+<ul>
+<li>Arthur Samuel(1959). 在没有明确编程的情况下，使得计算机具有学习能力的领域</li>
+<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 <span class="math inline">\(\text E\)</span> 中学习，解决某一任务 <span class="math inline">\(\text T\)</span> ，其在 <span class="math inline">\(\text T\)</span> 上的表现以度量 <span class="math inline">\(\text P\)</span> 来评估，并且其在 <span class="math inline">\(\text T\)</span> 上用 <span class="math inline">\(\text P\)</span> 评估的表现可由 <span class="math inline">\(\text E\)</span> 提高</li>
+</ul></li>
+<li>监督学习
+<ul>
+<li>定义：在包含“正确答案”的数据集上学习解决问题的机器学习机制</li>
+<li>回归问题：预测连续输出值的问题</li>
+<li>分类问题：预测离散输出值的问题</li>
+</ul></li>
+<li>无监督学习
+<ul>
+<li>在给定数据集中寻找其类型结构的学习机制</li>
+<li>聚类算法</li>
+<li>鸡尾酒派对算法</li>
+</ul></li>
+</ol>
+<h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
+]]></content>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
