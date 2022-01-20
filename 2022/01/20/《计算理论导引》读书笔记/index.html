@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="开坑。 题面见这里">
+  <meta name="description" content="这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser. 正好下学期有形式语言自动机的课，希望寒假能读完吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ICPC World Finals 2017 简要题解">
-<meta property="og:url" content="http://conical1404.github.io/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:title" content="《计算理论导引》读书笔记">
+<meta property="og:url" content="http://conical1404.github.io/2022/01/20/%E3%80%8A%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E5%AF%BC%E5%BC%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="开坑。 题面见这里">
+<meta property="og:description" content="这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser. 正好下学期有形式语言自动机的课，希望寒假能读完吧。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-07-03T15:39:09.000Z">
-<meta property="article:modified_time" content="2019-07-04T17:00:04.301Z">
+<meta property="article:published_time" content="2022-01-20T12:33:39.000Z">
+<meta property="article:modified_time" content="2022-01-20T14:21:35.804Z">
 <meta property="article:author" content="Conical">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://conical1404.github.io/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/">
+<link rel="canonical" href="http://conical1404.github.io/2022/01/20/%E3%80%8A%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E5%AF%BC%E5%BC%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>ICPC World Finals 2017 简要题解 | 陌上</title>
+  <title>《计算理论导引》读书笔记 | 陌上</title>
   
 
 
@@ -174,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://conical1404.github.io/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://conical1404.github.io/2022/01/20/%E3%80%8A%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E5%AF%BC%E5%BC%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ICPC World Finals 2017 简要题解
+          《计算理论导引》读书笔记
         </h1>
 
         <div class="post-meta">
@@ -196,16 +196,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-07-03 23:39:09" itemprop="dateCreated datePublished" datetime="2019-07-03T23:39:09+08:00">2019-07-03</time>
+              <time title="创建时间：2022-01-20 20:33:39 / 修改时间：22:21:35" itemprop="dateCreated datePublished" datetime="2022-01-20T20:33:39+08:00">2022-01-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-07-05 01:00:04" itemprop="dateModified" datetime="2019-07-05T01:00:04+08:00">2019-07-05</time>
-              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -225,20 +219,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>开坑。</p>
-<p>题面见<a target="_blank" rel="noopener" href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
+        <p>这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser.</p>
+<p>正好下学期有形式语言自动机的课，希望寒假能读完吧。</p>
 <span id="more"></span>
-<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
-<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
-<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
-<p>挺有意思的一道题。</p>
-<p>首先可以直接暴搜。</p>
-<p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
-<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
-<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
-<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
-<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
-<p>坑着。</p>
+<p>咕？咕咕，咕咕咕！</p>
 
     </div>
 
@@ -254,13 +238,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/07/02/CF1060G%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/" rel="prev" title="CF1060G简要题解">
-      <i class="fa fa-chevron-left"></i> CF1060G简要题解
+    <a href="/2021/07/24/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%B8%89%E5%9C%BA%E6%80%BB%E7%BB%93/" rel="prev" title="2021牛客多校第三场总结">
+      <i class="fa fa-chevron-left"></i> 2021牛客多校第三场总结
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/" rel="next" title="CF1152E简要题解">
-      CF1152E简要题解 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -319,7 +300,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a.%E6%9C%BA%E5%9C%BA%E6%9E%84%E5%BB%BA-airport-construction"><span class="nav-number">1.</span> <span class="nav-text">A.机场构建 Airport Construction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b.%E6%89%BE%E5%87%BA%E7%BA%BF%E7%B4%A2get-a-clue"><span class="nav-number">2.</span> <span class="nav-text">B.找出线索！Get a Clue!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c.%E4%B8%8D%E5%A4%A7%E5%8F%AF%E8%83%BD%E5%AE%8C%E6%88%90%E7%9A%84%E4%BB%BB%E5%8A%A1-mission-improbable"><span class="nav-number">3.</span> <span class="nav-text">C.不大可能完成的任务 Mission Improbable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d.%E4%B8%8D%E5%8A%B3%E8%80%8C%E8%8E%B7%E7%9A%84%E9%92%B1%E8%B4%A2-money-for-nothing"><span class="nav-number">4.</span> <span class="nav-text">D.不劳而获的钱财 Money for Nothing</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
