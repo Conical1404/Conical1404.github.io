@@ -28,7 +28,7 @@
 <meta property="og:description" content="这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser. 正好下学期有形式语言自动机的课，希望寒假能读完吧。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-20T12:33:39.000Z">
-<meta property="article:modified_time" content="2022-01-20T14:21:35.804Z">
+<meta property="article:modified_time" content="2022-02-11T00:45:57.666Z">
 <meta property="article:author" content="Conical">
 <meta name="twitter:card" content="summary">
 
@@ -196,10 +196,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-20 20:33:39 / 修改时间：22:21:35" itemprop="dateCreated datePublished" datetime="2022-01-20T20:33:39+08:00">2022-01-20</time>
+              <time title="创建时间：2022-01-20 20:33:39" itemprop="dateCreated datePublished" datetime="2022-01-20T20:33:39+08:00">2022-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-11 08:45:57" itemprop="dateModified" datetime="2022-02-11T08:45:57+08:00">2022-02-11</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -222,7 +228,42 @@
         <p>这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser.</p>
 <p>正好下学期有形式语言自动机的课，希望寒假能读完吧。</p>
 <span id="more"></span>
-<p>咕？咕咕，咕咕咕！</p>
+<h2 id="引言">引言</h2>
+<h3 id="自动机可计算性复杂度">自动机，可计算性，复杂度</h3>
+<p>计算理论的三个传统的中心研究领域</p>
+<h3 id="数学理论和术语">数学理论和术语</h3>
+<p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
+<h4 id="集合">集合</h4>
+<p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
+<h4 id="序列与元组">序列与元组</h4>
+<p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 <span class="math inline">\(k\)</span> 个对象的元组称为 <span class="math inline">\(k\)</span> 元组（k-tuple），二元组又称有序对。</p>
+<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 <span class="math inline">\(A\)</span> 的幂集（power set）是由 <span class="math inline">\(A\)</span> 的全部子集构成的集合。</p>
+<p>对于集合 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，其笛卡尔积（Cartesian product），或称叉积（cross product）记作： <span class="math display">\[
+A\times B=\{(x,y)|x\in A,y\in B\}
+\]</span></p>
+<h4 id="函数与关系">函数与关系</h4>
+<p>没什么好说的.jpg</p>
+<h4 id="图">图</h4>
+<p>也没什么好说的.jpg</p>
+<h4 id="串与语言">串与语言</h4>
+<p>字符串是计算机科学的地基。</p>
+<ul>
+<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 <span class="math inline">\(\Sigma\)</span> 和 <span class="math inline">\(\Gamma\)</span> 表示</li>
+<li>字符（symbol）：字母表中的元素，用打字机字体表示</li>
+<li>字母表上的串（a string over an alphabet）：一个有限字符序列</li>
+<li>串长：串所包含的字符数，记作 <span class="math inline">\(|\omega|\)</span></li>
+<li>空串：长度为 <span class="math inline">\(0\)</span> 的串，记作 <span class="math inline">\(\varepsilon\)</span></li>
+<li>串的反转（reverse）：记作 <span class="math inline">\(\omega^R\)</span></li>
+<li>子串（substring）：若 <span class="math inline">\(z\)</span> 在 <span class="math inline">\(\omega\)</span> 中连续出现，称 <span class="math inline">\(z\)</span> 为 <span class="math inline">\(\omega\)</span> 的子串</li>
+<li>连结（connotation）：串 <span class="math inline">\(x\)</span> 和串 <span class="math inline">\(y\)</span> 的连结记作 <span class="math inline">\(xy\)</span></li>
+<li>串的字典序（lexicographic order）：长度为第一关键字，字符为第二关键字</li>
+<li>前缀（profix）：对于串 <span class="math inline">\(x,y\)</span>，若存在串 <span class="math inline">\(z\)</span>，使得 <span class="math inline">\(xz=y\)</span>，则称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的前缀，若 <span class="math inline">\(x\neq y\)</span>，称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的真前缀（proper prefix）</li>
+<li>语言（language）：语言是串的集合</li>
+<li>前缀自由（prefix-free）：若一个语言的任意成员不是其他任意成员的真前缀，则称这个语言是前缀自由的</li>
+</ul>
+<h4 id="布尔逻辑">布尔逻辑</h4>
+<p>没什么好说的</p>
+<h3 id="定义-定理-证明">定义 定理 证明</h3>
 
     </div>
 
@@ -300,6 +341,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.1.</span> <span class="nav-text">自动机，可计算性，复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA%E5%92%8C%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">数学理论和术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%83%E7%BB%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">序列与元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8E%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">函数与关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">1.2.4.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E4%B8%8E%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.5.</span> <span class="nav-text">串与语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E9%80%BB%E8%BE%91"><span class="nav-number">1.2.6.</span> <span class="nav-text">布尔逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-%E5%AE%9A%E7%90%86-%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">定义 定理 证明</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

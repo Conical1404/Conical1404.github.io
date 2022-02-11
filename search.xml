@@ -103,6 +103,25 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 ]]></content>
   </entry>
   <entry>
+    <title>ICPC World Finals 2017 简要题解</title>
+    <url>/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p>开坑。</p>
+<p>题面见<a href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
+<span id="more"></span>
+<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
+<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
+<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
+<p>挺有意思的一道题。</p>
+<p>首先可以直接暴搜。</p>
+<p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
+<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
+<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
+<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
+<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
+<p>坑着。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>CometOJ-Contest#6 简要题解</title>
     <url>/2019/06/29/Comet-OJ-Contest-6/</url>
     <content><![CDATA[<p>比赛链接见 <a href="https://cometoj.com/contest/48">这里</a></p>
@@ -125,25 +144,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
       <tags>
         <tag>CometOJ</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>ICPC World Finals 2017 简要题解</title>
-    <url>/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<p>开坑。</p>
-<p>题面见<a href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
-<span id="more"></span>
-<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
-<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
-<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
-<p>挺有意思的一道题。</p>
-<p>首先可以直接暴搜。</p>
-<p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
-<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
-<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
-<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
-<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
-<p>坑着。</p>
-]]></content>
   </entry>
   <entry>
     <title>Lydsy1712月赛泛做</title>
@@ -262,110 +262,43 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
     <content><![CDATA[<p>这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser.</p>
 <p>正好下学期有形式语言自动机的课，希望寒假能读完吧。</p>
 <span id="more"></span>
-<p>咕？咕咕，咕咕咕！</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>任意模数NTT</title>
-    <url>/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/</url>
-    <content><![CDATA[<p>求多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(B(x)\)</span> 在模任意模数 <span class="math inline">\(P\)</span> 意义下的卷积。</p>
-<p><span class="math inline">\(n\le 10^5,P\le10^9+9\)</span></p>
-<span id="more"></span>
-<h2 id="解法一三模数ntt">解法一：三模数NTT</h2>
-<p>考虑选取三个能够进行 <code>NTT</code> 的并且积 <span class="math inline">\(&gt;10^{23}\)</span> 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程： <span class="math display">\[
-\begin{cases}
-ans\equiv a_1\bmod m_1\\
-ans\equiv a_2\bmod m_2\\
-ans\equiv a_3 \bmod m_3
-\end{cases}
-\]</span> 如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程： <span class="math display">\[
-\begin{cases}
-ans\equiv A\bmod M\\
-ans\equiv a_3\bmod m_3
-\end{cases}
-\]</span> 将合并后的方程写成不定方程代入第三个方程： <span class="math display">\[
-kM+A\equiv a_3\bmod m_3
-\]</span> 由于 <span class="math inline">\(m_3\)</span> 是质数，<span class="math inline">\(M\)</span> 一定存在逆元： <span class="math display">\[
-k\equiv(a_3-A)\cdot M^{-1}\bmod m_3
-\]</span> 解出 <span class="math inline">\(k\)</span> 之后在 <span class="math inline">\(\bmod P\)</span> 意义下计算 <span class="math inline">\(Ans\)</span> 即可。</p>
-<h2 id="解法二拆系数fft">解法二：拆系数FFT</h2>
-<p>考虑将多项式系数拆分成 <span class="math inline">\(kM+b\)</span> 的形式，观察卷积后的形式： <span class="math display">\[
-(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2
-\]</span> 显然，当 <span class="math inline">\(M\)</span> 取 <span class="math inline">\(\sqrt P\)</span> 时，每一项系数不超过 <span class="math inline">\(P\)</span>。将两个多项式拆开卷积，只需 <span class="math inline">\(7\)</span> 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
-<h3 id="dft与idft合并">DFT与IDFT合并</h3>
-<p>考虑对长度为 <span class="math inline">\(n\)</span> 的实多项式 <span class="math inline">\(A(x),B(x)\)</span> 进行 <code>dft</code>，假设 <span class="math inline">\(n\)</span> 已调整成 <span class="math inline">\(2\)</span> 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
-<p>我们定义： <span class="math display">\[
-P(x)=A(x)+iB(x)\\
-Q(x)=A(x)-iB(x)
+<h2 id="引言">引言</h2>
+<h3 id="自动机可计算性复杂度">自动机，可计算性，复杂度</h3>
+<p>计算理论的三个传统的中心研究领域</p>
+<h3 id="数学理论和术语">数学理论和术语</h3>
+<p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
+<h4 id="集合">集合</h4>
+<p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
+<h4 id="序列与元组">序列与元组</h4>
+<p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 <span class="math inline">\(k\)</span> 个对象的元组称为 <span class="math inline">\(k\)</span> 元组（k-tuple），二元组又称有序对。</p>
+<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 <span class="math inline">\(A\)</span> 的幂集（power set）是由 <span class="math inline">\(A\)</span> 的全部子集构成的集合。</p>
+<p>对于集合 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，其笛卡尔积（Cartesian product），或称叉积（cross product）记作： <span class="math display">\[
+A\times B=\{(x,y)|x\in A,y\in B\}
 \]</span></p>
-<p>令 <span class="math inline">\(F_p[k],F_q[k]\)</span> 分别表示 <span class="math inline">\(P,Q\)</span> 做 <code>dft</code> 后的第 <span class="math inline">\(k\)</span> 项，即：<span class="math inline">\(F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)\)</span>，其中 <span class="math inline">\(\omega\)</span> 是 <span class="math inline">\(n\)</span> 次单位根。</p>
-<p>为了方便表示，下文中用 <span class="math inline">\(X\)</span> 代替 <span class="math inline">\(\frac {2\pi jk}{n}\)</span> ，<span class="math inline">\({\rm conj}(x)\)</span> 表示 <span class="math inline">\(x\)</span> 的共轭复数。 <span class="math display">\[
-\begin{align}
-F_p[k]&amp;=A(\omega_n^k)+iB(\omega_n^k)\\
-&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
-&amp;=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
-&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
-&amp;=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
-&amp;=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
-&amp;={\rm conj}(F_p[n - k])
-\end{align}
-\]</span></p>
-<p>于是仅用一次 <code>DFT</code> 就可计算出 <span class="math inline">\(F_p,F_q\)</span>。令 <span class="math inline">\({\rm DFT}(P[k])\)</span> 表示对 <span class="math inline">\(P(x)\)</span> 进行 <code>DFT</code> 后的第 <span class="math inline">\(k\)</span> 项，就有： <span class="math display">\[
-\begin{align}
-{\rm DFT}(A[k])&amp;=\frac{F_p[k]+F_q[k]}{2}\\
-{\rm DFT}(B[k])&amp;=i\frac{F_p[k]-F_q[k]}{2}\\
-\end{align}
-\]</span> 那么就将两次 <code>DFT</code> 合并为了一次。</p>
-<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 <span class="math inline">\(P,Q\)</span> ，再 <code>dft</code> 出 <span class="math inline">\(F_p,F_q\)</span>，并根据上式计算出 <span class="math inline">\({\rm DFT}(A)\)</span> 与 <span class="math inline">\({\rm DFT}(B)\)</span>。而我们现在已知 <span class="math inline">\({\rm DFT}(A)\)</span> 和 <span class="math inline">\({\rm DFT}(B)\)</span>，根据上式亦可逆推出 <span class="math inline">\(F_p,F_q\)</span>，<code>IDFT</code> 得到 <span class="math inline">\(P,Q\)</span>，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
-<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 <span class="math inline">\(7\)</span> 次 <code>dft</code>，利用上述优化，即可优化到 <span class="math inline">\(4\)</span> 次 <code>dft</code>，常数大大减小。</p>
+<h4 id="函数与关系">函数与关系</h4>
+<p>没什么好说的.jpg</p>
+<h4 id="图">图</h4>
+<p>也没什么好说的.jpg</p>
+<h4 id="串与语言">串与语言</h4>
+<p>字符串是计算机科学的地基。</p>
+<ul>
+<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 <span class="math inline">\(\Sigma\)</span> 和 <span class="math inline">\(\Gamma\)</span> 表示</li>
+<li>字符（symbol）：字母表中的元素，用打字机字体表示</li>
+<li>字母表上的串（a string over an alphabet）：一个有限字符序列</li>
+<li>串长：串所包含的字符数，记作 <span class="math inline">\(|\omega|\)</span></li>
+<li>空串：长度为 <span class="math inline">\(0\)</span> 的串，记作 <span class="math inline">\(\varepsilon\)</span></li>
+<li>串的反转（reverse）：记作 <span class="math inline">\(\omega^R\)</span></li>
+<li>子串（substring）：若 <span class="math inline">\(z\)</span> 在 <span class="math inline">\(\omega\)</span> 中连续出现，称 <span class="math inline">\(z\)</span> 为 <span class="math inline">\(\omega\)</span> 的子串</li>
+<li>连结（connotation）：串 <span class="math inline">\(x\)</span> 和串 <span class="math inline">\(y\)</span> 的连结记作 <span class="math inline">\(xy\)</span></li>
+<li>串的字典序（lexicographic order）：长度为第一关键字，字符为第二关键字</li>
+<li>前缀（profix）：对于串 <span class="math inline">\(x,y\)</span>，若存在串 <span class="math inline">\(z\)</span>，使得 <span class="math inline">\(xz=y\)</span>，则称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的前缀，若 <span class="math inline">\(x\neq y\)</span>，称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的真前缀（proper prefix）</li>
+<li>语言（language）：语言是串的集合</li>
+<li>前缀自由（prefix-free）：若一个语言的任意成员不是其他任意成员的真前缀，则称这个语言是前缀自由的</li>
+</ul>
+<h4 id="布尔逻辑">布尔逻辑</h4>
+<p>没什么好说的</p>
+<h3 id="定义-定理-证明">定义 定理 证明</h3>
 ]]></content>
-      <tags>
-        <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>吴恩达机器学习课程学习笔记</title>
-    <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
-<p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
-<span id="more"></span>
-<h2 id="第一章-绪论">第一章 绪论</h2>
-<ol type="1">
-<li>机器学习的定义：
-<ul>
-<li>Arthur Samuel(1959). 在没有明确编程的情况下，使得计算机具有学习能力的领域</li>
-<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 <span class="math inline">\(\text E\)</span> 中学习，解决某一任务 <span class="math inline">\(\text T\)</span> ，其在 <span class="math inline">\(\text T\)</span> 上的表现以度量 <span class="math inline">\(\text P\)</span> 来评估，并且其在 <span class="math inline">\(\text T\)</span> 上用 <span class="math inline">\(\text P\)</span> 评估的表现可由 <span class="math inline">\(\text E\)</span> 提高</li>
-</ul></li>
-<li>监督学习
-<ul>
-<li>定义：在包含“正确答案”的数据集上学习解决问题的机器学习机制</li>
-<li>回归问题：预测连续输出值的问题</li>
-<li>分类问题：预测离散输出值的问题</li>
-</ul></li>
-<li>无监督学习
-<ul>
-<li>在给定数据集中寻找其类型结构的学习机制</li>
-<li>聚类算法</li>
-<li>鸡尾酒派对算法</li>
-</ul></li>
-</ol>
-<h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
-]]></content>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>学习笔记</tag>
-      </tags>
   </entry>
   <entry>
     <title>《深入理解计算机系统》读书笔记</title>
@@ -674,6 +607,74 @@ V=(-1)^s\times M\times 2^E
 ]]></content>
   </entry>
   <entry>
+    <title>任意模数NTT</title>
+    <url>/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/</url>
+    <content><![CDATA[<p>求多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(B(x)\)</span> 在模任意模数 <span class="math inline">\(P\)</span> 意义下的卷积。</p>
+<p><span class="math inline">\(n\le 10^5,P\le10^9+9\)</span></p>
+<span id="more"></span>
+<h2 id="解法一三模数ntt">解法一：三模数NTT</h2>
+<p>考虑选取三个能够进行 <code>NTT</code> 的并且积 <span class="math inline">\(&gt;10^{23}\)</span> 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程： <span class="math display">\[
+\begin{cases}
+ans\equiv a_1\bmod m_1\\
+ans\equiv a_2\bmod m_2\\
+ans\equiv a_3 \bmod m_3
+\end{cases}
+\]</span> 如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程： <span class="math display">\[
+\begin{cases}
+ans\equiv A\bmod M\\
+ans\equiv a_3\bmod m_3
+\end{cases}
+\]</span> 将合并后的方程写成不定方程代入第三个方程： <span class="math display">\[
+kM+A\equiv a_3\bmod m_3
+\]</span> 由于 <span class="math inline">\(m_3\)</span> 是质数，<span class="math inline">\(M\)</span> 一定存在逆元： <span class="math display">\[
+k\equiv(a_3-A)\cdot M^{-1}\bmod m_3
+\]</span> 解出 <span class="math inline">\(k\)</span> 之后在 <span class="math inline">\(\bmod P\)</span> 意义下计算 <span class="math inline">\(Ans\)</span> 即可。</p>
+<h2 id="解法二拆系数fft">解法二：拆系数FFT</h2>
+<p>考虑将多项式系数拆分成 <span class="math inline">\(kM+b\)</span> 的形式，观察卷积后的形式： <span class="math display">\[
+(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2
+\]</span> 显然，当 <span class="math inline">\(M\)</span> 取 <span class="math inline">\(\sqrt P\)</span> 时，每一项系数不超过 <span class="math inline">\(P\)</span>。将两个多项式拆开卷积，只需 <span class="math inline">\(7\)</span> 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
+<h3 id="dft与idft合并">DFT与IDFT合并</h3>
+<p>考虑对长度为 <span class="math inline">\(n\)</span> 的实多项式 <span class="math inline">\(A(x),B(x)\)</span> 进行 <code>dft</code>，假设 <span class="math inline">\(n\)</span> 已调整成 <span class="math inline">\(2\)</span> 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
+<p>我们定义： <span class="math display">\[
+P(x)=A(x)+iB(x)\\
+Q(x)=A(x)-iB(x)
+\]</span></p>
+<p>令 <span class="math inline">\(F_p[k],F_q[k]\)</span> 分别表示 <span class="math inline">\(P,Q\)</span> 做 <code>dft</code> 后的第 <span class="math inline">\(k\)</span> 项，即：<span class="math inline">\(F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)\)</span>，其中 <span class="math inline">\(\omega\)</span> 是 <span class="math inline">\(n\)</span> 次单位根。</p>
+<p>为了方便表示，下文中用 <span class="math inline">\(X\)</span> 代替 <span class="math inline">\(\frac {2\pi jk}{n}\)</span> ，<span class="math inline">\({\rm conj}(x)\)</span> 表示 <span class="math inline">\(x\)</span> 的共轭复数。 <span class="math display">\[
+\begin{align}
+F_p[k]&amp;=A(\omega_n^k)+iB(\omega_n^k)\\
+&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
+&amp;=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
+&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
+&amp;=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
+&amp;=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
+&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
+&amp;={\rm conj}(F_p[n - k])
+\end{align}
+\]</span></p>
+<p>于是仅用一次 <code>DFT</code> 就可计算出 <span class="math inline">\(F_p,F_q\)</span>。令 <span class="math inline">\({\rm DFT}(P[k])\)</span> 表示对 <span class="math inline">\(P(x)\)</span> 进行 <code>DFT</code> 后的第 <span class="math inline">\(k\)</span> 项，就有： <span class="math display">\[
+\begin{align}
+{\rm DFT}(A[k])&amp;=\frac{F_p[k]+F_q[k]}{2}\\
+{\rm DFT}(B[k])&amp;=i\frac{F_p[k]-F_q[k]}{2}\\
+\end{align}
+\]</span> 那么就将两次 <code>DFT</code> 合并为了一次。</p>
+<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 <span class="math inline">\(P,Q\)</span> ，再 <code>dft</code> 出 <span class="math inline">\(F_p,F_q\)</span>，并根据上式计算出 <span class="math inline">\({\rm DFT}(A)\)</span> 与 <span class="math inline">\({\rm DFT}(B)\)</span>。而我们现在已知 <span class="math inline">\({\rm DFT}(A)\)</span> 和 <span class="math inline">\({\rm DFT}(B)\)</span>，根据上式亦可逆推出 <span class="math inline">\(F_p,F_q\)</span>，<code>IDFT</code> 得到 <span class="math inline">\(P,Q\)</span>，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
+<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 <span class="math inline">\(7\)</span> 次 <code>dft</code>，利用上述优化，即可优化到 <span class="math inline">\(4\)</span> 次 <code>dft</code>，常数大大减小。</p>
+]]></content>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多项式多点求值</title>
     <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%A4%9A%E7%82%B9%E6%B1%82%E5%80%BC/</url>
     <content><![CDATA[<p>给定多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(\{x_i\}\)</span>，求 <span class="math inline">\(A(x)\)</span> 在各个点处的值。</p>
@@ -696,6 +697,61 @@ A(x) &amp;\equiv&amp; A^{[1]}(x)\pmod {P^{[1]}(x)}
 \]</span> 做多项式取模即可。多项式取模复杂度 <span class="math inline">\(\mathcal O(n\log n)\)</span>，因此总复杂度就为： <span class="math display">\[
 T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
 \]</span></p>
+]]></content>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>吴恩达机器学习课程学习笔记</title>
+    <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
+<p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
+<span id="more"></span>
+<h2 id="第一章-绪论">第一章 绪论</h2>
+<ol type="1">
+<li>机器学习的定义：
+<ul>
+<li>Arthur Samuel(1959). 在没有明确编程的情况下，使得计算机具有学习能力的领域</li>
+<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 <span class="math inline">\(\text E\)</span> 中学习，解决某一任务 <span class="math inline">\(\text T\)</span> ，其在 <span class="math inline">\(\text T\)</span> 上的表现以度量 <span class="math inline">\(\text P\)</span> 来评估，并且其在 <span class="math inline">\(\text T\)</span> 上用 <span class="math inline">\(\text P\)</span> 评估的表现可由 <span class="math inline">\(\text E\)</span> 提高</li>
+</ul></li>
+<li>监督学习
+<ul>
+<li>定义：在包含“正确答案”的数据集上学习解决问题的机器学习机制</li>
+<li>回归问题：预测连续输出值的问题</li>
+<li>分类问题：预测离散输出值的问题</li>
+</ul></li>
+<li>无监督学习
+<ul>
+<li>在给定数据集中寻找其类型结构的学习机制</li>
+<li>聚类算法</li>
+<li>鸡尾酒派对算法</li>
+</ul></li>
+</ol>
+<h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
+]]></content>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多项式求逆</title>
+    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86/</url>
+    <content><![CDATA[<p>给定 <span class="math inline">\(n\)</span> 次多项式 <span class="math inline">\(A(x)\)</span>，求 <span class="math inline">\(B(x)\)</span> 满足 <span class="math inline">\(A(x)B(x)\equiv1\pmod {x^n}\)</span>。</p>
+<span id="more"></span>
+<p>由定义可得： <span class="math display">\[
+A(x)B(x)\equiv1\pmod {x ^n}\tag{1}
+\]</span> 设 <span class="math inline">\(B&#39;(x)\)</span> 满足 <span class="math inline">\(A(x)B&#39;(x)\equiv1\bmod x^{\lceil \frac n 2\rceil}\)</span>，就有： <span class="math display">\[
+A(x)B&#39;(x)\equiv1\pmod {x^{\lceil\frac n 2\rceil}}\tag{2}
+\]</span> 由 <span class="math inline">\((1)\)</span> 可得： <span class="math display">\[
+A(x)B(x)\equiv 1\pmod {x ^{\lceil \frac n 2\rceil}\tag{3}}
+\]</span> <span class="math inline">\((3)-(2)\)</span> 得： <span class="math display">\[
+B(x)-B&#39;(x)\equiv0\pmod {x ^{\lceil\frac n 2\rceil}}
+\]</span> 平方后两边同乘 <span class="math inline">\(A(x)\)</span>，移项得： <span class="math display">\[
+B(x)\equiv 2B&#39;(x)+A(x)B&#39;^2(x)\pmod {x^n}
+\]</span> 倍增求解即可。</p>
 ]]></content>
       <tags>
         <tag>多项式</tag>
@@ -757,27 +813,6 @@ S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
       <tags>
         <tag>数论</tag>
         <tag>筛法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多项式求逆</title>
-    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86/</url>
-    <content><![CDATA[<p>给定 <span class="math inline">\(n\)</span> 次多项式 <span class="math inline">\(A(x)\)</span>，求 <span class="math inline">\(B(x)\)</span> 满足 <span class="math inline">\(A(x)B(x)\equiv1\pmod {x^n}\)</span>。</p>
-<span id="more"></span>
-<p>由定义可得： <span class="math display">\[
-A(x)B(x)\equiv1\pmod {x ^n}\tag{1}
-\]</span> 设 <span class="math inline">\(B&#39;(x)\)</span> 满足 <span class="math inline">\(A(x)B&#39;(x)\equiv1\bmod x^{\lceil \frac n 2\rceil}\)</span>，就有： <span class="math display">\[
-A(x)B&#39;(x)\equiv1\pmod {x^{\lceil\frac n 2\rceil}}\tag{2}
-\]</span> 由 <span class="math inline">\((1)\)</span> 可得： <span class="math display">\[
-A(x)B(x)\equiv 1\pmod {x ^{\lceil \frac n 2\rceil}\tag{3}}
-\]</span> <span class="math inline">\((3)-(2)\)</span> 得： <span class="math display">\[
-B(x)-B&#39;(x)\equiv0\pmod {x ^{\lceil\frac n 2\rceil}}
-\]</span> 平方后两边同乘 <span class="math inline">\(A(x)\)</span>，移项得： <span class="math display">\[
-B(x)\equiv 2B&#39;(x)+A(x)B&#39;^2(x)\pmod {x^n}
-\]</span> 倍增求解即可。</p>
-]]></content>
-      <tags>
-        <tag>多项式</tag>
       </tags>
   </entry>
   <entry>
