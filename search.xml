@@ -103,25 +103,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 ]]></content>
   </entry>
   <entry>
-    <title>ICPC World Finals 2017 简要题解</title>
-    <url>/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<p>开坑。</p>
-<p>题面见<a href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
-<span id="more"></span>
-<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
-<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
-<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
-<p>挺有意思的一道题。</p>
-<p>首先可以直接暴搜。</p>
-<p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
-<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
-<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
-<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
-<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
-<p>坑着。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>CometOJ-Contest#6 简要题解</title>
     <url>/2019/06/29/Comet-OJ-Contest-6/</url>
     <content><![CDATA[<p>比赛链接见 <a href="https://cometoj.com/contest/48">这里</a></p>
@@ -144,6 +125,25 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
       <tags>
         <tag>CometOJ</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>ICPC World Finals 2017 简要题解</title>
+    <url>/2019/07/03/ICPC-World-Finals-2017-%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p>开坑。</p>
+<p>题面见<a href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
+<span id="more"></span>
+<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
+<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
+<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
+<p>挺有意思的一道题。</p>
+<p>首先可以直接暴搜。</p>
+<p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
+<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
+<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
+<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
+<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
+<p>坑着。</p>
+]]></content>
   </entry>
   <entry>
     <title>Lydsy1712月赛泛做</title>
@@ -254,50 +254,6 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
 <li>[x] 辛普森积分</li>
 <li>[x] 最小圆覆盖</li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>《计算理论导引》读书笔记</title>
-    <url>/2022/01/20/%E3%80%8A%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E5%AF%BC%E5%BC%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser.</p>
-<p>正好下学期有形式语言自动机的课，希望寒假能读完吧。</p>
-<span id="more"></span>
-<h2 id="引言">引言</h2>
-<h3 id="自动机可计算性复杂度">自动机，可计算性，复杂度</h3>
-<p>计算理论的三个传统的中心研究领域</p>
-<h3 id="数学理论和术语">数学理论和术语</h3>
-<p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
-<h4 id="集合">集合</h4>
-<p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
-<h4 id="序列与元组">序列与元组</h4>
-<p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 <span class="math inline">\(k\)</span> 个对象的元组称为 <span class="math inline">\(k\)</span> 元组（k-tuple），二元组又称有序对。</p>
-<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 <span class="math inline">\(A\)</span> 的幂集（power set）是由 <span class="math inline">\(A\)</span> 的全部子集构成的集合。</p>
-<p>对于集合 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，其笛卡尔积（Cartesian product），或称叉积（cross product）记作： <span class="math display">\[
-A\times B=\{(x,y)|x\in A,y\in B\}
-\]</span></p>
-<h4 id="函数与关系">函数与关系</h4>
-<p>没什么好说的.jpg</p>
-<h4 id="图">图</h4>
-<p>也没什么好说的.jpg</p>
-<h4 id="串与语言">串与语言</h4>
-<p>字符串是计算机科学的地基。</p>
-<ul>
-<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 <span class="math inline">\(\Sigma\)</span> 和 <span class="math inline">\(\Gamma\)</span> 表示</li>
-<li>字符（symbol）：字母表中的元素，用打字机字体表示</li>
-<li>字母表上的串（a string over an alphabet）：一个有限字符序列</li>
-<li>串长：串所包含的字符数，记作 <span class="math inline">\(|\omega|\)</span></li>
-<li>空串：长度为 <span class="math inline">\(0\)</span> 的串，记作 <span class="math inline">\(\varepsilon\)</span></li>
-<li>串的反转（reverse）：记作 <span class="math inline">\(\omega^R\)</span></li>
-<li>子串（substring）：若 <span class="math inline">\(z\)</span> 在 <span class="math inline">\(\omega\)</span> 中连续出现，称 <span class="math inline">\(z\)</span> 为 <span class="math inline">\(\omega\)</span> 的子串</li>
-<li>连结（connotation）：串 <span class="math inline">\(x\)</span> 和串 <span class="math inline">\(y\)</span> 的连结记作 <span class="math inline">\(xy\)</span></li>
-<li>串的字典序（lexicographic order）：长度为第一关键字，字符为第二关键字</li>
-<li>前缀（profix）：对于串 <span class="math inline">\(x,y\)</span>，若存在串 <span class="math inline">\(z\)</span>，使得 <span class="math inline">\(xz=y\)</span>，则称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的前缀，若 <span class="math inline">\(x\neq y\)</span>，称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的真前缀（proper prefix）</li>
-<li>语言（language）：语言是串的集合</li>
-<li>前缀自由（prefix-free）：若一个语言的任意成员不是其他任意成员的真前缀，则称这个语言是前缀自由的</li>
-</ul>
-<h4 id="布尔逻辑">布尔逻辑</h4>
-<p>没什么好说的</p>
-<h3 id="定义-定理-证明">定义 定理 证明</h3>
 ]]></content>
   </entry>
   <entry>
@@ -607,6 +563,81 @@ V=(-1)^s\times M\times 2^E
 ]]></content>
   </entry>
   <entry>
+    <title>《计算理论导引》读书笔记</title>
+    <url>/2022/01/20/%E3%80%8A%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E5%AF%BC%E5%BC%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser.</p>
+<p>正好下学期有形式语言自动机的课，希望寒假能读完吧。</p>
+<span id="more"></span>
+<h2 id="引言">引言</h2>
+<h3 id="自动机可计算性复杂度">自动机，可计算性，复杂度</h3>
+<p>计算理论的三个传统的中心研究领域</p>
+<h3 id="数学理论和术语">数学理论和术语</h3>
+<p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
+<h4 id="集合">集合</h4>
+<p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
+<h4 id="序列与元组">序列与元组</h4>
+<p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 <span class="math inline">\(k\)</span> 个对象的元组称为 <span class="math inline">\(k\)</span> 元组（k-tuple），二元组又称有序对。</p>
+<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 <span class="math inline">\(A\)</span> 的幂集（power set）是由 <span class="math inline">\(A\)</span> 的全部子集构成的集合。</p>
+<p>对于集合 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，其笛卡尔积（Cartesian product），或称叉积（cross product）记作： <span class="math display">\[
+A\times B=\{(x,y)|x\in A,y\in B\}
+\]</span></p>
+<h4 id="函数与关系">函数与关系</h4>
+<p>没什么好说的.jpg</p>
+<h4 id="图">图</h4>
+<p>也没什么好说的.jpg</p>
+<h4 id="串与语言">串与语言</h4>
+<p>字符串是计算机科学的地基。</p>
+<ul>
+<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 <span class="math inline">\(\Sigma\)</span> 和 <span class="math inline">\(\Gamma\)</span> 表示</li>
+<li>字符（symbol）：字母表中的元素，用打字机字体表示</li>
+<li>字母表上的串（a string over an alphabet）：一个有限字符序列</li>
+<li>串长：串所包含的字符数，记作 <span class="math inline">\(|\omega|\)</span></li>
+<li>空串：长度为 <span class="math inline">\(0\)</span> 的串，记作 <span class="math inline">\(\varepsilon\)</span></li>
+<li>串的反转（reverse）：记作 <span class="math inline">\(\omega^R\)</span></li>
+<li>子串（substring）：若 <span class="math inline">\(z\)</span> 在 <span class="math inline">\(\omega\)</span> 中连续出现，称 <span class="math inline">\(z\)</span> 为 <span class="math inline">\(\omega\)</span> 的子串</li>
+<li>连结（connotation）：串 <span class="math inline">\(x\)</span> 和串 <span class="math inline">\(y\)</span> 的连结记作 <span class="math inline">\(xy\)</span></li>
+<li>串的字典序（lexicographic order）：长度为第一关键字，字符为第二关键字</li>
+<li>前缀（profix）：对于串 <span class="math inline">\(x,y\)</span>，若存在串 <span class="math inline">\(z\)</span>，使得 <span class="math inline">\(xz=y\)</span>，则称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的前缀，若 <span class="math inline">\(x\neq y\)</span>，称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的真前缀（proper prefix）</li>
+<li>语言（language）：语言是串的集合</li>
+<li>前缀自由（prefix-free）：若一个语言的任意成员不是其他任意成员的真前缀，则称这个语言是前缀自由的</li>
+</ul>
+<h4 id="布尔逻辑">布尔逻辑</h4>
+<p>没什么好说的</p>
+<h3 id="定义-定理-证明">定义 定理 证明</h3>
+<p>定理与证明是数学的心与魂，定义则是数学的灵。</p>
+<p>定义描述了我们使用的对象和概念，定义必须是精确的。</p>
+<p>在定义了各种对象与概念后，我们通常要给出数学命题，命题同样必须是精确的。</p>
+<p>证明是一个证实一个命题为真的置信的逻辑推断。证明必须是绝对置信的。</p>
+<p>定理是证明为真的数学命题。通常我们对有特别的兴趣的命题使用这个名词。有时我们证明某些命题仅仅是因为它们可以辅助证明另一个更重要的命题，这些命题称作引理（lemmas）。有时一个定理或其证明能让我们容易地推断出另一些相关的命题为真，这些命题称为这个定理的推论（corollaries）。</p>
+<h2 id="正则语言">正则语言</h2>
+<h3 id="有穷自动机">有穷自动机</h3>
+<h4 id="有穷自动机的形式化定义">有穷自动机的形式化定义</h4>
+<ol type="1">
+<li>定义：<strong>有穷自动机</strong>（finite automaton）是一个 <span class="math inline">\(5\)</span> 元组 （<span class="math inline">\(Q,\Sigma,\delta,q_0,F\)</span>），其中：
+<ol type="1">
+<li><span class="math inline">\(Q\)</span> 是一个有穷集合，称为<strong>状态集</strong>（status）</li>
+<li><span class="math inline">\(\Sigma\)</span> 是一个有穷集合，称为<strong>字母表</strong>（alphabet）</li>
+<li><span class="math inline">\(\delta:Q\times \Sigma\to Q\)</span> 是<strong>转移函数</strong>（transition function）</li>
+<li><span class="math inline">\(q_0\in Q\)</span> 是<strong>起始状态</strong>（start state）</li>
+<li><span class="math inline">\(F\subseteq Q\)</span> 是<strong>接受状态集</strong>（set of accept states）</li>
+</ol></li>
+<li>若 <span class="math inline">\(A\)</span> 是机器 <span class="math inline">\(M\)</span> 接受的全部字符串集，则称 <span class="math inline">\(A\)</span> 是机器 <span class="math inline">\(M\)</span> 的语言，记作 <span class="math inline">\(L(M)=A\)</span>，又称 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span> 或 <span class="math inline">\(M\)</span> 接受 <span class="math inline">\(A\)</span></li>
+</ol>
+<h4 id="计算的形式化定义">计算的形式化定义</h4>
+<ol type="1">
+<li><p>设 <span class="math inline">\(M=(Q,\Sigma,\delta,q_0,F)\)</span> 是一台有穷自动机，<span class="math inline">\(w=w_1w_2\cdots w_n\)</span> 是一个字符串并且其中任一 <span class="math inline">\(w_i\in \Sigma\)</span>，若存在 <span class="math inline">\(Q\)</span> 中的状态序列 <span class="math inline">\(r_0,r_1,\cdots,r_n\)</span>，满足：</p>
+<ol type="1">
+<li><p><span class="math inline">\(r_0=q_0\)</span></p></li>
+<li><p><span class="math inline">\(\delta(r_i,w_{i+1})=r_{i+1},i=0,\cdots,n-1\)</span></p></li>
+<li><p><span class="math inline">\(r_n\in F\)</span></p></li>
+</ol>
+<p>则 <span class="math inline">\(M\)</span> 接受 <span class="math inline">\(w.\)</span></p></li>
+<li><p>若一个语言能被一台有穷自动机识别，则称它是<strong>正则语言</strong>（regular language）。</p></li>
+</ol>
+<h4 id="正则运算">正则运算</h4>
+]]></content>
+  </entry>
+  <entry>
     <title>任意模数NTT</title>
     <url>/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/</url>
     <content><![CDATA[<p>求多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(B(x)\)</span> 在模任意模数 <span class="math inline">\(P\)</span> 意义下的卷积。</p>
@@ -675,34 +706,6 @@ F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
       </tags>
   </entry>
   <entry>
-    <title>多项式多点求值</title>
-    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%A4%9A%E7%82%B9%E6%B1%82%E5%80%BC/</url>
-    <content><![CDATA[<p>给定多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(\{x_i\}\)</span>，求 <span class="math inline">\(A(x)\)</span> 在各个点处的值。</p>
-<span id="more"></span>
-<p>从多项式求逆、开根、取对数等操作的算法来看，这些多项式的算法有一个共同点，就是利用折半的思路，分治解决问题。类似地，我们考虑解决多点求值问题。</p>
-<p>首先，我们对点集折半： <span class="math display">\[
-\begin{eqnarray*} X^{[0]} &amp;=&amp; \{x_0, x_1, \cdots, x_{\lfloor \frac{n}{2} \rfloor}\} \\ X^{[1]} &amp;=&amp; \{x_{\lfloor \frac{n}{2} \rfloor+1},x_{\lfloor \frac{n}{2} \rfloor+2}, \cdots, x_{n-1}\} \end{eqnarray*}
-\]</span> 同时，为了保证复杂度，我们要对 <span class="math inline">\(A(x)\)</span> 也进行折半。不妨设 $ A^{[0]}(x)$ 表示对 <span class="math inline">\(X^{[0]}\)</span> 插值得到的多项式，<span class="math inline">\(A^{1}(x)\)</span> 同理。考虑构造如下多项式： <span class="math display">\[
-\begin{eqnarray*} P^{[0]}(x) &amp;=&amp; \prod_{i=0}^{\lfloor \frac{n}{2} \rfloor} (x-x_i) \\ P^{[1]}(x) &amp;=&amp; \prod_{i=\lfloor \frac{n}{2} \rfloor+1}^{n-1} (x-x_i) \end{eqnarray*}
-\]</span> 那么，我们就有： <span class="math display">\[
-\begin{eqnarray*}
-A(x) &amp;=&amp; D^{[0]}(x)P^{[0]}(x)+A^{[0]}(x)\\ 
-&amp;=&amp; D^{[1]}(x)P^{[1]}(x)+A^{[1]}(x)
-\end{eqnarray*}
-\]</span> 也即： <span class="math display">\[
-\begin{eqnarray*}
-A(x) &amp;\equiv&amp; A^{[0]}(x)\pmod {P^{[0]}(x)}\\ 
-A(x) &amp;\equiv&amp; A^{[1]}(x)\pmod {P^{[1]}(x)}
-\end{eqnarray*}
-\]</span> 做多项式取模即可。多项式取模复杂度 <span class="math inline">\(\mathcal O(n\log n)\)</span>，因此总复杂度就为： <span class="math display">\[
-T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
-\]</span></p>
-]]></content>
-      <tags>
-        <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>吴恩达机器学习课程学习笔记</title>
     <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
@@ -737,21 +740,28 @@ T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
       </tags>
   </entry>
   <entry>
-    <title>多项式求逆</title>
-    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86/</url>
-    <content><![CDATA[<p>给定 <span class="math inline">\(n\)</span> 次多项式 <span class="math inline">\(A(x)\)</span>，求 <span class="math inline">\(B(x)\)</span> 满足 <span class="math inline">\(A(x)B(x)\equiv1\pmod {x^n}\)</span>。</p>
+    <title>多项式多点求值</title>
+    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%A4%9A%E7%82%B9%E6%B1%82%E5%80%BC/</url>
+    <content><![CDATA[<p>给定多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(\{x_i\}\)</span>，求 <span class="math inline">\(A(x)\)</span> 在各个点处的值。</p>
 <span id="more"></span>
-<p>由定义可得： <span class="math display">\[
-A(x)B(x)\equiv1\pmod {x ^n}\tag{1}
-\]</span> 设 <span class="math inline">\(B&#39;(x)\)</span> 满足 <span class="math inline">\(A(x)B&#39;(x)\equiv1\bmod x^{\lceil \frac n 2\rceil}\)</span>，就有： <span class="math display">\[
-A(x)B&#39;(x)\equiv1\pmod {x^{\lceil\frac n 2\rceil}}\tag{2}
-\]</span> 由 <span class="math inline">\((1)\)</span> 可得： <span class="math display">\[
-A(x)B(x)\equiv 1\pmod {x ^{\lceil \frac n 2\rceil}\tag{3}}
-\]</span> <span class="math inline">\((3)-(2)\)</span> 得： <span class="math display">\[
-B(x)-B&#39;(x)\equiv0\pmod {x ^{\lceil\frac n 2\rceil}}
-\]</span> 平方后两边同乘 <span class="math inline">\(A(x)\)</span>，移项得： <span class="math display">\[
-B(x)\equiv 2B&#39;(x)+A(x)B&#39;^2(x)\pmod {x^n}
-\]</span> 倍增求解即可。</p>
+<p>从多项式求逆、开根、取对数等操作的算法来看，这些多项式的算法有一个共同点，就是利用折半的思路，分治解决问题。类似地，我们考虑解决多点求值问题。</p>
+<p>首先，我们对点集折半： <span class="math display">\[
+\begin{eqnarray*} X^{[0]} &amp;=&amp; \{x_0, x_1, \cdots, x_{\lfloor \frac{n}{2} \rfloor}\} \\ X^{[1]} &amp;=&amp; \{x_{\lfloor \frac{n}{2} \rfloor+1},x_{\lfloor \frac{n}{2} \rfloor+2}, \cdots, x_{n-1}\} \end{eqnarray*}
+\]</span> 同时，为了保证复杂度，我们要对 <span class="math inline">\(A(x)\)</span> 也进行折半。不妨设 $ A^{[0]}(x)$ 表示对 <span class="math inline">\(X^{[0]}\)</span> 插值得到的多项式，<span class="math inline">\(A^{1}(x)\)</span> 同理。考虑构造如下多项式： <span class="math display">\[
+\begin{eqnarray*} P^{[0]}(x) &amp;=&amp; \prod_{i=0}^{\lfloor \frac{n}{2} \rfloor} (x-x_i) \\ P^{[1]}(x) &amp;=&amp; \prod_{i=\lfloor \frac{n}{2} \rfloor+1}^{n-1} (x-x_i) \end{eqnarray*}
+\]</span> 那么，我们就有： <span class="math display">\[
+\begin{eqnarray*}
+A(x) &amp;=&amp; D^{[0]}(x)P^{[0]}(x)+A^{[0]}(x)\\ 
+&amp;=&amp; D^{[1]}(x)P^{[1]}(x)+A^{[1]}(x)
+\end{eqnarray*}
+\]</span> 也即： <span class="math display">\[
+\begin{eqnarray*}
+A(x) &amp;\equiv&amp; A^{[0]}(x)\pmod {P^{[0]}(x)}\\ 
+A(x) &amp;\equiv&amp; A^{[1]}(x)\pmod {P^{[1]}(x)}
+\end{eqnarray*}
+\]</span> 做多项式取模即可。多项式取模复杂度 <span class="math inline">\(\mathcal O(n\log n)\)</span>，因此总复杂度就为： <span class="math display">\[
+T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
+\]</span></p>
 ]]></content>
       <tags>
         <tag>多项式</tag>
@@ -776,6 +786,51 @@ B(x)&amp;\equiv\frac{A(x)+B&#39;^2(x)}{2B&#39;(x)}
       <tags>
         <tag>多项式</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>多项式求逆</title>
+    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86/</url>
+    <content><![CDATA[<p>给定 <span class="math inline">\(n\)</span> 次多项式 <span class="math inline">\(A(x)\)</span>，求 <span class="math inline">\(B(x)\)</span> 满足 <span class="math inline">\(A(x)B(x)\equiv1\pmod {x^n}\)</span>。</p>
+<span id="more"></span>
+<p>由定义可得： <span class="math display">\[
+A(x)B(x)\equiv1\pmod {x ^n}\tag{1}
+\]</span> 设 <span class="math inline">\(B&#39;(x)\)</span> 满足 <span class="math inline">\(A(x)B&#39;(x)\equiv1\bmod x^{\lceil \frac n 2\rceil}\)</span>，就有： <span class="math display">\[
+A(x)B&#39;(x)\equiv1\pmod {x^{\lceil\frac n 2\rceil}}\tag{2}
+\]</span> 由 <span class="math inline">\((1)\)</span> 可得： <span class="math display">\[
+A(x)B(x)\equiv 1\pmod {x ^{\lceil \frac n 2\rceil}\tag{3}}
+\]</span> <span class="math inline">\((3)-(2)\)</span> 得： <span class="math display">\[
+B(x)-B&#39;(x)\equiv0\pmod {x ^{\lceil\frac n 2\rceil}}
+\]</span> 平方后两边同乘 <span class="math inline">\(A(x)\)</span>，移项得： <span class="math display">\[
+B(x)\equiv 2B&#39;(x)+A(x)B&#39;^2(x)\pmod {x^n}
+\]</span> 倍增求解即可。</p>
+]]></content>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>牛客提高组周赛11-C简要题解</title>
+    <url>/2019/07/01/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%BB%84%E5%91%A8%E8%B5%9B11-C%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p><a href="https://ac.nowcoder.com/acm/contest/941/C">题目链接</a></p>
+<p><a href="https://ac.nowcoder.com/discuss/201720">题解</a></p>
+<p>拿到这道题不是很有思路，题解又不知道在说什么鬼东西。听 zzy 讲了一个做法，记录一下吧。</p>
+<span id="more"></span>
+<h2 id="题意">题意</h2>
+<p>给定一棵 <span class="math inline">\(n\)</span> 个点的树，树根处有 <span class="math inline">\(m\)</span> 个人，你可以给每个人指定一个目的地，每个人会将经过的所有点打上标记。 <span class="math inline">\(q\)</span> 次询问，每次给出参数 <span class="math inline">\(d\)</span>，要求每个人走的距离不超过 <span class="math inline">\(d\)</span>，问最多标记多少点。</p>
+<p><span class="math inline">\(n\le3\times 10^6,m\le10^6.\)</span></p>
+<h2 id="分析">分析</h2>
+<p>首先有一个 <span class="math inline">\(nm\)</span> 的贪心做法，即每次选择收益最大的点走到底。证明可以考虑费用流的过程，有空再补上。</p>
+<p>仔细思考一下，可以发现这个过程，实际上，就是在做长链剖分！</p>
+<p>那么思路就比较明确了，我们把所有询问离线下来，一层层加入所有点，维护长链剖分然后用堆维护答案即可。那么这个做法甚至还可以做到每次询问时根的人数都不相同，暴踩 std！</p>
+<p>然后冷静下来思考，发现这是一个假做法——每次加入点时我们要<strong>动态维护长链剖分</strong>！</p>
+<p>再冷静一下，我们可以发现，边权为 <span class="math inline">\(1\)</span> 时的前 <span class="math inline">\(i\)</span> 层的长链剖分其实就是整体的长链剖分。这一点是显然的。于是就做完了，复杂度 <span class="math inline">\(\mathcal O(n\log n).\)</span></p>
+<p>但是……这个范围似乎过不去啊……</p>
+<p>显然瓶颈在于加入新点时的维护答案，这个怎么做到线性呢？</p>
+<p>思考一晚上，和 zzy 讨论，无果。</p>
+<p>神仙 jhr 给出了一个 trival 的做法：用桶记录每种长度的链出现多少次，同时记录当前答案和答案中的最小链长和最小链长的出现次数。每次加入新点时，链长只会增加 <span class="math inline">\(1\)</span>，所以这样就可以直接维护了。复杂度 <span class="math inline">\(\mathcal O(n).\)</span></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> io</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> SIZE = <span class="number">1</span> &lt;&lt; <span class="number">22</span> | <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> iBuf[SIZE], *iS, *iT, c;</span><br><span class="line">	<span class="keyword">char</span> oBuf[SIZE], *oS = oBuf, *oT = oBuf + SIZE;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> gc() (iS == iT ? iT = iBuf + fread(iS = iBuf, 1, SIZE, stdin), (iS == iT ? EOF : *iS++) : *iS++)</span></span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class I&gt; <span class="keyword">void</span> <span class="title">gi</span><span class="params">(I &amp;x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(c = <span class="built_in">gc</span>(); c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>; c = <span class="built_in">gc</span>());</span><br><span class="line">		<span class="keyword">for</span>(x = <span class="number">0</span>; c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>; c = <span class="built_in">gc</span>())</span><br><span class="line">			x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + (c &amp; <span class="number">15</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">fwrite</span>(oBuf, <span class="number">1</span>, oS - oBuf, stdout);</span><br><span class="line">		oS = oBuf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putc</span><span class="params">(<span class="keyword">char</span> x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		*oS++ = x;</span><br><span class="line">		<span class="keyword">if</span>(oS == oT) <span class="built_in">flush</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class I&gt; <span class="keyword">void</span> <span class="title">print</span><span class="params">(I x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">char</span> qu[<span class="number">55</span>];</span><br><span class="line">		<span class="keyword">char</span> *tmp = qu;</span><br><span class="line">		<span class="keyword">do</span> *tmp++ = (x % <span class="number">10</span>) ^ <span class="string">&#x27;0&#x27;</span>; <span class="keyword">while</span>(x /= <span class="number">10</span>);</span><br><span class="line">		<span class="keyword">while</span>(tmp-- != qu) <span class="built_in">putc</span>(*tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">flusher</span>&#123;</span> ~<span class="built_in">flusher</span>() &#123; <span class="built_in">flush</span>(); &#125; &#125;_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> io :: gi;</span><br><span class="line"><span class="keyword">using</span> io :: putc;</span><br><span class="line"><span class="keyword">using</span> io :: print;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">MaxN</span><span class="params">(<span class="number">3000003</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, q, tot, cnt, Mn, Mnsum, son[MaxN], len[MaxN];</span><br><span class="line"><span class="keyword">int</span> P[MaxN], Q[MaxN], Tax[MaxN], Ans[MaxN];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; G[MaxN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> conical</span></span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;C.in&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;C.out&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="built_in">gi</span>(n), <span class="built_in">gi</span>(q);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>, fa; i &lt;= n; i++)</span><br><span class="line">		<span class="built_in">gi</span>(fa), G[fa].<span class="built_in">push_back</span>(i);</span><br><span class="line">	<span class="built_in">gi</span>(m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n; i; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> j : G[i])</span><br><span class="line">			<span class="keyword">if</span>(len[son[i]] &lt; len[j]) son[i] = j;</span><br><span class="line">		len[i] = len[son[i]] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Ans[<span class="number">0</span>] = P[tot = cnt = <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	len[<span class="number">1</span>] = Mn = Tax[<span class="number">1</span>] = Mnsum = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">1</span>; t &lt;= n; t++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> res = Ans[t - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> tot2 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> u = P[i];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">auto</span> v : G[u])</span><br><span class="line">			&#123;</span><br><span class="line">				Q[++tot2] = v;</span><br><span class="line">				<span class="keyword">if</span>(son[u] == v)</span><br><span class="line">				&#123;</span><br><span class="line">					--Tax[len[u]], ++Tax[len[v] = len[u] + <span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span>(len[u] == Mn)</span><br><span class="line">					&#123;</span><br><span class="line">						++res, --Mnsum;</span><br><span class="line">						<span class="keyword">if</span>(Mnsum == <span class="number">0</span>) ++Mn, Mnsum = Tax[Mn];</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span>(len[u] &gt; Mn) ++res;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					len[v] = <span class="number">1</span>, ++Tax[<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span>(cnt &lt; m) ++cnt, ++res, Mn = <span class="number">1</span>, Mnsum = Tax[<span class="number">1</span>];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		tot = tot2, Ans[t] = res;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++) P[i] = Q[i];</span><br><span class="line">		<span class="keyword">if</span>(tot == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = t + <span class="number">1</span>; j &lt;= n; j++) Ans[j] = res;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x; q--; )</span><br><span class="line">		<span class="built_in">gi</span>(x), <span class="built_in">print</span>(Ans[x]), <span class="built_in">putc</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>杜教筛</title>
@@ -814,30 +869,6 @@ S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
         <tag>数论</tag>
         <tag>筛法</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>牛客提高组周赛11-C简要题解</title>
-    <url>/2019/07/01/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%BB%84%E5%91%A8%E8%B5%9B11-C%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p><a href="https://ac.nowcoder.com/acm/contest/941/C">题目链接</a></p>
-<p><a href="https://ac.nowcoder.com/discuss/201720">题解</a></p>
-<p>拿到这道题不是很有思路，题解又不知道在说什么鬼东西。听 zzy 讲了一个做法，记录一下吧。</p>
-<span id="more"></span>
-<h2 id="题意">题意</h2>
-<p>给定一棵 <span class="math inline">\(n\)</span> 个点的树，树根处有 <span class="math inline">\(m\)</span> 个人，你可以给每个人指定一个目的地，每个人会将经过的所有点打上标记。 <span class="math inline">\(q\)</span> 次询问，每次给出参数 <span class="math inline">\(d\)</span>，要求每个人走的距离不超过 <span class="math inline">\(d\)</span>，问最多标记多少点。</p>
-<p><span class="math inline">\(n\le3\times 10^6,m\le10^6.\)</span></p>
-<h2 id="分析">分析</h2>
-<p>首先有一个 <span class="math inline">\(nm\)</span> 的贪心做法，即每次选择收益最大的点走到底。证明可以考虑费用流的过程，有空再补上。</p>
-<p>仔细思考一下，可以发现这个过程，实际上，就是在做长链剖分！</p>
-<p>那么思路就比较明确了，我们把所有询问离线下来，一层层加入所有点，维护长链剖分然后用堆维护答案即可。那么这个做法甚至还可以做到每次询问时根的人数都不相同，暴踩 std！</p>
-<p>然后冷静下来思考，发现这是一个假做法——每次加入点时我们要<strong>动态维护长链剖分</strong>！</p>
-<p>再冷静一下，我们可以发现，边权为 <span class="math inline">\(1\)</span> 时的前 <span class="math inline">\(i\)</span> 层的长链剖分其实就是整体的长链剖分。这一点是显然的。于是就做完了，复杂度 <span class="math inline">\(\mathcal O(n\log n).\)</span></p>
-<p>但是……这个范围似乎过不去啊……</p>
-<p>显然瓶颈在于加入新点时的维护答案，这个怎么做到线性呢？</p>
-<p>思考一晚上，和 zzy 讨论，无果。</p>
-<p>神仙 jhr 给出了一个 trival 的做法：用桶记录每种长度的链出现多少次，同时记录当前答案和答案中的最小链长和最小链长的出现次数。每次加入新点时，链长只会增加 <span class="math inline">\(1\)</span>，所以这样就可以直接维护了。复杂度 <span class="math inline">\(\mathcal O(n).\)</span></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> io</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> SIZE = <span class="number">1</span> &lt;&lt; <span class="number">22</span> | <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> iBuf[SIZE], *iS, *iT, c;</span><br><span class="line">	<span class="keyword">char</span> oBuf[SIZE], *oS = oBuf, *oT = oBuf + SIZE;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> gc() (iS == iT ? iT = iBuf + fread(iS = iBuf, 1, SIZE, stdin), (iS == iT ? EOF : *iS++) : *iS++)</span></span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class I&gt; <span class="keyword">void</span> <span class="title">gi</span><span class="params">(I &amp;x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(c = <span class="built_in">gc</span>(); c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>; c = <span class="built_in">gc</span>());</span><br><span class="line">		<span class="keyword">for</span>(x = <span class="number">0</span>; c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>; c = <span class="built_in">gc</span>())</span><br><span class="line">			x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + (c &amp; <span class="number">15</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">fwrite</span>(oBuf, <span class="number">1</span>, oS - oBuf, stdout);</span><br><span class="line">		oS = oBuf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putc</span><span class="params">(<span class="keyword">char</span> x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		*oS++ = x;</span><br><span class="line">		<span class="keyword">if</span>(oS == oT) <span class="built_in">flush</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class I&gt; <span class="keyword">void</span> <span class="title">print</span><span class="params">(I x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">char</span> qu[<span class="number">55</span>];</span><br><span class="line">		<span class="keyword">char</span> *tmp = qu;</span><br><span class="line">		<span class="keyword">do</span> *tmp++ = (x % <span class="number">10</span>) ^ <span class="string">&#x27;0&#x27;</span>; <span class="keyword">while</span>(x /= <span class="number">10</span>);</span><br><span class="line">		<span class="keyword">while</span>(tmp-- != qu) <span class="built_in">putc</span>(*tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">flusher</span>&#123;</span> ~<span class="built_in">flusher</span>() &#123; <span class="built_in">flush</span>(); &#125; &#125;_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> io :: gi;</span><br><span class="line"><span class="keyword">using</span> io :: putc;</span><br><span class="line"><span class="keyword">using</span> io :: print;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">MaxN</span><span class="params">(<span class="number">3000003</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, q, tot, cnt, Mn, Mnsum, son[MaxN], len[MaxN];</span><br><span class="line"><span class="keyword">int</span> P[MaxN], Q[MaxN], Tax[MaxN], Ans[MaxN];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; G[MaxN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> conical</span></span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;C.in&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;C.out&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="built_in">gi</span>(n), <span class="built_in">gi</span>(q);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>, fa; i &lt;= n; i++)</span><br><span class="line">		<span class="built_in">gi</span>(fa), G[fa].<span class="built_in">push_back</span>(i);</span><br><span class="line">	<span class="built_in">gi</span>(m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n; i; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> j : G[i])</span><br><span class="line">			<span class="keyword">if</span>(len[son[i]] &lt; len[j]) son[i] = j;</span><br><span class="line">		len[i] = len[son[i]] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Ans[<span class="number">0</span>] = P[tot = cnt = <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	len[<span class="number">1</span>] = Mn = Tax[<span class="number">1</span>] = Mnsum = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">1</span>; t &lt;= n; t++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> res = Ans[t - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> tot2 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> u = P[i];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">auto</span> v : G[u])</span><br><span class="line">			&#123;</span><br><span class="line">				Q[++tot2] = v;</span><br><span class="line">				<span class="keyword">if</span>(son[u] == v)</span><br><span class="line">				&#123;</span><br><span class="line">					--Tax[len[u]], ++Tax[len[v] = len[u] + <span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span>(len[u] == Mn)</span><br><span class="line">					&#123;</span><br><span class="line">						++res, --Mnsum;</span><br><span class="line">						<span class="keyword">if</span>(Mnsum == <span class="number">0</span>) ++Mn, Mnsum = Tax[Mn];</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span>(len[u] &gt; Mn) ++res;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					len[v] = <span class="number">1</span>, ++Tax[<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span>(cnt &lt; m) ++cnt, ++res, Mn = <span class="number">1</span>, Mnsum = Tax[<span class="number">1</span>];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		tot = tot2, Ans[t] = res;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++) P[i] = Q[i];</span><br><span class="line">		<span class="keyword">if</span>(tot == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = t + <span class="number">1</span>; j &lt;= n; j++) Ans[j] = res;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x; q--; )</span><br><span class="line">		<span class="built_in">gi</span>(x), <span class="built_in">print</span>(Ans[x]), <span class="built_in">putc</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
   </entry>
   <entry>
     <title>线性代数学习笔记</title>
