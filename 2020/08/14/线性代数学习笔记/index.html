@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="线性代数学习笔记 0 前言 高考结束了。无论如何，这都将是新的开始。 这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。 这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 Liner algebra 第一次读英文教材，在这里记录一点东西吧 有些地方直接口胡翻译的，懒得">
+  <meta name="description" content="线性代数学习笔记0 前言高考结束了。无论如何，这都将是新的开始。 这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。 这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 Liner algebra 第一次读英文教材，在这里记录一点东西吧 有些地方直接口胡翻译的，懒得查术语了（雾）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性代数学习笔记">
 <meta property="og:url" content="http://conical1404.github.io/2020/08/14/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="线性代数学习笔记 0 前言 高考结束了。无论如何，这都将是新的开始。 这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。 这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 Liner algebra 第一次读英文教材，在这里记录一点东西吧 有些地方直接口胡翻译的，懒得">
+<meta property="og:description" content="线性代数学习笔记0 前言高考结束了。无论如何，这都将是新的开始。 这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。 这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 Liner algebra 第一次读英文教材，在这里记录一点东西吧 有些地方直接口胡翻译的，懒得查术语了（雾）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-14T03:58:45.000Z">
 <meta property="article:modified_time" content="2020-08-14T04:06:35.796Z">
@@ -220,174 +220,173 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="线性代数学习笔记">线性代数学习笔记</h1>
-<h2 id="前言">0 前言</h2>
-<p>高考结束了。无论如何，这都将是新的开始。</p>
+        <h1 id="线性代数学习笔记"><a href="#线性代数学习笔记" class="headerlink" title="线性代数学习笔记"></a>线性代数学习笔记</h1><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h2><p>高考结束了。无论如何，这都将是新的开始。</p>
 <p>这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。</p>
 <p>这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 <em>Liner algebra</em></p>
 <p>第一次读英文教材，在这里记录一点东西吧</p>
 <p>有些地方直接口胡翻译的，懒得查术语了（雾）</p>
 <span id="more"></span>
-<h2 id="向量与向量空间">1 向量与向量空间</h2>
-<h3 id="向量">1.1 向量</h3>
-<ol type="1">
-<li><p>定义：类似物理中矢量的定义，存在方向与大小的量称为 <span class="math inline">\(\text{vector}\)</span>（向量）.</p></li>
+<h2 id="1-向量与向量空间"><a href="#1-向量与向量空间" class="headerlink" title="1 向量与向量空间"></a>1 向量与向量空间</h2><h3 id="1-1-向量"><a href="#1-1-向量" class="headerlink" title="1.1 向量"></a>1.1 向量</h3><ol>
+<li><p>定义：类似物理中矢量的定义，存在方向与大小的量称为 $\text{vector}$（向量）.</p>
+</li>
 <li><p>运算：</p>
 <ul>
 <li>加法：平行四边形法则.</li>
 <li>数量乘法.</li>
-</ul></li>
-<li><p>性质：</p>
-<ol type="1">
-<li><p>对于任意向量 <span class="math inline">\(x,y\)</span>， <span class="math inline">\(x + y = y + x.\)</span></p></li>
-<li>对于任意向量 <span class="math inline">\(x, y, z\)</span>， <span class="math inline">\((x + y) + z = x + (y + z).\)</span></li>
-<li>存在零向量 <span class="math inline">\(\textit 0\)</span> 使得 <span class="math inline">\(x + \textit 0 = x\)</span> 对所有向量 <span class="math inline">\(x\)</span> 成立.</li>
-<li>对任意向量 <span class="math inline">\(x\)</span>, 存在向量 <span class="math inline">\(y\)</span> 使得 <span class="math inline">\(x + y = \textit 0\)</span> .</li>
-<li>对任意向量 <span class="math inline">\(x\)</span>, <span class="math inline">\(1x = x.\)</span></li>
-<li>对任意实数 <span class="math inline">\(a, b\)</span> 及向量 <span class="math inline">\(x\)</span>，<span class="math inline">\((ab)x = a(bx).\)</span></li>
-<li>对任意实数 <span class="math inline">\(a\)</span> 及向量 <span class="math inline">\(x,y\)</span>，<span class="math inline">\(a(x + y) = ax + ay.\)</span></li>
-<li><p>对任意实数 <span class="math inline">\(a, b\)</span> 及向量 <span class="math inline">\(x\)</span>，<span class="math inline">\((a + b)x = ax + bx.\)</span></p></li>
-</ol></li>
-</ol>
-<h3 id="向量空间">1.2 向量空间</h3>
-<ol type="1">
-<li><p><span class="math inline">\(\text{vector space}\)</span>（向量空间），又称 <span class="math inline">\(\text{liner space}\)</span> （线性空间）.</p></li>
-<li><p>定义：定义在域 <span class="math inline">\(F\)</span> 上的向量空间 <span class="math inline">\(\rm V\)</span> 由一个集合组成，在该集合上加法与数量乘法均存在定义，对于 <span class="math inline">\(\forall x,y\in \rm V\)</span>， 有唯一的 <span class="math inline">\(x+y\in \rm V\)</span>， <span class="math inline">\(\forall a\in F,x\in \rm V\)</span>，有唯一的 <span class="math inline">\(ax\in \rm V\)</span>，且 <span class="math inline">\(\rm V\)</span> 中的元素满足向量对应的八条性质.</p></li>
-<li><p><span class="math inline">\(F\)</span> 中的元素称为标量，<span class="math inline">\(\rm V\)</span> 中的元素称为向量.</p>
-<p>注意，此处的向量定义与物理学中矢量定义不同，为抽象化的一般概念，表示向量空间中的元素.</p></li>
-</ol>
-<h3 id="子空间">1.3 子空间</h3>
-<ol type="1">
-<li><p>定义：若域 <span class="math inline">\(F\)</span> 上的向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(\rm W\)</span> 满足在 <span class="math inline">\(\rm V\)</span> 中的加法与数量乘法定义下 ， <span class="math inline">\(\rm W\)</span> 也为 <span class="math inline">\(F\)</span> 的向量空间，则称 <span class="math inline">\(\rm W\)</span> 为 <span class="math inline">\(\rm V\)</span> 的 <span class="math inline">\(\text{subspace}\)</span> （子空间）.</p></li>
-<li><p>显然，<span class="math inline">\(\rm V\)</span> 与 <span class="math inline">\(\{\textit0\ \}\)</span> 都为 <span class="math inline">\(\rm V\)</span> 的子空间。特别地，称 <span class="math inline">\(\{\textit0\ \}\)</span> 为 <span class="math inline">\(\rm V\)</span> 的零子空间.</p></li>
-<li><p>子空间的判定 对于任意一个向量空间的子集，性质 <span class="math inline">\((1)(2)(5)(6)(7)(8)\)</span> 显然是恒成立的。因此，这里我们只需要讨论下述性质：</p>
-<ul>
-<li><span class="math inline">\(\forall x,y \in \rm W,x+y\in \rm W.\)</span>（加法封闭性）</li>
-<li><span class="math inline">\(\forall c \in F,x\in \rm W,cx\in \rm W.\)</span>（数量乘法封闭性）</li>
-<li><span class="math inline">\(\rm W\)</span> 中存在零向量 <span class="math inline">\(\textit 0\ &#39;.\)</span></li>
-<li><span class="math inline">\(\rm W\)</span> 中的任意元素存在加法逆元.</li>
 </ul>
-<p>易证 <span class="math inline">\(\textit 0=\textit 0\ &#39;\)</span>，则此时 <span class="math inline">\(\rm W\)</span> 中任意元素一定都存在加法逆元，故只需满足：</p>
+</li>
+<li><p>性质：</p>
+<ol>
+<li><p>对于任意向量 $x,y$， $x + y = y + x.$</p>
+</li>
+<li><p>对于任意向量 $x, y, z$， $(x + y) + z = x + (y + z).$</p>
+</li>
+<li>存在零向量 $\textit 0$ 使得 $x + \textit 0 = x$ 对所有向量 $x$ 成立.</li>
+<li>对任意向量 $x$, 存在向量 $y$ 使得 $x + y = \textit 0$ .</li>
+<li>对任意向量 $x$, $1x = x.$</li>
+<li>对任意实数 $a, b$ 及向量 $x$，$(ab)x = a(bx).$</li>
+<li>对任意实数 $a$ 及向量 $x,y$，$a(x + y) = ax + ay.$</li>
+<li>对任意实数 $a, b$ 及向量 $x$，$(a + b)x = ax + bx.$</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-2-向量空间"><a href="#1-2-向量空间" class="headerlink" title="1.2 向量空间"></a>1.2 向量空间</h3><ol>
+<li><p>$\text{vector space}$（向量空间），又称 $\text{liner space}$ （线性空间）.</p>
+</li>
+<li><p>定义：定义在域 $F$ 上的向量空间 $\rm V$ 由一个集合组成，在该集合上加法与数量乘法均存在定义，对于 $\forall x,y\in \rm V$， 有唯一的 $x+y\in \rm V$， $\forall a\in F,x\in \rm V$，有唯一的 $ax\in \rm V$，且 $\rm V$ 中的元素满足向量对应的八条性质.</p>
+</li>
+<li><p>$F$ 中的元素称为标量，$\rm V$ 中的元素称为向量.</p>
+<p>注意，此处的向量定义与物理学中矢量定义不同，为抽象化的一般概念，表示向量空间中的元素.</p>
+</li>
+</ol>
+<h3 id="1-3-子空间"><a href="#1-3-子空间" class="headerlink" title="1.3 子空间"></a>1.3 子空间</h3><ol>
+<li><p>定义：若域 $F$ 上的向量空间 $\rm V$ 的子集 $\rm W$ 满足在 $\rm V$ 中的加法与数量乘法定义下 ， $\rm W$ 也为 $F$ 的向量空间，则称 $\rm W$ 为 $\rm V$ 的 $\text{subspace}$ （子空间）.</p>
+</li>
+<li><p>显然，$\rm V$ 与 $\{\textit0\ \}$ 都为 $\rm V$ 的子空间。特别地，称 $\{\textit0\ \}$ 为 $\rm V$ 的零子空间.</p>
+</li>
+<li><p>子空间的判定<br> 对于任意一个向量空间的子集，性质 $(1)(2)(5)(6)(7)(8)$ 显然是恒成立的。因此，这里我们只需要讨论下述性质：</p>
 <ul>
-<li><span class="math inline">\(\forall x,y\in \rm W,x+y\in \rm W.\)</span></li>
-<li><span class="math inline">\(\forall c\in F,x\in \rm W,cx\in \rm W.\)</span></li>
-<li><span class="math inline">\(\textit 0\in \rm W.\)</span></li>
-</ul></li>
-<li><p><span class="math inline">\(\rm V\)</span> 的任意两个子空间的交集仍是 <span class="math inline">\(\rm V\)</span> 的子空间.</p></li>
+<li>$\forall x,y \in \rm W,x+y\in \rm W.$（加法封闭性）</li>
+<li>$\forall c \in F,x\in \rm W,cx\in \rm W.$（数量乘法封闭性）</li>
+<li>$\rm W$ 中存在零向量 $\textit 0\ ‘.$</li>
+<li><p>$\rm W$ 中的任意元素存在加法逆元.</p>
+<p>易证 $\textit 0=\textit 0\ ‘$，则此时 $\rm W$ 中任意元素一定都存在加法逆元，故只需满足：</p>
+</li>
+<li><p>$\forall x,y\in \rm W,x+y\in \rm W.$</p>
+</li>
+<li>$\forall c\in F,x\in \rm W,cx\in \rm W.$</li>
+<li>$\textit 0\in \rm W.$</li>
+</ul>
+</li>
+<li><p>$\rm V$ 的任意两个子空间的交集仍是 $\rm V$ 的子空间.</p>
+</li>
 </ol>
-<h3 id="线性组合与线性方程组">1.4 线性组合与线性方程组</h3>
-<h4 id="线性组合">1.4.1 线性组合</h4>
-<ol type="1">
-<li>定义：对于一个向量空间 <span class="math inline">\(\rm V\)</span> 及其非空子集 <span class="math inline">\(S\)</span>，向量 <span class="math inline">\(v\in \rm V\)</span> 称为 <span class="math inline">\(S\)</span> 中向量的线性组合当且仅当存在有限个向量 <span class="math inline">\(u_1,u_2,\dots,u_n\in S\)</span> 及标量 <span class="math inline">\(a_1,a_2,\dots,a_n\in F\)</span> 使得 <span class="math inline">\(v=a_1u_1+a_2u_2+\dots+a_nu_n\)</span>。则称 <span class="math inline">\(v\)</span> 为 <span class="math inline">\(u_1,u_2,\dots,u_n\)</span> 的 <span class="math inline">\(\texttt{liner combinations}\)</span> （线性组合)，<span class="math inline">\(a_1,a_2,\dots,a_n\)</span> 为这个线性组合的系数.</li>
-<li><span class="math inline">\(\textit 0\)</span> 是 <span class="math inline">\(\rm V\)</span> 的任意非空子集的线性组合.</li>
+<h3 id="1-4-线性组合与线性方程组"><a href="#1-4-线性组合与线性方程组" class="headerlink" title="1.4 线性组合与线性方程组"></a>1.4 线性组合与线性方程组</h3><h4 id="1-4-1-线性组合"><a href="#1-4-1-线性组合" class="headerlink" title="1.4.1 线性组合"></a>1.4.1 线性组合</h4><ol>
+<li>定义：对于一个向量空间 $\rm V$ 及其非空子集 $S$，向量 $v\in \rm V$ 称为 $S$ 中向量的线性组合当且仅当存在有限个向量 $u_1,u_2,\dots,u_n\in S$ 及标量 $a_1,a_2,\dots,a_n\in F$ 使得 $v=a_1u_1+a_2u_2+\dots+a_nu_n$。则称 $v$ 为 $u_1,u_2,\dots,u_n$ 的 $\texttt{liner combinations}$ （线性组合)，$a_1,a_2,\dots,a_n$ 为这个线性组合的系数.</li>
+<li>$\textit 0$ 是 $\rm V$ 的任意非空子集的线性组合.</li>
 </ol>
-<h4 id="线性方程组">1.4.2 线性方程组</h4>
-<ol type="1">
+<h4 id="1-4-2-线性方程组"><a href="#1-4-2-线性方程组" class="headerlink" title="1.4.2 线性方程组"></a>1.4.2 线性方程组</h4><ol>
 <li>线性组合的解可转化为线性方程组的解.</li>
 <li>高斯消元解线性方程组.</li>
 </ol>
-<h4 id="张成空间">1.4.3 张成空间</h4>
-<ol type="1">
-<li>定义：对于一个向量空间 <span class="math inline">\(\rm V\)</span> 的非空子集 <span class="math inline">\(S\)</span>，所有 <span class="math inline">\(S\)</span> 的线性组合构成的集合称为 <span class="math inline">\(S\)</span> 的张成空间，记为 <span class="math inline">\({\rm span}(S).\)</span> 方便起见，我们定义 <span class="math inline">\({\rm span}(\varnothing)=\{\textit 0\ \}.\)</span></li>
-<li>向量空间 <span class="math inline">\(\rm V\)</span> 的任意子集 <span class="math inline">\(S\)</span> 的张成空间为 <span class="math inline">\(\rm V\)</span> 的子空间.</li>
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span> 的子空间 <span class="math inline">\(\rm W\)</span>，若 <span class="math inline">\(S\subseteq\rm W\)</span>，则有 <span class="math inline">\({\rm span}(S)\subseteq \rm W.\)</span></li>
-<li>若 <span class="math inline">\({\rm span}(S)=\rm V\)</span>，则称 <span class="math inline">\(S\)</span> 为 <span class="math inline">\(\rm V\)</span> 的生成集.</li>
+<h4 id="1-4-3-张成空间"><a href="#1-4-3-张成空间" class="headerlink" title="1.4.3 张成空间"></a>1.4.3 张成空间</h4><ol>
+<li>定义：对于一个向量空间 $\rm V$ 的非空子集 $S$，所有 $S$ 的线性组合构成的集合称为 $S$ 的张成空间，记为 ${\rm span}(S).$ 方便起见，我们定义 ${\rm span}(\varnothing)=\{\textit 0\ \}.$ </li>
+<li>向量空间 $\rm V$ 的任意子集 $S$ 的张成空间为 $\rm V$ 的子空间.</li>
+<li>对于向量空间 $\rm V$ 的子空间 $\rm W$，若 $S\subseteq\rm W$，则有 ${\rm span}(S)\subseteq \rm W.$</li>
+<li>若 ${\rm span}(S)=\rm V$，则称 $S$ 为 $\rm V$ 的生成集.</li>
 </ol>
-<h3 id="线性相关与线性无关">1.5 线性相关与线性无关</h3>
-<h4 id="线性相关">1.5.1 线性相关</h4>
-<ol type="1">
-<li>对于 <span class="math inline">\(\textit 0\)</span> 的一个线性组合，若其系数全为 <span class="math inline">\(0\)</span>，则称其是 <span class="math inline">\(\texttt{trival}\)</span> 的；反之，则称其是 <span class="math inline">\(\texttt{nontrival}\)</span> 的.</li>
-<li>定义：对于向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(S\)</span>，若 <span class="math inline">\(\textit 0\)</span> 为 <span class="math inline">\(S\)</span> 中有限个向量的 <span class="math inline">\(\texttt{nontrival}\)</span> 线性组合，则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\texttt{lineraly dependent}\)</span> （线性相关的），也可称 <span class="math inline">\(S\)</span> 中的向量是线性相关的.</li>
-<li>由定义易得，若 <span class="math inline">\(S\)</span> 是线性相关的，则 <span class="math inline">\(S\)</span> 中的某个（或某些）向量可表示为其他向量的线性组合.</li>
+<h3 id="1-5-线性相关与线性无关"><a href="#1-5-线性相关与线性无关" class="headerlink" title="1.5 线性相关与线性无关"></a>1.5 线性相关与线性无关</h3><h4 id="1-5-1-线性相关"><a href="#1-5-1-线性相关" class="headerlink" title="1.5.1 线性相关"></a>1.5.1 线性相关</h4><ol>
+<li>对于 $\textit 0$ 的一个线性组合，若其系数全为 $0$，则称其是 $\texttt{trival}$ 的；反之，则称其是 $\texttt{nontrival}$ 的.</li>
+<li>定义：对于向量空间 $\rm V$ 的子集 $S$，若 $\textit 0$ 为 $S$ 中有限个向量的 $\texttt{nontrival}$ 线性组合，则称 $S$ 是 $\texttt{lineraly dependent}$ （线性相关的），也可称 $S$ 中的向量是线性相关的. </li>
+<li>由定义易得，若 $S$ 是线性相关的，则 $S$ 中的某个（或某些）向量可表示为其他向量的线性组合.</li>
 </ol>
-<h4 id="线性无关">1.5.2 线性无关</h4>
-<ol type="1">
-<li>定义：对于向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(S\)</span>，若 <span class="math inline">\(S\)</span> 不是线性相关的，则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\texttt{lineraly independent}\)</span>（线性无关的），也可称 <span class="math inline">\(S\)</span> 中的向量是线性无关的.</li>
-<li>对于任意向量空间，下述推论成立：
-<ul>
+<h4 id="1-5-2-线性无关"><a href="#1-5-2-线性无关" class="headerlink" title="1.5.2 线性无关"></a>1.5.2 线性无关</h4><ol>
+<li>定义：对于向量空间 $\rm V$ 的子集 $S$，若 $S$ 不是线性相关的，则称 $S$ 是 $\texttt{lineraly independent}$（线性无关的），也可称 $S$ 中的向量是线性无关的.</li>
+<li>对于任意向量空间，下述推论成立：<ul>
 <li>空集是线性无关的；</li>
 <li>由一个非零向量组成的集合是线性无关的；</li>
-<li>一个集合是线性无关的，当且仅当其上 <span class="math inline">\(\textit 0\)</span> 的唯一线性组合是 <span class="math inline">\(\texttt{trival}\)</span> 的.</li>
-</ul></li>
+<li>一个集合是线性无关的，当且仅当其上 $\textit 0$ 的唯一线性组合是 $\texttt{trival}$ 的.</li>
+</ul>
+</li>
 </ol>
-<h4 id="推论">1.5.3 推论</h4>
-<ol type="1">
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，若 <span class="math inline">\(S_1,S_2\subseteq \rm V\)</span>，且 <span class="math inline">\(S_1\)</span> 是线性相关的，则 <span class="math inline">\(S_2\)</span> 一定是线性相关的.</li>
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，若 <span class="math inline">\(S_1,S_2\subseteq \rm V\)</span>，且 <span class="math inline">\(S_2\)</span> 是线性无关的，则 <span class="math inline">\(S_1\)</span> 一定是线性无关的.</li>
-<li>若 <span class="math inline">\(S\)</span> 的任意真子集均不为 <span class="math inline">\({\rm span}(S)\)</span> 的生成集，则 <span class="math inline">\(S\)</span> 是线性无关的，反之亦成立.</li>
-<li>设 <span class="math inline">\(S\)</span> 为向量空间 <span class="math inline">\(\rm V\)</span> 的一个线性无关的子集，<span class="math inline">\(v\)</span> 为满足 <span class="math inline">\(v\in \rm V\)</span> 且 <span class="math inline">\(v\notin S\)</span> 的向量，则 <span class="math inline">\(S\ \cup\{v\}\)</span> 为线性相关的当且仅当 <span class="math inline">\(v\in {\rm span}(S).\)</span></li>
+<h4 id="1-5-3-推论"><a href="#1-5-3-推论" class="headerlink" title="1.5.3 推论"></a>1.5.3 推论</h4><ol>
+<li>对于向量空间 $\rm V$，若 $S_1,S_2\subseteq \rm V$，且 $S_1$ 是线性相关的，则 $S_2$ 一定是线性相关的.</li>
+<li>对于向量空间 $\rm V$，若 $S_1,S_2\subseteq \rm V$，且 $S_2$ 是线性无关的，则 $S_1$ 一定是线性无关的.</li>
+<li>若 $S$ 的任意真子集均不为 ${\rm span}(S)$ 的生成集，则 $S$ 是线性无关的，反之亦成立.</li>
+<li>设 $S$ 为向量空间 $\rm V$ 的一个线性无关的子集，$v$ 为满足 $v\in \rm V$ 且 $v\notin S$ 的向量，则 $S\ \cup\{v\}$ 为线性相关的当且仅当 $v\in {\rm span}(S).$</li>
 </ol>
-<h3 id="基与维度">1.6 基与维度</h3>
-<h4 id="基">1.6.1 基</h4>
-<ol type="1">
-<li>定义：向量空间 <span class="math inline">\(\rm V\)</span> 的 <span class="math inline">\(\texttt{basis}\)</span> （基） <span class="math inline">\(\beta\)</span> 为一个线性无关的能够生成 <span class="math inline">\(\rm V\)</span> 的集合.</li>
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，它的一个子集 <span class="math inline">\(\beta=\{u_1,u_2,\dots,u_n\}\)</span> 为 <span class="math inline">\(\rm V\)</span> 的基当且仅当对于 <span class="math inline">\(\forall v\in \rm V\)</span>，均存在唯一的 <span class="math inline">\(\beta\)</span> 上的线性组合，即存在唯一的 <span class="math inline">\(a_1,a_2,\dots,a_n\)</span>，使得 <span class="math inline">\(v=a_1u_1+a_2u_2+\dots+a_nu_n\)</span>. 故 <span class="math inline">\(v\)</span> 可以唯一地表示为一个 <span class="math inline">\(n\)</span> 元组 <span class="math inline">\((u_1,u_2,\dots,u_n).\)</span></li>
-<li>若向量空间 <span class="math inline">\(\rm V\)</span> 可由一个有限集合 <span class="math inline">\(S\)</span> 生成，则存在 <span class="math inline">\(S\)</span> 的某个（或某些）子集为 <span class="math inline">\(\rm V\)</span> 的基，因此 <span class="math inline">\(\rm V\)</span> 有一个有限基.</li>
+<h3 id="1-6-基与维度"><a href="#1-6-基与维度" class="headerlink" title="1.6 基与维度"></a>1.6 基与维度</h3><h4 id="1-6-1-基"><a href="#1-6-1-基" class="headerlink" title="1.6.1 基"></a>1.6.1 基</h4><ol>
+<li>定义：向量空间 $\rm V$ 的 $\texttt{basis}$ （基） $\beta$ 为一个线性无关的能够生成 $\rm V$ 的集合.</li>
+<li>对于向量空间 $\rm V$，它的一个子集 $\beta=\{u_1,u_2,\dots,u_n\}$ 为 $\rm V$ 的基当且仅当对于 $\forall v\in \rm V$，均存在唯一的 $\beta$ 上的线性组合，即存在唯一的 $a_1,a_2,\dots,a_n$，使得 $v=a_1u_1+a_2u_2+\dots+a_nu_n$. 故 $v$ 可以唯一地表示为一个 $n$ 元组 $(u_1,u_2,\dots,u_n).$</li>
+<li>若向量空间 $\rm V$ 可由一个有限集合 $S$ 生成，则存在 $S$ 的某个（或某些）子集为 $\rm V$ 的基，因此 $\rm V$ 有一个有限基.</li>
 </ol>
-<h4 id="替换定理">1.6.2 替换定理</h4>
-<ol type="1">
-<li><p>定义：设 <span class="math inline">\(\rm V\)</span> 是一个由包含 <span class="math inline">\(n\)</span> 个向量的集合 <span class="math inline">\(G\)</span> 生成的向量空间，<span class="math inline">\(L\)</span> 为 <span class="math inline">\(\rm V\)</span> 的一个包含 <span class="math inline">\(m\)</span> 个向量的线性无关的子集，则有 <span class="math inline">\(m\le n\)</span> 且存在 <span class="math inline">\(G\)</span> 的一个包含 <span class="math inline">\(n-m\)</span> 个向量的子集 <span class="math inline">\(H\)</span>，使得 <span class="math inline">\(L\ \cup H\)</span> 能够生成 <span class="math inline">\(\rm V.\)</span></p></li>
-<li><p>推论 <span class="math inline">\(1\)</span>：若向量空间 <span class="math inline">\(\rm V\)</span> 存在一个有限基，则 <span class="math inline">\(\rm V\)</span> 的所有基大小均相等.</p>
-<p>证明：设 <span class="math inline">\(\rm V\)</span> 存在一个大小为 <span class="math inline">\(n\)</span> 的基 <span class="math inline">\(\beta\)</span> 和一个大小为 <span class="math inline">\(m\)</span> 的基 <span class="math inline">\(\gamma.\)</span> 若 <span class="math inline">\(m\gt n\)</span>，则一定可以取出 <span class="math inline">\(\gamma\)</span> 的一个大小为 <span class="math inline">\(n+1\)</span> 的子集 <span class="math inline">\(S\)</span>，易知 <span class="math inline">\(S\)</span> 是线性无关的，则由置换定理，<span class="math inline">\(n+1\le n\)</span>，矛盾；若 <span class="math inline">\(m\lt n\)</span>，则同样可得出 <span class="math inline">\(m+1\le m\)</span>，矛盾；故一定有 <span class="math inline">\(m=n.\)</span></p></li>
-<li><p>推论 <span class="math inline">\(2\)</span>：</p>
-<p><span class="math inline">\(\texttt{(a)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意生成集包含至少 <span class="math inline">\(n\)</span> 个向量，包含恰好 <span class="math inline">\(n\)</span> 个向量的生成集为 <span class="math inline">\(\rm V\)</span> 的基.</p>
-<p><span class="math inline">\(\texttt{(b)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意包含恰好 <span class="math inline">\(n\)</span> 个向量的线性无关的子集为 <span class="math inline">\(\rm V\)</span> 的基.</p>
-<p><span class="math inline">\(\texttt{(c)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意线性无关的子集均可扩展为 <span class="math inline">\(\rm V\)</span> 的基.</p></li>
+<h4 id="1-6-2-替换定理"><a href="#1-6-2-替换定理" class="headerlink" title="1.6.2 替换定理"></a>1.6.2 替换定理</h4><ol>
+<li><p>定义：设 $\rm V$ 是一个由包含 $n$ 个向量的集合 $G$ 生成的向量空间，$L$ 为 $\rm V$ 的一个包含 $m$ 个向量的线性无关的子集，则有 $m\le n$ 且存在 $G$ 的一个包含 $n-m$ 个向量的子集 $H$，使得 $L\ \cup H$ 能够生成 $\rm V.$</p>
+</li>
+<li><p>推论 $1$：若向量空间 $\rm V$ 存在一个有限基，则 $\rm V$ 的所有基大小均相等.</p>
+<p>证明：设 $\rm V$ 存在一个大小为 $n$ 的基 $\beta$ 和一个大小为 $m$ 的基 $\gamma.$ 若 $m\gt n$，则一定可以取出 $\gamma$ 的一个大小为 $n+1$ 的子集 $S$，易知 $S$ 是线性无关的，则由置换定理，$n+1\le n$，矛盾；若 $m\lt n$，则同样可得出 $m+1\le m$，矛盾；故一定有 $m=n.$</p>
+</li>
+<li><p>推论 $2$：</p>
+<p>$\texttt{(a)}$ $\rm V$ 的任意生成集包含至少 $n$ 个向量，包含恰好 $n$ 个向量的生成集为 $\rm V$ 的基.</p>
+<p>$\texttt{(b)}$ $\rm V$ 的任意包含恰好 $n$ 个向量的线性无关的子集为 $\rm V$ 的基.</p>
+<p>$\texttt{(c)}$ $\rm V$ 的任意线性无关的子集均可扩展为 $\rm V$ 的基.</p>
+</li>
 </ol>
-<h4 id="维度">1.6.3 维度</h4>
-<ol type="1">
-<li><p>对于存在一个有限基的向量空间 <span class="math inline">\(\rm V\)</span>，其基的大小称为这个向量空间的 <span class="math inline">\(\texttt{dimension}\)</span>（维度），用 <span class="math inline">\({\rm dim}({\rm V})\)</span> 表示，并称 <span class="math inline">\(\rm V\)</span> 是 <span class="math inline">\(\texttt{finite dimensional}\)</span>（有限维的）。反之，则称其为 <span class="math inline">\(\texttt{infinite dimensional}\)</span>（无限维的）.</p>
-<p>由替换定理推论 <span class="math inline">\(1\)</span> 可知，<span class="math inline">\(\rm V\)</span> 的维度是唯一的.</p></li>
-<li><p>对于向量空间 <span class="math inline">\(\rm V\)</span> 及其子空间 <span class="math inline">\(\rm W\)</span>，一定有 <span class="math inline">\(\rm dim(W)\le dim(V)\)</span>，且当 <span class="math inline">\(\rm dim(W)=dim(V)\)</span> 时，<span class="math inline">\(\rm W=V.\)</span></p>
-<p>推论：<span class="math inline">\(\rm W\)</span> 的任意基可以扩展为 <span class="math inline">\(\rm V\)</span> 的基.</p></li>
+<h4 id="1-6-3-维度"><a href="#1-6-3-维度" class="headerlink" title="1.6.3 维度"></a>1.6.3 维度</h4><ol>
+<li><p>对于存在一个有限基的向量空间 $\rm V$，其基的大小称为这个向量空间的 $\texttt{dimension}$（维度），用 ${\rm dim}({\rm V})$ 表示，并称 $\rm V$ 是 $\texttt{finite dimensional}$（有限维的）。反之，则称其为 $\texttt{infinite dimensional}$（无限维的）.</p>
+<p>由替换定理推论 $1$ 可知，$\rm V$ 的维度是唯一的. </p>
+</li>
+<li><p>对于向量空间 $\rm V$ 及其子空间 $\rm W$，一定有 $\rm dim(W)\le dim(V)$，且当 $\rm dim(W)=dim(V)$ 时，$\rm W=V.$</p>
+<p>推论：$\rm W$ 的任意基可以扩展为 $\rm V$ 的基.</p>
+</li>
 </ol>
-<h4 id="拉格朗日插值公式">1.6.4 拉格朗日插值公式</h4>
-<p>设 <span class="math inline">\(c_0,c_1,\dots,c_n\)</span> 为域 <span class="math inline">\(F\)</span> 上的特定数，定义 <span class="math inline">\(\texttt{Lagrange polynomials}\)</span>（拉格朗日多项式）<span class="math inline">\(f_0(x),f_1(x),\dots,f_n(x)\)</span> 为： <span class="math display">\[
+<h4 id="1-6-4-拉格朗日插值公式"><a href="#1-6-4-拉格朗日插值公式" class="headerlink" title="1.6.4 拉格朗日插值公式"></a>1.6.4 拉格朗日插值公式</h4><p>设 $c_0,c_1,\dots,c_n$ 为域 $F$ 上的特定数，定义 $\texttt{Lagrange polynomials}$（拉格朗日多项式）$f_0(x),f_1(x),\dots,f_n(x)$ 为：</p>
+<script type="math/tex; mode=display">
 f_i(x)=\frac{(x-c_0)\cdots(x-c_{i-1})(x-c_{i+1})\cdots(x-c_n)}
 {(c_i-c_0)\cdots(c_i-c_{i-1})(c_i-c_{i+1})\cdots(c_i-c_n)}=
-\prod_{k=0\\k\neq i}^{n} \frac{x-c_k}{c_i-c_k}
-\]</span> 注意到 <span class="math inline">\(f_i(x)\)</span> 是一个 <span class="math inline">\(n\)</span> 次多项式，因此有 <span class="math inline">\(f_i\in {\rm P}_n(F).\)</span> 将 <span class="math inline">\(f_i(x)\)</span> 视为一个多项式函数 <span class="math inline">\(f_i:F\rightarrow F\)</span>，则有： <span class="math display">\[
+\prod_{k=0\\k\neq i}^{n} \frac{x-c_k}{c_i-c_k}</script><p>注意到 $f_i(x)$ 是一个 $n$ 次多项式，因此有 $f_i\in {\rm P}_n(F).$ 将 $f_i(x)$ 视为一个多项式函数 $f_i:F\rightarrow F$，则有：</p>
+<script type="math/tex; mode=display">
 f_i(c_j)=
 \begin{cases}
-0 &amp; i\neq j\\
-1 &amp; i=j.
-\end{cases}
-\]</span> 由此可证明 <span class="math inline">\(\beta =\{f_0,f_1,\cdots,f_n\}\)</span> 是 <span class="math inline">\({\rm P}_n(F)\)</span> 的线性无关子集. 不妨设： <span class="math display">\[
-\sum_{i=0}^{n}a_if_i=\textit 0
-\]</span> 其中 <span class="math inline">\(\textit 0\)</span> 表示零函数，则有： <span class="math display">\[
-\sum_{i=0}^{n}a_if_i(c_j)=0\ \ \ \ (j=0,1,\dots,n)
-\]</span> 又因为： <span class="math display">\[
-\sum_{i=0}^{n}a_if_i(c_j)=a_j\ \ \ \ (j=1,1,\dots,n)
-\]</span> 故 <span class="math inline">\(\forall j\in [0,n],a_j=0\)</span> 恒成立，则 <span class="math inline">\(\beta\)</span> 为 <span class="math inline">\({\rm P}_n(F)\)</span> 的线性无关子集，又因为 <span class="math inline">\({\rm P}_n(F)\)</span> 的维度为 <span class="math inline">\(n+1\)</span>，<span class="math inline">\(\beta\)</span> 为 <span class="math inline">\({\rm P}_n(F)\)</span> 的基. 那么，对于 <span class="math inline">\(\forall g\in {\rm P}_n(F)\)</span>，均有： <span class="math display">\[
-g=\sum_{i=0}^n b_if_i
-\]</span> 又因为： <span class="math display">\[
-g(c_j)=\sum_{i=0}^nb_if_i(c_j)=b_j
-\]</span> 则有： <span class="math display">\[
-g=\sum_{i=0}^n g(c_i)f_i
-\]</span> 上式即 <span class="math inline">\(\texttt{The Lagrange Interpolation Formula}\)</span>（拉格朗日插值公式），在已知 <span class="math inline">\(c_0,c_1,\dots,c_n\)</span> 及 <span class="math inline">\(g(c_0),g(c_1),\dots,g(c_n)\)</span> 时，由拉格朗日插值公式容易求出 <span class="math inline">\(g.\)</span></p>
-<h3 id="最大线性无关子集">1.7 最大线性无关子集</h3>
-<h4 id="一些术语">1.7.1 一些术语</h4>
-<ol type="1">
-<li>令 <span class="math inline">\(\mathcal{F}\)</span></li>
+0 & i\neq j\\
+1 & i=j.
+\end{cases}</script><p>由此可证明 $\beta =\{f_0,f_1,\cdots,f_n\}$ 是 ${\rm P}_n(F)$ 的线性无关子集. 不妨设：</p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{n}a_if_i=\textit 0</script><p>其中 $\textit 0$ 表示零函数，则有：</p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{n}a_if_i(c_j)=0\ \ \ \ (j=0,1,\dots,n)</script><p>又因为：</p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{n}a_if_i(c_j)=a_j\ \ \ \ (j=1,1,\dots,n)</script><p>故 $\forall j\in [0,n],a_j=0$ 恒成立，则 $\beta$ 为 ${\rm P}_n(F)$ 的线性无关子集，又因为 ${\rm P}_n(F)$ 的维度为 $n+1$，$\beta$ 为 ${\rm P}_n(F)$ 的基. 那么，对于 $\forall g\in {\rm P}_n(F)$，均有：</p>
+<script type="math/tex; mode=display">
+g=\sum_{i=0}^n b_if_i</script><p>又因为：</p>
+<script type="math/tex; mode=display">
+g(c_j)=\sum_{i=0}^nb_if_i(c_j)=b_j</script><p>则有：</p>
+<script type="math/tex; mode=display">
+g=\sum_{i=0}^n g(c_i)f_i</script><p>上式即 $\texttt{The Lagrange Interpolation Formula}$（拉格朗日插值公式），在已知 $c_0,c_1,\dots,c_n$ 及 $g(c_0),g(c_1),\dots,g(c_n)$ 时，由拉格朗日插值公式容易求出 $g.$</p>
+<h3 id="1-7-最大线性无关子集"><a href="#1-7-最大线性无关子集" class="headerlink" title="1.7 最大线性无关子集"></a>1.7 最大线性无关子集</h3><h4 id="1-7-1-一些术语"><a href="#1-7-1-一些术语" class="headerlink" title="1.7.1 一些术语"></a>1.7.1 一些术语</h4><ol>
+<li>令 $\mathcal{F}$ </li>
 </ol>
-<h2 id="线性变换与矩阵">2 线性变换与矩阵</h2>
-<h3 id="线性变换零空间与值空间">2.1 线性变换，零空间与值空间</h3>
-<h4 id="线性变换">2.1.1 线性变换</h4>
-<ol type="1">
-<li><p><span class="math inline">\({\rm T}:\rm V\rightarrow W\)</span> 表示域 <span class="math inline">\(\rm V\)</span> 对其邻域 <span class="math inline">\(\rm W\)</span> 的函数 <span class="math inline">\(\rm T\)</span> .</p></li>
-<li><p>定义：设 <span class="math inline">\(\rm V\)</span> 与 <span class="math inline">\(\rm W\)</span> 是 <span class="math inline">\(F\)</span> 上的向量空间，我们称函数 <span class="math inline">\(\rm T:V\rightarrow W\)</span> 是一个 <span class="math inline">\(\rm V\)</span> 到 <span class="math inline">\(\rm W\)</span> 的线性变换，当且仅当对于 <span class="math inline">\(\forall x,y\in {\rm V},c\in F\)</span>，都有：</p>
-<p><span class="math inline">\(\texttt{(a)}\ \ {\rm T}(x+y)={\rm T}(x)+{\rm T}(y)\)</span></p>
-<p><span class="math inline">\(\texttt{(b)}\ \ {\rm T}(cx)=c{\rm T}(x)\)</span></p>
-<p>一般简称函数 <span class="math inline">\(\rm T\)</span> 是线性的.</p></li>
+<h2 id="2-线性变换与矩阵"><a href="#2-线性变换与矩阵" class="headerlink" title="2 线性变换与矩阵"></a>2 线性变换与矩阵</h2><h3 id="2-1-线性变换，零空间与值空间"><a href="#2-1-线性变换，零空间与值空间" class="headerlink" title="2.1 线性变换，零空间与值空间"></a>2.1 线性变换，零空间与值空间</h3><h4 id="2-1-1-线性变换"><a href="#2-1-1-线性变换" class="headerlink" title="2.1.1 线性变换"></a>2.1.1 线性变换</h4><ol>
+<li><p>${\rm T}:\rm V\rightarrow W$ 表示域 $\rm V$ 对其邻域 $\rm W$ 的函数 $\rm T$ .</p>
+</li>
+<li><p>定义：设 $\rm V$ 与 $\rm W$ 是 $F$ 上的向量空间，我们称函数 $\rm T:V\rightarrow W$ 是一个 $\rm V$ 到 $\rm W$ 的线性变换，当且仅当对于 $\forall x,y\in {\rm V},c\in F$，都有：</p>
+<p>$\texttt{(a)}\ \ {\rm T}(x+y)={\rm T}(x)+{\rm T}(y)$</p>
+<p>$\texttt{(b)}\ \ {\rm T}(cx)=c{\rm T}(x)$  </p>
+<p>一般简称函数 $\rm T$ 是线性的.</p>
+</li>
 <li><p>性质：</p>
-<ol type="1">
-<li><p>若 <span class="math inline">\(\rm T\)</span> 是线性的，则 <span class="math inline">\({\rm T}(\textit 0\ )=\textit 0.\)</span></p></li>
-<li><p><span class="math inline">\(\rm T\)</span> 是线性的，当且仅当 <span class="math inline">\({\rm T}(cx+y)=c{\rm T}(x)+{\rm T}(y)\)</span> 恒成立.</p></li>
-<li><p>若 <span class="math inline">\(\rm T\)</span> 是线性的，则 <span class="math inline">\({\rm T}(x-y)={\rm T}(x)-{\rm T}(y).\)</span></p></li>
-<li><p><span class="math inline">\(\rm T\)</span> 是线性的，当且仅当对于任意 <span class="math inline">\(x_1,x_2,\dots,x_n\in {\rm V}\)</span> 及 <span class="math inline">\(a_1,a_2,\dots,a_n\in F\)</span>，都有： <span class="math display">\[
-{\rm T}\left(\sum_{i=1}^n a_ix_i\right)=\sum_{i=1}^n a_i{\rm T}(x_i).
-\]</span></p></li>
-</ol></li>
+<ol>
+<li><p>若 $\rm T$ 是线性的，则 ${\rm T}(\textit 0\ )=\textit 0.$</p>
+</li>
+<li><p>$\rm T$ 是线性的，当且仅当 ${\rm T}(cx+y)=c{\rm T}(x)+{\rm T}(y)$ 恒成立.</p>
+</li>
+<li><p>若 $\rm T$ 是线性的，则 ${\rm T}(x-y)={\rm T}(x)-{\rm T}(y).$</p>
+</li>
+<li><p>$\rm T$ 是线性的，当且仅当对于任意 $x_1,x_2,\dots,x_n\in {\rm V}$ 及 $a_1,a_2,\dots,a_n\in F$，都有：</p>
+<script type="math/tex; mode=display">
+{\rm T}\left(\sum_{i=1}^n a_ix_i\right)=\sum_{i=1}^n a_i{\rm T}(x_i).</script></li>
+</ol>
+</li>
 </ol>
 <p>未完待续。</p>
 
@@ -474,7 +473,7 @@ g=\sum_{i=0}^n g(c_i)f_i
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">线性代数学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">0 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E4%B8%8E%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.</span> <span class="nav-text">1 向量与向量空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 向量空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 子空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.4 线性组合与线性方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1.4.1 线性组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">1.4.2 线性方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%A0%E6%88%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">1.4.3 张成空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.5 线性相关与线性无关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1.5.1 线性相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">1.5.2 线性无关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">1.5.3 推论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%B8%8E%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.2.6.</span> <span class="nav-text">1.6 基与维度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">1.6.1 基</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">1.6.2 替换定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">1.6.3 维度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">1.6.4 拉格朗日插值公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3%E5%AD%90%E9%9B%86"><span class="nav-number">1.2.7.</span> <span class="nav-text">1.7 最大线性无关子集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">1.7.1 一些术语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%9F%A9%E9%98%B5"><span class="nav-number">1.3.</span> <span class="nav-text">2 线性变换与矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E9%9B%B6%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%80%BC%E7%A9%BA%E9%97%B4"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 线性变换，零空间与值空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">2.1.1 线性变换</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">线性代数学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">0 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%90%91%E9%87%8F%E4%B8%8E%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.</span> <span class="nav-text">1 向量与向量空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%90%91%E9%87%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 向量空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 子空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.4 线性组合与线性方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1.4.1 线性组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">1.4.2 线性方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-%E5%BC%A0%E6%88%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">1.4.3 张成空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.5 线性相关与线性无关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1.5.1 线性相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2-%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">1.5.2 线性无关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-3-%E6%8E%A8%E8%AE%BA"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">1.5.3 推论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-%E5%9F%BA%E4%B8%8E%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.2.6.</span> <span class="nav-text">1.6 基与维度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-1-%E5%9F%BA"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">1.6.1 基</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-2-%E6%9B%BF%E6%8D%A2%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">1.6.2 替换定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-3-%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">1.6.3 维度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-4-%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">1.6.4 拉格朗日插值公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-%E6%9C%80%E5%A4%A7%E7%BA%BF%E6%80%A7%E6%97%A0%E5%85%B3%E5%AD%90%E9%9B%86"><span class="nav-number">1.2.7.</span> <span class="nav-text">1.7 最大线性无关子集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-1-%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">1.7.1 一些术语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%9F%A9%E9%98%B5"><span class="nav-number">1.3.</span> <span class="nav-text">2 线性变换与矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%EF%BC%8C%E9%9B%B6%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%80%BC%E7%A9%BA%E9%97%B4"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 线性变换，零空间与值空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">2.1.1 线性变换</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

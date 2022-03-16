@@ -26,22 +26,18 @@
   <entry>
     <title>APIO2019简要题解</title>
     <url>/2019/06/24/APIO2019%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>这次没有报名 APIO，主办方又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。</p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次没有报名 APIO，主办方又鸽到很迟才出数据和题面。还是写一下吧，离 NOI 只剩半个月了。</p>
 <p>题面见 <a href="https://loj.ac/problems/search?keyword=APIO+2019">这里</a></p>
 <span id="more"></span>
-<h2 id="t1.-奇怪装置">T1. 奇怪装置</h2>
-<p>题意不想说了。</p>
-<p>不难推出来，对应的 <span class="math inline">\((x,y)\)</span> 相等的两个时刻 <span class="math inline">\(t_1,t_2\)</span> 一定满足： <span class="math display">\[
-t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
-\]</span> 线段求并就好了。</p>
-<p>具体来说就是，这些时刻一定是有从 <span class="math inline">\(0\)</span> 开始的循环节的，那么就有 <span class="math inline">\(t\equiv0\mod B\)</span>，同时又有 <span class="math inline">\(\frac{t(B+1)}{B}\equiv0\mod A\)</span>，那么最小的 <span class="math inline">\(t\)</span> 即为 <span class="math inline">\(\frac{A\times B}{\gcd(A,B+1)}.\)</span></p>
-<h2 id="t2.-桥梁">T2. 桥梁</h2>
-<p>题意：给定一张无向图，每条边有一个边权。每次询问从某个点 <span class="math inline">\(s_i\)</span> 出发只经过大于等于 <span class="math inline">\(w_i\)</span> 的边的连通块大小，或修改一条边的边权。</p>
-<p>看到 <span class="math inline">\(n\)</span> 只有 <span class="math inline">\(50000\)</span>，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排序，依次加入每条边，用并查集维护连通块即可。我们将 <span class="math inline">\(S\)</span> 个修改和它们之间的询问离线下来一起做。先把所有修改的边删去用之前的方案求出初始答案，再对每个询问依次考虑 <span class="math inline">\(S\)</span> 个修改后的边的影响即可。复杂度 <span class="math inline">\(\mathcal O(m\alpha\frac{q}{S}+qS\alpha)\)</span>，显然 <span class="math inline">\(S\)</span> 取 <span class="math inline">\(\sqrt q\)</span> 时复杂度最优为 <span class="math inline">\(\mathcal O(m\alpha\sqrt q).\)</span></p>
-<h2 id="t3.-路灯">T3. 路灯</h2>
-<p>题意：<span class="math inline">\(n\)</span> 盏灯，每次改变一盏灯的开关状态或询问两盏灯之间在之前多少个时刻内全亮着。</p>
-<p>首先可以想到利用 set 来维护连续段，每次合并或者分裂的时候树套树维护标记。具体来说，时刻 <span class="math inline">\(i\)</span> 合并两个区间 <span class="math inline">\([l,mid]\)</span> 和 <span class="math inline">\((mid,r]\)</span> 时，对于左端点在 <span class="math inline">\([l,mid]\)</span>，右端点在 <span class="math inline">\((mid,r]\)</span> 的区间加上 <span class="math inline">\(q-i+1\)</span>，分裂一个区间也类似。总复杂度 <span class="math inline">\(\mathcal O(q\log^2 n).\)</span></p>
+<h2 id="T1-奇怪装置"><a href="#T1-奇怪装置" class="headerlink" title="T1. 奇怪装置"></a>T1. 奇怪装置</h2><p>题意不想说了。</p>
+<p>不难推出来，对应的 $(x,y)$ 相等的两个时刻 $t_1,t_2$ 一定满足：</p>
+<script type="math/tex; mode=display">
+t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}</script><p>线段求并就好了。</p>
+<p>具体来说就是，这些时刻一定是有从 $0$ 开始的循环节的，那么就有 $t\equiv0\mod B$，同时又有 $\frac{t(B+1)}{B}\equiv0\mod A$，那么最小的 $t$ 即为 $\frac{A\times B}{\gcd(A,B+1)}.$</p>
+<h2 id="T2-桥梁"><a href="#T2-桥梁" class="headerlink" title="T2. 桥梁"></a>T2. 桥梁</h2><p>题意：给定一张无向图，每条边有一个边权。每次询问从某个点 $s_i$ 出发只经过大于等于 $w_i$ 的边的连通块大小，或修改一条边的边权。</p>
+<p>看到 $n$ 只有 $50000$，不难想到复杂度可能与根号相关。先考虑没有修改怎么办。我们把所有边从大到小排序，依次加入每条边，用并查集维护连通块即可。我们将 $S$ 个修改和它们之间的询问离线下来一起做。先把所有修改的边删去用之前的方案求出初始答案，再对每个询问依次考虑 $S$ 个修改后的边的影响即可。复杂度 $\mathcal O(m\alpha\frac{q}{S}+qS\alpha)$，显然 $S$ 取 $\sqrt q$ 时复杂度最优为 $\mathcal O(m\alpha\sqrt q).$</p>
+<h2 id="T3-路灯"><a href="#T3-路灯" class="headerlink" title="T3. 路灯"></a>T3. 路灯</h2><p>题意：$n$ 盏灯，每次改变一盏灯的开关状态或询问两盏灯之间在之前多少个时刻内全亮着。</p>
+<p>首先可以想到利用 set 来维护连续段，每次合并或者分裂的时候树套树维护标记。具体来说，时刻 $i$ 合并两个区间 $[l,mid]$ 和 $(mid,r]$ 时，对于左端点在 $[l,mid]$，右端点在 $(mid,r]$ 的区间加上 $q-i+1$，分裂一个区间也类似。总复杂度 $\mathcal O(q\log^2 n).$ </p>
 ]]></content>
       <tags>
         <tag>APIO</tag>
@@ -50,18 +46,16 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
   <entry>
     <title>CF1060F简要题解</title>
     <url>/2019/07/05/CF1060F%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="题意">题意</h2>
-<p>给定一棵 <span class="math inline">\(n\)</span> 个点的树，进行如下操作：</p>
+    <content><![CDATA[<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一棵 $n$ 个点的树，进行如下操作：</p>
 <ul>
 <li>等概率选取一条边</li>
 <li>将这条边两个端点合并，新点的编号等概率地在两个端点中选取</li>
 <li>反复操作，直到树中只剩一个点时停止操作</li>
 </ul>
-<p>现在要对于每个编号 <span class="math inline">\(i\)</span> 求出最后一个点编号为 <span class="math inline">\(i\)</span> 的概率。</p>
-<p><span class="math inline">\(n\le 50\)</span></p>
+<p>现在要对于每个编号 $i$ 求出最后一个点编号为 $i$ 的概率。</p>
+<p>$n\le 50$</p>
 <span id="more"></span>
-<h2 id="分析">分析</h2>
-<p>概率树形 DP 神仙题</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>概率树形 DP 神仙题</p>
 <p>先坑着</p>
 <p>upd:填不上了……</p>
 ]]></content>
@@ -69,19 +63,17 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
   <entry>
     <title>CF1060G简要题解</title>
     <url>/2019/07/02/CF1060G%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="题意">题意</h2>
-<p>数轴上初始时每个整点 <span class="math inline">\(x\)</span> 有一个标号为 <span class="math inline">\(x\)</span> 的球，第 <span class="math inline">\(a_1,a_2,\cdots,a_n\)</span> 个位置上各有一个洞</p>
+    <content><![CDATA[<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>数轴上初始时每个整点 $x$ 有一个标号为 $x$ 的球，第 $a_1,a_2,\cdots,a_n$ 个位置上各有一个洞</p>
 <p>每个时刻每个洞会打开，此时在洞位置上的球会掉落，随即洞口关闭，较大的球会向较小的方向一直移动以填补空位。</p>
-<p><span class="math inline">\(q\)</span> 次询问，每次询问 <span class="math inline">\(t_i\)</span> 个时刻后位置 <span class="math inline">\(x_i\)</span> 上的球的编号。</p>
-<p><span class="math inline">\(n,q\le 10^5\)</span></p>
-<p><span class="math inline">\(a_i,x_i,k_i\le10^9\)</span></p>
+<p>$q$ 次询问，每次询问 $t_i$ 个时刻后位置 $x_i$ 上的球的编号。</p>
+<p>$n,q\le 10^5$</p>
+<p>$a_i,x_i,k_i\le10^9$</p>
 <span id="more"></span>
-<h2 id="分析">分析</h2>
-<p>考虑无穷远处的连续 <span class="math inline">\(n\)</span> 个球，有一个结论是，这 <span class="math inline">\(n\)</span> 个球最终会落入不同的洞中。</p>
-<p>考虑证明，这个结论等价于这些球在移动过程中遇到每一个洞口会且仅会掉落一个球。归纳证明，若这些球跨过第 <span class="math inline">\(i\)</span> 个洞口时，恰剩 <span class="math inline">\(i\)</span> 个，此时每个时刻这些球会向前移动 <span class="math inline">\(i\)</span> 步，掉落一个球后，剩下球会前移到洞口前面。证毕。</p>
-<p>由这个结论，我们不难推得每个位置只会被这 <span class="math inline">\(n\)</span> 个球的 <span class="math inline">\(1\)</span> 个经过。</p>
-<p>这样，我们就可以对每个位置求出经过的球的编号以及经过时刻了，设位置 <span class="math inline">\(x_i\)</span> 对应的球的编号为 <span class="math inline">\(y_i\)</span>，经过的时间为 <span class="math inline">\(T_i\)</span>，那么 <span class="math inline">\(t_i\)</span> 时刻经过它的球即为 <span class="math inline">\(y_i\)</span> 在 <span class="math inline">\(T_i-t_i\)</span> 时刻时的位置。离线下来用线段树维护就好了。</p>
-<p>复杂度 <span class="math inline">\(\mathcal O((n+q)\log n).\)</span></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>考虑无穷远处的连续 $n$ 个球，有一个结论是，这 $n$ 个球最终会落入不同的洞中。</p>
+<p>考虑证明，这个结论等价于这些球在移动过程中遇到每一个洞口会且仅会掉落一个球。归纳证明，若这些球跨过第 $i$ 个洞口时，恰剩 $i$ 个，此时每个时刻这些球会向前移动 $i$ 步，掉落一个球后，剩下球会前移到洞口前面。证毕。</p>
+<p>由这个结论，我们不难推得每个位置只会被这 $n$ 个球的 $1$ 个经过。</p>
+<p>这样，我们就可以对每个位置求出经过的球的编号以及经过时刻了，设位置 $x_i$ 对应的球的编号为 $y_i$，经过的时间为 $T_i$，那么 $t_i$ 时刻经过它的球即为 $y_i$ 在 $T_i-t_i$ 时刻时的位置。离线下来用线段树维护就好了。</p>
+<p>复杂度 $\mathcal O((n+q)\log n).$</p>
 ]]></content>
       <tags>
         <tag>Codeforces</tag>
@@ -92,13 +84,11 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
   <entry>
     <title>CF1152E简要题解</title>
     <url>/2019/07/05/CF1152E%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="题意">题意</h2>
-<p>给定长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 和长度为 <span class="math inline">\(n-1\)</span> 的排列 <span class="math inline">\(\{p\}\)</span>，令 <span class="math inline">\(b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})\)</span>，再令 <span class="math inline">\(b&#39;_i=b_{p_i},c&#39;_i=c_{p_i}\)</span>。给定 <span class="math inline">\(\{b&#39;\},\{c&#39;\}\)</span> ，求一个合法的 <span class="math inline">\(\{a\}\)</span> 或判断无解。</p>
-<p><span class="math inline">\(n\le10^5\)</span></p>
+    <content><![CDATA[<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定长度为 $n$ 的序列 $\{a\}$ 和长度为 $n-1$ 的排列 $\{p\}$，令 $b_i=\min(a_i,a_{i+1}),c_i=\max(a_i,a_{i+1})$，再令 $b’_i=b_{p_i},c’_i=c_{p_i}$。给定 $\{b’\},\{c’\}$ ，求一个合法的 $\{a\}$ 或判断无解。</p>
+<p>$n\le10^5$</p>
 <span id="more"></span>
-<h2 id="分析">分析</h2>
-<p>神仙结论题。将 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 之间连边，则若存在长度为 <span class="math inline">\(n\)</span> 的欧拉路径则有解。</p>
-<p>证明显然，显然 <span class="math inline">\(b&#39;_i\)</span> 和 <span class="math inline">\(c&#39;_i\)</span> 在 <span class="math inline">\(\{a\}\)</span> 中相邻，于是就做完了。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>神仙结论题。将 $b’_i$ 和 $c’_i$ 之间连边，则若存在长度为 $n$ 的欧拉路径则有解。</p>
+<p>证明显然，显然 $b’_i$ 和 $c’_i$ 在 $\{a\}$ 中相邻，于是就做完了。</p>
 <p>注意判断无解。</p>
 ]]></content>
   </entry>
@@ -107,20 +97,16 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
     <url>/2019/06/29/Comet-OJ-Contest-6/</url>
     <content><![CDATA[<p>比赛链接见 <a href="https://cometoj.com/contest/48">这里</a></p>
 <span id="more"></span>
-<h2 id="problem-a---图游戏">problem A - 图游戏</h2>
-<p>太简单了不想说。</p>
-<h2 id="problem-b---双倍快乐">problem B - 双倍快乐</h2>
-<p>同上。</p>
-<h2 id="problem-c---一道树题">problem C - 一道树题</h2>
-<p>题意：给定一棵树，定义 <span class="math inline">\(S(L,R)\)</span> 为只保留编号在 <span class="math inline">\([L,R]\)</span> 内的边形成的大小大于 <span class="math inline">\(1\)</span> 的连通块数，求 <span class="math inline">\(\sum\limits_{l=1}^n\sum\limits_{r=l}^n S(l,r).\)</span></p>
-<p>我们知道连通块数=点数-边数，那么就只需要求所有情况大小为 <span class="math inline">\(1\)</span> 的连通块数即可。对于每个点计算贡献即可。</p>
-<h2 id="problem-d---另一道树题">problem D - 另一道树题</h2>
-<p>题意：略</p>
-<p>首先上一波容斥： <span class="math display">\[
-\sum_{|S|\ge2}f(S)=\sum_{i\ge1}\sum_{|S|\ge2}[f(S)\ge i]
-\]</span> 考虑对每个 <span class="math inline">\(i\)</span> 求有多少种初始摆放方案，使得 <span class="math inline">\(i-1\)</span> 步后游戏仍未结束。我们将走 <span class="math inline">\(i-1\)</span> 步后会到达同一个位置上的所有初始点的集合视为一个等价类，那么总方案就是所有等价类大小加一的乘积，再减去 <span class="math inline">\(|S|&lt;2\)</span> 的方案，即 <span class="math inline">\(n+1\)</span>，于是现在就要求所有等价类了。</p>
-<p>考虑对于每个点，我们维护他和第一个有多个孩子的祖先的距离，即会让这个点集和其他点集合并的步数。我们利用一个堆维护这个东西，从小到大取出来合并，只需维护乘积即可。由于取出来一次至少会让两个点集合并，因此总复杂度 <span class="math inline">\(\mathcal O(n\log n).\)</span></p>
-<p>题解给了另一个 <span class="math inline">\(\mathcal O(n\log n)\)</span> 和一个 <span class="math inline">\(\mathcal O(n)\)</span> 做法，有空再把补上吧。</p>
+<h2 id="problem-A-图游戏"><a href="#problem-A-图游戏" class="headerlink" title="problem A - 图游戏"></a>problem A - 图游戏</h2><p>太简单了不想说。</p>
+<h2 id="problem-B-双倍快乐"><a href="#problem-B-双倍快乐" class="headerlink" title="problem B - 双倍快乐"></a>problem B - 双倍快乐</h2><p>同上。</p>
+<h2 id="problem-C-一道树题"><a href="#problem-C-一道树题" class="headerlink" title="problem C - 一道树题"></a>problem C - 一道树题</h2><p>题意：给定一棵树，定义 $S(L,R)$ 为只保留编号在 $[L,R]$ 内的边形成的大小大于 $1$ 的连通块数，求 $\sum\limits_{l=1}^n\sum\limits_{r=l}^n S(l,r).$</p>
+<p>我们知道连通块数=点数-边数，那么就只需要求所有情况大小为 $1$ 的连通块数即可。对于每个点计算贡献即可。</p>
+<h2 id="problem-D-另一道树题"><a href="#problem-D-另一道树题" class="headerlink" title="problem D - 另一道树题"></a>problem D - 另一道树题</h2><p>题意：略</p>
+<p>首先上一波容斥：</p>
+<script type="math/tex; mode=display">
+\sum_{|S|\ge2}f(S)=\sum_{i\ge1}\sum_{|S|\ge2}[f(S)\ge i]</script><p>考虑对每个 $i$ 求有多少种初始摆放方案，使得 $i-1$ 步后游戏仍未结束。我们将走 $i-1$ 步后会到达同一个位置上的所有初始点的集合视为一个等价类，那么总方案就是所有等价类大小加一的乘积，再减去 $|S|&lt;2$ 的方案，即 $n+1$，于是现在就要求所有等价类了。</p>
+<p>考虑对于每个点，我们维护他和第一个有多个孩子的祖先的距离，即会让这个点集和其他点集合并的步数。我们利用一个堆维护这个东西，从小到大取出来合并，只需维护乘积即可。由于取出来一次至少会让两个点集合并，因此总复杂度 $\mathcal O(n\log n).$</p>
+<p>题解给了另一个 $\mathcal O(n\log n)$ 和一个 $\mathcal O(n)$ 做法，有空再把补上吧。</p>
 ]]></content>
       <tags>
         <tag>CometOJ</tag>
@@ -132,50 +118,36 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
     <content><![CDATA[<p>开坑。</p>
 <p>题面见<a href="https://loj.ac/problems/search?keyword=ICPC+World+Finals+2017">这里</a></p>
 <span id="more"></span>
-<h2 id="a.机场构建-airport-construction">A.机场构建 Airport Construction</h2>
-<p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
-<h2 id="b.找出线索get-a-clue">B.找出线索！Get a Clue!</h2>
-<p>挺有意思的一道题。</p>
+<h2 id="A-机场构建-Airport-Construction"><a href="#A-机场构建-Airport-Construction" class="headerlink" title="A.机场构建 Airport Construction"></a>A.机场构建 Airport Construction</h2><p>枚举两个端点，判断这条线段是否在多边形内即可。</p>
+<h2 id="B-找出线索！Get-a-Clue"><a href="#B-找出线索！Get-a-Clue" class="headerlink" title="B.找出线索！Get a Clue!"></a>B.找出线索！Get a Clue!</h2><p>挺有意思的一道题。</p>
 <p>首先可以直接暴搜。</p>
 <p>优美一点的做法就是考虑处理出每个人的合法卡牌集合，这对于每个人是独立的（除非两个人的集合冲突），然后做子集卷积就好了。</p>
-<h2 id="c.不大可能完成的任务-mission-improbable">C.不大可能完成的任务 Mission Improbable</h2>
-<p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
-<h2 id="d.不劳而获的钱财-money-for-nothing">D.不劳而获的钱财 Money for Nothing</h2>
-<p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
+<h2 id="C-不大可能完成的任务-Mission-Improbable"><a href="#C-不大可能完成的任务-Mission-Improbable" class="headerlink" title="C.不大可能完成的任务 Mission Improbable"></a>C.不大可能完成的任务 Mission Improbable</h2><p>首先要满足俯视图，那么每个有箱子的位置不能拿空。我们将所有位置拿到只剩一个，考虑如何满足正视图于侧视图。如果一个位置是某一行并且某一列的最大值，那么可以通过填这一个来同时满足这行和这列的最大值。相当于做一个最大匹配，剩余的没有匹配的行和列就只能放最大值了。</p>
+<h2 id="D-不劳而获的钱财-Money-for-Nothing"><a href="#D-不劳而获的钱财-Money-for-Nothing" class="headerlink" title="D.不劳而获的钱财 Money for Nothing"></a>D.不劳而获的钱财 Money for Nothing</h2><p>按照价值为横坐标，时间为纵坐标，所求即左下角为一类点，右上角为二类点的一个矩形最大面积。</p>
 <p>坑着。</p>
 ]]></content>
   </entry>
   <entry>
     <title>Lydsy1712月赛泛做</title>
     <url>/2019/06/09/Lydsy1712%E6%9C%88%E8%B5%9B%E6%B3%9B%E5%81%9A/</url>
-    <content><![CDATA[<h2 id="题面">题面</h2>
-<p>见 <a href="https://www.lydsy.com/JudgeOnline/upload/201712/prob12.pdf">这里</a>。</p>
+    <content><![CDATA[<h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>见 <a href="https://www.lydsy.com/JudgeOnline/upload/201712/prob12.pdf">这里</a>。</p>
 <span id="more"></span>
-<h2 id="problem-a.-彩虹溜冰鞋">Problem A. 彩虹溜冰鞋</h2>
-<p>首先可以直接计算出终点坐标。不难发现，倒着模拟 <span class="math inline">\(r+c\)</span> 轮即可求出最终局面。</p>
-<p>时间复杂度 <span class="math inline">\(\mathcal O((r+c)^2)\)</span></p>
-<h2 id="problem-b.-线段树的匹配">Problem B. 线段树的匹配</h2>
-<p>显然有一个简单的 <span class="math inline">\(\mathcal O(n)\)</span> 做法。容易发现，一个子树的答案只与这个子树对应区间的大小有关。有一个结论是，线段树每一层最多有两种大小的子树。可以用归纳法证明。记搜即可，复杂度 <span class="math inline">\(\mathcal O(\log n).\)</span></p>
-<h2 id="problem-c.-波浪序列">Problem C. 波浪序列</h2>
-<p>DP of DP.</p>
-<p>首先有一个显然的暴力做法，设 <span class="math inline">\(f_{i,j,0/1}\)</span> 表示 <span class="math inline">\(a\)</span> 序列匹配到第 <span class="math inline">\(i\)</span> 个位置，<span class="math inline">\(b\)</span> 序列匹配到第 <span class="math inline">\(j\)</span> 个位置，当前状态是上升还是下降的方案数，转移枚举下一个匹配位置，复杂度 <span class="math inline">\(\mathcal O(kn^2m^2)\)</span>，无法通过。</p>
-<p>状态数似乎已经没有优化的余地了，我们考虑从转移下手。我们不妨对枚举转移的过程进行 DP。设 <span class="math inline">\(g_{i,y,k}\)</span> 表示从所有 <span class="math inline">\(f_{x,y,k}\)</span> 开始决策，匹配到 <span class="math inline">\(a\)</span> 中的位置为 <span class="math inline">\(i\)</span> 的方案数。同时设 <span class="math inline">\(h_{i,j,k}\)</span> 表示从所有 <span class="math inline">\(f_{x.y,k}\)</span> 开始决策，已经经过了 <span class="math inline">\(g\)</span> 的枚举，下一个匹配到 <span class="math inline">\(b\)</span> 中的位置为 <span class="math inline">\(j\)</span> 的方案数。每次转移要么从这里开始决策，要么转移到 <span class="math inline">\(i+1\)</span> 或 <span class="math inline">\(j + 1\)</span>，时间复杂度 <span class="math inline">\(\mathcal O(nmk)\)</span>.</p>
+<h2 id="Problem-A-彩虹溜冰鞋"><a href="#Problem-A-彩虹溜冰鞋" class="headerlink" title="Problem A. 彩虹溜冰鞋"></a>Problem A. 彩虹溜冰鞋</h2><p>首先可以直接计算出终点坐标。不难发现，倒着模拟 $r+c$  轮即可求出最终局面。</p>
+<p>时间复杂度 $\mathcal O((r+c)^2)$</p>
+<h2 id="Problem-B-线段树的匹配"><a href="#Problem-B-线段树的匹配" class="headerlink" title="Problem B. 线段树的匹配"></a>Problem B. 线段树的匹配</h2><p>显然有一个简单的 $\mathcal O(n)$ 做法。容易发现，一个子树的答案只与这个子树对应区间的大小有关。有一个结论是，线段树每一层最多有两种大小的子树。可以用归纳法证明。记搜即可，复杂度 $\mathcal O(\log n).$</p>
+<h2 id="Problem-C-波浪序列"><a href="#Problem-C-波浪序列" class="headerlink" title="Problem C. 波浪序列"></a>Problem C. 波浪序列</h2><p>DP of DP.</p>
+<p>首先有一个显然的暴力做法，设 $f_{i,j,0/1}$ 表示 $a$ 序列匹配到第 $i$ 个位置，$b$ 序列匹配到第 $j$ 个位置，当前状态是上升还是下降的方案数，转移枚举下一个匹配位置，复杂度 $\mathcal O(kn^2m^2)$，无法通过。</p>
+<p>状态数似乎已经没有优化的余地了，我们考虑从转移下手。我们不妨对枚举转移的过程进行 DP。设 $g_{i,y,k}$ 表示从所有 $f_{x,y,k}$ 开始决策，匹配到 $a$ 中的位置为 $i$ 的方案数。同时设 $h_{i,j,k}$ 表示从所有 $f_{x.y,k}$ 开始决策，已经经过了 $g$ 的枚举，下一个匹配到 $b$ 中的位置为 $j$ 的方案数。每次转移要么从这里开始决策，要么转移到 $i+1$ 或 $j + 1$，时间复杂度 $\mathcal O(nmk)$.</p>
 <blockquote>
-<p>总结：枚举两个序列匹配的问题，每个合法状态都是这个一对 <span class="math inline">\((i,j)\)</span> 匹配。此时可以从决策点先枚举其中一维向下走，再枚举另一维，将 DP 的转移变成 <span class="math inline">\(\mathcal O(1)\)</span>.</p>
+<p>总结：枚举两个序列匹配的问题，每个合法状态都是这个一对 $(i,j)$ 匹配。此时可以从决策点先枚举其中一维向下走，再枚举另一维，将 DP 的转移变成 $\mathcal O(1)$.</p>
 </blockquote>
-<h2 id="problem-d.-小-q-的书架">Problem D. 小 Q 的书架</h2>
-<p>首先有一个经典的结论，一个序列排序所需最小交换次数即为逆序对数。有一个 DP 即为 <span class="math inline">\(f_{i,j}\)</span> 表示 <span class="math inline">\([1,j]\)</span> 分成 <span class="math inline">\(i\)</span> 段的答案，那么就有 <span class="math inline">\(f_{i,j}=\min\limits_{k&lt;j} \{f_{i-1,k}+cost(k+1,i)\}\)</span>，其中 <span class="math inline">\(cost(l,r)\)</span> 表示 <span class="math inline">\([l,r]\)</span> 内的逆序对数量。不难发现转移满足单调性，可以分治。现在的问题就是动态维护区间的逆序对数。莫队即可。</p>
-<h2 id="problem-e.-自动售货机">Problem E. 自动售货机</h2>
-<p>按题中所给关系建图，差价作为边权。首先贪心地将每种物品取到只剩一种，接下来对于自环或树，答案即为每个点入边的最大值之和，剩下的每个环，必须删除一条边，枚举删除哪条边即可。</p>
-<h2 id="problem-f.-数据校验">Problem F. 数据校验</h2>
-<p>显然题意中合法区间的充要条件是区间任意长度为 <span class="math inline">\(2\)</span> 的子区间两个数字差不超过 <span class="math inline">\(1\)</span>，直接前缀和判断即可。</p>
-<h2 id="problem-g.-寻找母串">Problem G. 寻找母串</h2>
-<p>发现范围很小，<del>所以就随便做了</del></p>
-<p>考虑枚举母串，然后考虑怎么 check。设 <span class="math inline">\(f_{i,j}\)</span> 表示 <span class="math inline">\([i,j]\)</span> 是否能匹配上，由题意，这一段的某个前缀和后缀拼在一起应该是母串，设母串长度为 <span class="math inline">\(len\)</span>，则 DP 的复杂度即为 <span class="math inline">\(\mathcal O(n^2len).\)</span> 枚举的母串长度必须为 <span class="math inline">\(n\)</span> 的约数，则总复杂度粗略分析约为 <span class="math inline">\(\mathcal O(n^3\sigma(n))\)</span>，实际上长度为 <span class="math inline">\(len\)</span> 的子串至多有 <span class="math inline">\(n-len\)</span> 个，这个上界是不满的，同时还可以加上诸如 check 字符数是否合法等剪枝，使得复杂度远小于上界。</p>
-<h2 id="problem-h.-树上传送">Problem H. 树上传送</h2>
-<p>留坑</p>
-<h2 id="problem-i.-字符串的周期">Problem I. 字符串的周期</h2>
-<p>暴力搜出字符串的最小表示，KMP 求出权值，组合计算方案数即可。复杂度 <span class="math inline">\(\mathcal O(nBell(n))\)</span>.</p>
+<h2 id="Problem-D-小-Q-的书架"><a href="#Problem-D-小-Q-的书架" class="headerlink" title="Problem D. 小 Q 的书架"></a>Problem D. 小 Q 的书架</h2><p>首先有一个经典的结论，一个序列排序所需最小交换次数即为逆序对数。有一个 DP 即为 $f_{i,j}$ 表示 $[1,j]$ 分成 $i$ 段的答案，那么就有 $f_{i,j}=\min\limits_{k&lt;j} \{f_{i-1,k}+cost(k+1,i)\}$，其中 $cost(l,r)$ 表示 $[l,r]$ 内的逆序对数量。不难发现转移满足单调性，可以分治。现在的问题就是动态维护区间的逆序对数。莫队即可。</p>
+<h2 id="Problem-E-自动售货机"><a href="#Problem-E-自动售货机" class="headerlink" title="Problem E. 自动售货机"></a>Problem E. 自动售货机</h2><p>按题中所给关系建图，差价作为边权。首先贪心地将每种物品取到只剩一种，接下来对于自环或树，答案即为每个点入边的最大值之和，剩下的每个环，必须删除一条边，枚举删除哪条边即可。</p>
+<h2 id="Problem-F-数据校验"><a href="#Problem-F-数据校验" class="headerlink" title="Problem F. 数据校验"></a>Problem F. 数据校验</h2><p>显然题意中合法区间的充要条件是区间任意长度为 $2$ 的子区间两个数字差不超过 $1$，直接前缀和判断即可。</p>
+<h2 id="Problem-G-寻找母串"><a href="#Problem-G-寻找母串" class="headerlink" title="Problem G. 寻找母串"></a>Problem G. 寻找母串</h2><p>发现范围很小，<del>所以就随便做了</del></p>
+<p>考虑枚举母串，然后考虑怎么 check。设 $f_{i,j}$ 表示 $[i,j]$ 是否能匹配上，由题意，这一段的某个前缀和后缀拼在一起应该是母串，设母串长度为 $len$，则 DP 的复杂度即为 $\mathcal O(n^2len).$ 枚举的母串长度必须为 $n$ 的约数，则总复杂度粗略分析约为 $\mathcal O(n^3\sigma(n))$，实际上长度为 $len$ 的子串至多有 $n-len$ 个，这个上界是不满的，同时还可以加上诸如 check 字符数是否合法等剪枝，使得复杂度远小于上界。</p>
+<h2 id="Problem-H-树上传送"><a href="#Problem-H-树上传送" class="headerlink" title="Problem H. 树上传送"></a>Problem H. 树上传送</h2><p>留坑</p>
+<h2 id="Problem-I-字符串的周期"><a href="#Problem-I-字符串的周期" class="headerlink" title="Problem I. 字符串的周期"></a>Problem I. 字符串的周期</h2><p>暴力搜出字符串的最小表示，KMP 求出权值，组合计算方案数即可。复杂度 $\mathcal O(nBell(n))$.</p>
 ]]></content>
       <tags>
         <tag>BZOJ</tag>
@@ -184,54 +156,38 @@ t_1\equiv t_2\mod\frac{A\times B}{\gcd(A,B+1)}
   <entry>
     <title>MD5算法原理及实现</title>
     <url>/2022/03/16/MD5%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[<h3 id="前言">前言</h3>
-<p>这学期的数据结构课设需要用到 MD5 验证，遂去学习了一下，简单做个记录。</p>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这学期的数据结构课设需要用到 MD5 验证，遂去学习了一下，简单做个记录。</p>
 <span id="more"></span>
-<h3 id="md5简介">MD5简介</h3>
-<p>MD5信息摘要算法是一种散列算法，由于运行稳定、计算速度快、安全性较好等特点被广泛使用。但实际上，MD5 不能防止碰撞攻击。除了暴力破解攻击外，2004 年山东大学王小云教授提出了差分攻击算法，针对一些特定的 MD5 码也有长度扩展攻击，在此不做赘述。当然，MD5 是无法被逆向的，因为 MD5 的输入为任意长度的数据，输出为固定 128-bit 的数据，MD5 的过程中是有信息的损耗的。</p>
-<h3 id="md5算法步骤">MD5算法步骤</h3>
-<h4 id="一些函数和常量">一些函数和常量</h4>
-<p>MD5 引入了一些函数和常量用于处理数据。首先是四个非线性函数，定义如下：</p>
+<h3 id="MD5简介"><a href="#MD5简介" class="headerlink" title="MD5简介"></a>MD5简介</h3><p>MD5信息摘要算法是一种散列算法，由于运行稳定、计算速度快、安全性较好等特点被广泛使用。但实际上，MD5 不能防止碰撞攻击。除了暴力破解攻击外，2004 年山东大学王小云教授提出了差分攻击算法，针对一些特定的 MD5 码也有长度扩展攻击，在此不做赘述。当然，MD5 是无法被逆向的，因为 MD5 的输入为任意长度的数据，输出为固定 128-bit 的数据，MD5 的过程中是有信息的损耗的。</p>
+<h3 id="MD5算法步骤"><a href="#MD5算法步骤" class="headerlink" title="MD5算法步骤"></a>MD5算法步骤</h3><h4 id="一些函数和常量"><a href="#一些函数和常量" class="headerlink" title="一些函数和常量"></a>一些函数和常量</h4><p>MD5 引入了一些函数和常量用于处理数据。首先是四个非线性函数，定义如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F(x, y, z) &#x3D; (x &amp; y) | ((~x) &amp; z)</span><br><span class="line">G(x, y, z) &#x3D; (x &amp; z) | (y &amp; (~z))</span><br><span class="line">H(x, y, z) &#x3D; x ^ y ^ z</span><br><span class="line">I(x, y, z) &#x3D; y ^ (x | (~z))</span><br></pre></td></tr></table></figure>
-<p>然后是一个常量数组 <span class="math inline">\(\{t_i\}\)</span>： <span class="math display">\[
-t[i]=\lfloor2^{32}\cdot |\sin(i+1)|\rfloor\ \ \ \ \ i\in[0,64)\cup\Z
-\]</span></p>
-<h4 id="填充数据">填充数据</h4>
-<p>MD5 算法首先将原始数据进行填充，使其长度为 512 的倍数。具体步骤如下：</p>
+<p>然后是一个常量数组 $\{t_i\}$：</p>
+<script type="math/tex; mode=display">
+t[i]=\lfloor2^{32}\cdot |\sin(i+1)|\rfloor\ \ \ \ \ i\in[0,64)\cup\mathbb{Z}</script><h4 id="填充数据"><a href="#填充数据" class="headerlink" title="填充数据"></a>填充数据</h4><p>MD5 算法首先将原始数据进行填充，使其长度为 512 的倍数。具体步骤如下：</p>
 <ul>
 <li>首先，在原始数据末尾补一个 1</li>
 <li>然后，在末尾补若干个 0，直至数据长度模 512 恰为 448</li>
-<li>最后，设原始数据长度为 <span class="math inline">\(len\)</span>，将 <span class="math inline">\(len\)</span> 的低 64 位填充到数据末尾，最终数据长度为 512 的倍数</li>
+<li>最后，设原始数据长度为 $len$，将 $len$ 的低 64 位填充到数据末尾，最终数据长度为 512 的倍数</li>
 </ul>
 <p>注意无论原始数据长度是多少，都必须先补一个 1.</p>
-<h4 id="分组处理">分组处理</h4>
-<p>数据填充完成后，MD5 算法将数据以 512 位为一组进行循环处理，记这 512-bit 的数据为 <span class="math inline">\(M\)</span>。MD5 算法用四个 32 位的寄存器 <span class="math inline">\(A,B,C,D\)</span> 保存散列结果，最后将 <span class="math inline">\(A,B,C,D\)</span> 顺次连接即为结果，其初始值为： <span class="math display">\[
+<h4 id="分组处理"><a href="#分组处理" class="headerlink" title="分组处理"></a>分组处理</h4><p>数据填充完成后，MD5 算法将数据以 512 位为一组进行循环处理，记这 512-bit 的数据为 $M$。MD5 算法用四个 32 位的寄存器 $A,B,C,D$ 保存散列结果，最后将 $A,B,C,D$ 顺次连接即为结果，其初始值为：</p>
+<script type="math/tex; mode=display">
 A={\rm0x01234567}\\
 B={\rm0x89abcdef}\\
 C={\rm0xfedcba98}\\
-D={\rm 0x76543210}
-\]</span> 每次循环中，MD5 算法对 <span class="math inline">\(M,A,B,C,D\)</span> 进行处理得到新的 <span class="math inline">\(A,B,C,D\)</span>，进行下一次循环。</p>
-<h4 id="再次分组">再次分组</h4>
-<p>每次循环中。我们将 <span class="math inline">\(M\)</span> 再次分为 16 组，每组 32 位，记为 <span class="math inline">\(\{m_i\}\)</span>，同时，令 <span class="math inline">\(a,b,c,d\)</span> 为 <span class="math inline">\(A,B,C,D\)</span> 的拷贝。</p>
+D={\rm 0x76543210}</script><p>每次循环中，MD5 算法对 $M,A,B,C,D$ 进行处理得到新的 $A,B,C,D$，进行下一次循环。</p>
+<h4 id="再次分组"><a href="#再次分组" class="headerlink" title="再次分组"></a>再次分组</h4><p>每次循环中。我们将 $M$ 再次分为 16 组，每组 32 位，记为 $\{m_i\}$，同时，令 $a,b,c,d$ 为 $A,B,C,D$ 的拷贝。</p>
 <p>接下来，我们进行四轮处理，方便起见，用伪代码进行描述：</p>
-<h5 id="预处理">预处理</h5>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Slice M to m[i] i = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">a &lt;- A, b &lt;- B, c &lt;- C, d &lt;- D</span><br></pre></td></tr></table></figure>
-<h5 id="第一轮">第一轮</h5>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s1[] = &#123;<span class="number">7</span>,<span class="number">12</span>,<span class="number">17</span>,<span class="number">22</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- index</span><br><span class="line">    j &lt;- index</span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">F</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s1[k])</span><br><span class="line">	&#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
-<p>循环内的最后一行表示将 <span class="math inline">\(\{a,b,c,d\}\)</span> 向右轮换。注意，这里的左移表示循环左移，即 <span class="math inline">\(\rm ROL\)</span>，下文同理。</p>
-<h5 id="第二轮">第二轮</h5>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s2[] = &#123;<span class="number">5</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- (index * <span class="number">5</span> + <span class="number">1</span>) % <span class="number">16</span></span><br><span class="line">    j &lt;- index + <span class="number">16</span></span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">G</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s2[k])</span><br><span class="line">	&#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="第三轮">第三轮</h5>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s3[] = &#123;<span class="number">4</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">23</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- (index * <span class="number">3</span> + <span class="number">5</span>) % <span class="number">16</span></span><br><span class="line">    j &lt;- index + <span class="number">32</span></span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">H</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s3[k])</span><br><span class="line">	&#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="第四轮">第四轮</h5>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s4[] = &#123;<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- (index * <span class="number">7</span>) % <span class="number">16</span></span><br><span class="line">    j &lt;- index + <span class="number">48</span></span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">I</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s4[k])</span><br><span class="line">	&#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="累加">累加</h5>
-<p>在这四轮处理完成后，我们得到了新的 <span class="math inline">\(a,b,c,d\)</span>。随后，我们将其累加到 <span class="math inline">\(A,B,C,D\)</span> 上，并进行下一次循环：</p>
+<h5 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Slice M to m[i] i = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">a &lt;- A, b &lt;- B, c &lt;- C, d &lt;- D</span><br></pre></td></tr></table></figure>
+<h5 id="第一轮"><a href="#第一轮" class="headerlink" title="第一轮"></a>第一轮</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s1[] = &#123;<span class="number">7</span>,<span class="number">12</span>,<span class="number">17</span>,<span class="number">22</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- index</span><br><span class="line">    j &lt;- index</span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">F</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s1[k])</span><br><span class="line">    &#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
+<p>循环内的最后一行表示将 $\{a,b,c,d\}$ 向右轮换。注意，这里的左移表示循环左移，即 $\rm ROL$，下文同理。</p>
+<h5 id="第二轮"><a href="#第二轮" class="headerlink" title="第二轮"></a>第二轮</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s2[] = &#123;<span class="number">5</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- (index * <span class="number">5</span> + <span class="number">1</span>) % <span class="number">16</span></span><br><span class="line">    j &lt;- index + <span class="number">16</span></span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">G</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s2[k])</span><br><span class="line">	&#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="第三轮"><a href="#第三轮" class="headerlink" title="第三轮"></a>第三轮</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s3[] = &#123;<span class="number">4</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">23</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- (index * <span class="number">3</span> + <span class="number">5</span>) % <span class="number">16</span></span><br><span class="line">    j &lt;- index + <span class="number">32</span></span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">H</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s3[k])</span><br><span class="line">    &#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="第四轮"><a href="#第四轮" class="headerlink" title="第四轮"></a>第四轮</h5><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">s4[] = &#123;<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">0</span> to <span class="number">15</span></span><br><span class="line">    i &lt;- (index * <span class="number">7</span>) % <span class="number">16</span></span><br><span class="line">    j &lt;- index + <span class="number">48</span></span><br><span class="line">    k &lt;- index % <span class="number">4</span></span><br><span class="line">    a &lt;- b + ((a + <span class="built_in">I</span>(b, c, d) + m[i] + t[j]) &lt;&lt; s4[k])</span><br><span class="line">    &#123;a,b,c,d&#125; &lt;- &#123;d,a,b,c&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="累加"><a href="#累加" class="headerlink" title="累加"></a>累加</h5><p>在这四轮处理完成后，我们得到了新的 $a,b,c,d$。随后，我们将其累加到 $A,B,C,D$ 上，并进行下一次循环：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">A &lt;- A + a</span><br><span class="line">B &lt;- B + b</span><br><span class="line">C &lt;- C + c</span><br><span class="line">D &lt;- D + d</span><br></pre></td></tr></table></figure>
-<h4 id="统计答案">统计答案</h4>
-<p>正如之前所说，将 <span class="math inline">\(A,B,C,D\)</span> 顺次连接即为原信息的 MD5 码</p>
-<h3 id="md5算法实现">MD5算法实现</h3>
-<p>见 <a href="https://github.com/Conical1404/CourseAuxiliarySystem/blob/md5/src/MD5.hpp">这里</a></p>
+<h4 id="统计答案"><a href="#统计答案" class="headerlink" title="统计答案"></a>统计答案</h4><p>正如之前所说，将 $A,B,C,D$ 顺次连接即为原信息的 MD5 码</p>
+<h3 id="MD5算法实现"><a href="#MD5算法实现" class="headerlink" title="MD5算法实现"></a>MD5算法实现</h3><p>见 <a href="https://github.com/Conical1404/CourseAuxiliarySystem/blob/md5/src/MD5.hpp">这里</a></p>
 <p>注意存储方式为小端法。</p>
 <p>（写得实在是太丑了，有机会重构一下）</p>
 ]]></content>
@@ -241,24 +197,22 @@ D={\rm 0x76543210}
     <url>/2019/07/10/NOI%E5%89%8D%E6%9C%80%E5%90%8E%E4%B8%80%E8%BD%AE%E5%A4%8D%E4%B9%A0/</url>
     <content><![CDATA[<p>在最后一刻到来前，做好一切的准备</p>
 <span id="more"></span>
-<h2 id="数据结构">数据结构</h2>
-<ul>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
 <li>[x] 线段树</li>
 <li>[x] 平衡树</li>
 <li>[x] K-D Tree</li>
 <li>[x] 左偏树</li>
-<li>[ ] 可持久化数据结构
-<ul>
+<li>[ ] 可持久化数据结构<ul>
 <li>[x] 主席树</li>
 <li>[ ] *可持久化平衡树</li>
 <li>[x] 可持久化trie</li>
 <li>[x] 可持久化左偏树</li>
-</ul></li>
+</ul>
+</li>
 <li>[x] 根号算法</li>
 <li>[x] LCT</li>
 </ul>
-<h2 id="数论">数论</h2>
-<ul>
+<h2 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h2><ul>
 <li>[x] exgcd</li>
 <li>[x] CRT &amp; exCRT</li>
 <li>[x] Lucas &amp; exLucas</li>
@@ -270,15 +224,13 @@ D={\rm 0x76543210}
 <li>[ ] *Polya &amp; Burnside</li>
 <li>[ ] *洲阁筛和min25筛</li>
 </ul>
-<h2 id="多项式">多项式</h2>
-<ul>
+<h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><ul>
 <li>[x] FFT &amp; NTT</li>
 <li>[ ] *求逆，ln，exp等</li>
 <li>[x] FWT</li>
 <li>[x] 生成函数</li>
 </ul>
-<h2 id="字符串">字符串</h2>
-<ul>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
 <li>[x] 后缀数组</li>
 <li>[x] 树上后缀数组</li>
 <li>[x] 后缀自动机</li>
@@ -286,8 +238,7 @@ D={\rm 0x76543210}
 <li>[x] AC自动机 &amp; KMP</li>
 <li>[ ] *回文自动机</li>
 </ul>
-<h2 id="图论">图论</h2>
-<ul>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><ul>
 <li>[x] 最短路 &amp; 生成树</li>
 <li>[x] Kruskal 重构树</li>
 <li>[x] 0/1 分数规划</li>
@@ -302,8 +253,7 @@ D={\rm 0x76543210}
 <li>[x] 最小割树</li>
 <li>[x] 最小树形图</li>
 </ul>
-<h2 id="计算几何">计算几何</h2>
-<ul>
+<h2 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h2><ul>
 <li>[x] 凸包</li>
 <li>[x] 半平面交</li>
 <li>[x] 辛普森积分</li>
@@ -314,308 +264,250 @@ D={\rm 0x76543210}
   <entry>
     <title>《深入理解计算机系统》读书笔记</title>
     <url>/2021/04/02/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>寒假入手了 CSAPP，不过因为太鸽了一直没有读。</p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>寒假入手了 CSAPP，不过因为太鸽了一直没有读。</p>
 <p>这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。</p>
 <span id="more"></span>
-<h2 id="第1章-计算机系统漫游">第1章 计算机系统漫游</h2>
-<h3 id="信息就是位上下文">1.1 信息就是位+上下文</h3>
-<ul>
+<h2 id="第1章-计算机系统漫游"><a href="#第1章-计算机系统漫游" class="headerlink" title="第1章 计算机系统漫游"></a>第1章 计算机系统漫游</h2><h3 id="1-1-信息就是位-上下文"><a href="#1-1-信息就是位-上下文" class="headerlink" title="1.1 信息就是位+上下文"></a>1.1 信息就是位+上下文</h3><ul>
 <li>系统中所有的信息都是用一串比特表示的</li>
 <li>区分不同数据对象的唯一方法是我们读到这些数据对象时的上下文</li>
 </ul>
-<h3 id="程序被其他程序翻译成不同的格式">1.2 程序被其他程序翻译成不同的格式</h3>
-<ul>
-<li>高级程序的翻译过程：四个阶段
-<ul>
+<h3 id="1-2-程序被其他程序翻译成不同的格式"><a href="#1-2-程序被其他程序翻译成不同的格式" class="headerlink" title="1.2 程序被其他程序翻译成不同的格式"></a>1.2 程序被其他程序翻译成不同的格式</h3><ul>
+<li>高级程序的翻译过程：四个阶段<ul>
 <li>预处理阶段：预处理器（cpp）读取 <code>hello.c</code> 中的系统头文件，直接插入程序文本，得到 <code>hello.i</code></li>
-<li>编译阶段：编译器（ccl）将 <code>hello.i</code> 翻译成包含汇编语言程序的文本文件 <code>hello.s</code>
-<ul>
+<li>编译阶段：编译器（ccl）将 <code>hello.i</code> 翻译成包含汇编语言程序的文本文件 <code>hello.s</code><ul>
 <li>汇编语言以文本格式描述低级机器语言指令</li>
-</ul></li>
-<li>汇编阶段：汇编器（as）将程序翻译成机器语言指令，打包成可重定位目标程序的格式，保存在 <code>hello.o</code> 中
-<ul>
-<li><code>hello.o</code> 是一个二进制文件</li>
-</ul></li>
-<li>链接阶段：链接器（ld）将程序调用的函数所在的预编译文件合并到目标程序，得到可执行文件</li>
-</ul></li>
 </ul>
-<h3 id="了解编译系统如何工作是大有益处的">1.3 了解编译系统如何工作是大有益处的</h3>
-<ul>
+</li>
+<li>汇编阶段：汇编器（as）将程序翻译成机器语言指令，打包成可重定位目标程序的格式，保存在 <code>hello.o</code> 中<ul>
+<li><code>hello.o</code> 是一个二进制文件</li>
+</ul>
+</li>
+<li>链接阶段：链接器（ld）将程序调用的函数所在的预编译文件合并到目标程序，得到可执行文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-了解编译系统如何工作是大有益处的"><a href="#1-3-了解编译系统如何工作是大有益处的" class="headerlink" title="1.3 了解编译系统如何工作是大有益处的"></a>1.3 了解编译系统如何工作是大有益处的</h3><ul>
 <li>优化程序性能</li>
 <li>理解链接时出现的错误</li>
 <li>避免安全漏洞</li>
 </ul>
-<h3 id="处理器读并解释储存在内存中的指令">1.4 处理器读并解释储存在内存中的指令</h3>
-<h4 id="系统的硬件组成">1.4.1 系统的硬件组成</h4>
-<ul>
-<li>总线
-<ul>
+<h3 id="1-4-处理器读并解释储存在内存中的指令"><a href="#1-4-处理器读并解释储存在内存中的指令" class="headerlink" title="1.4 处理器读并解释储存在内存中的指令"></a>1.4 处理器读并解释储存在内存中的指令</h3><h4 id="1-4-1-系统的硬件组成"><a href="#1-4-1-系统的硬件组成" class="headerlink" title="1.4.1 系统的硬件组成"></a>1.4.1 系统的硬件组成</h4><ul>
+<li>总线<ul>
 <li>贯穿整个系统的一组电子管道</li>
 <li>传送定长的字节块</li>
-</ul></li>
-<li>I/O 设备
-<ul>
+</ul>
+</li>
+<li>I/O 设备<ul>
 <li>每个 I/O 设备都通过一个<strong>控制器</strong>或<strong>适配器</strong>与 I/O 总线相连</li>
-<li>控制器与适配器区别：封装方式
-<ul>
+<li>控制器与适配器区别：封装方式<ul>
 <li>控制器：设备本身或系统的主印制电路板</li>
 <li>适配器：插在主板插槽上的卡</li>
-</ul></li>
-</ul></li>
-<li>主存
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>主存<ul>
 <li>临时存储设备，在处理器执行程序时用来存放程序和程序处理的数据</li>
 <li>物理上，由一组<strong>动态随机存取存储器</strong> （DRAM）芯片组成</li>
 <li>逻辑上，存储器是一个线性的字节数组，每个字节有其唯一的地址</li>
-</ul></li>
-<li>处理器
-<ul>
+</ul>
+</li>
+<li>处理器<ul>
 <li>中央处理单元（CPU）简称<strong>处理器</strong>，解释（或执行）存储在主存中指令</li>
 <li>处理器的核心：大小为一个字的存储设备（或寄存器），称为<strong>程序计数器</strong>（PC）</li>
 <li>任何时刻 PC 都指向主存中的某条机器语言指令</li>
 <li>处理器工作机制：不断执行 PC 指向的指令，再更新 PC 使其指向下一条指令</li>
-</ul></li>
 </ul>
-<h4 id="hello-程序的运行">1.4.2 hello 程序的运行</h4>
-<ul>
+</li>
+</ul>
+<h4 id="1-4-2-hello-程序的运行"><a href="#1-4-2-hello-程序的运行" class="headerlink" title="1.4.2 hello 程序的运行"></a>1.4.2 hello 程序的运行</h4><ul>
 <li>用户在终端输入 <code>./hello</code> 后，shell 程序将字符逐一读入寄存器，再将它放入内存</li>
 <li>敲下回车后，命令输入完成，shell 执行一系列指令加载可执行文件 <code>hello</code> ，将目标文件的代码和数据从磁盘复制到主存</li>
 <li>随后处理器开始执行 <code>hello</code> 的 <code>main</code> 程序中的机器语言指令</li>
 </ul>
-<h3 id="高速缓存">1.5 高速缓存</h3>
-<ul>
+<h3 id="1-5-高速缓存"><a href="#1-5-高速缓存" class="headerlink" title="1.5 高速缓存"></a>1.5 高速缓存</h3><ul>
 <li>较大的存储设备运行较慢，而高速设备的造价远高于同类低速设备</li>
 <li>处理器从寄存器中读取文件速度远快于主存</li>
 <li>高速缓存存储器用于存放处理器近期可能需要的信息，使程序性能得到显著提升</li>
 </ul>
-<h3 id="存储设备层级结构">1.6 存储设备层级结构</h3>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806095921157.png" alt="image-20210806095921157" /><figcaption>image-20210806095921157</figcaption>
-</figure>
-<h3 id="操作系统管理硬件">1.7 操作系统管理硬件</h3>
-<h4 id="进程">1.7.1 进程</h4>
-<ul>
+<h3 id="1-6-存储设备层级结构"><a href="#1-6-存储设备层级结构" class="headerlink" title="1.6 存储设备层级结构"></a>1.6 存储设备层级结构</h3><p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806095921157.png" alt="image-20210806095921157"></p>
+<h3 id="1-7-操作系统管理硬件"><a href="#1-7-操作系统管理硬件" class="headerlink" title="1.7 操作系统管理硬件"></a>1.7 操作系统管理硬件</h3><h4 id="1-7-1-进程"><a href="#1-7-1-进程" class="headerlink" title="1.7.1 进程"></a>1.7.1 进程</h4><ul>
 <li>进程是操作系统对一个正在运行的程序的一种抽象</li>
 <li>一个系统上可以同时运行多个进程，而每个进程表现为独占地使用硬件</li>
 <li>一个 CPU <strong>看上去</strong>在并发执行多个进程，实际是通过进程的切换实现的，这种交错执行的机制称为上下文切换</li>
 </ul>
-<h4 id="线程">1.7.2 线程</h4>
-<ul>
+<h4 id="1-7-2-线程"><a href="#1-7-2-线程" class="headerlink" title="1.7.2 线程"></a>1.7.2 线程</h4><ul>
 <li>一个进程由多个称为线程的执行单元组成</li>
 <li>每个线程都运行在进程的上下文中，共享同样的代码与全局数据</li>
 </ul>
-<h4 id="虚拟内存">1.7.3 虚拟内存</h4>
-<ul>
-<li><p>虚拟内存是一个抽象概念，为 每个进程提供了独占使用主存的假象</p></li>
+<h4 id="1-7-3-虚拟内存"><a href="#1-7-3-虚拟内存" class="headerlink" title="1.7.3 虚拟内存"></a>1.7.3 虚拟内存</h4><ul>
+<li><p>虚拟内存是一个抽象概念，为 每个进程提供了独占使用主存的假象</p>
+</li>
 <li><p>每个进程看到的内存都是一致的，称为虚拟地址空间</p>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806102000711.png" alt="image-20210806102000711" /><figcaption>image-20210806102000711</figcaption>
-</figure></li>
+<p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806102000711.png" alt="image-20210806102000711"></p>
+</li>
 </ul>
-<h4 id="文件">1.7.4 文件</h4>
-<ul>
+<h4 id="1-7-4-文件"><a href="#1-7-4-文件" class="headerlink" title="1.7.4 文件"></a>1.7.4 文件</h4><ul>
 <li>文件即字节序列</li>
 <li>所有 I/O 设备都可看作文件</li>
 <li>文件的概念向应用提供了一个统一的视图来看待各种 I/O 设备</li>
 </ul>
-<h3 id="网络">1.8 网络</h3>
-<p>略</p>
-<h3 id="几个重要概念">1.9 几个重要概念</h3>
-<h4 id="amadahl-定律">1.9.1 Amadahl 定律</h4>
-<p><span class="math display">\[
-S=\frac{1}{(1-a)+a/k}
-\]</span></p>
-<h4 id="并发和并行">1.9.2 并发和并行</h4>
-<ul>
+<h3 id="1-8-网络"><a href="#1-8-网络" class="headerlink" title="1.8 网络"></a>1.8 网络</h3><p>略</p>
+<h3 id="1-9-几个重要概念"><a href="#1-9-几个重要概念" class="headerlink" title="1.9 几个重要概念"></a>1.9 几个重要概念</h3><h4 id="1-9-1-Amadahl-定律"><a href="#1-9-1-Amadahl-定律" class="headerlink" title="1.9.1 Amadahl 定律"></a>1.9.1 Amadahl 定律</h4><script type="math/tex; mode=display">
+S=\frac{1}{(1-a)+a/k}</script><h4 id="1-9-2-并发和并行"><a href="#1-9-2-并发和并行" class="headerlink" title="1.9.2 并发和并行"></a>1.9.2 并发和并行</h4><ul>
 <li>超线程并发</li>
 <li>指令级并行</li>
 <li>单指令、多数据并行</li>
 </ul>
-<h4 id="抽象">1.9.3 抽象</h4>
-<h2 id="第二章-信息的表示和处理">第二章 信息的表示和处理</h2>
-<h3 id="信息存储">2.1 信息存储</h3>
-<h4 id="十六进制表示法">2.1.1 十六进制表示法</h4>
-<h4 id="字数据大小">2.1.2 字数据大小</h4>
-<ul>
-<li>字长（<span class="math inline">\(\text{word size}\)</span>）：指明指针数据的标称大小（<span class="math inline">\(\text{nominal size}\)</span>），决定虚拟地址空间的最大大小。</li>
-<li>对于字长为 <span class="math inline">\(\omega\)</span> 位的机器，其虚拟地址范围为 <span class="math inline">\(0\sim2^\omega-1\)</span></li>
-<li><span class="math inline">\(32\)</span> 位字长机器虚拟地址空间为 <span class="math inline">\(4\texttt{GB}\)</span>，<span class="math inline">\(64\)</span> 位字长虚拟地址空间为 <span class="math inline">\(14\texttt{EB}\)</span></li>
-<li>大多数 <span class="math inline">\(64\)</span> 位机器可以运行 <span class="math inline">\(32\)</span> 位机器编译的程序，是一种<strong>向后兼容</strong></li>
-<li><p>部分基本 C 数据类型分配的字节数会受到编译机器的字长影响 <img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210917134111038.png" alt="image-20210917134111038" /></p></li>
-<li><p><span class="math inline">\(\text{ISO C}99\)</span> 标准引入了 <code>int32_t</code> 与 <code>int64_t</code></p></li>
+<h4 id="1-9-3-抽象"><a href="#1-9-3-抽象" class="headerlink" title="1.9.3 抽象"></a>1.9.3 抽象</h4><h2 id="第二章-信息的表示和处理"><a href="#第二章-信息的表示和处理" class="headerlink" title="第二章 信息的表示和处理"></a>第二章 信息的表示和处理</h2><h3 id="2-1-信息存储"><a href="#2-1-信息存储" class="headerlink" title="2.1 信息存储"></a>2.1 信息存储</h3><h4 id="2-1-1-十六进制表示法"><a href="#2-1-1-十六进制表示法" class="headerlink" title="2.1.1 十六进制表示法"></a>2.1.1 十六进制表示法</h4><h4 id="2-1-2-字数据大小"><a href="#2-1-2-字数据大小" class="headerlink" title="2.1.2 字数据大小"></a>2.1.2 字数据大小</h4><ul>
+<li>字长（$\text{word size}$）：指明指针数据的标称大小（$\text{nominal size}$），决定虚拟地址空间的最大大小。</li>
+<li>对于字长为 $\omega$ 位的机器，其虚拟地址范围为 $0\sim2^\omega-1$</li>
+<li>$32$ 位字长机器虚拟地址空间为 $4\texttt{GB}$，$64$ 位字长虚拟地址空间为 $14\texttt{EB}$</li>
+<li>大多数 $64$ 位机器可以运行 $32$ 位机器编译的程序，是一种<strong>向后兼容</strong></li>
+<li><p>部分基本 C 数据类型分配的字节数会受到编译机器的字长影响<br><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210917134111038.png" alt="image-20210917134111038"></p>
+</li>
+<li><p>$\text{ISO C}99$ 标准引入了 <code>int32_t</code> 与 <code>int64_t</code></p>
+</li>
 </ul>
-<h4 id="寻址和字节顺序">2.1.3 寻址和字节顺序</h4>
-<ul>
-<li>小端法（<span class="math inline">\(\text{little endian}\)</span>）：最低有效字节在前</li>
-<li>大端法（<span class="math inline">\(\text{big endian}\)</span>）：最低有效字节在后</li>
+<h4 id="2-1-3-寻址和字节顺序"><a href="#2-1-3-寻址和字节顺序" class="headerlink" title="2.1.3 寻址和字节顺序"></a>2.1.3 寻址和字节顺序</h4><ul>
+<li>小端法（$\text{little endian}$）：最低有效字节在前</li>
+<li>大端法（$\text{big endian}$）：最低有效字节在后</li>
 </ul>
-<h4 id="表示字符串">2.1.4 表示字符串</h4>
-<ul>
-<li>C 语言字符串：以 <span class="math inline">\(\text{null}\)</span> 字符结尾的字符数组</li>
-<li>每个字符由某个标准编码表示，如 <span class="math inline">\(\text{ASCII}\)</span> 码</li>
+<h4 id="2-1-4-表示字符串"><a href="#2-1-4-表示字符串" class="headerlink" title="2.1.4 表示字符串"></a>2.1.4 表示字符串</h4><ul>
+<li>C 语言字符串：以 $\text{null}$ 字符结尾的字符数组</li>
+<li>每个字符由某个标准编码表示，如 $\text{ASCII}$ 码</li>
 <li>文本数据比二进制数据具有更强的平台独立性</li>
 </ul>
-<h4 id="表示代码">2.1.5 表示代码</h4>
-<ul>
+<h4 id="2-1-5-表示代码"><a href="#2-1-5-表示代码" class="headerlink" title="2.1.5 表示代码"></a>2.1.5 表示代码</h4><ul>
 <li>不同的机器类型使用不同的且不兼容的指令和编码方式，二进制代码是不兼容的</li>
 <li>从机器角度，程序仅仅是<strong>字节序列</strong></li>
 </ul>
-<h4 id="布尔代数">2.1.6 布尔代数</h4>
-<ul>
-<li><p>布尔代数 （<span class="math inline">\(\text{Boolen algebra}\)</span>）：<span class="math inline">\(1850\ \text{George Boole}\)</span> 提出</p></li>
-<li><p>几种运算：<span class="math inline">\(\text{&amp;, \\, ~, ^}\)</span></p></li>
-<li><p>布尔运算扩展到位向量运算</p></li>
+<h4 id="2-1-6-布尔代数"><a href="#2-1-6-布尔代数" class="headerlink" title="2.1.6 布尔代数"></a>2.1.6 布尔代数</h4><ul>
+<li><p>布尔代数 （$\text{Boolen algebra}$）：$1850\ \text{George Boole}$ 提出</p>
+</li>
+<li><p>几种运算：$\text{&amp;, \\, ~, ^}$</p>
+</li>
+<li><p>布尔运算扩展到位向量运算</p>
+</li>
 </ul>
-<h4 id="c-语言中的位级运算">2.1.7 C 语言中的位级运算</h4>
-<h4 id="c-语言中的逻辑运算">2.1.8 C 语言中的逻辑运算</h4>
-<ul>
-<li><span class="math inline">\(\text{||, &amp;&amp;, !}\)</span></li>
-<li>非零参数表示 <span class="math inline">\(\text{TRUE}\)</span>，参数 <span class="math inline">\(0\)</span> 表示 <span class="math inline">\(\text{FALSE}\)</span></li>
+<h4 id="2-1-7-C-语言中的位级运算"><a href="#2-1-7-C-语言中的位级运算" class="headerlink" title="2.1.7 C 语言中的位级运算"></a>2.1.7 C 语言中的位级运算</h4><h4 id="2-1-8-C-语言中的逻辑运算"><a href="#2-1-8-C-语言中的逻辑运算" class="headerlink" title="2.1.8 C 语言中的逻辑运算"></a>2.1.8 C 语言中的逻辑运算</h4><ul>
+<li>$\text{||, &amp;&amp;, !}$</li>
+<li>非零参数表示 $\text{TRUE}$，参数 $0$ 表示 $\text{FALSE}$</li>
 </ul>
-<h4 id="c-语言中的移位运算">2.1.9 C 语言中的移位运算</h4>
-<p>对于 <span class="math inline">\(x=[x_{w-1},x_{w-2},\cdots,x_0]\)</span>，有如下几种运算：</p>
+<h4 id="2-1-9-C-语言中的移位运算"><a href="#2-1-9-C-语言中的移位运算" class="headerlink" title="2.1.9 C 语言中的移位运算"></a>2.1.9 C 语言中的移位运算</h4><p>对于 $x=[x_{w-1},x_{w-2},\cdots,x_0]$，有如下几种运算：</p>
 <ul>
-<li><p>左移：<span class="math inline">\(x&lt;&lt;k=[x_{w-k-1},x_{w-k-2},\cdots,x_0,0,\cdots,0]\)</span></p></li>
-<li>逻辑右移：左端补 <span class="math inline">\(k\)</span> 个 <span class="math inline">\(0\)</span>，即 <span class="math inline">\(x&gt;&gt;k=[0,\cdots,0,x_{w-1},x_{w-2},\cdots,x_k]\)</span></li>
-<li>算术右移：左端补 <span class="math inline">\(k\)</span> 个最高有效位值，即 <span class="math inline">\(x&gt;&gt;k=[x_{w-1},\cdots,x_{w-1},x_{w-1},x_{w-2},\cdots,x_k]\)</span></li>
+<li><p>左移：$x&lt;&lt;k=[x_{w-k-1},x_{w-k-2},\cdots,x_0,0,\cdots,0]$</p>
+</li>
+<li><p>逻辑右移：左端补 $k$ 个 $0$，即 $x&gt;&gt;k=[0,\cdots,0,x_{w-1},x_{w-2},\cdots,x_k]$</p>
+</li>
+<li>算术右移：左端补 $k$ 个最高有效位值，即 $x&gt;&gt;k=[x_{w-1},\cdots,x_{w-1},x_{w-1},x_{w-2},\cdots,x_k]$</li>
 <li>对于无符号数，右移必须是逻辑的</li>
-<li><p>对于有符号数，右移后仍是其补码</p></li>
+<li>对于有符号数，右移后仍是其补码</li>
 </ul>
-<h3 id="整数表示">2.2 整数表示</h3>
-<h4 id="整型数据类型">2.2.1 整型数据类型</h4>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133245169.png" alt="image-20210924133245169" /><figcaption>image-20210924133245169</figcaption>
-</figure>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133314487.png" alt="image-20210924133314487" /><figcaption>image-20210924133314487</figcaption>
-</figure>
-<h4 id="无符号数的编码">2.2.2 无符号数的编码</h4>
-<ul>
+<h3 id="2-2-整数表示"><a href="#2-2-整数表示" class="headerlink" title="2.2 整数表示"></a>2.2 整数表示</h3><h4 id="2-2-1-整型数据类型"><a href="#2-2-1-整型数据类型" class="headerlink" title="2.2.1 整型数据类型"></a>2.2.1 整型数据类型</h4><p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133245169.png" alt="image-20210924133245169"></p>
+<p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133314487.png" alt="image-20210924133314487"></p>
+<h4 id="2-2-2-无符号数的编码"><a href="#2-2-2-无符号数的编码" class="headerlink" title="2.2.2 无符号数的编码"></a>2.2.2 无符号数的编码</h4><ul>
 <li><p>定义：</p>
-<p>对向量 <span class="math inline">\(\vec x=[x_{w-1},x_{w-2},\cdots,x_0]\)</span>： <span class="math display">\[
-B2U_w(\vec x)\doteq\sum_{i=0}^{w-1}x_i2^i
-\]</span></p></li>
+<p>对向量 $\vec x=[x_{w-1},x_{w-2},\cdots,x_0]$：</p>
+<script type="math/tex; mode=display">
+B2U_w(\vec x)\doteq\sum_{i=0}^{w-1}x_i2^i</script></li>
 <li></li>
-<li><p><span class="math inline">\(UMax_w\doteq2^w-1\)</span></p></li>
-<li><span class="math inline">\(B2U_w:\{0,1\}^w\to\{0,\cdots,2^w-1\}\)</span></li>
-<li><p>无符号编码唯一性：<span class="math inline">\(B2U_w\)</span> 是一个双射</p></li>
+<li><p>$UMax_w\doteq2^w-1$</p>
+</li>
+<li><p>$B2U_w:\{0,1\}^w\to\{0,\cdots,2^w-1\}$</p>
+</li>
+<li>无符号编码唯一性：$B2U_w$ 是一个双射</li>
 </ul>
-<h3 id="补码编码">2.2.3 补码编码</h3>
-<ul>
+<h3 id="2-2-3-补码编码"><a href="#2-2-3-补码编码" class="headerlink" title="2.2.3 补码编码"></a>2.2.3 补码编码</h3><ul>
 <li><p>定义：</p>
-<p>对向量 <span class="math inline">\(\vec x =[x_{w-1},x_{w-2},\cdots,x_0]\)</span>： <span class="math display">\[
-B2T_w(\vec x)\doteq -x_{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i
-\]</span></p></li>
-<li><p><span class="math inline">\(TMin_w=-2^{w-1}\)</span>，<span class="math inline">\(TMax_w=2^{w-1}-1\)</span></p></li>
-<li><p><span class="math inline">\(B2T_w:\{0,1\}^w\to\{TMin_w,\cdots,TMax_w\}\)</span></p></li>
+<p>对向量 $\vec x =[x_{w-1},x_{w-2},\cdots,x_0]$：</p>
+<script type="math/tex; mode=display">
+B2T_w(\vec x)\doteq -x_{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i</script></li>
+<li><p>$TMin_w=-2^{w-1}$，$TMax_w=2^{w-1}-1$</p>
+</li>
+<li><p>$B2T_w:\{0,1\}^w\to\{TMin_w,\cdots,TMax_w\}$</p>
+</li>
 </ul>
-<h4 id="有符号数和无符号数转换">2.2.4 有符号数和无符号数转换</h4>
-<ul>
+<h4 id="2-2-4-有符号数和无符号数转换"><a href="#2-2-4-有符号数和无符号数转换" class="headerlink" title="2.2.4 有符号数和无符号数转换"></a>2.2.4 有符号数和无符号数转换</h4><ul>
 <li>不改变位表示</li>
-<li><span class="math inline">\(T2U_w(x)\doteq B2U_w(T2B_w(x))\)</span></li>
+<li>$T2U_w(x)\doteq B2U_w(T2B_w(x))$</li>
 </ul>
-<h4 id="c-语言中的有符号数与无符号数">2.2.5 C 语言中的有符号数与无符号数</h4>
-<ul>
+<h4 id="2-2-5-C-语言中的有符号数与无符号数"><a href="#2-2-5-C-语言中的有符号数与无符号数" class="headerlink" title="2.2.5 C 语言中的有符号数与无符号数"></a>2.2.5 C 语言中的有符号数与无符号数</h4><ul>
 <li>有符号数与无符号数参与运算：转为无符号数</li>
 </ul>
-<h4 id="扩展一个数字的位表示">2.2.6 扩展一个数字的位表示</h4>
-<ul>
-<li>无符号数：零扩展（<span class="math inline">\(\text{zero extension}\)</span>）</li>
-<li>有符号数：符号扩展（<span class="math inline">\(\text{sign extension}\)</span>）</li>
+<h4 id="2-2-6-扩展一个数字的位表示"><a href="#2-2-6-扩展一个数字的位表示" class="headerlink" title="2.2.6 扩展一个数字的位表示"></a>2.2.6 扩展一个数字的位表示</h4><ul>
+<li>无符号数：零扩展（$\text{zero extension}$）</li>
+<li>有符号数：符号扩展（$\text{sign extension}$）</li>
 </ul>
-<h4 id="截断数字">2.2.7 截断数字</h4>
-<ul>
+<h4 id="2-2-7-截断数字"><a href="#2-2-7-截断数字" class="headerlink" title="2.2.7 截断数字"></a>2.2.7 截断数字</h4><ul>
 <li>无符号截断</li>
 <li>有符号截断</li>
 </ul>
-<h3 id="整数运算">2.3 整数运算</h3>
-<h4 id="无符号加法">2.3.1 无符号加法</h4>
-<p><span class="math display">\[
+<h3 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h3><h4 id="2-3-1-无符号加法"><a href="#2-3-1-无符号加法" class="headerlink" title="2.3.1 无符号加法"></a>2.3.1 无符号加法</h4><script type="math/tex; mode=display">
 x+_w^uy=
 \begin{cases}
-x+y, &amp; x +y&lt;2^w\\\\
-x+y-2^w,&amp; 2^w\le x+y\le 2^w+1
-\end{cases}
-\]</span></p>
-<h4 id="有符号加法">2.3.2 有符号加法</h4>
-<p><span class="math display">\[
+x+y, & x +y<2^w\\\\
+x+y-2^w,& 2^w\le x+y\le 2^w+1
+\end{cases}</script><h4 id="2-3-2-有符号加法"><a href="#2-3-2-有符号加法" class="headerlink" title="2.3.2 有符号加法"></a>2.3.2 有符号加法</h4><script type="math/tex; mode=display">
 x+_w^ty=
 \begin{cases}
-x+y-2^w, &amp; 2^{w-1}\le x +y\\
-x+y, &amp; -2^{w-1}\le x+y\lt 2^{w-1}\\
-x+y+2^w, &amp; x+y&lt;-2^{w-1}
-\end{cases}
-\]</span></p>
-<h4 id="补码的非">2.3.3 补码的非</h4>
-<p><span class="math display">\[
+x+y-2^w, & 2^{w-1}\le x +y\\
+x+y, & -2^{w-1}\le x+y\lt 2^{w-1}\\
+x+y+2^w, & x+y<-2^{w-1}
+\end{cases}</script><h4 id="2-3-3-补码的非"><a href="#2-3-3-补码的非" class="headerlink" title="2.3.3 补码的非"></a>2.3.3 补码的非</h4><script type="math/tex; mode=display">
 -_w^tx=
 \begin{cases}
-TMin_w, &amp; x = TMin_w\\
--x, &amp; x &gt; TMin_w
-\end{cases}
-\]</span></p>
-<h4 id="无符号乘法">2.3.4 无符号乘法</h4>
-<p><span class="math display">\[
-x*_w^uy=(x\cdot y)\bmod 2^w
-\]</span></p>
-<h4 id="补码乘法">2.3.5 补码乘法</h4>
-<p><span class="math display">\[
-x*_w^ty=U2T_w((x\cdot y)\bmod 2^w)
-\]</span></p>
-<h4 id="乘以常数">2.3.6 乘以常数</h4>
-<ul>
-<li>乘 <span class="math inline">\(2\)</span> 的幂</li>
-<li>乘常数 <span class="math inline">\(K\)</span>：拆成 <span class="math inline">\(2\)</span> 的幂次和</li>
+TMin_w, & x = TMin_w\\
+-x, & x > TMin_w
+\end{cases}</script><h4 id="2-3-4-无符号乘法"><a href="#2-3-4-无符号乘法" class="headerlink" title="2.3.4 无符号乘法"></a>2.3.4 无符号乘法</h4><script type="math/tex; mode=display">
+x*_w^uy=(x\cdot y)\bmod 2^w</script><h4 id="2-3-5-补码乘法"><a href="#2-3-5-补码乘法" class="headerlink" title="2.3.5 补码乘法"></a>2.3.5 补码乘法</h4><script type="math/tex; mode=display">
+x*_w^ty=U2T_w((x\cdot y)\bmod 2^w)</script><h4 id="2-3-6-乘以常数"><a href="#2-3-6-乘以常数" class="headerlink" title="2.3.6 乘以常数"></a>2.3.6 乘以常数</h4><ul>
+<li>乘 $2$ 的幂</li>
+<li>乘常数 $K$：拆成 $2$ 的幂次和</li>
 </ul>
-<h4 id="除-2-的幂">2.3.7 除 <span class="math inline">\(2\)</span> 的幂</h4>
-<ul>
+<h4 id="2-3-7-除-2-的幂"><a href="#2-3-7-除-2-的幂" class="headerlink" title="2.3.7 除 $2$ 的幂"></a>2.3.7 除 $2$ 的幂</h4><ul>
 <li>无符号：逻辑右移</li>
-<li>有符号：算术右移
-<ul>
-<li>向下取整 <span class="math inline">\(x&gt;&gt;k\)</span></li>
-<li>向上取整 <span class="math inline">\((x+(1&lt;&lt;k)-1)&gt;&gt;k\)</span></li>
-</ul></li>
+<li>有符号：算术右移<ul>
+<li>向下取整 $x&gt;&gt;k$</li>
+<li>向上取整 $(x+(1&lt;<k)-1)>&gt;k$</li>
 </ul>
-<h3 id="浮点数">2.4 浮点数</h3>
-<h4 id="二进制小数">2.4.1 二进制小数</h4>
-<ul>
-<li>考虑形如 <span class="math inline">\(b_mb_{m-1}\cdots b_1b_0.b_{-1}b_{-2}\cdots b_{-n-1}b_{-n}\)</span> 的表示法，类似十进制小数，有：</li>
+</li>
 </ul>
-<p><span class="math display">\[
-b=\sum_{i=-n}^m2^i\times b_i
-\]</span></p>
-<ul>
-<li>这样的表示法精度不够，只能精确表示形如 <span class="math inline">\(x\times2^y\)</span> 的数</li>
+<h3 id="2-4-浮点数"><a href="#2-4-浮点数" class="headerlink" title="2.4 浮点数"></a>2.4 浮点数</h3><h4 id="2-4-1-二进制小数"><a href="#2-4-1-二进制小数" class="headerlink" title="2.4.1 二进制小数"></a>2.4.1 二进制小数</h4><ul>
+<li>考虑形如 $b_mb_{m-1}\cdots b_1b_0.b_{-1}b_{-2}\cdots b_{-n-1}b_{-n}$ 的表示法，类似十进制小数，有：</li>
+</ul>
+<script type="math/tex; mode=display">
+b=\sum_{i=-n}^m2^i\times b_i</script><ul>
+<li>这样的表示法精度不够，只能精确表示形如 $x\times2^y$ 的数</li>
 <li>对于其他数，增加长度可提高近似表示的精度</li>
 </ul>
-<h4 id="ieee-浮点表示">2.4.2 IEEE 浮点表示</h4>
-<p><span class="math display">\[
-V=(-1)^s\times M\times 2^E
-\]</span></p>
+<h4 id="2-4-2-IEEE-浮点表示"><a href="#2-4-2-IEEE-浮点表示" class="headerlink" title="2.4.2 IEEE 浮点表示"></a>2.4.2 IEEE 浮点表示</h4><script type="math/tex; mode=display">
+V=(-1)^s\times M\times 2^E</script><ul>
+<li>符号 $\text{(sign)}$：一个单独的符号位编码符号位 $s.$</li>
+<li><p>尾数 $\text{(significand)}$：$n$ 位小数字段 $frac=f_{n-1}\cdots f_1f_0$ 编码尾数 $M$，$M$ 的范围为 $1\sim 2-\varepsilon$ 或 $0\sim 1-\varepsilon.$</p>
+</li>
+<li><p>阶码 $\text{(exponent)}$：$k$ 位阶码字段 $exp=e_{k-1}\cdots e_1e_0$ 编码阶码 $E.$</p>
+</li>
+<li>对于单精度浮点，$k=8,n=23.$</li>
+<li><p>对于双精度浮点，$k=11,n=52.$</p>
+</li>
+<li><p>规格化与非规格化</p>
 <ul>
-<li>符号 <span class="math inline">\(\text{(sign)}\)</span>：一个单独的符号位编码符号位 <span class="math inline">\(s.\)</span></li>
-<li><p>尾数 <span class="math inline">\(\text{(significand)}\)</span>：<span class="math inline">\(n\)</span> 位小数字段 <span class="math inline">\(frac=f_{n-1}\cdots f_1f_0\)</span> 编码尾数 <span class="math inline">\(M\)</span>，<span class="math inline">\(M\)</span> 的范围为 <span class="math inline">\(1\sim 2-\varepsilon\)</span> 或 <span class="math inline">\(0\sim 1-\varepsilon.\)</span></p></li>
-<li>阶码 <span class="math inline">\(\text{(exponent)}\)</span>：<span class="math inline">\(k\)</span> 位阶码字段 <span class="math inline">\(exp=e_{k-1}\cdots e_1e_0\)</span> 编码阶码 <span class="math inline">\(E.\)</span></li>
-<li>对于单精度浮点，<span class="math inline">\(k=8,n=23.\)</span></li>
-<li><p>对于双精度浮点，<span class="math inline">\(k=11,n=52.\)</span></p></li>
-<li>规格化与非规格化
-<ul>
-<li>当 <span class="math inline">\(\text{exp}\)</span> 的位值不全为 <span class="math inline">\(0\)</span> 也不全为 <span class="math inline">\(1\)</span> 时，为规格化的值。
-<ul>
-<li>此时 <span class="math inline">\(E=e-Bias\)</span>，其中 <span class="math inline">\(Bias=2^{k-1}-1.\)</span></li>
-<li>小数字段描述小数值 <span class="math inline">\(f\)</span>，其中 <span class="math inline">\(0\le f\lt1\)</span>，二进制表示为 <span class="math inline">\(0.f_{n-1}\cdots f_1f_0.\)</span> 尾数定义为 <span class="math inline">\(M=1+f\)</span></li>
-</ul></li>
-<li>当阶码域全为 <span class="math inline">\(0\)</span> 时，所表示的数为非规格化形式。此时 <span class="math inline">\(E=1-Bias\)</span>，<span class="math inline">\(M=f\)</span>，不包含隐含的开头 <span class="math inline">\(1.\)</span></li>
-<li>特殊值（阶码全为 <span class="math inline">\(1\)</span>）
-<ul>
-<li>若小数域全为 <span class="math inline">\(0\)</span>，得到的值为 <span class="math inline">\(\inf\)</span></li>
-<li>若小数域非 <span class="math inline">\(0\)</span>，得到的值为 <span class="math inline">\(\text{NaN}\)</span></li>
-</ul></li>
-</ul></li>
+<li>当 $\text{exp}$ 的位值不全为 $0$ 也不全为 $1$ 时，为规格化的值。<ul>
+<li>此时 $E=e-Bias$，其中 $Bias=2^{k-1}-1.$</li>
+<li>小数字段描述小数值 $f$，其中 $0\le f\lt1$，二进制表示为 $0.f_{n-1}\cdots f_1f_0.$ 尾数定义为 $M=1+f$</li>
 </ul>
-<h2 id="第三章-程序的机器级表示">第三章 程序的机器级表示</h2>
-]]></content>
+</li>
+<li>当阶码域全为 $0$ 时，所表示的数为非规格化形式。此时 $E=1-Bias$，$M=f$，不包含隐含的开头 $1.$</li>
+<li>特殊值（阶码全为 $1$）<ul>
+<li>若小数域全为 $0$，得到的值为 $\inf$</li>
+<li>若小数域非 $0$，得到的值为 $\text{NaN}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三章-程序的机器级表示"><a href="#第三章-程序的机器级表示" class="headerlink" title="第三章 程序的机器级表示"></a>第三章 程序的机器级表示</h2>]]></content>
   </entry>
   <entry>
     <title>《计算理论导引》读书笔记</title>
@@ -623,204 +515,182 @@ V=(-1)^s\times M\times 2^E
     <content><![CDATA[<p>这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser.</p>
 <p>正好下学期有形式语言自动机的课，希望寒假能读完吧。</p>
 <span id="more"></span>
-<h2 id="引言">引言</h2>
-<h3 id="自动机可计算性复杂度">自动机，可计算性，复杂度</h3>
-<p>计算理论的三个传统的中心研究领域</p>
-<h3 id="数学理论和术语">数学理论和术语</h3>
-<p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
-<h4 id="集合">集合</h4>
-<p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
-<h4 id="序列与元组">序列与元组</h4>
-<p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 <span class="math inline">\(k\)</span> 个对象的元组称为 <span class="math inline">\(k\)</span> 元组（k-tuple），二元组又称有序对。</p>
-<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 <span class="math inline">\(A\)</span> 的幂集（power set）是由 <span class="math inline">\(A\)</span> 的全部子集构成的集合。</p>
-<p>对于集合 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，其笛卡尔积（Cartesian product），或称叉积（cross product）记作： <span class="math display">\[
-A\times B=\{(x,y)|x\in A,y\in B\}
-\]</span></p>
-<h4 id="函数与关系">函数与关系</h4>
-<p>没什么好说的.jpg</p>
-<h4 id="图">图</h4>
-<p>也没什么好说的.jpg</p>
-<h4 id="串与语言">串与语言</h4>
-<p>字符串是计算机科学的地基。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><h3 id="自动机，可计算性，复杂度"><a href="#自动机，可计算性，复杂度" class="headerlink" title="自动机，可计算性，复杂度"></a>自动机，可计算性，复杂度</h3><p>计算理论的三个传统的中心研究领域</p>
+<h3 id="数学理论和术语"><a href="#数学理论和术语" class="headerlink" title="数学理论和术语"></a>数学理论和术语</h3><p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
+<h4 id="序列与元组"><a href="#序列与元组" class="headerlink" title="序列与元组"></a>序列与元组</h4><p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 $k$ 个对象的元组称为 $k$ 元组（k-tuple），二元组又称有序对。</p>
+<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 $A$ 的幂集（power set）是由 $A$ 的全部子集构成的集合。</p>
+<p>对于集合 $A$ 和 $B$，其笛卡尔积（Cartesian product），或称叉积（cross product）记作：</p>
+<script type="math/tex; mode=display">
+A\times B=\{(x,y)|x\in A,y\in B\}</script><h4 id="函数与关系"><a href="#函数与关系" class="headerlink" title="函数与关系"></a>函数与关系</h4><p>没什么好说的.jpg</p>
+<h4 id="图"><a href="#图" class="headerlink" title="图"></a>图</h4><p>也没什么好说的.jpg</p>
+<h4 id="串与语言"><a href="#串与语言" class="headerlink" title="串与语言"></a>串与语言</h4><p>字符串是计算机科学的地基。</p>
 <ul>
-<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 <span class="math inline">\(\Sigma\)</span> 和 <span class="math inline">\(\Gamma\)</span> 表示</li>
+<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 $\Sigma$ 和 $\Gamma$ 表示</li>
 <li>字符（symbol）：字母表中的元素，用打字机字体表示</li>
 <li>字母表上的串（a string over an alphabet）：一个有限字符序列</li>
-<li>串长：串所包含的字符数，记作 <span class="math inline">\(|\omega|\)</span></li>
-<li>空串：长度为 <span class="math inline">\(0\)</span> 的串，记作 <span class="math inline">\(\varepsilon\)</span></li>
-<li>串的反转（reverse）：记作 <span class="math inline">\(\omega^R\)</span></li>
-<li>子串（substring）：若 <span class="math inline">\(z\)</span> 在 <span class="math inline">\(\omega\)</span> 中连续出现，称 <span class="math inline">\(z\)</span> 为 <span class="math inline">\(\omega\)</span> 的子串</li>
-<li>连结（connotation）：串 <span class="math inline">\(x\)</span> 和串 <span class="math inline">\(y\)</span> 的连结记作 <span class="math inline">\(xy\)</span></li>
+<li>串长：串所包含的字符数，记作 $|\omega|$ </li>
+<li>空串：长度为 $0$ 的串，记作 $\varepsilon$</li>
+<li>串的反转（reverse）：记作 $\omega^R$</li>
+<li>子串（substring）：若 $z$ 在 $\omega$ 中连续出现，称 $z$ 为 $\omega$ 的子串</li>
+<li>连结（connotation）：串 $x$ 和串 $y$ 的连结记作 $xy$</li>
 <li>串的字典序（lexicographic order）：长度为第一关键字，字符为第二关键字</li>
-<li>前缀（profix）：对于串 <span class="math inline">\(x,y\)</span>，若存在串 <span class="math inline">\(z\)</span>，使得 <span class="math inline">\(xz=y\)</span>，则称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的前缀，若 <span class="math inline">\(x\neq y\)</span>，称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的真前缀（proper prefix）</li>
+<li>前缀（profix）：对于串 $x,y$，若存在串 $z$，使得 $xz=y$，则称 $x$ 为 $y$ 的前缀，若 $x\neq y$，称 $x$ 为 $y$ 的真前缀（proper prefix）</li>
 <li>语言（language）：语言是串的集合</li>
 <li>前缀自由（prefix-free）：若一个语言的任意成员不是其他任意成员的真前缀，则称这个语言是前缀自由的</li>
 </ul>
-<h4 id="布尔逻辑">布尔逻辑</h4>
-<p>没什么好说的</p>
-<h3 id="定义-定理-证明">定义 定理 证明</h3>
-<p>定理与证明是数学的心与魂，定义则是数学的灵。</p>
+<h4 id="布尔逻辑"><a href="#布尔逻辑" class="headerlink" title="布尔逻辑"></a>布尔逻辑</h4><p>没什么好说的</p>
+<h3 id="定义-定理-证明"><a href="#定义-定理-证明" class="headerlink" title="定义 定理 证明"></a>定义 定理 证明</h3><p>定理与证明是数学的心与魂，定义则是数学的灵。</p>
 <p>定义描述了我们使用的对象和概念，定义必须是精确的。</p>
 <p>在定义了各种对象与概念后，我们通常要给出数学命题，命题同样必须是精确的。</p>
 <p>证明是一个证实一个命题为真的置信的逻辑推断。证明必须是绝对置信的。</p>
 <p>定理是证明为真的数学命题。通常我们对有特别的兴趣的命题使用这个名词。有时我们证明某些命题仅仅是因为它们可以辅助证明另一个更重要的命题，这些命题称作引理（lemmas）。有时一个定理或其证明能让我们容易地推断出另一些相关的命题为真，这些命题称为这个定理的推论（corollaries）。</p>
-<h2 id="正则语言">正则语言</h2>
-<h3 id="有穷自动机">有穷自动机</h3>
-<h4 id="有穷自动机的形式化定义">有穷自动机的形式化定义</h4>
-<ol type="1">
-<li>定义：<strong>有穷自动机</strong>（finite automaton）是一个 <span class="math inline">\(5\)</span> 元组 （<span class="math inline">\(Q,\Sigma,\delta,q_0,F\)</span>），其中：
-<ol type="1">
-<li><span class="math inline">\(Q\)</span> 是一个有穷集合，称为<strong>状态集</strong>（status）</li>
-<li><span class="math inline">\(\Sigma\)</span> 是一个有穷集合，称为<strong>字母表</strong>（alphabet）</li>
-<li><span class="math inline">\(\delta:Q\times \Sigma\to Q\)</span> 是<strong>转移函数</strong>（transition function）</li>
-<li><span class="math inline">\(q_0\in Q\)</span> 是<strong>起始状态</strong>（start state）</li>
-<li><span class="math inline">\(F\subseteq Q\)</span> 是<strong>接受状态集</strong>（set of accept states）</li>
-</ol></li>
-<li>若 <span class="math inline">\(A\)</span> 是机器 <span class="math inline">\(M\)</span> 接受的全部字符串集，则称 <span class="math inline">\(A\)</span> 是机器 <span class="math inline">\(M\)</span> 的语言，记作 <span class="math inline">\(L(M)=A\)</span>，又称 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span> 或 <span class="math inline">\(M\)</span> 接受 <span class="math inline">\(A\)</span></li>
+<h2 id="正则语言"><a href="#正则语言" class="headerlink" title="正则语言"></a>正则语言</h2><h3 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h3><h4 id="有穷自动机的形式化定义"><a href="#有穷自动机的形式化定义" class="headerlink" title="有穷自动机的形式化定义"></a>有穷自动机的形式化定义</h4><ol>
+<li>定义：<strong>有穷自动机</strong>（finite automaton）是一个 $5$ 元组 （$Q,\Sigma,\delta,q_0,F$），其中：<ol>
+<li>$Q$ 是一个有穷集合，称为<strong>状态集</strong>（status）</li>
+<li>$\Sigma$ 是一个有穷集合，称为<strong>字母表</strong>（alphabet）</li>
+<li>$\delta:Q\times \Sigma\to Q$ 是<strong>转移函数</strong>（transition function）</li>
+<li>$q_0\in Q$ 是<strong>起始状态</strong>（start state）</li>
+<li>$F\subseteq Q$ 是<strong>接受状态集</strong>（set of accept states）</li>
 </ol>
-<h4 id="计算的形式化定义">计算的形式化定义</h4>
-<ol type="1">
-<li><p>设 <span class="math inline">\(M=(Q,\Sigma,\delta,q_0,F)\)</span> 是一台有穷自动机，<span class="math inline">\(w=w_1w_2\cdots w_n\)</span> 是一个字符串并且其中任一 <span class="math inline">\(w_i\in \Sigma\)</span>，若存在 <span class="math inline">\(Q\)</span> 中的状态序列 <span class="math inline">\(r_0,r_1,\cdots,r_n\)</span>，满足：</p>
-<ol type="1">
-<li><p><span class="math inline">\(r_0=q_0\)</span></p></li>
-<li><p><span class="math inline">\(\delta(r_i,w_{i+1})=r_{i+1},i=0,\cdots,n-1\)</span></p></li>
-<li><p><span class="math inline">\(r_n\in F\)</span></p></li>
+</li>
+<li>若 $A$ 是机器 $M$ 接受的全部字符串集，则称 $A$ 是机器 $M$ 的语言，记作 $L(M)=A$，又称 $M$ 识别 $A$ 或 $M$ 接受 $A$</li>
 </ol>
-<p>则 <span class="math inline">\(M\)</span> 接受 <span class="math inline">\(w.\)</span></p></li>
-<li><p>若一个语言能被一台有穷自动机识别，则称它是<strong>正则语言</strong>（regular language）。</p></li>
+<h4 id="计算的形式化定义"><a href="#计算的形式化定义" class="headerlink" title="计算的形式化定义"></a>计算的形式化定义</h4><ol>
+<li><p>设 $M=(Q,\Sigma,\delta,q_0,F)$ 是一台有穷自动机，$w=w_1w_2\cdots w_n$ 是一个字符串并且其中任一 $w_i\in \Sigma$，若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_n$，满足：</p>
+<ol>
+<li><p>$r_0=q_0$</p>
+</li>
+<li><p>$\delta(r_i,w_{i+1})=r_{i+1},i=0,\cdots,n-1$</p>
+</li>
+<li><p>$r_n\in F$</p>
+</li>
 </ol>
-<h4 id="正则运算">正则运算</h4>
-<ol type="1">
-<li>设 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 是两个语言，定义正则运算（regular operation）如下：
+<p>则 $M$ 接受 $w.$</p>
+</li>
+<li><p>若一个语言能被一台有穷自动机识别，则称它是<strong>正则语言</strong>（regular language）。</p>
+</li>
+</ol>
+<h4 id="正则运算"><a href="#正则运算" class="headerlink" title="正则运算"></a>正则运算</h4><ol>
+<li><p>设 $A$ 和 $B$ 是两个语言，定义正则运算（regular operation）如下：</p>
 <ul>
-<li>并（union）：<span class="math inline">\(A\cup B = \{x|x\in A\or x\in B\}\)</span></li>
-<li>连接（concatenation）：<span class="math inline">\(A\circ B=\{xy|x\in A\and y\in B\}\)</span></li>
-<li>星号（star）：<span class="math inline">\(A^*=\{x_1x_2\cdots x_k|k\ge 0 \and \forall x_i\in A\}\)</span></li>
-</ul></li>
-<li><p>正则语言类在并运算下封闭</p>
-<p>证明：设 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 是任意正则语言，所证即 <span class="math inline">\(A\cup B\)</span> 是正则语言。不妨设 <span class="math inline">\(M_1=(Q_1,\Sigma,\delta_1,q_1,F_1)\)</span> 是识别 <span class="math inline">\(A\)</span> 的有穷自动机，<span class="math inline">\(M2=(Q_2,\Sigma,\delta_2,q_2,F_2)\)</span> 是识别 <span class="math inline">\(B\)</span> 的有穷自动机。考虑构造识别 <span class="math inline">\(A\cup B\)</span> 的有穷自动机 <span class="math inline">\(M=(Q,\Sigma,\delta,q_0,F)\)</span>，其中：</p>
-<ul>
-<li><span class="math inline">\(Q=Q_1\times Q_2\)</span></li>
-<li><span class="math inline">\(q_0=(q_1,q_2)\)</span></li>
-<li><span class="math inline">\(\delta((r_1,r_2),c)=(\delta_1(r_1,c),\delta_2(r_2,c))\)</span></li>
-<li><span class="math inline">\(F=(F_1\times Q_2)\cup (Q_1\times F_2)\)</span></li>
+<li>并（union）：$A\cup B = \{x|x\in A\or x\in B\}$</li>
+<li>连接（concatenation）：$A\circ B=\{xy|x\in A\and y\in B\}$</li>
+<li>星号（star）：$A^*=\{x_1x_2\cdots x_k|k\ge 0 \and \forall x_i\in A\}$</li>
 </ul>
-<p>显然，<span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span> 且 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(B\)</span>，因此 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\cup B\)</span>，得证。</p></li>
-<li><p>正则语言类在连接运算下封闭</p></li>
-<li><p>正则语言类在星号运算下封闭</p></li>
+</li>
+<li><p>正则语言类在并运算下封闭</p>
+<p>证明：设 $A$ 和 $B$ 是任意正则语言，所证即 $A\cup B$ 是正则语言。不妨设 $M_1=(Q_1,\Sigma,\delta_1,q_1,F_1)$ 是识别 $A$ 的有穷自动机，$M2=(Q_2,\Sigma,\delta_2,q_2,F_2)$ 是识别 $B$ 的有穷自动机。考虑构造识别 $A\cup B$ 的有穷自动机 $M=(Q,\Sigma,\delta,q_0,F)$，其中：</p>
+<ul>
+<li>$Q=Q_1\times Q_2$</li>
+<li>$q_0=(q_1,q_2)$</li>
+<li>$\delta((r_1,r_2),c)=(\delta_1(r_1,c),\delta_2(r_2,c))$</li>
+<li>$F=(F_1\times Q_2)\cup (Q_1\times F_2)$</li>
+</ul>
+<p>显然，$M$ 识别 $A$ 且 $M$ 识别 $B$，因此 $M$ 识别 $A\cup B$，得证。</p>
+</li>
+<li><p>正则语言类在连接运算下封闭</p>
+</li>
+<li><p>正则语言类在星号运算下封闭</p>
+</li>
 </ol>
 <p>为了对 3. 和 4. 进行形式化的证明，我们引入非确定性的新技术。</p>
-<h3 id="非确定性">非确定性</h3>
-<p>至此，我们对于计算的的讨论中，计算的每一步都按照唯一的方式跟在前一步的后面。当机器处于给定的状态并读入下一个输入符号时，我们可以唯一确定机器的下一个状态。这样的计算称为确定性计算（deterministic computtion）。</p>
+<h3 id="非确定性"><a href="#非确定性" class="headerlink" title="非确定性"></a>非确定性</h3><p>至此，我们对于计算的的讨论中，计算的每一步都按照唯一的方式跟在前一步的后面。当机器处于给定的状态并读入下一个输入符号时，我们可以唯一确定机器的下一个状态。这样的计算称为确定性计算（deterministic computtion）。</p>
 <p>非确定性（nondeterministic）是确定性的推广，在非确定性机器中，任何一个状态和输入符号下，下一个状态可能存在若干个选择。</p>
-<h4 id="非确定性有穷自动机形式化定义">非确定性有穷自动机形式化定义</h4>
-<p>非确定性有穷自动机（NFA）的形式化定义与确定性有穷自动机（DFA）的形式化定义类似，而区别在于转移函数的类型不同。</p>
-<p>这里我们引入幂集，对任意的集合 <span class="math inline">\(Q\)</span>，记 <span class="math inline">\(\mathcal P(Q)\)</span> 为 <span class="math inline">\(Q\)</span> 的所有子集组成的集合，称 <span class="math inline">\(\mathcal P(Q)\)</span> 是 <span class="math inline">\(Q\)</span> 的幂集（power set）。</p>
-<p>对任意的字母表 <span class="math inline">\(\Sigma\)</span>，记 <span class="math inline">\(\Sigma_\varepsilon=\Sigma\cup\{\varepsilon\}\)</span>，则 NFA 的转移函数形式化定义为：<span class="math inline">\(\delta:Q\times\Sigma_\varepsilon \to \mathcal P(Q)\)</span>，由此给出 NFA 的形式化定义：</p>
-<p>非确定性有穷自动机是一个 <span class="math inline">\(5\)</span> 元组 <span class="math inline">\((Q,\Sigma,\delta,q_0,F)\)</span>，，其中：</p>
+<h4 id="非确定性有穷自动机形式化定义"><a href="#非确定性有穷自动机形式化定义" class="headerlink" title="非确定性有穷自动机形式化定义"></a>非确定性有穷自动机形式化定义</h4><p>非确定性有穷自动机（NFA）的形式化定义与确定性有穷自动机（DFA）的形式化定义类似，而区别在于转移函数的类型不同。</p>
+<p>这里我们引入幂集，对任意的集合 $Q$，记 $\mathcal P(Q)$ 为 $Q$ 的所有子集组成的集合，称 $\mathcal P(Q)$ 是 $Q$ 的幂集（power set）。</p>
+<p>对任意的字母表 $\Sigma$，记 $\Sigma_\varepsilon=\Sigma\cup\{\varepsilon\}$，则 NFA 的转移函数形式化定义为：$\delta:Q\times\Sigma_\varepsilon \to \mathcal P(Q)$，由此给出 NFA 的形式化定义：</p>
+<p>非确定性有穷自动机是一个 $5$ 元组 $(Q,\Sigma,\delta,q_0,F)$，，其中：</p>
 <ul>
-<li><span class="math inline">\(Q\)</span> 是有穷的状态集</li>
-<li><span class="math inline">\(\Sigma\)</span> 是有穷的字母表</li>
-<li><span class="math inline">\(\delta:Q\times \Sigma_\varepsilon\to \mathcal P(Q)\)</span> 是转移函数</li>
-<li><span class="math inline">\(q_0\in Q\)</span> 是起始状态</li>
-<li><span class="math inline">\(F\subseteq Q\)</span> 是接受状态集</li>
+<li>$Q$ 是有穷的状态集</li>
+<li>$\Sigma$ 是有穷的字母表</li>
+<li>$\delta:Q\times \Sigma_\varepsilon\to \mathcal P(Q)$ 是转移函数</li>
+<li>$q_0\in Q$ 是起始状态</li>
+<li>$F\subseteq Q$ 是接受状态集</li>
 </ul>
-<h4 id="nfa-与-dfa-的等价性">NFA 与 DFA 的等价性</h4>
-<p>NFA 的结构看起来比 DFA 要复杂，直观上看，NFA 的能力似乎比 DFA 要强。然而事实上，确定性和非确定性有穷自动机识别相同的语言类。若两台机器识别同样的语言，则称它们是等价的。</p>
+<h4 id="NFA-与-DFA-的等价性"><a href="#NFA-与-DFA-的等价性" class="headerlink" title="NFA 与 DFA 的等价性"></a>NFA 与 DFA 的等价性</h4><p>NFA 的结构看起来比 DFA 要复杂，直观上看，NFA 的能力似乎比 DFA 要强。然而事实上，确定性和非确定性有穷自动机识别相同的语言类。若两台机器识别同样的语言，则称它们是等价的。</p>
 <p>定理：每一台非确定性有穷自动机都等价于某一台确定性有穷自动机。</p>
 <p>证明思路：设一个语言被一台 NFA 识别，则要证明存在一台 DFA 也识别这个语言。考虑如何将 NFA 转化为模拟它的 DFA。</p>
-<p>设 <span class="math inline">\(N=(Q,\Sigma,\delta,q_0,F)\)</span> 是识别语言 <span class="math inline">\(A\)</span> 的 NFA，要构造一台 DFA <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span>。方便起见，先不考虑 <span class="math inline">\(\varepsilon\)</span> 转移。</p>
-<p>构造一台识别语言 <span class="math inline">\(A\)</span> 的 DFA <span class="math inline">\(M=(Q&#39;,\Sigma,\delta&#39;,q_0&#39;,F&#39;)\)</span>，其中：</p>
+<p>设 $N=(Q,\Sigma,\delta,q_0,F)$ 是识别语言 $A$ 的 NFA，要构造一台 DFA $M$ 识别 $A$。方便起见，先不考虑 $\varepsilon$ 转移。</p>
+<p>构造一台识别语言 $A$ 的 DFA $M=(Q’,\Sigma,\delta’,q_0’,F’)$，其中：</p>
 <ul>
-<li><span class="math inline">\(Q&#39;=\mathcal P(Q)\)</span></li>
-<li><span class="math inline">\(\delta&#39;(R,a)=\bigcup\limits_{r\in R}\delta(r,a)\)</span></li>
-<li><span class="math inline">\(q_0&#39;=\{q_0\}\)</span></li>
-<li><span class="math inline">\(F&#39;=\{R\in Q&#39;|\exist r\in F,r\in R\}\)</span></li>
+<li>$Q’=\mathcal P(Q)$</li>
+<li>$\delta’(R,a)=\bigcup\limits_{r\in R}\delta(r,a)$</li>
+<li>$q_0’=\{q_0\}$</li>
+<li>$F’=\{R\in Q’|\exist r\in F,r\in R\}$</li>
 </ul>
-<p>易证 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span>，接下来考虑 <span class="math inline">\(\varepsilon\)</span> 转移。令 <span class="math inline">\(E(R)\)</span> 表示从 <span class="math inline">\(R\)</span> 中的状态触发只经过 <span class="math inline">\(\varepsilon\)</span> 转移到达的状态集合，形式化地： <span class="math display">\[
-E(R)=\{q|从\ R\ 出发沿着\ 0\ 个或多个\ \varepsilon\ 转移可以到达\ q\}
-\]</span></p>
-<p>同时，修改转移函数： <span class="math display">\[
-\delta&#39;(R,a)=\bigcup_{r\in R} E(\delta(r,a))
-\]</span> 构造完毕。</p>
+<p>易证 $M$ 识别 $A$，接下来考虑 $\varepsilon$ 转移。令 $E(R)$ 表示从 $R$ 中的状态触发只经过 $\varepsilon$ 转移到达的状态集合，形式化地：</p>
+<script type="math/tex; mode=display">
+E(R)=\{q|从\ R\ 出发沿着\ 0\ 个或多个\ \varepsilon\ 转移可以到达\ q\}</script><p>同时，修改转移函数：</p>
+<script type="math/tex; mode=display">
+\delta'(R,a)=\bigcup_{r\in R} E(\delta(r,a))</script><p>构造完毕。</p>
 <p>由上面的证明我们得到了每一台 NFA 都能够被转换成一台与其等价的 DFA 的结论。由此，利用 NFA 可以给出另一种刻画正则语言的方式，即如下推论：</p>
 <p>一个语言是正则的，当且仅当有一台非确定性有穷自动机识别它。</p>
-<h4 id="正则运算的封闭性">正则运算的封闭性</h4>
-<p>引入 NFA 后，我们考虑对正则运算的封闭性做形式化的证明。</p>
-<ol type="1">
+<h4 id="正则运算的封闭性"><a href="#正则运算的封闭性" class="headerlink" title="正则运算的封闭性"></a>正则运算的封闭性</h4><p>引入 NFA 后，我们考虑对正则运算的封闭性做形式化的证明。</p>
+<ol>
 <li>正则语言类在并运算下封闭</li>
 <li>正则语言类在连接运算下封闭</li>
 <li>正则语言类在星号运算下封闭</li>
 </ol>
 <p>略，有空再补</p>
-<h3 id="正则表达式">正则表达式</h3>
-<h3 id="非正则语言">非正则语言</h3>
-<h2 id="上下文无关文法">上下文无关文法</h2>
-]]></content>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><h3 id="非正则语言"><a href="#非正则语言" class="headerlink" title="非正则语言"></a>非正则语言</h3><h2 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h2>]]></content>
   </entry>
   <entry>
     <title>任意模数NTT</title>
     <url>/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/</url>
-    <content><![CDATA[<p>求多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(B(x)\)</span> 在模任意模数 <span class="math inline">\(P\)</span> 意义下的卷积。</p>
-<p><span class="math inline">\(n\le 10^5,P\le10^9+9\)</span></p>
+    <content><![CDATA[<p>求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。</p>
+<p>$n\le 10^5,P\le10^9+9$</p>
 <span id="more"></span>
-<h2 id="解法一三模数ntt">解法一：三模数NTT</h2>
-<p>考虑选取三个能够进行 <code>NTT</code> 的并且积 <span class="math inline">\(&gt;10^{23}\)</span> 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程： <span class="math display">\[
+<h2 id="解法一：三模数NTT"><a href="#解法一：三模数NTT" class="headerlink" title="解法一：三模数NTT"></a>解法一：三模数NTT</h2><p>考虑选取三个能够进行 <code>NTT</code> 的并且积 $&gt;10^{23}$ 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程：</p>
+<script type="math/tex; mode=display">
 \begin{cases}
 ans\equiv a_1\bmod m_1\\
 ans\equiv a_2\bmod m_2\\
 ans\equiv a_3 \bmod m_3
-\end{cases}
-\]</span> 如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程： <span class="math display">\[
+\end{cases}</script><p>如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程：</p>
+<script type="math/tex; mode=display">
 \begin{cases}
 ans\equiv A\bmod M\\
 ans\equiv a_3\bmod m_3
-\end{cases}
-\]</span> 将合并后的方程写成不定方程代入第三个方程： <span class="math display">\[
-kM+A\equiv a_3\bmod m_3
-\]</span> 由于 <span class="math inline">\(m_3\)</span> 是质数，<span class="math inline">\(M\)</span> 一定存在逆元： <span class="math display">\[
-k\equiv(a_3-A)\cdot M^{-1}\bmod m_3
-\]</span> 解出 <span class="math inline">\(k\)</span> 之后在 <span class="math inline">\(\bmod P\)</span> 意义下计算 <span class="math inline">\(Ans\)</span> 即可。</p>
-<h2 id="解法二拆系数fft">解法二：拆系数FFT</h2>
-<p>考虑将多项式系数拆分成 <span class="math inline">\(kM+b\)</span> 的形式，观察卷积后的形式： <span class="math display">\[
-(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2
-\]</span> 显然，当 <span class="math inline">\(M\)</span> 取 <span class="math inline">\(\sqrt P\)</span> 时，每一项系数不超过 <span class="math inline">\(P\)</span>。将两个多项式拆开卷积，只需 <span class="math inline">\(7\)</span> 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
-<h3 id="dft与idft合并">DFT与IDFT合并</h3>
-<p>考虑对长度为 <span class="math inline">\(n\)</span> 的实多项式 <span class="math inline">\(A(x),B(x)\)</span> 进行 <code>dft</code>，假设 <span class="math inline">\(n\)</span> 已调整成 <span class="math inline">\(2\)</span> 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
-<p>我们定义： <span class="math display">\[
+\end{cases}</script><p>将合并后的方程写成不定方程代入第三个方程：</p>
+<script type="math/tex; mode=display">
+kM+A\equiv a_3\bmod m_3</script><p>由于 $m_3$ 是质数，$M$ 一定存在逆元：</p>
+<script type="math/tex; mode=display">
+k\equiv(a_3-A)\cdot M^{-1}\bmod m_3</script><p>解出 $k$ 之后在 $\bmod P$ 意义下计算 $Ans$ 即可。</p>
+<h2 id="解法二：拆系数FFT"><a href="#解法二：拆系数FFT" class="headerlink" title="解法二：拆系数FFT"></a>解法二：拆系数FFT</h2><p>考虑将多项式系数拆分成 $kM+b$ 的形式，观察卷积后的形式：</p>
+<script type="math/tex; mode=display">
+(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2</script><p>显然，当 $M$ 取 $\sqrt P$ 时，每一项系数不超过 $P$。将两个多项式拆开卷积，只需 $7$ 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
+<h3 id="DFT与IDFT合并"><a href="#DFT与IDFT合并" class="headerlink" title="DFT与IDFT合并"></a>DFT与IDFT合并</h3><p>考虑对长度为 $n$ 的实多项式 $A(x),B(x)$ 进行 <code>dft</code>，假设 $n$ 已调整成 $2$ 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
+<p>我们定义：</p>
+<script type="math/tex; mode=display">
 P(x)=A(x)+iB(x)\\
-Q(x)=A(x)-iB(x)
-\]</span></p>
-<p>令 <span class="math inline">\(F_p[k],F_q[k]\)</span> 分别表示 <span class="math inline">\(P,Q\)</span> 做 <code>dft</code> 后的第 <span class="math inline">\(k\)</span> 项，即：<span class="math inline">\(F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)\)</span>，其中 <span class="math inline">\(\omega\)</span> 是 <span class="math inline">\(n\)</span> 次单位根。</p>
-<p>为了方便表示，下文中用 <span class="math inline">\(X\)</span> 代替 <span class="math inline">\(\frac {2\pi jk}{n}\)</span> ，<span class="math inline">\({\rm conj}(x)\)</span> 表示 <span class="math inline">\(x\)</span> 的共轭复数。 <span class="math display">\[
+Q(x)=A(x)-iB(x)</script><p>令 $F_p[k],F_q[k]$ 分别表示 $P,Q$  做 <code>dft</code> 后的第 $k$ 项，即：$F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)$，其中 $\omega$ 是 $n$ 次单位根。</p>
+<p>为了方便表示，下文中用 $X$ 代替 $\frac {2\pi jk}{n}$ ，${\rm conj}(x)$ 表示 $x$ 的共轭复数。</p>
+<script type="math/tex; mode=display">
 \begin{align}
-F_p[k]&amp;=A(\omega_n^k)+iB(\omega_n^k)\\
-&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
-&amp;=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+F_p[k]&=A(\omega_n^k)+iB(\omega_n^k)\\
+&=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
+&=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
-&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
-&amp;=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
-&amp;=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
-&amp;={\rm conj}(F_p[n - k])
-\end{align}
-\]</span></p>
-<p>于是仅用一次 <code>DFT</code> 就可计算出 <span class="math inline">\(F_p,F_q\)</span>。令 <span class="math inline">\({\rm DFT}(P[k])\)</span> 表示对 <span class="math inline">\(P(x)\)</span> 进行 <code>DFT</code> 后的第 <span class="math inline">\(k\)</span> 项，就有： <span class="math display">\[
+F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
+&=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
+&=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
+&=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
+&={\rm conj}(F_p[n - k])
+\end{align}</script><p>于是仅用一次 <code>DFT</code> 就可计算出 $F_p,F_q$。令 ${\rm DFT}(P[k])$ 表示对 $P(x)$ 进行 <code>DFT</code> 后的第 $k$ 项，就有：</p>
+<script type="math/tex; mode=display">
 \begin{align}
-{\rm DFT}(A[k])&amp;=\frac{F_p[k]+F_q[k]}{2}\\
-{\rm DFT}(B[k])&amp;=i\frac{F_p[k]-F_q[k]}{2}\\
-\end{align}
-\]</span> 那么就将两次 <code>DFT</code> 合并为了一次。</p>
-<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 <span class="math inline">\(P,Q\)</span> ，再 <code>dft</code> 出 <span class="math inline">\(F_p,F_q\)</span>，并根据上式计算出 <span class="math inline">\({\rm DFT}(A)\)</span> 与 <span class="math inline">\({\rm DFT}(B)\)</span>。而我们现在已知 <span class="math inline">\({\rm DFT}(A)\)</span> 和 <span class="math inline">\({\rm DFT}(B)\)</span>，根据上式亦可逆推出 <span class="math inline">\(F_p,F_q\)</span>，<code>IDFT</code> 得到 <span class="math inline">\(P,Q\)</span>，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
-<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 <span class="math inline">\(7\)</span> 次 <code>dft</code>，利用上述优化，即可优化到 <span class="math inline">\(4\)</span> 次 <code>dft</code>，常数大大减小。</p>
+{\rm DFT}(A[k])&=\frac{F_p[k]+F_q[k]}{2}\\
+{\rm DFT}(B[k])&=i\frac{F_p[k]-F_q[k]}{2}\\
+\end{align}</script><p>那么就将两次 <code>DFT</code> 合并为了一次。</p>
+<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 $P,Q$ ，再 <code>dft</code> 出 $F_p,F_q$，并根据上式计算出 ${\rm DFT}(A)$ 与 ${\rm DFT}(B)$。而我们现在已知 ${\rm DFT}(A)$ 和 ${\rm DFT}(B)$，根据上式亦可逆推出 $F_p,F_q$，<code>IDFT</code> 得到 $P,Q$，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
+<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 $7$ 次 <code>dft</code>，利用上述优化，即可优化到 $4$ 次 <code>dft</code>，常数大大减小。</p>
 ]]></content>
       <tags>
         <tag>多项式</tag>
@@ -829,32 +699,31 @@ F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
   <entry>
     <title>吴恩达机器学习课程学习笔记</title>
     <url>/2021/07/19/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很早之前就想开的一个坑，趁着暑假开始学一点吧。会简单记点笔记啥的，希望不会鸽掉（</p>
 <p>好像一直在说希望不会鸽但还是鸽掉了，那这次一定不鸽！</p>
 <span id="more"></span>
-<h2 id="第一章-绪论">第一章 绪论</h2>
-<ol type="1">
-<li>机器学习的定义：
+<h2 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h2><ol>
+<li><p>机器学习的定义：</p>
 <ul>
 <li>Arthur Samuel(1959). 在没有明确编程的情况下，使得计算机具有学习能力的领域</li>
-<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 <span class="math inline">\(\text E\)</span> 中学习，解决某一任务 <span class="math inline">\(\text T\)</span> ，其在 <span class="math inline">\(\text T\)</span> 上的表现以度量 <span class="math inline">\(\text P\)</span> 来评估，并且其在 <span class="math inline">\(\text T\)</span> 上用 <span class="math inline">\(\text P\)</span> 评估的表现可由 <span class="math inline">\(\text E\)</span> 提高</li>
-</ul></li>
-<li>监督学习
+<li>Tom Mitchell(1998). 适当学习问题：计算机程序从经验 $\text E$ 中学习，解决某一任务 $\text T$ ，其在 $\text T$ 上的表现以度量 $\text P$ 来评估，并且其在 $\text T$ 上用 $\text P$ 评估的表现可由 $\text E$ 提高</li>
+</ul>
+</li>
+<li><p>监督学习</p>
 <ul>
 <li>定义：在包含“正确答案”的数据集上学习解决问题的机器学习机制</li>
 <li>回归问题：预测连续输出值的问题</li>
 <li>分类问题：预测离散输出值的问题</li>
-</ul></li>
-<li>无监督学习
-<ul>
+</ul>
+</li>
+<li>无监督学习<ul>
 <li>在给定数据集中寻找其类型结构的学习机制</li>
 <li>聚类算法</li>
 <li>鸡尾酒派对算法</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-<h2 id="第二章-单变量线性回归">第二章 单变量线性回归</h2>
-]]></content>
+<h2 id="第二章-单变量线性回归"><a href="#第二章-单变量线性回归" class="headerlink" title="第二章 单变量线性回归"></a>第二章 单变量线性回归</h2>]]></content>
       <tags>
         <tag>机器学习</tag>
         <tag>学习笔记</tag>
@@ -863,27 +732,26 @@ F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
   <entry>
     <title>多项式多点求值</title>
     <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%A4%9A%E7%82%B9%E6%B1%82%E5%80%BC/</url>
-    <content><![CDATA[<p>给定多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(\{x_i\}\)</span>，求 <span class="math inline">\(A(x)\)</span> 在各个点处的值。</p>
+    <content><![CDATA[<p>给定多项式 $A(x)$ 和 $n$ 个点 $\{x_i\}$，求 $A(x)$ 在各个点处的值。</p>
 <span id="more"></span>
 <p>从多项式求逆、开根、取对数等操作的算法来看，这些多项式的算法有一个共同点，就是利用折半的思路，分治解决问题。类似地，我们考虑解决多点求值问题。</p>
-<p>首先，我们对点集折半： <span class="math display">\[
-\begin{eqnarray*} X^{[0]} &amp;=&amp; \{x_0, x_1, \cdots, x_{\lfloor \frac{n}{2} \rfloor}\} \\ X^{[1]} &amp;=&amp; \{x_{\lfloor \frac{n}{2} \rfloor+1},x_{\lfloor \frac{n}{2} \rfloor+2}, \cdots, x_{n-1}\} \end{eqnarray*}
-\]</span> 同时，为了保证复杂度，我们要对 <span class="math inline">\(A(x)\)</span> 也进行折半。不妨设 $ A^{[0]}(x)$ 表示对 <span class="math inline">\(X^{[0]}\)</span> 插值得到的多项式，<span class="math inline">\(A^{1}(x)\)</span> 同理。考虑构造如下多项式： <span class="math display">\[
-\begin{eqnarray*} P^{[0]}(x) &amp;=&amp; \prod_{i=0}^{\lfloor \frac{n}{2} \rfloor} (x-x_i) \\ P^{[1]}(x) &amp;=&amp; \prod_{i=\lfloor \frac{n}{2} \rfloor+1}^{n-1} (x-x_i) \end{eqnarray*}
-\]</span> 那么，我们就有： <span class="math display">\[
+<p>首先，我们对点集折半：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray*} X^{[0]} &=& \{x_0, x_1, \cdots, x_{\lfloor \frac{n}{2} \rfloor}\} \\ X^{[1]} &=& \{x_{\lfloor \frac{n}{2} \rfloor+1},x_{\lfloor \frac{n}{2} \rfloor+2}, \cdots, x_{n-1}\} \end{eqnarray*}</script><p>同时，为了保证复杂度，我们要对 $A(x)$ 也进行折半。不妨设 $ A^{[0]}(x)$ 表示对 $X^{[0]}$ 插值得到的多项式，$A^{1}(x)$ 同理。考虑构造如下多项式：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray*} P^{[0]}(x) &=& \prod_{i=0}^{\lfloor \frac{n}{2} \rfloor} (x-x_i) \\ P^{[1]}(x) &=& \prod_{i=\lfloor \frac{n}{2} \rfloor+1}^{n-1} (x-x_i) \end{eqnarray*}</script><p>那么，我们就有：</p>
+<script type="math/tex; mode=display">
 \begin{eqnarray*}
-A(x) &amp;=&amp; D^{[0]}(x)P^{[0]}(x)+A^{[0]}(x)\\ 
-&amp;=&amp; D^{[1]}(x)P^{[1]}(x)+A^{[1]}(x)
-\end{eqnarray*}
-\]</span> 也即： <span class="math display">\[
+A(x) &=& D^{[0]}(x)P^{[0]}(x)+A^{[0]}(x)\\ 
+&=& D^{[1]}(x)P^{[1]}(x)+A^{[1]}(x)
+\end{eqnarray*}</script><p>也即：</p>
+<script type="math/tex; mode=display">
 \begin{eqnarray*}
-A(x) &amp;\equiv&amp; A^{[0]}(x)\pmod {P^{[0]}(x)}\\ 
-A(x) &amp;\equiv&amp; A^{[1]}(x)\pmod {P^{[1]}(x)}
-\end{eqnarray*}
-\]</span> 做多项式取模即可。多项式取模复杂度 <span class="math inline">\(\mathcal O(n\log n)\)</span>，因此总复杂度就为： <span class="math display">\[
-T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
-\]</span></p>
-]]></content>
+A(x) &\equiv& A^{[0]}(x)\pmod {P^{[0]}(x)}\\ 
+A(x) &\equiv& A^{[1]}(x)\pmod {P^{[1]}(x)}
+\end{eqnarray*}</script><p>做多项式取模即可。多项式取模复杂度 $\mathcal O(n\log n)$，因此总复杂度就为：</p>
+<script type="math/tex; mode=display">
+T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)</script>]]></content>
       <tags>
         <tag>多项式</tag>
       </tags>
@@ -891,18 +759,39 @@ T(n)=2T(\frac n 2)+\mathcal O(n\log n)=\mathcal O(n\log^2n)
   <entry>
     <title>多项式开根</title>
     <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%BC%80%E6%A0%B9/</url>
-    <content><![CDATA[<p>给定 <span class="math inline">\(n\)</span> 次多项式 <span class="math inline">\(A(x)\)</span>，求 <span class="math inline">\(B(x)\)</span> 满足 <span class="math inline">\(B^2(x)\equiv A(x)\pmod {x^n}\)</span>。</p>
+    <content><![CDATA[<p>给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $B^2(x)\equiv A(x)\pmod {x^n}$。</p>
 <span id="more"></span>
-<p>与多项式求逆类似，考虑倍增。设 <span class="math inline">\(B&#39;(x)\)</span> 满足 <span class="math inline">\(B&#39;^2(x)\equiv A(x)\pmod {x^{\lceil\frac n 2 \rceil}}\)</span>，则有： <span class="math display">\[
+<p>与多项式求逆类似，考虑倍增。设 $B’(x)$ 满足 $B’^2(x)\equiv A(x)\pmod {x^{\lceil\frac n 2 \rceil}}$，则有：</p>
+<script type="math/tex; mode=display">
 \begin{align}
-B^2(x)-B&#39;^2(x)&amp;\equiv0\pmod {x^{\lceil\frac n 2 \rceil}}\\\\
-(B^2(x)-B&#39;^2(x))^2&amp;\equiv 0\pmod {x^n}\\\\
-B^4(x)+B^4(x)&amp;\equiv2B^2(x)B&#39;^2(x)\pmod {x^n}\\\\
-(B^2(x)+B&#39;^2(x))^2&amp;\equiv4B^2(x)B&#39;^2(x)\pmod{x ^ n}\\\\
-B^2(x)+B&#39;^2(x)&amp;\equiv2B(x)B&#39;(x)\pmod{x^n}\\\\
-B(x)&amp;\equiv\frac{A(x)+B&#39;^2(x)}{2B&#39;(x)}
-\end{align}
-\]</span> 常数项开根可能需要二次剩余。</p>
+B^2(x)-B'^2(x)&\equiv0\pmod {x^{\lceil\frac n 2 \rceil}}\\\\
+(B^2(x)-B'^2(x))^2&\equiv 0\pmod {x^n}\\\\
+B^4(x)+B^4(x)&\equiv2B^2(x)B'^2(x)\pmod {x^n}\\\\
+(B^2(x)+B'^2(x))^2&\equiv4B^2(x)B'^2(x)\pmod{x ^ n}\\\\
+B^2(x)+B'^2(x)&\equiv2B(x)B'(x)\pmod{x^n}\\\\
+B(x)&\equiv\frac{A(x)+B'^2(x)}{2B'(x)}
+\end{align}</script><p>常数项开根可能需要二次剩余。</p>
+]]></content>
+      <tags>
+        <tag>多项式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多项式求逆</title>
+    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86/</url>
+    <content><![CDATA[<p>给定 $n$ 次多项式 $A(x)$，求 $B(x)$ 满足 $A(x)B(x)\equiv1\pmod {x^n}$。</p>
+<span id="more"></span>
+<p>由定义可得：</p>
+<script type="math/tex; mode=display">
+A(x)B(x)\equiv1\pmod {x ^n}\tag{1}</script><p>设 $B’(x)$ 满足 $A(x)B’(x)\equiv1\bmod x^{\lceil \frac n 2\rceil}$，就有：</p>
+<script type="math/tex; mode=display">
+A(x)B'(x)\equiv1\pmod {x^{\lceil\frac n 2\rceil}}\tag{2}</script><p>由 $(1)$ 可得：</p>
+<script type="math/tex; mode=display">
+A(x)B(x)\equiv 1\pmod {x ^{\lceil \frac n 2\rceil}\tag{3}}</script><p>$(3)-(2)$ 得：</p>
+<script type="math/tex; mode=display">
+B(x)-B'(x)\equiv0\pmod {x ^{\lceil\frac n 2\rceil}}</script><p>平方后两边同乘 $A(x)$，移项得：</p>
+<script type="math/tex; mode=display">
+B(x)\equiv 2B'(x)+A(x)B'^2(x)\pmod {x^n}</script><p>倍增求解即可。</p>
 ]]></content>
       <tags>
         <tag>多项式</tag>
@@ -913,33 +802,31 @@ B(x)&amp;\equiv\frac{A(x)+B&#39;^2(x)}{2B&#39;(x)}
     <url>/2019/05/30/%E6%9D%9C%E6%95%99%E7%AD%9B/</url>
     <content><![CDATA[<p>杜教筛是解决一类特殊积性函数前缀和的算法。</p>
 <span id="more"></span>
-<h2 id="前置知识">前置知识</h2>
-<p><strong>一些积性函数：</strong></p>
-<p><span class="math inline">\(\mu(n)\)</span>：莫比乌斯函数</p>
-<p><span class="math inline">\(\varphi(n)\)</span>：欧拉函数</p>
-<p><span class="math inline">\(d(n)\)</span>：约数个数</p>
-<p><span class="math inline">\(\sigma(n)\)</span>：约数和函数</p>
-<p><span class="math inline">\(\epsilon(n)\)</span>：一元函数，<span class="math inline">\(\epsilon(n)=[n==1]\)</span></p>
-<p><span class="math inline">\(I(n)\)</span>：恒等函数，<span class="math inline">\(I(n)=1\)</span></p>
-<p><span class="math inline">\(id(n)\)</span>：单位函数，<span class="math inline">\(id(n)=n\)</span></p>
-<p><strong>狄利克雷卷积：</strong></p>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p><strong>一些积性函数：</strong></p>
+<p>$\mu(n)$：莫比乌斯函数</p>
+<p>$\varphi(n)$：欧拉函数</p>
+<p>$d(n)$：约数个数</p>
+<p>$\sigma(n)$：约数和函数</p>
+<p>$\epsilon(n)$：一元函数，$\epsilon(n)=[n==1]$</p>
+<p>$I(n)$：恒等函数，$I(n)=1$</p>
+<p>$id(n)$：单位函数，$id(n)=n$</p>
+<p><strong>狄利克雷卷积：</strong> </p>
 <ul>
-<li>定义两个数论函数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> 的狄利克雷卷积为：<span class="math inline">\((f*g)[n]=\sum_{d|n}f(d)\cdot g(\frac n d)\)</span></li>
+<li>定义两个数论函数 $f$ 和 $g$ 的狄利克雷卷积为：$(f*g)[n]=\sum_{d|n}f(d)\cdot g(\frac n d)$</li>
 <li>运算规律：交换律、结合律、分配律</li>
 </ul>
-<h2 id="算法">算法</h2>
-<p>杜教筛用于解决一类<strong>特殊的</strong>积性函数前缀和，即：<span class="math inline">\(\sum\limits_{i=1}^n f(i)\)</span>.</p>
-<p>我们构造两个积性函数 <span class="math inline">\(g\)</span> 和 <span class="math inline">\(h\)</span>，使得 <span class="math inline">\(h=f*g\)</span>；同时我们记 <span class="math inline">\(S(n)=\sum\limits_{i=1}^n f(i)\)</span>： <span class="math display">\[
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>杜教筛用于解决一类<strong>特殊的</strong>积性函数前缀和，即：$\sum\limits_{i=1}^n f(i)$.</p>
+<p>我们构造两个积性函数 $g$ 和 $h$，使得 $h=f*g$；同时我们记 $S(n)=\sum\limits_{i=1}^n f(i)$：</p>
+<script type="math/tex; mode=display">
 \begin{align}
-\sum_{i=1}^n h(i)&amp;=\sum_{i=1}^n\sum_{d|n} g(d)f(\frac i d)\\
-&amp;=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac n d\rfloor}f(i)\\
-&amp;=\sum_{d=1}^ng(d)\cdot S(\lfloor\frac n d\rfloor)
-\end{align}
-\]</span> 将 <span class="math inline">\(S(n)\)</span> 一项移到左边，就有： <span class="math display">\[
+\sum_{i=1}^n h(i)&=\sum_{i=1}^n\sum_{d|n} g(d)f(\frac i d)\\
+&=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac n d\rfloor}f(i)\\
+&=\sum_{d=1}^ng(d)\cdot S(\lfloor\frac n d\rfloor)
+\end{align}</script><p>将 $S(n)$ 一项移到左边，就有：</p>
+<script type="math/tex; mode=display">
 \begin{align}
 S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
-\end{align}
-\]</span> 那么，如果我们能够快速计算出 <span class="math inline">\(h\)</span> 的前缀和，并且预处理 <span class="math inline">\(S\)</span> 的前 <span class="math inline">\(n^{\frac 2 3}\)</span> 项，就能够在 <span class="math inline">\(\mathcal{O(n^{\frac 2 3})}\)</span> 的复杂度内解决问题。</p>
+\end{align}</script><p>那么，如果我们能够快速计算出 $h$ 的前缀和，并且预处理 $S$ 的前 $n^{\frac 2 3}$ 项，就能够在 $\mathcal{O(n^{\frac 2 3})}$ 的复杂度内解决问题。</p>
 ]]></content>
       <tags>
         <tag>数论</tag>
@@ -947,221 +834,196 @@ S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
       </tags>
   </entry>
   <entry>
-    <title>多项式求逆</title>
-    <url>/2019/05/30/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86/</url>
-    <content><![CDATA[<p>给定 <span class="math inline">\(n\)</span> 次多项式 <span class="math inline">\(A(x)\)</span>，求 <span class="math inline">\(B(x)\)</span> 满足 <span class="math inline">\(A(x)B(x)\equiv1\pmod {x^n}\)</span>。</p>
-<span id="more"></span>
-<p>由定义可得： <span class="math display">\[
-A(x)B(x)\equiv1\pmod {x ^n}\tag{1}
-\]</span> 设 <span class="math inline">\(B&#39;(x)\)</span> 满足 <span class="math inline">\(A(x)B&#39;(x)\equiv1\bmod x^{\lceil \frac n 2\rceil}\)</span>，就有： <span class="math display">\[
-A(x)B&#39;(x)\equiv1\pmod {x^{\lceil\frac n 2\rceil}}\tag{2}
-\]</span> 由 <span class="math inline">\((1)\)</span> 可得： <span class="math display">\[
-A(x)B(x)\equiv 1\pmod {x ^{\lceil \frac n 2\rceil}\tag{3}}
-\]</span> <span class="math inline">\((3)-(2)\)</span> 得： <span class="math display">\[
-B(x)-B&#39;(x)\equiv0\pmod {x ^{\lceil\frac n 2\rceil}}
-\]</span> 平方后两边同乘 <span class="math inline">\(A(x)\)</span>，移项得： <span class="math display">\[
-B(x)\equiv 2B&#39;(x)+A(x)B&#39;^2(x)\pmod {x^n}
-\]</span> 倍增求解即可。</p>
-]]></content>
-      <tags>
-        <tag>多项式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>牛客提高组周赛11-C简要题解</title>
     <url>/2019/07/01/%E7%89%9B%E5%AE%A2%E6%8F%90%E9%AB%98%E7%BB%84%E5%91%A8%E8%B5%9B11-C%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p><a href="https://ac.nowcoder.com/acm/contest/941/C">题目链接</a></p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://ac.nowcoder.com/acm/contest/941/C">题目链接</a></p>
 <p><a href="https://ac.nowcoder.com/discuss/201720">题解</a></p>
 <p>拿到这道题不是很有思路，题解又不知道在说什么鬼东西。听 zzy 讲了一个做法，记录一下吧。</p>
 <span id="more"></span>
-<h2 id="题意">题意</h2>
-<p>给定一棵 <span class="math inline">\(n\)</span> 个点的树，树根处有 <span class="math inline">\(m\)</span> 个人，你可以给每个人指定一个目的地，每个人会将经过的所有点打上标记。 <span class="math inline">\(q\)</span> 次询问，每次给出参数 <span class="math inline">\(d\)</span>，要求每个人走的距离不超过 <span class="math inline">\(d\)</span>，问最多标记多少点。</p>
-<p><span class="math inline">\(n\le3\times 10^6,m\le10^6.\)</span></p>
-<h2 id="分析">分析</h2>
-<p>首先有一个 <span class="math inline">\(nm\)</span> 的贪心做法，即每次选择收益最大的点走到底。证明可以考虑费用流的过程，有空再补上。</p>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一棵 $n$ 个点的树，树根处有 $m$ 个人，你可以给每个人指定一个目的地，每个人会将经过的所有点打上标记。 $q$ 次询问，每次给出参数 $d$，要求每个人走的距离不超过 $d$，问最多标记多少点。</p>
+<p>$n\le3\times 10^6,m\le10^6.$</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先有一个 $nm$ 的贪心做法，即每次选择收益最大的点走到底。证明可以考虑费用流的过程，有空再补上。</p>
 <p>仔细思考一下，可以发现这个过程，实际上，就是在做长链剖分！</p>
 <p>那么思路就比较明确了，我们把所有询问离线下来，一层层加入所有点，维护长链剖分然后用堆维护答案即可。那么这个做法甚至还可以做到每次询问时根的人数都不相同，暴踩 std！</p>
 <p>然后冷静下来思考，发现这是一个假做法——每次加入点时我们要<strong>动态维护长链剖分</strong>！</p>
-<p>再冷静一下，我们可以发现，边权为 <span class="math inline">\(1\)</span> 时的前 <span class="math inline">\(i\)</span> 层的长链剖分其实就是整体的长链剖分。这一点是显然的。于是就做完了，复杂度 <span class="math inline">\(\mathcal O(n\log n).\)</span></p>
+<p>再冷静一下，我们可以发现，边权为 $1$ 时的前 $i$ 层的长链剖分其实就是整体的长链剖分。这一点是显然的。于是就做完了，复杂度 $\mathcal O(n\log n).$</p>
 <p>但是……这个范围似乎过不去啊……</p>
 <p>显然瓶颈在于加入新点时的维护答案，这个怎么做到线性呢？</p>
 <p>思考一晚上，和 zzy 讨论，无果。</p>
-<p>神仙 jhr 给出了一个 trival 的做法：用桶记录每种长度的链出现多少次，同时记录当前答案和答案中的最小链长和最小链长的出现次数。每次加入新点时，链长只会增加 <span class="math inline">\(1\)</span>，所以这样就可以直接维护了。复杂度 <span class="math inline">\(\mathcal O(n).\)</span></p>
+<p>神仙 jhr 给出了一个 trival 的做法：用桶记录每种长度的链出现多少次，同时记录当前答案和答案中的最小链长和最小链长的出现次数。每次加入新点时，链长只会增加 $1$，所以这样就可以直接维护了。复杂度 $\mathcal O(n).$</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> io</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> SIZE = <span class="number">1</span> &lt;&lt; <span class="number">22</span> | <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> iBuf[SIZE], *iS, *iT, c;</span><br><span class="line">	<span class="keyword">char</span> oBuf[SIZE], *oS = oBuf, *oT = oBuf + SIZE;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> gc() (iS == iT ? iT = iBuf + fread(iS = iBuf, 1, SIZE, stdin), (iS == iT ? EOF : *iS++) : *iS++)</span></span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class I&gt; <span class="keyword">void</span> <span class="title">gi</span><span class="params">(I &amp;x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(c = <span class="built_in">gc</span>(); c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>; c = <span class="built_in">gc</span>());</span><br><span class="line">		<span class="keyword">for</span>(x = <span class="number">0</span>; c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>; c = <span class="built_in">gc</span>())</span><br><span class="line">			x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + (c &amp; <span class="number">15</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">fwrite</span>(oBuf, <span class="number">1</span>, oS - oBuf, stdout);</span><br><span class="line">		oS = oBuf;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">putc</span><span class="params">(<span class="keyword">char</span> x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		*oS++ = x;</span><br><span class="line">		<span class="keyword">if</span>(oS == oT) <span class="built_in">flush</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class I&gt; <span class="keyword">void</span> <span class="title">print</span><span class="params">(I x)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">char</span> qu[<span class="number">55</span>];</span><br><span class="line">		<span class="keyword">char</span> *tmp = qu;</span><br><span class="line">		<span class="keyword">do</span> *tmp++ = (x % <span class="number">10</span>) ^ <span class="string">&#x27;0&#x27;</span>; <span class="keyword">while</span>(x /= <span class="number">10</span>);</span><br><span class="line">		<span class="keyword">while</span>(tmp-- != qu) <span class="built_in">putc</span>(*tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">flusher</span>&#123;</span> ~<span class="built_in">flusher</span>() &#123; <span class="built_in">flush</span>(); &#125; &#125;_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> io :: gi;</span><br><span class="line"><span class="keyword">using</span> io :: putc;</span><br><span class="line"><span class="keyword">using</span> io :: print;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">int</span> <span class="title">MaxN</span><span class="params">(<span class="number">3000003</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, q, tot, cnt, Mn, Mnsum, son[MaxN], len[MaxN];</span><br><span class="line"><span class="keyword">int</span> P[MaxN], Q[MaxN], Tax[MaxN], Ans[MaxN];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; G[MaxN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> conical</span></span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;C.in&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;C.out&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="built_in">gi</span>(n), <span class="built_in">gi</span>(q);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>, fa; i &lt;= n; i++)</span><br><span class="line">		<span class="built_in">gi</span>(fa), G[fa].<span class="built_in">push_back</span>(i);</span><br><span class="line">	<span class="built_in">gi</span>(m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = n; i; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> j : G[i])</span><br><span class="line">			<span class="keyword">if</span>(len[son[i]] &lt; len[j]) son[i] = j;</span><br><span class="line">		len[i] = len[son[i]] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Ans[<span class="number">0</span>] = P[tot = cnt = <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	len[<span class="number">1</span>] = Mn = Tax[<span class="number">1</span>] = Mnsum = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">1</span>; t &lt;= n; t++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> res = Ans[t - <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> tot2 = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> u = P[i];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">auto</span> v : G[u])</span><br><span class="line">			&#123;</span><br><span class="line">				Q[++tot2] = v;</span><br><span class="line">				<span class="keyword">if</span>(son[u] == v)</span><br><span class="line">				&#123;</span><br><span class="line">					--Tax[len[u]], ++Tax[len[v] = len[u] + <span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span>(len[u] == Mn)</span><br><span class="line">					&#123;</span><br><span class="line">						++res, --Mnsum;</span><br><span class="line">						<span class="keyword">if</span>(Mnsum == <span class="number">0</span>) ++Mn, Mnsum = Tax[Mn];</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span>(len[u] &gt; Mn) ++res;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					len[v] = <span class="number">1</span>, ++Tax[<span class="number">1</span>];</span><br><span class="line">					<span class="keyword">if</span>(cnt &lt; m) ++cnt, ++res, Mn = <span class="number">1</span>, Mnsum = Tax[<span class="number">1</span>];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		tot = tot2, Ans[t] = res;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++) P[i] = Q[i];</span><br><span class="line">		<span class="keyword">if</span>(tot == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = t + <span class="number">1</span>; j &lt;= n; j++) Ans[j] = res;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x; q--; )</span><br><span class="line">		<span class="built_in">gi</span>(x), <span class="built_in">print</span>(Ans[x]), <span class="built_in">putc</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
     <title>线性代数学习笔记</title>
     <url>/2020/08/14/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="线性代数学习笔记">线性代数学习笔记</h1>
-<h2 id="前言">0 前言</h2>
-<p>高考结束了。无论如何，这都将是新的开始。</p>
+    <content><![CDATA[<h1 id="线性代数学习笔记"><a href="#线性代数学习笔记" class="headerlink" title="线性代数学习笔记"></a>线性代数学习笔记</h1><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h2><p>高考结束了。无论如何，这都将是新的开始。</p>
 <p>这段时间心理状态不是很稳定，在 lca 鸽鸽的建议下开始刷一刷 THU 的教材。</p>
 <p>这本是 Stephen H. Friedberg&amp;Arnold J. Insel&amp;Lawrence E. Spence 的 <em>Liner algebra</em></p>
 <p>第一次读英文教材，在这里记录一点东西吧</p>
 <p>有些地方直接口胡翻译的，懒得查术语了（雾）</p>
 <span id="more"></span>
-<h2 id="向量与向量空间">1 向量与向量空间</h2>
-<h3 id="向量">1.1 向量</h3>
-<ol type="1">
-<li><p>定义：类似物理中矢量的定义，存在方向与大小的量称为 <span class="math inline">\(\text{vector}\)</span>（向量）.</p></li>
+<h2 id="1-向量与向量空间"><a href="#1-向量与向量空间" class="headerlink" title="1 向量与向量空间"></a>1 向量与向量空间</h2><h3 id="1-1-向量"><a href="#1-1-向量" class="headerlink" title="1.1 向量"></a>1.1 向量</h3><ol>
+<li><p>定义：类似物理中矢量的定义，存在方向与大小的量称为 $\text{vector}$（向量）.</p>
+</li>
 <li><p>运算：</p>
 <ul>
 <li>加法：平行四边形法则.</li>
 <li>数量乘法.</li>
-</ul></li>
-<li><p>性质：</p>
-<ol type="1">
-<li><p>对于任意向量 <span class="math inline">\(x,y\)</span>， <span class="math inline">\(x + y = y + x.\)</span></p></li>
-<li>对于任意向量 <span class="math inline">\(x, y, z\)</span>， <span class="math inline">\((x + y) + z = x + (y + z).\)</span></li>
-<li>存在零向量 <span class="math inline">\(\textit 0\)</span> 使得 <span class="math inline">\(x + \textit 0 = x\)</span> 对所有向量 <span class="math inline">\(x\)</span> 成立.</li>
-<li>对任意向量 <span class="math inline">\(x\)</span>, 存在向量 <span class="math inline">\(y\)</span> 使得 <span class="math inline">\(x + y = \textit 0\)</span> .</li>
-<li>对任意向量 <span class="math inline">\(x\)</span>, <span class="math inline">\(1x = x.\)</span></li>
-<li>对任意实数 <span class="math inline">\(a, b\)</span> 及向量 <span class="math inline">\(x\)</span>，<span class="math inline">\((ab)x = a(bx).\)</span></li>
-<li>对任意实数 <span class="math inline">\(a\)</span> 及向量 <span class="math inline">\(x,y\)</span>，<span class="math inline">\(a(x + y) = ax + ay.\)</span></li>
-<li><p>对任意实数 <span class="math inline">\(a, b\)</span> 及向量 <span class="math inline">\(x\)</span>，<span class="math inline">\((a + b)x = ax + bx.\)</span></p></li>
-</ol></li>
-</ol>
-<h3 id="向量空间">1.2 向量空间</h3>
-<ol type="1">
-<li><p><span class="math inline">\(\text{vector space}\)</span>（向量空间），又称 <span class="math inline">\(\text{liner space}\)</span> （线性空间）.</p></li>
-<li><p>定义：定义在域 <span class="math inline">\(F\)</span> 上的向量空间 <span class="math inline">\(\rm V\)</span> 由一个集合组成，在该集合上加法与数量乘法均存在定义，对于 <span class="math inline">\(\forall x,y\in \rm V\)</span>， 有唯一的 <span class="math inline">\(x+y\in \rm V\)</span>， <span class="math inline">\(\forall a\in F,x\in \rm V\)</span>，有唯一的 <span class="math inline">\(ax\in \rm V\)</span>，且 <span class="math inline">\(\rm V\)</span> 中的元素满足向量对应的八条性质.</p></li>
-<li><p><span class="math inline">\(F\)</span> 中的元素称为标量，<span class="math inline">\(\rm V\)</span> 中的元素称为向量.</p>
-<p>注意，此处的向量定义与物理学中矢量定义不同，为抽象化的一般概念，表示向量空间中的元素.</p></li>
-</ol>
-<h3 id="子空间">1.3 子空间</h3>
-<ol type="1">
-<li><p>定义：若域 <span class="math inline">\(F\)</span> 上的向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(\rm W\)</span> 满足在 <span class="math inline">\(\rm V\)</span> 中的加法与数量乘法定义下 ， <span class="math inline">\(\rm W\)</span> 也为 <span class="math inline">\(F\)</span> 的向量空间，则称 <span class="math inline">\(\rm W\)</span> 为 <span class="math inline">\(\rm V\)</span> 的 <span class="math inline">\(\text{subspace}\)</span> （子空间）.</p></li>
-<li><p>显然，<span class="math inline">\(\rm V\)</span> 与 <span class="math inline">\(\{\textit0\ \}\)</span> 都为 <span class="math inline">\(\rm V\)</span> 的子空间。特别地，称 <span class="math inline">\(\{\textit0\ \}\)</span> 为 <span class="math inline">\(\rm V\)</span> 的零子空间.</p></li>
-<li><p>子空间的判定 对于任意一个向量空间的子集，性质 <span class="math inline">\((1)(2)(5)(6)(7)(8)\)</span> 显然是恒成立的。因此，这里我们只需要讨论下述性质：</p>
-<ul>
-<li><span class="math inline">\(\forall x,y \in \rm W,x+y\in \rm W.\)</span>（加法封闭性）</li>
-<li><span class="math inline">\(\forall c \in F,x\in \rm W,cx\in \rm W.\)</span>（数量乘法封闭性）</li>
-<li><span class="math inline">\(\rm W\)</span> 中存在零向量 <span class="math inline">\(\textit 0\ &#39;.\)</span></li>
-<li><span class="math inline">\(\rm W\)</span> 中的任意元素存在加法逆元.</li>
 </ul>
-<p>易证 <span class="math inline">\(\textit 0=\textit 0\ &#39;\)</span>，则此时 <span class="math inline">\(\rm W\)</span> 中任意元素一定都存在加法逆元，故只需满足：</p>
+</li>
+<li><p>性质：</p>
+<ol>
+<li><p>对于任意向量 $x,y$， $x + y = y + x.$</p>
+</li>
+<li><p>对于任意向量 $x, y, z$， $(x + y) + z = x + (y + z).$</p>
+</li>
+<li>存在零向量 $\textit 0$ 使得 $x + \textit 0 = x$ 对所有向量 $x$ 成立.</li>
+<li>对任意向量 $x$, 存在向量 $y$ 使得 $x + y = \textit 0$ .</li>
+<li>对任意向量 $x$, $1x = x.$</li>
+<li>对任意实数 $a, b$ 及向量 $x$，$(ab)x = a(bx).$</li>
+<li>对任意实数 $a$ 及向量 $x,y$，$a(x + y) = ax + ay.$</li>
+<li>对任意实数 $a, b$ 及向量 $x$，$(a + b)x = ax + bx.$</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-2-向量空间"><a href="#1-2-向量空间" class="headerlink" title="1.2 向量空间"></a>1.2 向量空间</h3><ol>
+<li><p>$\text{vector space}$（向量空间），又称 $\text{liner space}$ （线性空间）.</p>
+</li>
+<li><p>定义：定义在域 $F$ 上的向量空间 $\rm V$ 由一个集合组成，在该集合上加法与数量乘法均存在定义，对于 $\forall x,y\in \rm V$， 有唯一的 $x+y\in \rm V$， $\forall a\in F,x\in \rm V$，有唯一的 $ax\in \rm V$，且 $\rm V$ 中的元素满足向量对应的八条性质.</p>
+</li>
+<li><p>$F$ 中的元素称为标量，$\rm V$ 中的元素称为向量.</p>
+<p>注意，此处的向量定义与物理学中矢量定义不同，为抽象化的一般概念，表示向量空间中的元素.</p>
+</li>
+</ol>
+<h3 id="1-3-子空间"><a href="#1-3-子空间" class="headerlink" title="1.3 子空间"></a>1.3 子空间</h3><ol>
+<li><p>定义：若域 $F$ 上的向量空间 $\rm V$ 的子集 $\rm W$ 满足在 $\rm V$ 中的加法与数量乘法定义下 ， $\rm W$ 也为 $F$ 的向量空间，则称 $\rm W$ 为 $\rm V$ 的 $\text{subspace}$ （子空间）.</p>
+</li>
+<li><p>显然，$\rm V$ 与 $\{\textit0\ \}$ 都为 $\rm V$ 的子空间。特别地，称 $\{\textit0\ \}$ 为 $\rm V$ 的零子空间.</p>
+</li>
+<li><p>子空间的判定<br> 对于任意一个向量空间的子集，性质 $(1)(2)(5)(6)(7)(8)$ 显然是恒成立的。因此，这里我们只需要讨论下述性质：</p>
 <ul>
-<li><span class="math inline">\(\forall x,y\in \rm W,x+y\in \rm W.\)</span></li>
-<li><span class="math inline">\(\forall c\in F,x\in \rm W,cx\in \rm W.\)</span></li>
-<li><span class="math inline">\(\textit 0\in \rm W.\)</span></li>
-</ul></li>
-<li><p><span class="math inline">\(\rm V\)</span> 的任意两个子空间的交集仍是 <span class="math inline">\(\rm V\)</span> 的子空间.</p></li>
+<li>$\forall x,y \in \rm W,x+y\in \rm W.$（加法封闭性）</li>
+<li>$\forall c \in F,x\in \rm W,cx\in \rm W.$（数量乘法封闭性）</li>
+<li>$\rm W$ 中存在零向量 $\textit 0\ ‘.$</li>
+<li><p>$\rm W$ 中的任意元素存在加法逆元.</p>
+<p>易证 $\textit 0=\textit 0\ ‘$，则此时 $\rm W$ 中任意元素一定都存在加法逆元，故只需满足：</p>
+</li>
+<li><p>$\forall x,y\in \rm W,x+y\in \rm W.$</p>
+</li>
+<li>$\forall c\in F,x\in \rm W,cx\in \rm W.$</li>
+<li>$\textit 0\in \rm W.$</li>
+</ul>
+</li>
+<li><p>$\rm V$ 的任意两个子空间的交集仍是 $\rm V$ 的子空间.</p>
+</li>
 </ol>
-<h3 id="线性组合与线性方程组">1.4 线性组合与线性方程组</h3>
-<h4 id="线性组合">1.4.1 线性组合</h4>
-<ol type="1">
-<li>定义：对于一个向量空间 <span class="math inline">\(\rm V\)</span> 及其非空子集 <span class="math inline">\(S\)</span>，向量 <span class="math inline">\(v\in \rm V\)</span> 称为 <span class="math inline">\(S\)</span> 中向量的线性组合当且仅当存在有限个向量 <span class="math inline">\(u_1,u_2,\dots,u_n\in S\)</span> 及标量 <span class="math inline">\(a_1,a_2,\dots,a_n\in F\)</span> 使得 <span class="math inline">\(v=a_1u_1+a_2u_2+\dots+a_nu_n\)</span>。则称 <span class="math inline">\(v\)</span> 为 <span class="math inline">\(u_1,u_2,\dots,u_n\)</span> 的 <span class="math inline">\(\texttt{liner combinations}\)</span> （线性组合)，<span class="math inline">\(a_1,a_2,\dots,a_n\)</span> 为这个线性组合的系数.</li>
-<li><span class="math inline">\(\textit 0\)</span> 是 <span class="math inline">\(\rm V\)</span> 的任意非空子集的线性组合.</li>
+<h3 id="1-4-线性组合与线性方程组"><a href="#1-4-线性组合与线性方程组" class="headerlink" title="1.4 线性组合与线性方程组"></a>1.4 线性组合与线性方程组</h3><h4 id="1-4-1-线性组合"><a href="#1-4-1-线性组合" class="headerlink" title="1.4.1 线性组合"></a>1.4.1 线性组合</h4><ol>
+<li>定义：对于一个向量空间 $\rm V$ 及其非空子集 $S$，向量 $v\in \rm V$ 称为 $S$ 中向量的线性组合当且仅当存在有限个向量 $u_1,u_2,\dots,u_n\in S$ 及标量 $a_1,a_2,\dots,a_n\in F$ 使得 $v=a_1u_1+a_2u_2+\dots+a_nu_n$。则称 $v$ 为 $u_1,u_2,\dots,u_n$ 的 $\texttt{liner combinations}$ （线性组合)，$a_1,a_2,\dots,a_n$ 为这个线性组合的系数.</li>
+<li>$\textit 0$ 是 $\rm V$ 的任意非空子集的线性组合.</li>
 </ol>
-<h4 id="线性方程组">1.4.2 线性方程组</h4>
-<ol type="1">
+<h4 id="1-4-2-线性方程组"><a href="#1-4-2-线性方程组" class="headerlink" title="1.4.2 线性方程组"></a>1.4.2 线性方程组</h4><ol>
 <li>线性组合的解可转化为线性方程组的解.</li>
 <li>高斯消元解线性方程组.</li>
 </ol>
-<h4 id="张成空间">1.4.3 张成空间</h4>
-<ol type="1">
-<li>定义：对于一个向量空间 <span class="math inline">\(\rm V\)</span> 的非空子集 <span class="math inline">\(S\)</span>，所有 <span class="math inline">\(S\)</span> 的线性组合构成的集合称为 <span class="math inline">\(S\)</span> 的张成空间，记为 <span class="math inline">\({\rm span}(S).\)</span> 方便起见，我们定义 <span class="math inline">\({\rm span}(\varnothing)=\{\textit 0\ \}.\)</span></li>
-<li>向量空间 <span class="math inline">\(\rm V\)</span> 的任意子集 <span class="math inline">\(S\)</span> 的张成空间为 <span class="math inline">\(\rm V\)</span> 的子空间.</li>
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span> 的子空间 <span class="math inline">\(\rm W\)</span>，若 <span class="math inline">\(S\subseteq\rm W\)</span>，则有 <span class="math inline">\({\rm span}(S)\subseteq \rm W.\)</span></li>
-<li>若 <span class="math inline">\({\rm span}(S)=\rm V\)</span>，则称 <span class="math inline">\(S\)</span> 为 <span class="math inline">\(\rm V\)</span> 的生成集.</li>
+<h4 id="1-4-3-张成空间"><a href="#1-4-3-张成空间" class="headerlink" title="1.4.3 张成空间"></a>1.4.3 张成空间</h4><ol>
+<li>定义：对于一个向量空间 $\rm V$ 的非空子集 $S$，所有 $S$ 的线性组合构成的集合称为 $S$ 的张成空间，记为 ${\rm span}(S).$ 方便起见，我们定义 ${\rm span}(\varnothing)=\{\textit 0\ \}.$ </li>
+<li>向量空间 $\rm V$ 的任意子集 $S$ 的张成空间为 $\rm V$ 的子空间.</li>
+<li>对于向量空间 $\rm V$ 的子空间 $\rm W$，若 $S\subseteq\rm W$，则有 ${\rm span}(S)\subseteq \rm W.$</li>
+<li>若 ${\rm span}(S)=\rm V$，则称 $S$ 为 $\rm V$ 的生成集.</li>
 </ol>
-<h3 id="线性相关与线性无关">1.5 线性相关与线性无关</h3>
-<h4 id="线性相关">1.5.1 线性相关</h4>
-<ol type="1">
-<li>对于 <span class="math inline">\(\textit 0\)</span> 的一个线性组合，若其系数全为 <span class="math inline">\(0\)</span>，则称其是 <span class="math inline">\(\texttt{trival}\)</span> 的；反之，则称其是 <span class="math inline">\(\texttt{nontrival}\)</span> 的.</li>
-<li>定义：对于向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(S\)</span>，若 <span class="math inline">\(\textit 0\)</span> 为 <span class="math inline">\(S\)</span> 中有限个向量的 <span class="math inline">\(\texttt{nontrival}\)</span> 线性组合，则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\texttt{lineraly dependent}\)</span> （线性相关的），也可称 <span class="math inline">\(S\)</span> 中的向量是线性相关的.</li>
-<li>由定义易得，若 <span class="math inline">\(S\)</span> 是线性相关的，则 <span class="math inline">\(S\)</span> 中的某个（或某些）向量可表示为其他向量的线性组合.</li>
+<h3 id="1-5-线性相关与线性无关"><a href="#1-5-线性相关与线性无关" class="headerlink" title="1.5 线性相关与线性无关"></a>1.5 线性相关与线性无关</h3><h4 id="1-5-1-线性相关"><a href="#1-5-1-线性相关" class="headerlink" title="1.5.1 线性相关"></a>1.5.1 线性相关</h4><ol>
+<li>对于 $\textit 0$ 的一个线性组合，若其系数全为 $0$，则称其是 $\texttt{trival}$ 的；反之，则称其是 $\texttt{nontrival}$ 的.</li>
+<li>定义：对于向量空间 $\rm V$ 的子集 $S$，若 $\textit 0$ 为 $S$ 中有限个向量的 $\texttt{nontrival}$ 线性组合，则称 $S$ 是 $\texttt{lineraly dependent}$ （线性相关的），也可称 $S$ 中的向量是线性相关的. </li>
+<li>由定义易得，若 $S$ 是线性相关的，则 $S$ 中的某个（或某些）向量可表示为其他向量的线性组合.</li>
 </ol>
-<h4 id="线性无关">1.5.2 线性无关</h4>
-<ol type="1">
-<li>定义：对于向量空间 <span class="math inline">\(\rm V\)</span> 的子集 <span class="math inline">\(S\)</span>，若 <span class="math inline">\(S\)</span> 不是线性相关的，则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\texttt{lineraly independent}\)</span>（线性无关的），也可称 <span class="math inline">\(S\)</span> 中的向量是线性无关的.</li>
-<li>对于任意向量空间，下述推论成立：
-<ul>
+<h4 id="1-5-2-线性无关"><a href="#1-5-2-线性无关" class="headerlink" title="1.5.2 线性无关"></a>1.5.2 线性无关</h4><ol>
+<li>定义：对于向量空间 $\rm V$ 的子集 $S$，若 $S$ 不是线性相关的，则称 $S$ 是 $\texttt{lineraly independent}$（线性无关的），也可称 $S$ 中的向量是线性无关的.</li>
+<li>对于任意向量空间，下述推论成立：<ul>
 <li>空集是线性无关的；</li>
 <li>由一个非零向量组成的集合是线性无关的；</li>
-<li>一个集合是线性无关的，当且仅当其上 <span class="math inline">\(\textit 0\)</span> 的唯一线性组合是 <span class="math inline">\(\texttt{trival}\)</span> 的.</li>
-</ul></li>
+<li>一个集合是线性无关的，当且仅当其上 $\textit 0$ 的唯一线性组合是 $\texttt{trival}$ 的.</li>
+</ul>
+</li>
 </ol>
-<h4 id="推论">1.5.3 推论</h4>
-<ol type="1">
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，若 <span class="math inline">\(S_1,S_2\subseteq \rm V\)</span>，且 <span class="math inline">\(S_1\)</span> 是线性相关的，则 <span class="math inline">\(S_2\)</span> 一定是线性相关的.</li>
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，若 <span class="math inline">\(S_1,S_2\subseteq \rm V\)</span>，且 <span class="math inline">\(S_2\)</span> 是线性无关的，则 <span class="math inline">\(S_1\)</span> 一定是线性无关的.</li>
-<li>若 <span class="math inline">\(S\)</span> 的任意真子集均不为 <span class="math inline">\({\rm span}(S)\)</span> 的生成集，则 <span class="math inline">\(S\)</span> 是线性无关的，反之亦成立.</li>
-<li>设 <span class="math inline">\(S\)</span> 为向量空间 <span class="math inline">\(\rm V\)</span> 的一个线性无关的子集，<span class="math inline">\(v\)</span> 为满足 <span class="math inline">\(v\in \rm V\)</span> 且 <span class="math inline">\(v\notin S\)</span> 的向量，则 <span class="math inline">\(S\ \cup\{v\}\)</span> 为线性相关的当且仅当 <span class="math inline">\(v\in {\rm span}(S).\)</span></li>
+<h4 id="1-5-3-推论"><a href="#1-5-3-推论" class="headerlink" title="1.5.3 推论"></a>1.5.3 推论</h4><ol>
+<li>对于向量空间 $\rm V$，若 $S_1,S_2\subseteq \rm V$，且 $S_1$ 是线性相关的，则 $S_2$ 一定是线性相关的.</li>
+<li>对于向量空间 $\rm V$，若 $S_1,S_2\subseteq \rm V$，且 $S_2$ 是线性无关的，则 $S_1$ 一定是线性无关的.</li>
+<li>若 $S$ 的任意真子集均不为 ${\rm span}(S)$ 的生成集，则 $S$ 是线性无关的，反之亦成立.</li>
+<li>设 $S$ 为向量空间 $\rm V$ 的一个线性无关的子集，$v$ 为满足 $v\in \rm V$ 且 $v\notin S$ 的向量，则 $S\ \cup\{v\}$ 为线性相关的当且仅当 $v\in {\rm span}(S).$</li>
 </ol>
-<h3 id="基与维度">1.6 基与维度</h3>
-<h4 id="基">1.6.1 基</h4>
-<ol type="1">
-<li>定义：向量空间 <span class="math inline">\(\rm V\)</span> 的 <span class="math inline">\(\texttt{basis}\)</span> （基） <span class="math inline">\(\beta\)</span> 为一个线性无关的能够生成 <span class="math inline">\(\rm V\)</span> 的集合.</li>
-<li>对于向量空间 <span class="math inline">\(\rm V\)</span>，它的一个子集 <span class="math inline">\(\beta=\{u_1,u_2,\dots,u_n\}\)</span> 为 <span class="math inline">\(\rm V\)</span> 的基当且仅当对于 <span class="math inline">\(\forall v\in \rm V\)</span>，均存在唯一的 <span class="math inline">\(\beta\)</span> 上的线性组合，即存在唯一的 <span class="math inline">\(a_1,a_2,\dots,a_n\)</span>，使得 <span class="math inline">\(v=a_1u_1+a_2u_2+\dots+a_nu_n\)</span>. 故 <span class="math inline">\(v\)</span> 可以唯一地表示为一个 <span class="math inline">\(n\)</span> 元组 <span class="math inline">\((u_1,u_2,\dots,u_n).\)</span></li>
-<li>若向量空间 <span class="math inline">\(\rm V\)</span> 可由一个有限集合 <span class="math inline">\(S\)</span> 生成，则存在 <span class="math inline">\(S\)</span> 的某个（或某些）子集为 <span class="math inline">\(\rm V\)</span> 的基，因此 <span class="math inline">\(\rm V\)</span> 有一个有限基.</li>
+<h3 id="1-6-基与维度"><a href="#1-6-基与维度" class="headerlink" title="1.6 基与维度"></a>1.6 基与维度</h3><h4 id="1-6-1-基"><a href="#1-6-1-基" class="headerlink" title="1.6.1 基"></a>1.6.1 基</h4><ol>
+<li>定义：向量空间 $\rm V$ 的 $\texttt{basis}$ （基） $\beta$ 为一个线性无关的能够生成 $\rm V$ 的集合.</li>
+<li>对于向量空间 $\rm V$，它的一个子集 $\beta=\{u_1,u_2,\dots,u_n\}$ 为 $\rm V$ 的基当且仅当对于 $\forall v\in \rm V$，均存在唯一的 $\beta$ 上的线性组合，即存在唯一的 $a_1,a_2,\dots,a_n$，使得 $v=a_1u_1+a_2u_2+\dots+a_nu_n$. 故 $v$ 可以唯一地表示为一个 $n$ 元组 $(u_1,u_2,\dots,u_n).$</li>
+<li>若向量空间 $\rm V$ 可由一个有限集合 $S$ 生成，则存在 $S$ 的某个（或某些）子集为 $\rm V$ 的基，因此 $\rm V$ 有一个有限基.</li>
 </ol>
-<h4 id="替换定理">1.6.2 替换定理</h4>
-<ol type="1">
-<li><p>定义：设 <span class="math inline">\(\rm V\)</span> 是一个由包含 <span class="math inline">\(n\)</span> 个向量的集合 <span class="math inline">\(G\)</span> 生成的向量空间，<span class="math inline">\(L\)</span> 为 <span class="math inline">\(\rm V\)</span> 的一个包含 <span class="math inline">\(m\)</span> 个向量的线性无关的子集，则有 <span class="math inline">\(m\le n\)</span> 且存在 <span class="math inline">\(G\)</span> 的一个包含 <span class="math inline">\(n-m\)</span> 个向量的子集 <span class="math inline">\(H\)</span>，使得 <span class="math inline">\(L\ \cup H\)</span> 能够生成 <span class="math inline">\(\rm V.\)</span></p></li>
-<li><p>推论 <span class="math inline">\(1\)</span>：若向量空间 <span class="math inline">\(\rm V\)</span> 存在一个有限基，则 <span class="math inline">\(\rm V\)</span> 的所有基大小均相等.</p>
-<p>证明：设 <span class="math inline">\(\rm V\)</span> 存在一个大小为 <span class="math inline">\(n\)</span> 的基 <span class="math inline">\(\beta\)</span> 和一个大小为 <span class="math inline">\(m\)</span> 的基 <span class="math inline">\(\gamma.\)</span> 若 <span class="math inline">\(m\gt n\)</span>，则一定可以取出 <span class="math inline">\(\gamma\)</span> 的一个大小为 <span class="math inline">\(n+1\)</span> 的子集 <span class="math inline">\(S\)</span>，易知 <span class="math inline">\(S\)</span> 是线性无关的，则由置换定理，<span class="math inline">\(n+1\le n\)</span>，矛盾；若 <span class="math inline">\(m\lt n\)</span>，则同样可得出 <span class="math inline">\(m+1\le m\)</span>，矛盾；故一定有 <span class="math inline">\(m=n.\)</span></p></li>
-<li><p>推论 <span class="math inline">\(2\)</span>：</p>
-<p><span class="math inline">\(\texttt{(a)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意生成集包含至少 <span class="math inline">\(n\)</span> 个向量，包含恰好 <span class="math inline">\(n\)</span> 个向量的生成集为 <span class="math inline">\(\rm V\)</span> 的基.</p>
-<p><span class="math inline">\(\texttt{(b)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意包含恰好 <span class="math inline">\(n\)</span> 个向量的线性无关的子集为 <span class="math inline">\(\rm V\)</span> 的基.</p>
-<p><span class="math inline">\(\texttt{(c)}\)</span> <span class="math inline">\(\rm V\)</span> 的任意线性无关的子集均可扩展为 <span class="math inline">\(\rm V\)</span> 的基.</p></li>
+<h4 id="1-6-2-替换定理"><a href="#1-6-2-替换定理" class="headerlink" title="1.6.2 替换定理"></a>1.6.2 替换定理</h4><ol>
+<li><p>定义：设 $\rm V$ 是一个由包含 $n$ 个向量的集合 $G$ 生成的向量空间，$L$ 为 $\rm V$ 的一个包含 $m$ 个向量的线性无关的子集，则有 $m\le n$ 且存在 $G$ 的一个包含 $n-m$ 个向量的子集 $H$，使得 $L\ \cup H$ 能够生成 $\rm V.$</p>
+</li>
+<li><p>推论 $1$：若向量空间 $\rm V$ 存在一个有限基，则 $\rm V$ 的所有基大小均相等.</p>
+<p>证明：设 $\rm V$ 存在一个大小为 $n$ 的基 $\beta$ 和一个大小为 $m$ 的基 $\gamma.$ 若 $m\gt n$，则一定可以取出 $\gamma$ 的一个大小为 $n+1$ 的子集 $S$，易知 $S$ 是线性无关的，则由置换定理，$n+1\le n$，矛盾；若 $m\lt n$，则同样可得出 $m+1\le m$，矛盾；故一定有 $m=n.$</p>
+</li>
+<li><p>推论 $2$：</p>
+<p>$\texttt{(a)}$ $\rm V$ 的任意生成集包含至少 $n$ 个向量，包含恰好 $n$ 个向量的生成集为 $\rm V$ 的基.</p>
+<p>$\texttt{(b)}$ $\rm V$ 的任意包含恰好 $n$ 个向量的线性无关的子集为 $\rm V$ 的基.</p>
+<p>$\texttt{(c)}$ $\rm V$ 的任意线性无关的子集均可扩展为 $\rm V$ 的基.</p>
+</li>
 </ol>
-<h4 id="维度">1.6.3 维度</h4>
-<ol type="1">
-<li><p>对于存在一个有限基的向量空间 <span class="math inline">\(\rm V\)</span>，其基的大小称为这个向量空间的 <span class="math inline">\(\texttt{dimension}\)</span>（维度），用 <span class="math inline">\({\rm dim}({\rm V})\)</span> 表示，并称 <span class="math inline">\(\rm V\)</span> 是 <span class="math inline">\(\texttt{finite dimensional}\)</span>（有限维的）。反之，则称其为 <span class="math inline">\(\texttt{infinite dimensional}\)</span>（无限维的）.</p>
-<p>由替换定理推论 <span class="math inline">\(1\)</span> 可知，<span class="math inline">\(\rm V\)</span> 的维度是唯一的.</p></li>
-<li><p>对于向量空间 <span class="math inline">\(\rm V\)</span> 及其子空间 <span class="math inline">\(\rm W\)</span>，一定有 <span class="math inline">\(\rm dim(W)\le dim(V)\)</span>，且当 <span class="math inline">\(\rm dim(W)=dim(V)\)</span> 时，<span class="math inline">\(\rm W=V.\)</span></p>
-<p>推论：<span class="math inline">\(\rm W\)</span> 的任意基可以扩展为 <span class="math inline">\(\rm V\)</span> 的基.</p></li>
+<h4 id="1-6-3-维度"><a href="#1-6-3-维度" class="headerlink" title="1.6.3 维度"></a>1.6.3 维度</h4><ol>
+<li><p>对于存在一个有限基的向量空间 $\rm V$，其基的大小称为这个向量空间的 $\texttt{dimension}$（维度），用 ${\rm dim}({\rm V})$ 表示，并称 $\rm V$ 是 $\texttt{finite dimensional}$（有限维的）。反之，则称其为 $\texttt{infinite dimensional}$（无限维的）.</p>
+<p>由替换定理推论 $1$ 可知，$\rm V$ 的维度是唯一的. </p>
+</li>
+<li><p>对于向量空间 $\rm V$ 及其子空间 $\rm W$，一定有 $\rm dim(W)\le dim(V)$，且当 $\rm dim(W)=dim(V)$ 时，$\rm W=V.$</p>
+<p>推论：$\rm W$ 的任意基可以扩展为 $\rm V$ 的基.</p>
+</li>
 </ol>
-<h4 id="拉格朗日插值公式">1.6.4 拉格朗日插值公式</h4>
-<p>设 <span class="math inline">\(c_0,c_1,\dots,c_n\)</span> 为域 <span class="math inline">\(F\)</span> 上的特定数，定义 <span class="math inline">\(\texttt{Lagrange polynomials}\)</span>（拉格朗日多项式）<span class="math inline">\(f_0(x),f_1(x),\dots,f_n(x)\)</span> 为： <span class="math display">\[
+<h4 id="1-6-4-拉格朗日插值公式"><a href="#1-6-4-拉格朗日插值公式" class="headerlink" title="1.6.4 拉格朗日插值公式"></a>1.6.4 拉格朗日插值公式</h4><p>设 $c_0,c_1,\dots,c_n$ 为域 $F$ 上的特定数，定义 $\texttt{Lagrange polynomials}$（拉格朗日多项式）$f_0(x),f_1(x),\dots,f_n(x)$ 为：</p>
+<script type="math/tex; mode=display">
 f_i(x)=\frac{(x-c_0)\cdots(x-c_{i-1})(x-c_{i+1})\cdots(x-c_n)}
 {(c_i-c_0)\cdots(c_i-c_{i-1})(c_i-c_{i+1})\cdots(c_i-c_n)}=
-\prod_{k=0\\k\neq i}^{n} \frac{x-c_k}{c_i-c_k}
-\]</span> 注意到 <span class="math inline">\(f_i(x)\)</span> 是一个 <span class="math inline">\(n\)</span> 次多项式，因此有 <span class="math inline">\(f_i\in {\rm P}_n(F).\)</span> 将 <span class="math inline">\(f_i(x)\)</span> 视为一个多项式函数 <span class="math inline">\(f_i:F\rightarrow F\)</span>，则有： <span class="math display">\[
+\prod_{k=0\\k\neq i}^{n} \frac{x-c_k}{c_i-c_k}</script><p>注意到 $f_i(x)$ 是一个 $n$ 次多项式，因此有 $f_i\in {\rm P}_n(F).$ 将 $f_i(x)$ 视为一个多项式函数 $f_i:F\rightarrow F$，则有：</p>
+<script type="math/tex; mode=display">
 f_i(c_j)=
 \begin{cases}
-0 &amp; i\neq j\\
-1 &amp; i=j.
-\end{cases}
-\]</span> 由此可证明 <span class="math inline">\(\beta =\{f_0,f_1,\cdots,f_n\}\)</span> 是 <span class="math inline">\({\rm P}_n(F)\)</span> 的线性无关子集. 不妨设： <span class="math display">\[
-\sum_{i=0}^{n}a_if_i=\textit 0
-\]</span> 其中 <span class="math inline">\(\textit 0\)</span> 表示零函数，则有： <span class="math display">\[
-\sum_{i=0}^{n}a_if_i(c_j)=0\ \ \ \ (j=0,1,\dots,n)
-\]</span> 又因为： <span class="math display">\[
-\sum_{i=0}^{n}a_if_i(c_j)=a_j\ \ \ \ (j=1,1,\dots,n)
-\]</span> 故 <span class="math inline">\(\forall j\in [0,n],a_j=0\)</span> 恒成立，则 <span class="math inline">\(\beta\)</span> 为 <span class="math inline">\({\rm P}_n(F)\)</span> 的线性无关子集，又因为 <span class="math inline">\({\rm P}_n(F)\)</span> 的维度为 <span class="math inline">\(n+1\)</span>，<span class="math inline">\(\beta\)</span> 为 <span class="math inline">\({\rm P}_n(F)\)</span> 的基. 那么，对于 <span class="math inline">\(\forall g\in {\rm P}_n(F)\)</span>，均有： <span class="math display">\[
-g=\sum_{i=0}^n b_if_i
-\]</span> 又因为： <span class="math display">\[
-g(c_j)=\sum_{i=0}^nb_if_i(c_j)=b_j
-\]</span> 则有： <span class="math display">\[
-g=\sum_{i=0}^n g(c_i)f_i
-\]</span> 上式即 <span class="math inline">\(\texttt{The Lagrange Interpolation Formula}\)</span>（拉格朗日插值公式），在已知 <span class="math inline">\(c_0,c_1,\dots,c_n\)</span> 及 <span class="math inline">\(g(c_0),g(c_1),\dots,g(c_n)\)</span> 时，由拉格朗日插值公式容易求出 <span class="math inline">\(g.\)</span></p>
-<h3 id="最大线性无关子集">1.7 最大线性无关子集</h3>
-<h4 id="一些术语">1.7.1 一些术语</h4>
-<ol type="1">
-<li>令 <span class="math inline">\(\mathcal{F}\)</span></li>
+0 & i\neq j\\
+1 & i=j.
+\end{cases}</script><p>由此可证明 $\beta =\{f_0,f_1,\cdots,f_n\}$ 是 ${\rm P}_n(F)$ 的线性无关子集. 不妨设：</p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{n}a_if_i=\textit 0</script><p>其中 $\textit 0$ 表示零函数，则有：</p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{n}a_if_i(c_j)=0\ \ \ \ (j=0,1,\dots,n)</script><p>又因为：</p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{n}a_if_i(c_j)=a_j\ \ \ \ (j=1,1,\dots,n)</script><p>故 $\forall j\in [0,n],a_j=0$ 恒成立，则 $\beta$ 为 ${\rm P}_n(F)$ 的线性无关子集，又因为 ${\rm P}_n(F)$ 的维度为 $n+1$，$\beta$ 为 ${\rm P}_n(F)$ 的基. 那么，对于 $\forall g\in {\rm P}_n(F)$，均有：</p>
+<script type="math/tex; mode=display">
+g=\sum_{i=0}^n b_if_i</script><p>又因为：</p>
+<script type="math/tex; mode=display">
+g(c_j)=\sum_{i=0}^nb_if_i(c_j)=b_j</script><p>则有：</p>
+<script type="math/tex; mode=display">
+g=\sum_{i=0}^n g(c_i)f_i</script><p>上式即 $\texttt{The Lagrange Interpolation Formula}$（拉格朗日插值公式），在已知 $c_0,c_1,\dots,c_n$ 及 $g(c_0),g(c_1),\dots,g(c_n)$ 时，由拉格朗日插值公式容易求出 $g.$</p>
+<h3 id="1-7-最大线性无关子集"><a href="#1-7-最大线性无关子集" class="headerlink" title="1.7 最大线性无关子集"></a>1.7 最大线性无关子集</h3><h4 id="1-7-1-一些术语"><a href="#1-7-1-一些术语" class="headerlink" title="1.7.1 一些术语"></a>1.7.1 一些术语</h4><ol>
+<li>令 $\mathcal{F}$ </li>
 </ol>
-<h2 id="线性变换与矩阵">2 线性变换与矩阵</h2>
-<h3 id="线性变换零空间与值空间">2.1 线性变换，零空间与值空间</h3>
-<h4 id="线性变换">2.1.1 线性变换</h4>
-<ol type="1">
-<li><p><span class="math inline">\({\rm T}:\rm V\rightarrow W\)</span> 表示域 <span class="math inline">\(\rm V\)</span> 对其邻域 <span class="math inline">\(\rm W\)</span> 的函数 <span class="math inline">\(\rm T\)</span> .</p></li>
-<li><p>定义：设 <span class="math inline">\(\rm V\)</span> 与 <span class="math inline">\(\rm W\)</span> 是 <span class="math inline">\(F\)</span> 上的向量空间，我们称函数 <span class="math inline">\(\rm T:V\rightarrow W\)</span> 是一个 <span class="math inline">\(\rm V\)</span> 到 <span class="math inline">\(\rm W\)</span> 的线性变换，当且仅当对于 <span class="math inline">\(\forall x,y\in {\rm V},c\in F\)</span>，都有：</p>
-<p><span class="math inline">\(\texttt{(a)}\ \ {\rm T}(x+y)={\rm T}(x)+{\rm T}(y)\)</span></p>
-<p><span class="math inline">\(\texttt{(b)}\ \ {\rm T}(cx)=c{\rm T}(x)\)</span></p>
-<p>一般简称函数 <span class="math inline">\(\rm T\)</span> 是线性的.</p></li>
+<h2 id="2-线性变换与矩阵"><a href="#2-线性变换与矩阵" class="headerlink" title="2 线性变换与矩阵"></a>2 线性变换与矩阵</h2><h3 id="2-1-线性变换，零空间与值空间"><a href="#2-1-线性变换，零空间与值空间" class="headerlink" title="2.1 线性变换，零空间与值空间"></a>2.1 线性变换，零空间与值空间</h3><h4 id="2-1-1-线性变换"><a href="#2-1-1-线性变换" class="headerlink" title="2.1.1 线性变换"></a>2.1.1 线性变换</h4><ol>
+<li><p>${\rm T}:\rm V\rightarrow W$ 表示域 $\rm V$ 对其邻域 $\rm W$ 的函数 $\rm T$ .</p>
+</li>
+<li><p>定义：设 $\rm V$ 与 $\rm W$ 是 $F$ 上的向量空间，我们称函数 $\rm T:V\rightarrow W$ 是一个 $\rm V$ 到 $\rm W$ 的线性变换，当且仅当对于 $\forall x,y\in {\rm V},c\in F$，都有：</p>
+<p>$\texttt{(a)}\ \ {\rm T}(x+y)={\rm T}(x)+{\rm T}(y)$</p>
+<p>$\texttt{(b)}\ \ {\rm T}(cx)=c{\rm T}(x)$  </p>
+<p>一般简称函数 $\rm T$ 是线性的.</p>
+</li>
 <li><p>性质：</p>
-<ol type="1">
-<li><p>若 <span class="math inline">\(\rm T\)</span> 是线性的，则 <span class="math inline">\({\rm T}(\textit 0\ )=\textit 0.\)</span></p></li>
-<li><p><span class="math inline">\(\rm T\)</span> 是线性的，当且仅当 <span class="math inline">\({\rm T}(cx+y)=c{\rm T}(x)+{\rm T}(y)\)</span> 恒成立.</p></li>
-<li><p>若 <span class="math inline">\(\rm T\)</span> 是线性的，则 <span class="math inline">\({\rm T}(x-y)={\rm T}(x)-{\rm T}(y).\)</span></p></li>
-<li><p><span class="math inline">\(\rm T\)</span> 是线性的，当且仅当对于任意 <span class="math inline">\(x_1,x_2,\dots,x_n\in {\rm V}\)</span> 及 <span class="math inline">\(a_1,a_2,\dots,a_n\in F\)</span>，都有： <span class="math display">\[
-{\rm T}\left(\sum_{i=1}^n a_ix_i\right)=\sum_{i=1}^n a_i{\rm T}(x_i).
-\]</span></p></li>
-</ol></li>
+<ol>
+<li><p>若 $\rm T$ 是线性的，则 ${\rm T}(\textit 0\ )=\textit 0.$</p>
+</li>
+<li><p>$\rm T$ 是线性的，当且仅当 ${\rm T}(cx+y)=c{\rm T}(x)+{\rm T}(y)$ 恒成立.</p>
+</li>
+<li><p>若 $\rm T$ 是线性的，则 ${\rm T}(x-y)={\rm T}(x)-{\rm T}(y).$</p>
+</li>
+<li><p>$\rm T$ 是线性的，当且仅当对于任意 $x_1,x_2,\dots,x_n\in {\rm V}$ 及 $a_1,a_2,\dots,a_n\in F$，都有：</p>
+<script type="math/tex; mode=display">
+{\rm T}\left(\sum_{i=1}^n a_ix_i\right)=\sum_{i=1}^n a_i{\rm T}(x_i).</script></li>
+</ol>
+</li>
 </ol>
 <p>未完待续。</p>
 ]]></content>

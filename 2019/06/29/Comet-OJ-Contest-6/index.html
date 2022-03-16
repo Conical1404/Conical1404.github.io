@@ -228,20 +228,16 @@
       
         <p>比赛链接见 <a target="_blank" rel="noopener" href="https://cometoj.com/contest/48">这里</a></p>
 <span id="more"></span>
-<h2 id="problem-a---图游戏">problem A - 图游戏</h2>
-<p>太简单了不想说。</p>
-<h2 id="problem-b---双倍快乐">problem B - 双倍快乐</h2>
-<p>同上。</p>
-<h2 id="problem-c---一道树题">problem C - 一道树题</h2>
-<p>题意：给定一棵树，定义 <span class="math inline">\(S(L,R)\)</span> 为只保留编号在 <span class="math inline">\([L,R]\)</span> 内的边形成的大小大于 <span class="math inline">\(1\)</span> 的连通块数，求 <span class="math inline">\(\sum\limits_{l=1}^n\sum\limits_{r=l}^n S(l,r).\)</span></p>
-<p>我们知道连通块数=点数-边数，那么就只需要求所有情况大小为 <span class="math inline">\(1\)</span> 的连通块数即可。对于每个点计算贡献即可。</p>
-<h2 id="problem-d---另一道树题">problem D - 另一道树题</h2>
-<p>题意：略</p>
-<p>首先上一波容斥： <span class="math display">\[
-\sum_{|S|\ge2}f(S)=\sum_{i\ge1}\sum_{|S|\ge2}[f(S)\ge i]
-\]</span> 考虑对每个 <span class="math inline">\(i\)</span> 求有多少种初始摆放方案，使得 <span class="math inline">\(i-1\)</span> 步后游戏仍未结束。我们将走 <span class="math inline">\(i-1\)</span> 步后会到达同一个位置上的所有初始点的集合视为一个等价类，那么总方案就是所有等价类大小加一的乘积，再减去 <span class="math inline">\(|S|&lt;2\)</span> 的方案，即 <span class="math inline">\(n+1\)</span>，于是现在就要求所有等价类了。</p>
-<p>考虑对于每个点，我们维护他和第一个有多个孩子的祖先的距离，即会让这个点集和其他点集合并的步数。我们利用一个堆维护这个东西，从小到大取出来合并，只需维护乘积即可。由于取出来一次至少会让两个点集合并，因此总复杂度 <span class="math inline">\(\mathcal O(n\log n).\)</span></p>
-<p>题解给了另一个 <span class="math inline">\(\mathcal O(n\log n)\)</span> 和一个 <span class="math inline">\(\mathcal O(n)\)</span> 做法，有空再把补上吧。</p>
+<h2 id="problem-A-图游戏"><a href="#problem-A-图游戏" class="headerlink" title="problem A - 图游戏"></a>problem A - 图游戏</h2><p>太简单了不想说。</p>
+<h2 id="problem-B-双倍快乐"><a href="#problem-B-双倍快乐" class="headerlink" title="problem B - 双倍快乐"></a>problem B - 双倍快乐</h2><p>同上。</p>
+<h2 id="problem-C-一道树题"><a href="#problem-C-一道树题" class="headerlink" title="problem C - 一道树题"></a>problem C - 一道树题</h2><p>题意：给定一棵树，定义 $S(L,R)$ 为只保留编号在 $[L,R]$ 内的边形成的大小大于 $1$ 的连通块数，求 $\sum\limits_{l=1}^n\sum\limits_{r=l}^n S(l,r).$</p>
+<p>我们知道连通块数=点数-边数，那么就只需要求所有情况大小为 $1$ 的连通块数即可。对于每个点计算贡献即可。</p>
+<h2 id="problem-D-另一道树题"><a href="#problem-D-另一道树题" class="headerlink" title="problem D - 另一道树题"></a>problem D - 另一道树题</h2><p>题意：略</p>
+<p>首先上一波容斥：</p>
+<script type="math/tex; mode=display">
+\sum_{|S|\ge2}f(S)=\sum_{i\ge1}\sum_{|S|\ge2}[f(S)\ge i]</script><p>考虑对每个 $i$ 求有多少种初始摆放方案，使得 $i-1$ 步后游戏仍未结束。我们将走 $i-1$ 步后会到达同一个位置上的所有初始点的集合视为一个等价类，那么总方案就是所有等价类大小加一的乘积，再减去 $|S|&lt;2$ 的方案，即 $n+1$，于是现在就要求所有等价类了。</p>
+<p>考虑对于每个点，我们维护他和第一个有多个孩子的祖先的距离，即会让这个点集和其他点集合并的步数。我们利用一个堆维护这个东西，从小到大取出来合并，只需维护乘积即可。由于取出来一次至少会让两个点集合并，因此总复杂度 $\mathcal O(n\log n).$</p>
+<p>题解给了另一个 $\mathcal O(n\log n)$ 和一个 $\mathcal O(n)$ 做法，有空再把补上吧。</p>
 
     </div>
 
@@ -326,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-a---%E5%9B%BE%E6%B8%B8%E6%88%8F"><span class="nav-number">1.</span> <span class="nav-text">problem A - 图游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-b---%E5%8F%8C%E5%80%8D%E5%BF%AB%E4%B9%90"><span class="nav-number">2.</span> <span class="nav-text">problem B - 双倍快乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-c---%E4%B8%80%E9%81%93%E6%A0%91%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">problem C - 一道树题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-d---%E5%8F%A6%E4%B8%80%E9%81%93%E6%A0%91%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">problem D - 另一道树题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-A-%E5%9B%BE%E6%B8%B8%E6%88%8F"><span class="nav-number">1.</span> <span class="nav-text">problem A - 图游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-B-%E5%8F%8C%E5%80%8D%E5%BF%AB%E4%B9%90"><span class="nav-number">2.</span> <span class="nav-text">problem B - 双倍快乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-C-%E4%B8%80%E9%81%93%E6%A0%91%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">problem C - 一道树题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-D-%E5%8F%A6%E4%B8%80%E9%81%93%E6%A0%91%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">problem D - 另一道树题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

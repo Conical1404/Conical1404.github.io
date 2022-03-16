@@ -229,33 +229,31 @@
       
         <p>杜教筛是解决一类特殊积性函数前缀和的算法。</p>
 <span id="more"></span>
-<h2 id="前置知识">前置知识</h2>
-<p><strong>一些积性函数：</strong></p>
-<p><span class="math inline">\(\mu(n)\)</span>：莫比乌斯函数</p>
-<p><span class="math inline">\(\varphi(n)\)</span>：欧拉函数</p>
-<p><span class="math inline">\(d(n)\)</span>：约数个数</p>
-<p><span class="math inline">\(\sigma(n)\)</span>：约数和函数</p>
-<p><span class="math inline">\(\epsilon(n)\)</span>：一元函数，<span class="math inline">\(\epsilon(n)=[n==1]\)</span></p>
-<p><span class="math inline">\(I(n)\)</span>：恒等函数，<span class="math inline">\(I(n)=1\)</span></p>
-<p><span class="math inline">\(id(n)\)</span>：单位函数，<span class="math inline">\(id(n)=n\)</span></p>
-<p><strong>狄利克雷卷积：</strong></p>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p><strong>一些积性函数：</strong></p>
+<p>$\mu(n)$：莫比乌斯函数</p>
+<p>$\varphi(n)$：欧拉函数</p>
+<p>$d(n)$：约数个数</p>
+<p>$\sigma(n)$：约数和函数</p>
+<p>$\epsilon(n)$：一元函数，$\epsilon(n)=[n==1]$</p>
+<p>$I(n)$：恒等函数，$I(n)=1$</p>
+<p>$id(n)$：单位函数，$id(n)=n$</p>
+<p><strong>狄利克雷卷积：</strong> </p>
 <ul>
-<li>定义两个数论函数 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(g\)</span> 的狄利克雷卷积为：<span class="math inline">\((f*g)[n]=\sum_{d|n}f(d)\cdot g(\frac n d)\)</span></li>
+<li>定义两个数论函数 $f$ 和 $g$ 的狄利克雷卷积为：$(f*g)[n]=\sum_{d|n}f(d)\cdot g(\frac n d)$</li>
 <li>运算规律：交换律、结合律、分配律</li>
 </ul>
-<h2 id="算法">算法</h2>
-<p>杜教筛用于解决一类<strong>特殊的</strong>积性函数前缀和，即：<span class="math inline">\(\sum\limits_{i=1}^n f(i)\)</span>.</p>
-<p>我们构造两个积性函数 <span class="math inline">\(g\)</span> 和 <span class="math inline">\(h\)</span>，使得 <span class="math inline">\(h=f*g\)</span>；同时我们记 <span class="math inline">\(S(n)=\sum\limits_{i=1}^n f(i)\)</span>： <span class="math display">\[
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>杜教筛用于解决一类<strong>特殊的</strong>积性函数前缀和，即：$\sum\limits_{i=1}^n f(i)$.</p>
+<p>我们构造两个积性函数 $g$ 和 $h$，使得 $h=f*g$；同时我们记 $S(n)=\sum\limits_{i=1}^n f(i)$：</p>
+<script type="math/tex; mode=display">
 \begin{align}
-\sum_{i=1}^n h(i)&amp;=\sum_{i=1}^n\sum_{d|n} g(d)f(\frac i d)\\
-&amp;=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac n d\rfloor}f(i)\\
-&amp;=\sum_{d=1}^ng(d)\cdot S(\lfloor\frac n d\rfloor)
-\end{align}
-\]</span> 将 <span class="math inline">\(S(n)\)</span> 一项移到左边，就有： <span class="math display">\[
+\sum_{i=1}^n h(i)&=\sum_{i=1}^n\sum_{d|n} g(d)f(\frac i d)\\
+&=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac n d\rfloor}f(i)\\
+&=\sum_{d=1}^ng(d)\cdot S(\lfloor\frac n d\rfloor)
+\end{align}</script><p>将 $S(n)$ 一项移到左边，就有：</p>
+<script type="math/tex; mode=display">
 \begin{align}
 S(n)=\sum_{i=1}^n h(i)-\sum_{d=2}^n g(d)\cdot S(\lfloor\frac n d\rfloor)
-\end{align}
-\]</span> 那么，如果我们能够快速计算出 <span class="math inline">\(h\)</span> 的前缀和，并且预处理 <span class="math inline">\(S\)</span> 的前 <span class="math inline">\(n^{\frac 2 3}\)</span> 项，就能够在 <span class="math inline">\(\mathcal{O(n^{\frac 2 3})}\)</span> 的复杂度内解决问题。</p>
+\end{align}</script><p>那么，如果我们能够快速计算出 $h$ 的前缀和，并且预处理 $S$ 的前 $n^{\frac 2 3}$ 项，就能够在 $\mathcal{O(n^{\frac 2 3})}$ 的复杂度内解决问题。</p>
 
     </div>
 

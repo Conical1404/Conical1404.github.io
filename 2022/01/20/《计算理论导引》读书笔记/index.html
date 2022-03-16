@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser. 正好下学期有形式语言自动机的课，希望寒假能读完吧。">
+  <meta name="description" content="这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser. 正好下学期有形式语言自动机的课，希望寒假能读完吧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《计算理论导引》读书笔记">
 <meta property="og:url" content="http://conical1404.github.io/2022/01/20/%E3%80%8A%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E5%AF%BC%E5%BC%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser. 正好下学期有形式语言自动机的课，希望寒假能读完吧。">
+<meta property="og:description" content="这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser. 正好下学期有形式语言自动机的课，希望寒假能读完吧。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-20T12:33:39.000Z">
 <meta property="article:modified_time" content="2022-02-20T08:45:28.204Z">
@@ -228,140 +228,125 @@
         <p>这本是 FR 推荐的 Introduction to the Theory of Computation，作者是 MIT 的 Michael Sipser.</p>
 <p>正好下学期有形式语言自动机的课，希望寒假能读完吧。</p>
 <span id="more"></span>
-<h2 id="引言">引言</h2>
-<h3 id="自动机可计算性复杂度">自动机，可计算性，复杂度</h3>
-<p>计算理论的三个传统的中心研究领域</p>
-<h3 id="数学理论和术语">数学理论和术语</h3>
-<p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
-<h4 id="集合">集合</h4>
-<p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
-<h4 id="序列与元组">序列与元组</h4>
-<p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 <span class="math inline">\(k\)</span> 个对象的元组称为 <span class="math inline">\(k\)</span> 元组（k-tuple），二元组又称有序对。</p>
-<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 <span class="math inline">\(A\)</span> 的幂集（power set）是由 <span class="math inline">\(A\)</span> 的全部子集构成的集合。</p>
-<p>对于集合 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，其笛卡尔积（Cartesian product），或称叉积（cross product）记作： <span class="math display">\[
-A\times B=\{(x,y)|x\in A,y\in B\}
-\]</span></p>
-<h4 id="函数与关系">函数与关系</h4>
-<p>没什么好说的.jpg</p>
-<h4 id="图">图</h4>
-<p>也没什么好说的.jpg</p>
-<h4 id="串与语言">串与语言</h4>
-<p>字符串是计算机科学的地基。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><h3 id="自动机，可计算性，复杂度"><a href="#自动机，可计算性，复杂度" class="headerlink" title="自动机，可计算性，复杂度"></a>自动机，可计算性，复杂度</h3><p>计算理论的三个传统的中心研究领域</p>
+<h3 id="数学理论和术语"><a href="#数学理论和术语" class="headerlink" title="数学理论和术语"></a>数学理论和术语</h3><p>和所有数学学科一样，我们先讨论要使用到的基础的数学对象、工具和符号系统。</p>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>集合（set）是由若干单位对象构成的组。集合可能包含任意种类的对象，包括数字、符号甚至是其他集合。集合中的对象称作元素（elements）或成员（members）。二元集合又称无序对。</p>
+<h4 id="序列与元组"><a href="#序列与元组" class="headerlink" title="序列与元组"></a>序列与元组</h4><p>序列（sequence）是若干对象按某种顺序形成的列表。有限序列称为元组（tuple），包含 $k$ 个对象的元组称为 $k$ 元组（k-tuple），二元组又称有序对。</p>
+<p>序列和集合可以作为其他序列或集合中的元素。如幂集，集合 $A$ 的幂集（power set）是由 $A$ 的全部子集构成的集合。</p>
+<p>对于集合 $A$ 和 $B$，其笛卡尔积（Cartesian product），或称叉积（cross product）记作：</p>
+<script type="math/tex; mode=display">
+A\times B=\{(x,y)|x\in A,y\in B\}</script><h4 id="函数与关系"><a href="#函数与关系" class="headerlink" title="函数与关系"></a>函数与关系</h4><p>没什么好说的.jpg</p>
+<h4 id="图"><a href="#图" class="headerlink" title="图"></a>图</h4><p>也没什么好说的.jpg</p>
+<h4 id="串与语言"><a href="#串与语言" class="headerlink" title="串与语言"></a>串与语言</h4><p>字符串是计算机科学的地基。</p>
 <ul>
-<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 <span class="math inline">\(\Sigma\)</span> 和 <span class="math inline">\(\Gamma\)</span> 表示</li>
+<li>字母表（alphabet）：任意有限非空集合，通常用希腊字母 $\Sigma$ 和 $\Gamma$ 表示</li>
 <li>字符（symbol）：字母表中的元素，用打字机字体表示</li>
 <li>字母表上的串（a string over an alphabet）：一个有限字符序列</li>
-<li>串长：串所包含的字符数，记作 <span class="math inline">\(|\omega|\)</span></li>
-<li>空串：长度为 <span class="math inline">\(0\)</span> 的串，记作 <span class="math inline">\(\varepsilon\)</span></li>
-<li>串的反转（reverse）：记作 <span class="math inline">\(\omega^R\)</span></li>
-<li>子串（substring）：若 <span class="math inline">\(z\)</span> 在 <span class="math inline">\(\omega\)</span> 中连续出现，称 <span class="math inline">\(z\)</span> 为 <span class="math inline">\(\omega\)</span> 的子串</li>
-<li>连结（connotation）：串 <span class="math inline">\(x\)</span> 和串 <span class="math inline">\(y\)</span> 的连结记作 <span class="math inline">\(xy\)</span></li>
+<li>串长：串所包含的字符数，记作 $|\omega|$ </li>
+<li>空串：长度为 $0$ 的串，记作 $\varepsilon$</li>
+<li>串的反转（reverse）：记作 $\omega^R$</li>
+<li>子串（substring）：若 $z$ 在 $\omega$ 中连续出现，称 $z$ 为 $\omega$ 的子串</li>
+<li>连结（connotation）：串 $x$ 和串 $y$ 的连结记作 $xy$</li>
 <li>串的字典序（lexicographic order）：长度为第一关键字，字符为第二关键字</li>
-<li>前缀（profix）：对于串 <span class="math inline">\(x,y\)</span>，若存在串 <span class="math inline">\(z\)</span>，使得 <span class="math inline">\(xz=y\)</span>，则称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的前缀，若 <span class="math inline">\(x\neq y\)</span>，称 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(y\)</span> 的真前缀（proper prefix）</li>
+<li>前缀（profix）：对于串 $x,y$，若存在串 $z$，使得 $xz=y$，则称 $x$ 为 $y$ 的前缀，若 $x\neq y$，称 $x$ 为 $y$ 的真前缀（proper prefix）</li>
 <li>语言（language）：语言是串的集合</li>
 <li>前缀自由（prefix-free）：若一个语言的任意成员不是其他任意成员的真前缀，则称这个语言是前缀自由的</li>
 </ul>
-<h4 id="布尔逻辑">布尔逻辑</h4>
-<p>没什么好说的</p>
-<h3 id="定义-定理-证明">定义 定理 证明</h3>
-<p>定理与证明是数学的心与魂，定义则是数学的灵。</p>
+<h4 id="布尔逻辑"><a href="#布尔逻辑" class="headerlink" title="布尔逻辑"></a>布尔逻辑</h4><p>没什么好说的</p>
+<h3 id="定义-定理-证明"><a href="#定义-定理-证明" class="headerlink" title="定义 定理 证明"></a>定义 定理 证明</h3><p>定理与证明是数学的心与魂，定义则是数学的灵。</p>
 <p>定义描述了我们使用的对象和概念，定义必须是精确的。</p>
 <p>在定义了各种对象与概念后，我们通常要给出数学命题，命题同样必须是精确的。</p>
 <p>证明是一个证实一个命题为真的置信的逻辑推断。证明必须是绝对置信的。</p>
 <p>定理是证明为真的数学命题。通常我们对有特别的兴趣的命题使用这个名词。有时我们证明某些命题仅仅是因为它们可以辅助证明另一个更重要的命题，这些命题称作引理（lemmas）。有时一个定理或其证明能让我们容易地推断出另一些相关的命题为真，这些命题称为这个定理的推论（corollaries）。</p>
-<h2 id="正则语言">正则语言</h2>
-<h3 id="有穷自动机">有穷自动机</h3>
-<h4 id="有穷自动机的形式化定义">有穷自动机的形式化定义</h4>
-<ol type="1">
-<li>定义：<strong>有穷自动机</strong>（finite automaton）是一个 <span class="math inline">\(5\)</span> 元组 （<span class="math inline">\(Q,\Sigma,\delta,q_0,F\)</span>），其中：
-<ol type="1">
-<li><span class="math inline">\(Q\)</span> 是一个有穷集合，称为<strong>状态集</strong>（status）</li>
-<li><span class="math inline">\(\Sigma\)</span> 是一个有穷集合，称为<strong>字母表</strong>（alphabet）</li>
-<li><span class="math inline">\(\delta:Q\times \Sigma\to Q\)</span> 是<strong>转移函数</strong>（transition function）</li>
-<li><span class="math inline">\(q_0\in Q\)</span> 是<strong>起始状态</strong>（start state）</li>
-<li><span class="math inline">\(F\subseteq Q\)</span> 是<strong>接受状态集</strong>（set of accept states）</li>
-</ol></li>
-<li>若 <span class="math inline">\(A\)</span> 是机器 <span class="math inline">\(M\)</span> 接受的全部字符串集，则称 <span class="math inline">\(A\)</span> 是机器 <span class="math inline">\(M\)</span> 的语言，记作 <span class="math inline">\(L(M)=A\)</span>，又称 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span> 或 <span class="math inline">\(M\)</span> 接受 <span class="math inline">\(A\)</span></li>
+<h2 id="正则语言"><a href="#正则语言" class="headerlink" title="正则语言"></a>正则语言</h2><h3 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h3><h4 id="有穷自动机的形式化定义"><a href="#有穷自动机的形式化定义" class="headerlink" title="有穷自动机的形式化定义"></a>有穷自动机的形式化定义</h4><ol>
+<li>定义：<strong>有穷自动机</strong>（finite automaton）是一个 $5$ 元组 （$Q,\Sigma,\delta,q_0,F$），其中：<ol>
+<li>$Q$ 是一个有穷集合，称为<strong>状态集</strong>（status）</li>
+<li>$\Sigma$ 是一个有穷集合，称为<strong>字母表</strong>（alphabet）</li>
+<li>$\delta:Q\times \Sigma\to Q$ 是<strong>转移函数</strong>（transition function）</li>
+<li>$q_0\in Q$ 是<strong>起始状态</strong>（start state）</li>
+<li>$F\subseteq Q$ 是<strong>接受状态集</strong>（set of accept states）</li>
 </ol>
-<h4 id="计算的形式化定义">计算的形式化定义</h4>
-<ol type="1">
-<li><p>设 <span class="math inline">\(M=(Q,\Sigma,\delta,q_0,F)\)</span> 是一台有穷自动机，<span class="math inline">\(w=w_1w_2\cdots w_n\)</span> 是一个字符串并且其中任一 <span class="math inline">\(w_i\in \Sigma\)</span>，若存在 <span class="math inline">\(Q\)</span> 中的状态序列 <span class="math inline">\(r_0,r_1,\cdots,r_n\)</span>，满足：</p>
-<ol type="1">
-<li><p><span class="math inline">\(r_0=q_0\)</span></p></li>
-<li><p><span class="math inline">\(\delta(r_i,w_{i+1})=r_{i+1},i=0,\cdots,n-1\)</span></p></li>
-<li><p><span class="math inline">\(r_n\in F\)</span></p></li>
+</li>
+<li>若 $A$ 是机器 $M$ 接受的全部字符串集，则称 $A$ 是机器 $M$ 的语言，记作 $L(M)=A$，又称 $M$ 识别 $A$ 或 $M$ 接受 $A$</li>
 </ol>
-<p>则 <span class="math inline">\(M\)</span> 接受 <span class="math inline">\(w.\)</span></p></li>
-<li><p>若一个语言能被一台有穷自动机识别，则称它是<strong>正则语言</strong>（regular language）。</p></li>
+<h4 id="计算的形式化定义"><a href="#计算的形式化定义" class="headerlink" title="计算的形式化定义"></a>计算的形式化定义</h4><ol>
+<li><p>设 $M=(Q,\Sigma,\delta,q_0,F)$ 是一台有穷自动机，$w=w_1w_2\cdots w_n$ 是一个字符串并且其中任一 $w_i\in \Sigma$，若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_n$，满足：</p>
+<ol>
+<li><p>$r_0=q_0$</p>
+</li>
+<li><p>$\delta(r_i,w_{i+1})=r_{i+1},i=0,\cdots,n-1$</p>
+</li>
+<li><p>$r_n\in F$</p>
+</li>
 </ol>
-<h4 id="正则运算">正则运算</h4>
-<ol type="1">
-<li>设 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 是两个语言，定义正则运算（regular operation）如下：
+<p>则 $M$ 接受 $w.$</p>
+</li>
+<li><p>若一个语言能被一台有穷自动机识别，则称它是<strong>正则语言</strong>（regular language）。</p>
+</li>
+</ol>
+<h4 id="正则运算"><a href="#正则运算" class="headerlink" title="正则运算"></a>正则运算</h4><ol>
+<li><p>设 $A$ 和 $B$ 是两个语言，定义正则运算（regular operation）如下：</p>
 <ul>
-<li>并（union）：<span class="math inline">\(A\cup B = \{x|x\in A\or x\in B\}\)</span></li>
-<li>连接（concatenation）：<span class="math inline">\(A\circ B=\{xy|x\in A\and y\in B\}\)</span></li>
-<li>星号（star）：<span class="math inline">\(A^*=\{x_1x_2\cdots x_k|k\ge 0 \and \forall x_i\in A\}\)</span></li>
-</ul></li>
-<li><p>正则语言类在并运算下封闭</p>
-<p>证明：设 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 是任意正则语言，所证即 <span class="math inline">\(A\cup B\)</span> 是正则语言。不妨设 <span class="math inline">\(M_1=(Q_1,\Sigma,\delta_1,q_1,F_1)\)</span> 是识别 <span class="math inline">\(A\)</span> 的有穷自动机，<span class="math inline">\(M2=(Q_2,\Sigma,\delta_2,q_2,F_2)\)</span> 是识别 <span class="math inline">\(B\)</span> 的有穷自动机。考虑构造识别 <span class="math inline">\(A\cup B\)</span> 的有穷自动机 <span class="math inline">\(M=(Q,\Sigma,\delta,q_0,F)\)</span>，其中：</p>
-<ul>
-<li><span class="math inline">\(Q=Q_1\times Q_2\)</span></li>
-<li><span class="math inline">\(q_0=(q_1,q_2)\)</span></li>
-<li><span class="math inline">\(\delta((r_1,r_2),c)=(\delta_1(r_1,c),\delta_2(r_2,c))\)</span></li>
-<li><span class="math inline">\(F=(F_1\times Q_2)\cup (Q_1\times F_2)\)</span></li>
+<li>并（union）：$A\cup B = \{x|x\in A\or x\in B\}$</li>
+<li>连接（concatenation）：$A\circ B=\{xy|x\in A\and y\in B\}$</li>
+<li>星号（star）：$A^*=\{x_1x_2\cdots x_k|k\ge 0 \and \forall x_i\in A\}$</li>
 </ul>
-<p>显然，<span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span> 且 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(B\)</span>，因此 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\cup B\)</span>，得证。</p></li>
-<li><p>正则语言类在连接运算下封闭</p></li>
-<li><p>正则语言类在星号运算下封闭</p></li>
+</li>
+<li><p>正则语言类在并运算下封闭</p>
+<p>证明：设 $A$ 和 $B$ 是任意正则语言，所证即 $A\cup B$ 是正则语言。不妨设 $M_1=(Q_1,\Sigma,\delta_1,q_1,F_1)$ 是识别 $A$ 的有穷自动机，$M2=(Q_2,\Sigma,\delta_2,q_2,F_2)$ 是识别 $B$ 的有穷自动机。考虑构造识别 $A\cup B$ 的有穷自动机 $M=(Q,\Sigma,\delta,q_0,F)$，其中：</p>
+<ul>
+<li>$Q=Q_1\times Q_2$</li>
+<li>$q_0=(q_1,q_2)$</li>
+<li>$\delta((r_1,r_2),c)=(\delta_1(r_1,c),\delta_2(r_2,c))$</li>
+<li>$F=(F_1\times Q_2)\cup (Q_1\times F_2)$</li>
+</ul>
+<p>显然，$M$ 识别 $A$ 且 $M$ 识别 $B$，因此 $M$ 识别 $A\cup B$，得证。</p>
+</li>
+<li><p>正则语言类在连接运算下封闭</p>
+</li>
+<li><p>正则语言类在星号运算下封闭</p>
+</li>
 </ol>
 <p>为了对 3. 和 4. 进行形式化的证明，我们引入非确定性的新技术。</p>
-<h3 id="非确定性">非确定性</h3>
-<p>至此，我们对于计算的的讨论中，计算的每一步都按照唯一的方式跟在前一步的后面。当机器处于给定的状态并读入下一个输入符号时，我们可以唯一确定机器的下一个状态。这样的计算称为确定性计算（deterministic computtion）。</p>
+<h3 id="非确定性"><a href="#非确定性" class="headerlink" title="非确定性"></a>非确定性</h3><p>至此，我们对于计算的的讨论中，计算的每一步都按照唯一的方式跟在前一步的后面。当机器处于给定的状态并读入下一个输入符号时，我们可以唯一确定机器的下一个状态。这样的计算称为确定性计算（deterministic computtion）。</p>
 <p>非确定性（nondeterministic）是确定性的推广，在非确定性机器中，任何一个状态和输入符号下，下一个状态可能存在若干个选择。</p>
-<h4 id="非确定性有穷自动机形式化定义">非确定性有穷自动机形式化定义</h4>
-<p>非确定性有穷自动机（NFA）的形式化定义与确定性有穷自动机（DFA）的形式化定义类似，而区别在于转移函数的类型不同。</p>
-<p>这里我们引入幂集，对任意的集合 <span class="math inline">\(Q\)</span>，记 <span class="math inline">\(\mathcal P(Q)\)</span> 为 <span class="math inline">\(Q\)</span> 的所有子集组成的集合，称 <span class="math inline">\(\mathcal P(Q)\)</span> 是 <span class="math inline">\(Q\)</span> 的幂集（power set）。</p>
-<p>对任意的字母表 <span class="math inline">\(\Sigma\)</span>，记 <span class="math inline">\(\Sigma_\varepsilon=\Sigma\cup\{\varepsilon\}\)</span>，则 NFA 的转移函数形式化定义为：<span class="math inline">\(\delta:Q\times\Sigma_\varepsilon \to \mathcal P(Q)\)</span>，由此给出 NFA 的形式化定义：</p>
-<p>非确定性有穷自动机是一个 <span class="math inline">\(5\)</span> 元组 <span class="math inline">\((Q,\Sigma,\delta,q_0,F)\)</span>，，其中：</p>
+<h4 id="非确定性有穷自动机形式化定义"><a href="#非确定性有穷自动机形式化定义" class="headerlink" title="非确定性有穷自动机形式化定义"></a>非确定性有穷自动机形式化定义</h4><p>非确定性有穷自动机（NFA）的形式化定义与确定性有穷自动机（DFA）的形式化定义类似，而区别在于转移函数的类型不同。</p>
+<p>这里我们引入幂集，对任意的集合 $Q$，记 $\mathcal P(Q)$ 为 $Q$ 的所有子集组成的集合，称 $\mathcal P(Q)$ 是 $Q$ 的幂集（power set）。</p>
+<p>对任意的字母表 $\Sigma$，记 $\Sigma_\varepsilon=\Sigma\cup\{\varepsilon\}$，则 NFA 的转移函数形式化定义为：$\delta:Q\times\Sigma_\varepsilon \to \mathcal P(Q)$，由此给出 NFA 的形式化定义：</p>
+<p>非确定性有穷自动机是一个 $5$ 元组 $(Q,\Sigma,\delta,q_0,F)$，，其中：</p>
 <ul>
-<li><span class="math inline">\(Q\)</span> 是有穷的状态集</li>
-<li><span class="math inline">\(\Sigma\)</span> 是有穷的字母表</li>
-<li><span class="math inline">\(\delta:Q\times \Sigma_\varepsilon\to \mathcal P(Q)\)</span> 是转移函数</li>
-<li><span class="math inline">\(q_0\in Q\)</span> 是起始状态</li>
-<li><span class="math inline">\(F\subseteq Q\)</span> 是接受状态集</li>
+<li>$Q$ 是有穷的状态集</li>
+<li>$\Sigma$ 是有穷的字母表</li>
+<li>$\delta:Q\times \Sigma_\varepsilon\to \mathcal P(Q)$ 是转移函数</li>
+<li>$q_0\in Q$ 是起始状态</li>
+<li>$F\subseteq Q$ 是接受状态集</li>
 </ul>
-<h4 id="nfa-与-dfa-的等价性">NFA 与 DFA 的等价性</h4>
-<p>NFA 的结构看起来比 DFA 要复杂，直观上看，NFA 的能力似乎比 DFA 要强。然而事实上，确定性和非确定性有穷自动机识别相同的语言类。若两台机器识别同样的语言，则称它们是等价的。</p>
+<h4 id="NFA-与-DFA-的等价性"><a href="#NFA-与-DFA-的等价性" class="headerlink" title="NFA 与 DFA 的等价性"></a>NFA 与 DFA 的等价性</h4><p>NFA 的结构看起来比 DFA 要复杂，直观上看，NFA 的能力似乎比 DFA 要强。然而事实上，确定性和非确定性有穷自动机识别相同的语言类。若两台机器识别同样的语言，则称它们是等价的。</p>
 <p>定理：每一台非确定性有穷自动机都等价于某一台确定性有穷自动机。</p>
 <p>证明思路：设一个语言被一台 NFA 识别，则要证明存在一台 DFA 也识别这个语言。考虑如何将 NFA 转化为模拟它的 DFA。</p>
-<p>设 <span class="math inline">\(N=(Q,\Sigma,\delta,q_0,F)\)</span> 是识别语言 <span class="math inline">\(A\)</span> 的 NFA，要构造一台 DFA <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span>。方便起见，先不考虑 <span class="math inline">\(\varepsilon\)</span> 转移。</p>
-<p>构造一台识别语言 <span class="math inline">\(A\)</span> 的 DFA <span class="math inline">\(M=(Q&#39;,\Sigma,\delta&#39;,q_0&#39;,F&#39;)\)</span>，其中：</p>
+<p>设 $N=(Q,\Sigma,\delta,q_0,F)$ 是识别语言 $A$ 的 NFA，要构造一台 DFA $M$ 识别 $A$。方便起见，先不考虑 $\varepsilon$ 转移。</p>
+<p>构造一台识别语言 $A$ 的 DFA $M=(Q’,\Sigma,\delta’,q_0’,F’)$，其中：</p>
 <ul>
-<li><span class="math inline">\(Q&#39;=\mathcal P(Q)\)</span></li>
-<li><span class="math inline">\(\delta&#39;(R,a)=\bigcup\limits_{r\in R}\delta(r,a)\)</span></li>
-<li><span class="math inline">\(q_0&#39;=\{q_0\}\)</span></li>
-<li><span class="math inline">\(F&#39;=\{R\in Q&#39;|\exist r\in F,r\in R\}\)</span></li>
+<li>$Q’=\mathcal P(Q)$</li>
+<li>$\delta’(R,a)=\bigcup\limits_{r\in R}\delta(r,a)$</li>
+<li>$q_0’=\{q_0\}$</li>
+<li>$F’=\{R\in Q’|\exist r\in F,r\in R\}$</li>
 </ul>
-<p>易证 <span class="math inline">\(M\)</span> 识别 <span class="math inline">\(A\)</span>，接下来考虑 <span class="math inline">\(\varepsilon\)</span> 转移。令 <span class="math inline">\(E(R)\)</span> 表示从 <span class="math inline">\(R\)</span> 中的状态触发只经过 <span class="math inline">\(\varepsilon\)</span> 转移到达的状态集合，形式化地： <span class="math display">\[
-E(R)=\{q|从\ R\ 出发沿着\ 0\ 个或多个\ \varepsilon\ 转移可以到达\ q\}
-\]</span></p>
-<p>同时，修改转移函数： <span class="math display">\[
-\delta&#39;(R,a)=\bigcup_{r\in R} E(\delta(r,a))
-\]</span> 构造完毕。</p>
+<p>易证 $M$ 识别 $A$，接下来考虑 $\varepsilon$ 转移。令 $E(R)$ 表示从 $R$ 中的状态触发只经过 $\varepsilon$ 转移到达的状态集合，形式化地：</p>
+<script type="math/tex; mode=display">
+E(R)=\{q|从\ R\ 出发沿着\ 0\ 个或多个\ \varepsilon\ 转移可以到达\ q\}</script><p>同时，修改转移函数：</p>
+<script type="math/tex; mode=display">
+\delta'(R,a)=\bigcup_{r\in R} E(\delta(r,a))</script><p>构造完毕。</p>
 <p>由上面的证明我们得到了每一台 NFA 都能够被转换成一台与其等价的 DFA 的结论。由此，利用 NFA 可以给出另一种刻画正则语言的方式，即如下推论：</p>
 <p>一个语言是正则的，当且仅当有一台非确定性有穷自动机识别它。</p>
-<h4 id="正则运算的封闭性">正则运算的封闭性</h4>
-<p>引入 NFA 后，我们考虑对正则运算的封闭性做形式化的证明。</p>
-<ol type="1">
+<h4 id="正则运算的封闭性"><a href="#正则运算的封闭性" class="headerlink" title="正则运算的封闭性"></a>正则运算的封闭性</h4><p>引入 NFA 后，我们考虑对正则运算的封闭性做形式化的证明。</p>
+<ol>
 <li>正则语言类在并运算下封闭</li>
 <li>正则语言类在连接运算下封闭</li>
 <li>正则语言类在星号运算下封闭</li>
 </ol>
 <p>略，有空再补</p>
-<h3 id="正则表达式">正则表达式</h3>
-<h3 id="非正则语言">非正则语言</h3>
-<h2 id="上下文无关文法">上下文无关文法</h2>
-
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><h3 id="非正则语言"><a href="#非正则语言" class="headerlink" title="非正则语言"></a>非正则语言</h3><h2 id="上下文无关文法"><a href="#上下文无关文法" class="headerlink" title="上下文无关文法"></a>上下文无关文法</h2>
     </div>
 
     
@@ -441,7 +426,7 @@ E(R)=\{q|从\ R\ 出发沿着\ 0\ 个或多个\ \varepsilon\ 转移可以到达\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.1.</span> <span class="nav-text">自动机，可计算性，复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA%E5%92%8C%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">数学理论和术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%83%E7%BB%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">序列与元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8E%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">函数与关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">1.2.4.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E4%B8%8E%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.5.</span> <span class="nav-text">串与语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E9%80%BB%E8%BE%91"><span class="nav-number">1.2.6.</span> <span class="nav-text">布尔逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-%E5%AE%9A%E7%90%86-%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">定义 定理 证明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">正则语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">有穷自动机的形式化定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">计算的形式化定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%BF%90%E7%AE%97"><span class="nav-number">2.1.3.</span> <span class="nav-text">正则运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">非确定性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">非确定性有穷自动机形式化定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nfa-%E4%B8%8E-dfa-%E7%9A%84%E7%AD%89%E4%BB%B7%E6%80%A7"><span class="nav-number">2.2.2.</span> <span class="nav-text">NFA 与 DFA 的等价性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%BF%90%E7%AE%97%E7%9A%84%E5%B0%81%E9%97%AD%E6%80%A7"><span class="nav-number">2.2.3.</span> <span class="nav-text">正则运算的封闭性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80"><span class="nav-number">2.4.</span> <span class="nav-text">非正则语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">上下文无关文法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%8C%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%EF%BC%8C%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.1.</span> <span class="nav-text">自动机，可计算性，复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA%E5%92%8C%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">数学理论和术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%83%E7%BB%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">序列与元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8E%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">函数与关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">1.2.4.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E4%B8%8E%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.5.</span> <span class="nav-text">串与语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E9%80%BB%E8%BE%91"><span class="nav-number">1.2.6.</span> <span class="nav-text">布尔逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-%E5%AE%9A%E7%90%86-%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">定义 定理 证明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">正则语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">有穷自动机的形式化定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">计算的形式化定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%BF%90%E7%AE%97"><span class="nav-number">2.1.3.</span> <span class="nav-text">正则运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">非确定性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">非确定性有穷自动机形式化定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NFA-%E4%B8%8E-DFA-%E7%9A%84%E7%AD%89%E4%BB%B7%E6%80%A7"><span class="nav-number">2.2.2.</span> <span class="nav-text">NFA 与 DFA 的等价性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%BF%90%E7%AE%97%E7%9A%84%E5%B0%81%E9%97%AD%E6%80%A7"><span class="nav-number">2.2.3.</span> <span class="nav-text">正则运算的封闭性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80"><span class="nav-number">2.4.</span> <span class="nav-text">非正则语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">上下文无关文法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

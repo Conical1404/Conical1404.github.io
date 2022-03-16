@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="题意 数轴上初始时每个整点 \(x\) 有一个标号为 \(x\) 的球，第 \(a_1,a_2,\cdots,a_n\) 个位置上各有一个洞 每个时刻每个洞会打开，此时在洞位置上的球会掉落，随即洞口关闭，较大的球会向较小的方向一直移动以填补空位。 \(q\) 次询问，每次询问 \(t_i\) 个时刻后位置 \(x_i\) 上的球的编号。 \(n,q\le 10^5\) \(a_i,x_i">
+  <meta name="description" content="题意数轴上初始时每个整点 $x$ 有一个标号为 $x$ 的球，第 $a_1,a_2,\cdots,a_n$ 个位置上各有一个洞 每个时刻每个洞会打开，此时在洞位置上的球会掉落，随即洞口关闭，较大的球会向较小的方向一直移动以填补空位。 $q$ 次询问，每次询问 $t_i$ 个时刻后位置 $x_i$ 上的球的编号。 $n,q\le 10^5$ $a_i,x_i,k_i\le10^9$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF1060G简要题解">
 <meta property="og:url" content="http://conical1404.github.io/2019/07/02/CF1060G%E7%AE%80%E8%A6%81%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="题意 数轴上初始时每个整点 \(x\) 有一个标号为 \(x\) 的球，第 \(a_1,a_2,\cdots,a_n\) 个位置上各有一个洞 每个时刻每个洞会打开，此时在洞位置上的球会掉落，随即洞口关闭，较大的球会向较小的方向一直移动以填补空位。 \(q\) 次询问，每次询问 \(t_i\) 个时刻后位置 \(x_i\) 上的球的编号。 \(n,q\le 10^5\) \(a_i,x_i">
+<meta property="og:description" content="题意数轴上初始时每个整点 $x$ 有一个标号为 $x$ 的球，第 $a_1,a_2,\cdots,a_n$ 个位置上各有一个洞 每个时刻每个洞会打开，此时在洞位置上的球会掉落，随即洞口关闭，较大的球会向较小的方向一直移动以填补空位。 $q$ 次询问，每次询问 $t_i$ 个时刻后位置 $x_i$ 上的球的编号。 $n,q\le 10^5$ $a_i,x_i,k_i\le10^9$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-02T14:42:11.000Z">
 <meta property="article:modified_time" content="2019-07-02T15:28:58.007Z">
@@ -222,19 +222,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题意">题意</h2>
-<p>数轴上初始时每个整点 <span class="math inline">\(x\)</span> 有一个标号为 <span class="math inline">\(x\)</span> 的球，第 <span class="math inline">\(a_1,a_2,\cdots,a_n\)</span> 个位置上各有一个洞</p>
+        <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>数轴上初始时每个整点 $x$ 有一个标号为 $x$ 的球，第 $a_1,a_2,\cdots,a_n$ 个位置上各有一个洞</p>
 <p>每个时刻每个洞会打开，此时在洞位置上的球会掉落，随即洞口关闭，较大的球会向较小的方向一直移动以填补空位。</p>
-<p><span class="math inline">\(q\)</span> 次询问，每次询问 <span class="math inline">\(t_i\)</span> 个时刻后位置 <span class="math inline">\(x_i\)</span> 上的球的编号。</p>
-<p><span class="math inline">\(n,q\le 10^5\)</span></p>
-<p><span class="math inline">\(a_i,x_i,k_i\le10^9\)</span></p>
+<p>$q$ 次询问，每次询问 $t_i$ 个时刻后位置 $x_i$ 上的球的编号。</p>
+<p>$n,q\le 10^5$</p>
+<p>$a_i,x_i,k_i\le10^9$</p>
 <span id="more"></span>
-<h2 id="分析">分析</h2>
-<p>考虑无穷远处的连续 <span class="math inline">\(n\)</span> 个球，有一个结论是，这 <span class="math inline">\(n\)</span> 个球最终会落入不同的洞中。</p>
-<p>考虑证明，这个结论等价于这些球在移动过程中遇到每一个洞口会且仅会掉落一个球。归纳证明，若这些球跨过第 <span class="math inline">\(i\)</span> 个洞口时，恰剩 <span class="math inline">\(i\)</span> 个，此时每个时刻这些球会向前移动 <span class="math inline">\(i\)</span> 步，掉落一个球后，剩下球会前移到洞口前面。证毕。</p>
-<p>由这个结论，我们不难推得每个位置只会被这 <span class="math inline">\(n\)</span> 个球的 <span class="math inline">\(1\)</span> 个经过。</p>
-<p>这样，我们就可以对每个位置求出经过的球的编号以及经过时刻了，设位置 <span class="math inline">\(x_i\)</span> 对应的球的编号为 <span class="math inline">\(y_i\)</span>，经过的时间为 <span class="math inline">\(T_i\)</span>，那么 <span class="math inline">\(t_i\)</span> 时刻经过它的球即为 <span class="math inline">\(y_i\)</span> 在 <span class="math inline">\(T_i-t_i\)</span> 时刻时的位置。离线下来用线段树维护就好了。</p>
-<p>复杂度 <span class="math inline">\(\mathcal O((n+q)\log n).\)</span></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>考虑无穷远处的连续 $n$ 个球，有一个结论是，这 $n$ 个球最终会落入不同的洞中。</p>
+<p>考虑证明，这个结论等价于这些球在移动过程中遇到每一个洞口会且仅会掉落一个球。归纳证明，若这些球跨过第 $i$ 个洞口时，恰剩 $i$ 个，此时每个时刻这些球会向前移动 $i$ 步，掉落一个球后，剩下球会前移到洞口前面。证毕。</p>
+<p>由这个结论，我们不难推得每个位置只会被这 $n$ 个球的 $1$ 个经过。</p>
+<p>这样，我们就可以对每个位置求出经过的球的编号以及经过时刻了，设位置 $x_i$ 对应的球的编号为 $y_i$，经过的时间为 $T_i$，那么 $t_i$ 时刻经过它的球即为 $y_i$ 在 $T_i-t_i$ 时刻时的位置。离线下来用线段树维护就好了。</p>
+<p>复杂度 $\mathcal O((n+q)\log n).$</p>
 
     </div>
 

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="求多项式 \(A(x)\) 和 \(B(x)\) 在模任意模数 \(P\) 意义下的卷积。 \(n\le 10^5,P\le10^9+9\)">
+  <meta name="description" content="求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="任意模数NTT">
 <meta property="og:url" content="http://conical1404.github.io/2019/05/30/%E4%BB%BB%E6%84%8F%E6%A8%A1%E6%95%B0NTT/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="求多项式 \(A(x)\) 和 \(B(x)\) 在模任意模数 \(P\) 意义下的卷积。 \(n\le 10^5,P\le10^9+9\)">
+<meta property="og:description" content="求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。 $n\le 10^5,P\le10^9+9$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-30T14:24:23.000Z">
 <meta property="article:modified_time" content="2019-05-31T16:00:09.897Z">
@@ -226,66 +226,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>求多项式 <span class="math inline">\(A(x)\)</span> 和 <span class="math inline">\(B(x)\)</span> 在模任意模数 <span class="math inline">\(P\)</span> 意义下的卷积。</p>
-<p><span class="math inline">\(n\le 10^5,P\le10^9+9\)</span></p>
+        <p>求多项式 $A(x)$ 和 $B(x)$ 在模任意模数 $P$ 意义下的卷积。</p>
+<p>$n\le 10^5,P\le10^9+9$</p>
 <span id="more"></span>
-<h2 id="解法一三模数ntt">解法一：三模数NTT</h2>
-<p>考虑选取三个能够进行 <code>NTT</code> 的并且积 <span class="math inline">\(&gt;10^{23}\)</span> 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程： <span class="math display">\[
+<h2 id="解法一：三模数NTT"><a href="#解法一：三模数NTT" class="headerlink" title="解法一：三模数NTT"></a>解法一：三模数NTT</h2><p>考虑选取三个能够进行 <code>NTT</code> 的并且积 $&gt;10^{23}$ 的模数进行 <code>NTT</code>。这样的话，我们就得到了三个同余方程：</p>
+<script type="math/tex; mode=display">
 \begin{cases}
 ans\equiv a_1\bmod m_1\\
 ans\equiv a_2\bmod m_2\\
 ans\equiv a_3 \bmod m_3
-\end{cases}
-\]</span> 如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程： <span class="math display">\[
+\end{cases}</script><p>如果能够利用 <code>CRT</code> 进行合并，就能够解决问题。但注意到最终结果会超过 <code>int64</code>，不能直接合并，我们考虑先合并前两个方程：</p>
+<script type="math/tex; mode=display">
 \begin{cases}
 ans\equiv A\bmod M\\
 ans\equiv a_3\bmod m_3
-\end{cases}
-\]</span> 将合并后的方程写成不定方程代入第三个方程： <span class="math display">\[
-kM+A\equiv a_3\bmod m_3
-\]</span> 由于 <span class="math inline">\(m_3\)</span> 是质数，<span class="math inline">\(M\)</span> 一定存在逆元： <span class="math display">\[
-k\equiv(a_3-A)\cdot M^{-1}\bmod m_3
-\]</span> 解出 <span class="math inline">\(k\)</span> 之后在 <span class="math inline">\(\bmod P\)</span> 意义下计算 <span class="math inline">\(Ans\)</span> 即可。</p>
-<h2 id="解法二拆系数fft">解法二：拆系数FFT</h2>
-<p>考虑将多项式系数拆分成 <span class="math inline">\(kM+b\)</span> 的形式，观察卷积后的形式： <span class="math display">\[
-(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2
-\]</span> 显然，当 <span class="math inline">\(M\)</span> 取 <span class="math inline">\(\sqrt P\)</span> 时，每一项系数不超过 <span class="math inline">\(P\)</span>。将两个多项式拆开卷积，只需 <span class="math inline">\(7\)</span> 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
-<h3 id="dft与idft合并">DFT与IDFT合并</h3>
-<p>考虑对长度为 <span class="math inline">\(n\)</span> 的实多项式 <span class="math inline">\(A(x),B(x)\)</span> 进行 <code>dft</code>，假设 <span class="math inline">\(n\)</span> 已调整成 <span class="math inline">\(2\)</span> 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
-<p>我们定义： <span class="math display">\[
+\end{cases}</script><p>将合并后的方程写成不定方程代入第三个方程：</p>
+<script type="math/tex; mode=display">
+kM+A\equiv a_3\bmod m_3</script><p>由于 $m_3$ 是质数，$M$ 一定存在逆元：</p>
+<script type="math/tex; mode=display">
+k\equiv(a_3-A)\cdot M^{-1}\bmod m_3</script><p>解出 $k$ 之后在 $\bmod P$ 意义下计算 $Ans$ 即可。</p>
+<h2 id="解法二：拆系数FFT"><a href="#解法二：拆系数FFT" class="headerlink" title="解法二：拆系数FFT"></a>解法二：拆系数FFT</h2><p>考虑将多项式系数拆分成 $kM+b$ 的形式，观察卷积后的形式：</p>
+<script type="math/tex; mode=display">
+(k_1M+b_1)(k_2M+b_2)=k_1k_2M^2+(k1+k2)M+b_1b_2</script><p>显然，当 $M$ 取 $\sqrt P$ 时，每一项系数不超过 $P$。将两个多项式拆开卷积，只需 $7$ 次 <code>DFT</code> 即可。但考虑到精度问题以及常数，实际效率并不比三模数 <code>NTT</code> 优秀。因此，我们需要进一步优化。</p>
+<h3 id="DFT与IDFT合并"><a href="#DFT与IDFT合并" class="headerlink" title="DFT与IDFT合并"></a>DFT与IDFT合并</h3><p>考虑对长度为 $n$ 的实多项式 $A(x),B(x)$ 进行 <code>dft</code>，假设 $n$ 已调整成 $2$ 的次幂。朴素的做法需要两次 <code>DFT</code>。</p>
+<p>我们定义：</p>
+<script type="math/tex; mode=display">
 P(x)=A(x)+iB(x)\\
-Q(x)=A(x)-iB(x)
-\]</span></p>
-<p>令 <span class="math inline">\(F_p[k],F_q[k]\)</span> 分别表示 <span class="math inline">\(P,Q\)</span> 做 <code>dft</code> 后的第 <span class="math inline">\(k\)</span> 项，即：<span class="math inline">\(F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)\)</span>，其中 <span class="math inline">\(\omega\)</span> 是 <span class="math inline">\(n\)</span> 次单位根。</p>
-<p>为了方便表示，下文中用 <span class="math inline">\(X\)</span> 代替 <span class="math inline">\(\frac {2\pi jk}{n}\)</span> ，<span class="math inline">\({\rm conj}(x)\)</span> 表示 <span class="math inline">\(x\)</span> 的共轭复数。 <span class="math display">\[
+Q(x)=A(x)-iB(x)</script><p>令 $F_p[k],F_q[k]$ 分别表示 $P,Q$  做 <code>dft</code> 后的第 $k$ 项，即：$F_p[k]=P(\omega^k),F_q[k]=Q(\omega^k)$，其中 $\omega$ 是 $n$ 次单位根。</p>
+<p>为了方便表示，下文中用 $X$ 代替 $\frac {2\pi jk}{n}$ ，${\rm conj}(x)$ 表示 $x$ 的共轭复数。</p>
+<script type="math/tex; mode=display">
 \begin{align}
-F_p[k]&amp;=A(\omega_n^k)+iB(\omega_n^k)\\
-&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
-&amp;=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+F_p[k]&=A(\omega_n^k)+iB(\omega_n^k)\\
+&=\sum_{j=0}^{n-1}A_j\omega_n^{jk}+iB_j\omega_n^{jk}\\
+&=\sum_{j=1}^{n-1}(A_j+iB_j)(\cos X+i\sin X)
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
-&amp;=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
-&amp;=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
-&amp;=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
-&amp;={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
-&amp;={\rm conj}(F_p[n - k])
-\end{align}
-\]</span></p>
-<p>于是仅用一次 <code>DFT</code> 就可计算出 <span class="math inline">\(F_p,F_q\)</span>。令 <span class="math inline">\({\rm DFT}(P[k])\)</span> 表示对 <span class="math inline">\(P(x)\)</span> 进行 <code>DFT</code> 后的第 <span class="math inline">\(k\)</span> 项，就有： <span class="math display">\[
+F_q[k]&=A(\omega_n^k)-iB(\omega_n^k)\\
+&=\sum_{j=0}^{n-1}A_j\omega_n^{jk}-iB_j\omega_n^{jk}\\
+&=\sum_{j=0}^{n-1}(A_j-iB_j)(\cos X+i\sin X)\\
+&=\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) + i(A_j\sin X - B_j\cos X)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos X+B_j\sin X) - i(A_j\sin X - B_j\cos X)\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j\cos (-X)-B_j\sin (-X)) + i(A_j\sin (-X) + B_j\cos (-X)\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)(\cos(-X)+i\sin(-X))\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{-jk}\right)\\
+&={\rm conj}\left(\sum_{j=0}^{n-1}(A_j+iB_j)\omega_n^{(n-k)j}\right)\\
+&={\rm conj}(F_p[n - k])
+\end{align}</script><p>于是仅用一次 <code>DFT</code> 就可计算出 $F_p,F_q$。令 ${\rm DFT}(P[k])$ 表示对 $P(x)$ 进行 <code>DFT</code> 后的第 $k$ 项，就有：</p>
+<script type="math/tex; mode=display">
 \begin{align}
-{\rm DFT}(A[k])&amp;=\frac{F_p[k]+F_q[k]}{2}\\
-{\rm DFT}(B[k])&amp;=i\frac{F_p[k]-F_q[k]}{2}\\
-\end{align}
-\]</span> 那么就将两次 <code>DFT</code> 合并为了一次。</p>
-<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 <span class="math inline">\(P,Q\)</span> ，再 <code>dft</code> 出 <span class="math inline">\(F_p,F_q\)</span>，并根据上式计算出 <span class="math inline">\({\rm DFT}(A)\)</span> 与 <span class="math inline">\({\rm DFT}(B)\)</span>。而我们现在已知 <span class="math inline">\({\rm DFT}(A)\)</span> 和 <span class="math inline">\({\rm DFT}(B)\)</span>，根据上式亦可逆推出 <span class="math inline">\(F_p,F_q\)</span>，<code>IDFT</code> 得到 <span class="math inline">\(P,Q\)</span>，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
-<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 <span class="math inline">\(7\)</span> 次 <code>dft</code>，利用上述优化，即可优化到 <span class="math inline">\(4\)</span> 次 <code>dft</code>，常数大大减小。</p>
+{\rm DFT}(A[k])&=\frac{F_p[k]+F_q[k]}{2}\\
+{\rm DFT}(B[k])&=i\frac{F_p[k]-F_q[k]}{2}\\
+\end{align}</script><p>那么就将两次 <code>DFT</code> 合并为了一次。</p>
+<p>接下来考虑 <code>IDFT</code>，由于 <code>DFT</code> 与 <code>IDFT</code> 互为逆运算，并且最终的结果一定是实数，我们不妨倒着考虑。我们对最终的结果进行上面的算法，得到 $P,Q$ ，再 <code>dft</code> 出 $F_p,F_q$，并根据上式计算出 ${\rm DFT}(A)$ 与 ${\rm DFT}(B)$。而我们现在已知 ${\rm DFT}(A)$ 和 ${\rm DFT}(B)$，根据上式亦可逆推出 $F_p,F_q$，<code>IDFT</code> 得到 $P,Q$，分别直接取实部和虚部就是我们所求的最后结果。也可以将两次 <code>IDFT</code> 合并为一次。</p>
+<p>回到最初的问题，拆系数 <code>FFT</code> 的朴素做法需要 $7$ 次 <code>dft</code>，利用上述优化，即可优化到 $4$ 次 <code>dft</code>，常数大大减小。</p>
 
     </div>
 
@@ -367,7 +360,7 @@ F_q[k]&amp;=A(\omega_n^k)-iB(\omega_n^k)\\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80%E4%B8%89%E6%A8%A1%E6%95%B0ntt"><span class="nav-number">1.</span> <span class="nav-text">解法一：三模数NTT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C%E6%8B%86%E7%B3%BB%E6%95%B0fft"><span class="nav-number">2.</span> <span class="nav-text">解法二：拆系数FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dft%E4%B8%8Eidft%E5%90%88%E5%B9%B6"><span class="nav-number">2.1.</span> <span class="nav-text">DFT与IDFT合并</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80%EF%BC%9A%E4%B8%89%E6%A8%A1%E6%95%B0NTT"><span class="nav-number">1.</span> <span class="nav-text">解法一：三模数NTT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%8B%86%E7%B3%BB%E6%95%B0FFT"><span class="nav-number">2.</span> <span class="nav-text">解法二：拆系数FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFT%E4%B8%8EIDFT%E5%90%88%E5%B9%B6"><span class="nav-number">2.1.</span> <span class="nav-text">DFT与IDFT合并</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

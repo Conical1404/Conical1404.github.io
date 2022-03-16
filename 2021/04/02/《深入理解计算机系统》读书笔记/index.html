@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"conical1404.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言 寒假入手了 CSAPP，不过因为太鸽了一直没有读。 这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。">
+  <meta name="description" content="前言寒假入手了 CSAPP，不过因为太鸽了一直没有读。 这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解计算机系统》读书笔记">
 <meta property="og:url" content="http://conical1404.github.io/2021/04/02/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="陌上">
-<meta property="og:description" content="前言 寒假入手了 CSAPP，不过因为太鸽了一直没有读。 这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。">
+<meta property="og:description" content="前言寒假入手了 CSAPP，不过因为太鸽了一直没有读。 这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20210806095921157.png">
 <meta property="og:image" content="c:/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20210806102000711.png">
@@ -231,308 +231,250 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言">前言</h2>
-<p>寒假入手了 CSAPP，不过因为太鸽了一直没有读。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>寒假入手了 CSAPP，不过因为太鸽了一直没有读。</p>
 <p>这段时间有一点颓废，就在这里开个新坑吧，希望自己不会鸽掉。</p>
 <span id="more"></span>
-<h2 id="第1章-计算机系统漫游">第1章 计算机系统漫游</h2>
-<h3 id="信息就是位上下文">1.1 信息就是位+上下文</h3>
-<ul>
+<h2 id="第1章-计算机系统漫游"><a href="#第1章-计算机系统漫游" class="headerlink" title="第1章 计算机系统漫游"></a>第1章 计算机系统漫游</h2><h3 id="1-1-信息就是位-上下文"><a href="#1-1-信息就是位-上下文" class="headerlink" title="1.1 信息就是位+上下文"></a>1.1 信息就是位+上下文</h3><ul>
 <li>系统中所有的信息都是用一串比特表示的</li>
 <li>区分不同数据对象的唯一方法是我们读到这些数据对象时的上下文</li>
 </ul>
-<h3 id="程序被其他程序翻译成不同的格式">1.2 程序被其他程序翻译成不同的格式</h3>
-<ul>
-<li>高级程序的翻译过程：四个阶段
-<ul>
+<h3 id="1-2-程序被其他程序翻译成不同的格式"><a href="#1-2-程序被其他程序翻译成不同的格式" class="headerlink" title="1.2 程序被其他程序翻译成不同的格式"></a>1.2 程序被其他程序翻译成不同的格式</h3><ul>
+<li>高级程序的翻译过程：四个阶段<ul>
 <li>预处理阶段：预处理器（cpp）读取 <code>hello.c</code> 中的系统头文件，直接插入程序文本，得到 <code>hello.i</code></li>
-<li>编译阶段：编译器（ccl）将 <code>hello.i</code> 翻译成包含汇编语言程序的文本文件 <code>hello.s</code>
-<ul>
+<li>编译阶段：编译器（ccl）将 <code>hello.i</code> 翻译成包含汇编语言程序的文本文件 <code>hello.s</code><ul>
 <li>汇编语言以文本格式描述低级机器语言指令</li>
-</ul></li>
-<li>汇编阶段：汇编器（as）将程序翻译成机器语言指令，打包成可重定位目标程序的格式，保存在 <code>hello.o</code> 中
-<ul>
-<li><code>hello.o</code> 是一个二进制文件</li>
-</ul></li>
-<li>链接阶段：链接器（ld）将程序调用的函数所在的预编译文件合并到目标程序，得到可执行文件</li>
-</ul></li>
 </ul>
-<h3 id="了解编译系统如何工作是大有益处的">1.3 了解编译系统如何工作是大有益处的</h3>
-<ul>
+</li>
+<li>汇编阶段：汇编器（as）将程序翻译成机器语言指令，打包成可重定位目标程序的格式，保存在 <code>hello.o</code> 中<ul>
+<li><code>hello.o</code> 是一个二进制文件</li>
+</ul>
+</li>
+<li>链接阶段：链接器（ld）将程序调用的函数所在的预编译文件合并到目标程序，得到可执行文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-了解编译系统如何工作是大有益处的"><a href="#1-3-了解编译系统如何工作是大有益处的" class="headerlink" title="1.3 了解编译系统如何工作是大有益处的"></a>1.3 了解编译系统如何工作是大有益处的</h3><ul>
 <li>优化程序性能</li>
 <li>理解链接时出现的错误</li>
 <li>避免安全漏洞</li>
 </ul>
-<h3 id="处理器读并解释储存在内存中的指令">1.4 处理器读并解释储存在内存中的指令</h3>
-<h4 id="系统的硬件组成">1.4.1 系统的硬件组成</h4>
-<ul>
-<li>总线
-<ul>
+<h3 id="1-4-处理器读并解释储存在内存中的指令"><a href="#1-4-处理器读并解释储存在内存中的指令" class="headerlink" title="1.4 处理器读并解释储存在内存中的指令"></a>1.4 处理器读并解释储存在内存中的指令</h3><h4 id="1-4-1-系统的硬件组成"><a href="#1-4-1-系统的硬件组成" class="headerlink" title="1.4.1 系统的硬件组成"></a>1.4.1 系统的硬件组成</h4><ul>
+<li>总线<ul>
 <li>贯穿整个系统的一组电子管道</li>
 <li>传送定长的字节块</li>
-</ul></li>
-<li>I/O 设备
-<ul>
+</ul>
+</li>
+<li>I/O 设备<ul>
 <li>每个 I/O 设备都通过一个<strong>控制器</strong>或<strong>适配器</strong>与 I/O 总线相连</li>
-<li>控制器与适配器区别：封装方式
-<ul>
+<li>控制器与适配器区别：封装方式<ul>
 <li>控制器：设备本身或系统的主印制电路板</li>
 <li>适配器：插在主板插槽上的卡</li>
-</ul></li>
-</ul></li>
-<li>主存
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>主存<ul>
 <li>临时存储设备，在处理器执行程序时用来存放程序和程序处理的数据</li>
 <li>物理上，由一组<strong>动态随机存取存储器</strong> （DRAM）芯片组成</li>
 <li>逻辑上，存储器是一个线性的字节数组，每个字节有其唯一的地址</li>
-</ul></li>
-<li>处理器
-<ul>
+</ul>
+</li>
+<li>处理器<ul>
 <li>中央处理单元（CPU）简称<strong>处理器</strong>，解释（或执行）存储在主存中指令</li>
 <li>处理器的核心：大小为一个字的存储设备（或寄存器），称为<strong>程序计数器</strong>（PC）</li>
 <li>任何时刻 PC 都指向主存中的某条机器语言指令</li>
 <li>处理器工作机制：不断执行 PC 指向的指令，再更新 PC 使其指向下一条指令</li>
-</ul></li>
 </ul>
-<h4 id="hello-程序的运行">1.4.2 hello 程序的运行</h4>
-<ul>
+</li>
+</ul>
+<h4 id="1-4-2-hello-程序的运行"><a href="#1-4-2-hello-程序的运行" class="headerlink" title="1.4.2 hello 程序的运行"></a>1.4.2 hello 程序的运行</h4><ul>
 <li>用户在终端输入 <code>./hello</code> 后，shell 程序将字符逐一读入寄存器，再将它放入内存</li>
 <li>敲下回车后，命令输入完成，shell 执行一系列指令加载可执行文件 <code>hello</code> ，将目标文件的代码和数据从磁盘复制到主存</li>
 <li>随后处理器开始执行 <code>hello</code> 的 <code>main</code> 程序中的机器语言指令</li>
 </ul>
-<h3 id="高速缓存">1.5 高速缓存</h3>
-<ul>
+<h3 id="1-5-高速缓存"><a href="#1-5-高速缓存" class="headerlink" title="1.5 高速缓存"></a>1.5 高速缓存</h3><ul>
 <li>较大的存储设备运行较慢，而高速设备的造价远高于同类低速设备</li>
 <li>处理器从寄存器中读取文件速度远快于主存</li>
 <li>高速缓存存储器用于存放处理器近期可能需要的信息，使程序性能得到显著提升</li>
 </ul>
-<h3 id="存储设备层级结构">1.6 存储设备层级结构</h3>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806095921157.png" alt="image-20210806095921157" /><figcaption>image-20210806095921157</figcaption>
-</figure>
-<h3 id="操作系统管理硬件">1.7 操作系统管理硬件</h3>
-<h4 id="进程">1.7.1 进程</h4>
-<ul>
+<h3 id="1-6-存储设备层级结构"><a href="#1-6-存储设备层级结构" class="headerlink" title="1.6 存储设备层级结构"></a>1.6 存储设备层级结构</h3><p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806095921157.png" alt="image-20210806095921157"></p>
+<h3 id="1-7-操作系统管理硬件"><a href="#1-7-操作系统管理硬件" class="headerlink" title="1.7 操作系统管理硬件"></a>1.7 操作系统管理硬件</h3><h4 id="1-7-1-进程"><a href="#1-7-1-进程" class="headerlink" title="1.7.1 进程"></a>1.7.1 进程</h4><ul>
 <li>进程是操作系统对一个正在运行的程序的一种抽象</li>
 <li>一个系统上可以同时运行多个进程，而每个进程表现为独占地使用硬件</li>
 <li>一个 CPU <strong>看上去</strong>在并发执行多个进程，实际是通过进程的切换实现的，这种交错执行的机制称为上下文切换</li>
 </ul>
-<h4 id="线程">1.7.2 线程</h4>
-<ul>
+<h4 id="1-7-2-线程"><a href="#1-7-2-线程" class="headerlink" title="1.7.2 线程"></a>1.7.2 线程</h4><ul>
 <li>一个进程由多个称为线程的执行单元组成</li>
 <li>每个线程都运行在进程的上下文中，共享同样的代码与全局数据</li>
 </ul>
-<h4 id="虚拟内存">1.7.3 虚拟内存</h4>
-<ul>
-<li><p>虚拟内存是一个抽象概念，为 每个进程提供了独占使用主存的假象</p></li>
+<h4 id="1-7-3-虚拟内存"><a href="#1-7-3-虚拟内存" class="headerlink" title="1.7.3 虚拟内存"></a>1.7.3 虚拟内存</h4><ul>
+<li><p>虚拟内存是一个抽象概念，为 每个进程提供了独占使用主存的假象</p>
+</li>
 <li><p>每个进程看到的内存都是一致的，称为虚拟地址空间</p>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806102000711.png" alt="image-20210806102000711" /><figcaption>image-20210806102000711</figcaption>
-</figure></li>
+<p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210806102000711.png" alt="image-20210806102000711"></p>
+</li>
 </ul>
-<h4 id="文件">1.7.4 文件</h4>
-<ul>
+<h4 id="1-7-4-文件"><a href="#1-7-4-文件" class="headerlink" title="1.7.4 文件"></a>1.7.4 文件</h4><ul>
 <li>文件即字节序列</li>
 <li>所有 I/O 设备都可看作文件</li>
 <li>文件的概念向应用提供了一个统一的视图来看待各种 I/O 设备</li>
 </ul>
-<h3 id="网络">1.8 网络</h3>
-<p>略</p>
-<h3 id="几个重要概念">1.9 几个重要概念</h3>
-<h4 id="amadahl-定律">1.9.1 Amadahl 定律</h4>
-<p><span class="math display">\[
-S=\frac{1}{(1-a)+a/k}
-\]</span></p>
-<h4 id="并发和并行">1.9.2 并发和并行</h4>
-<ul>
+<h3 id="1-8-网络"><a href="#1-8-网络" class="headerlink" title="1.8 网络"></a>1.8 网络</h3><p>略</p>
+<h3 id="1-9-几个重要概念"><a href="#1-9-几个重要概念" class="headerlink" title="1.9 几个重要概念"></a>1.9 几个重要概念</h3><h4 id="1-9-1-Amadahl-定律"><a href="#1-9-1-Amadahl-定律" class="headerlink" title="1.9.1 Amadahl 定律"></a>1.9.1 Amadahl 定律</h4><script type="math/tex; mode=display">
+S=\frac{1}{(1-a)+a/k}</script><h4 id="1-9-2-并发和并行"><a href="#1-9-2-并发和并行" class="headerlink" title="1.9.2 并发和并行"></a>1.9.2 并发和并行</h4><ul>
 <li>超线程并发</li>
 <li>指令级并行</li>
 <li>单指令、多数据并行</li>
 </ul>
-<h4 id="抽象">1.9.3 抽象</h4>
-<h2 id="第二章-信息的表示和处理">第二章 信息的表示和处理</h2>
-<h3 id="信息存储">2.1 信息存储</h3>
-<h4 id="十六进制表示法">2.1.1 十六进制表示法</h4>
-<h4 id="字数据大小">2.1.2 字数据大小</h4>
-<ul>
-<li>字长（<span class="math inline">\(\text{word size}\)</span>）：指明指针数据的标称大小（<span class="math inline">\(\text{nominal size}\)</span>），决定虚拟地址空间的最大大小。</li>
-<li>对于字长为 <span class="math inline">\(\omega\)</span> 位的机器，其虚拟地址范围为 <span class="math inline">\(0\sim2^\omega-1\)</span></li>
-<li><span class="math inline">\(32\)</span> 位字长机器虚拟地址空间为 <span class="math inline">\(4\texttt{GB}\)</span>，<span class="math inline">\(64\)</span> 位字长虚拟地址空间为 <span class="math inline">\(14\texttt{EB}\)</span></li>
-<li>大多数 <span class="math inline">\(64\)</span> 位机器可以运行 <span class="math inline">\(32\)</span> 位机器编译的程序，是一种<strong>向后兼容</strong></li>
-<li><p>部分基本 C 数据类型分配的字节数会受到编译机器的字长影响 <img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210917134111038.png" alt="image-20210917134111038" /></p></li>
-<li><p><span class="math inline">\(\text{ISO C}99\)</span> 标准引入了 <code>int32_t</code> 与 <code>int64_t</code></p></li>
+<h4 id="1-9-3-抽象"><a href="#1-9-3-抽象" class="headerlink" title="1.9.3 抽象"></a>1.9.3 抽象</h4><h2 id="第二章-信息的表示和处理"><a href="#第二章-信息的表示和处理" class="headerlink" title="第二章 信息的表示和处理"></a>第二章 信息的表示和处理</h2><h3 id="2-1-信息存储"><a href="#2-1-信息存储" class="headerlink" title="2.1 信息存储"></a>2.1 信息存储</h3><h4 id="2-1-1-十六进制表示法"><a href="#2-1-1-十六进制表示法" class="headerlink" title="2.1.1 十六进制表示法"></a>2.1.1 十六进制表示法</h4><h4 id="2-1-2-字数据大小"><a href="#2-1-2-字数据大小" class="headerlink" title="2.1.2 字数据大小"></a>2.1.2 字数据大小</h4><ul>
+<li>字长（$\text{word size}$）：指明指针数据的标称大小（$\text{nominal size}$），决定虚拟地址空间的最大大小。</li>
+<li>对于字长为 $\omega$ 位的机器，其虚拟地址范围为 $0\sim2^\omega-1$</li>
+<li>$32$ 位字长机器虚拟地址空间为 $4\texttt{GB}$，$64$ 位字长虚拟地址空间为 $14\texttt{EB}$</li>
+<li>大多数 $64$ 位机器可以运行 $32$ 位机器编译的程序，是一种<strong>向后兼容</strong></li>
+<li><p>部分基本 C 数据类型分配的字节数会受到编译机器的字长影响<br><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210917134111038.png" alt="image-20210917134111038"></p>
+</li>
+<li><p>$\text{ISO C}99$ 标准引入了 <code>int32_t</code> 与 <code>int64_t</code></p>
+</li>
 </ul>
-<h4 id="寻址和字节顺序">2.1.3 寻址和字节顺序</h4>
-<ul>
-<li>小端法（<span class="math inline">\(\text{little endian}\)</span>）：最低有效字节在前</li>
-<li>大端法（<span class="math inline">\(\text{big endian}\)</span>）：最低有效字节在后</li>
+<h4 id="2-1-3-寻址和字节顺序"><a href="#2-1-3-寻址和字节顺序" class="headerlink" title="2.1.3 寻址和字节顺序"></a>2.1.3 寻址和字节顺序</h4><ul>
+<li>小端法（$\text{little endian}$）：最低有效字节在前</li>
+<li>大端法（$\text{big endian}$）：最低有效字节在后</li>
 </ul>
-<h4 id="表示字符串">2.1.4 表示字符串</h4>
-<ul>
-<li>C 语言字符串：以 <span class="math inline">\(\text{null}\)</span> 字符结尾的字符数组</li>
-<li>每个字符由某个标准编码表示，如 <span class="math inline">\(\text{ASCII}\)</span> 码</li>
+<h4 id="2-1-4-表示字符串"><a href="#2-1-4-表示字符串" class="headerlink" title="2.1.4 表示字符串"></a>2.1.4 表示字符串</h4><ul>
+<li>C 语言字符串：以 $\text{null}$ 字符结尾的字符数组</li>
+<li>每个字符由某个标准编码表示，如 $\text{ASCII}$ 码</li>
 <li>文本数据比二进制数据具有更强的平台独立性</li>
 </ul>
-<h4 id="表示代码">2.1.5 表示代码</h4>
-<ul>
+<h4 id="2-1-5-表示代码"><a href="#2-1-5-表示代码" class="headerlink" title="2.1.5 表示代码"></a>2.1.5 表示代码</h4><ul>
 <li>不同的机器类型使用不同的且不兼容的指令和编码方式，二进制代码是不兼容的</li>
 <li>从机器角度，程序仅仅是<strong>字节序列</strong></li>
 </ul>
-<h4 id="布尔代数">2.1.6 布尔代数</h4>
-<ul>
-<li><p>布尔代数 （<span class="math inline">\(\text{Boolen algebra}\)</span>）：<span class="math inline">\(1850\ \text{George Boole}\)</span> 提出</p></li>
-<li><p>几种运算：<span class="math inline">\(\text{&amp;, \\, ~, ^}\)</span></p></li>
-<li><p>布尔运算扩展到位向量运算</p></li>
+<h4 id="2-1-6-布尔代数"><a href="#2-1-6-布尔代数" class="headerlink" title="2.1.6 布尔代数"></a>2.1.6 布尔代数</h4><ul>
+<li><p>布尔代数 （$\text{Boolen algebra}$）：$1850\ \text{George Boole}$ 提出</p>
+</li>
+<li><p>几种运算：$\text{&amp;, \\, ~, ^}$</p>
+</li>
+<li><p>布尔运算扩展到位向量运算</p>
+</li>
 </ul>
-<h4 id="c-语言中的位级运算">2.1.7 C 语言中的位级运算</h4>
-<h4 id="c-语言中的逻辑运算">2.1.8 C 语言中的逻辑运算</h4>
-<ul>
-<li><span class="math inline">\(\text{||, &amp;&amp;, !}\)</span></li>
-<li>非零参数表示 <span class="math inline">\(\text{TRUE}\)</span>，参数 <span class="math inline">\(0\)</span> 表示 <span class="math inline">\(\text{FALSE}\)</span></li>
+<h4 id="2-1-7-C-语言中的位级运算"><a href="#2-1-7-C-语言中的位级运算" class="headerlink" title="2.1.7 C 语言中的位级运算"></a>2.1.7 C 语言中的位级运算</h4><h4 id="2-1-8-C-语言中的逻辑运算"><a href="#2-1-8-C-语言中的逻辑运算" class="headerlink" title="2.1.8 C 语言中的逻辑运算"></a>2.1.8 C 语言中的逻辑运算</h4><ul>
+<li>$\text{||, &amp;&amp;, !}$</li>
+<li>非零参数表示 $\text{TRUE}$，参数 $0$ 表示 $\text{FALSE}$</li>
 </ul>
-<h4 id="c-语言中的移位运算">2.1.9 C 语言中的移位运算</h4>
-<p>对于 <span class="math inline">\(x=[x_{w-1},x_{w-2},\cdots,x_0]\)</span>，有如下几种运算：</p>
+<h4 id="2-1-9-C-语言中的移位运算"><a href="#2-1-9-C-语言中的移位运算" class="headerlink" title="2.1.9 C 语言中的移位运算"></a>2.1.9 C 语言中的移位运算</h4><p>对于 $x=[x_{w-1},x_{w-2},\cdots,x_0]$，有如下几种运算：</p>
 <ul>
-<li><p>左移：<span class="math inline">\(x&lt;&lt;k=[x_{w-k-1},x_{w-k-2},\cdots,x_0,0,\cdots,0]\)</span></p></li>
-<li>逻辑右移：左端补 <span class="math inline">\(k\)</span> 个 <span class="math inline">\(0\)</span>，即 <span class="math inline">\(x&gt;&gt;k=[0,\cdots,0,x_{w-1},x_{w-2},\cdots,x_k]\)</span></li>
-<li>算术右移：左端补 <span class="math inline">\(k\)</span> 个最高有效位值，即 <span class="math inline">\(x&gt;&gt;k=[x_{w-1},\cdots,x_{w-1},x_{w-1},x_{w-2},\cdots,x_k]\)</span></li>
+<li><p>左移：$x&lt;&lt;k=[x_{w-k-1},x_{w-k-2},\cdots,x_0,0,\cdots,0]$</p>
+</li>
+<li><p>逻辑右移：左端补 $k$ 个 $0$，即 $x&gt;&gt;k=[0,\cdots,0,x_{w-1},x_{w-2},\cdots,x_k]$</p>
+</li>
+<li>算术右移：左端补 $k$ 个最高有效位值，即 $x&gt;&gt;k=[x_{w-1},\cdots,x_{w-1},x_{w-1},x_{w-2},\cdots,x_k]$</li>
 <li>对于无符号数，右移必须是逻辑的</li>
-<li><p>对于有符号数，右移后仍是其补码</p></li>
+<li>对于有符号数，右移后仍是其补码</li>
 </ul>
-<h3 id="整数表示">2.2 整数表示</h3>
-<h4 id="整型数据类型">2.2.1 整型数据类型</h4>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133245169.png" alt="image-20210924133245169" /><figcaption>image-20210924133245169</figcaption>
-</figure>
-<figure>
-<img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133314487.png" alt="image-20210924133314487" /><figcaption>image-20210924133314487</figcaption>
-</figure>
-<h4 id="无符号数的编码">2.2.2 无符号数的编码</h4>
-<ul>
+<h3 id="2-2-整数表示"><a href="#2-2-整数表示" class="headerlink" title="2.2 整数表示"></a>2.2 整数表示</h3><h4 id="2-2-1-整型数据类型"><a href="#2-2-1-整型数据类型" class="headerlink" title="2.2.1 整型数据类型"></a>2.2.1 整型数据类型</h4><p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133245169.png" alt="image-20210924133245169"></p>
+<p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20210924133314487.png" alt="image-20210924133314487"></p>
+<h4 id="2-2-2-无符号数的编码"><a href="#2-2-2-无符号数的编码" class="headerlink" title="2.2.2 无符号数的编码"></a>2.2.2 无符号数的编码</h4><ul>
 <li><p>定义：</p>
-<p>对向量 <span class="math inline">\(\vec x=[x_{w-1},x_{w-2},\cdots,x_0]\)</span>： <span class="math display">\[
-B2U_w(\vec x)\doteq\sum_{i=0}^{w-1}x_i2^i
-\]</span></p></li>
+<p>对向量 $\vec x=[x_{w-1},x_{w-2},\cdots,x_0]$：</p>
+<script type="math/tex; mode=display">
+B2U_w(\vec x)\doteq\sum_{i=0}^{w-1}x_i2^i</script></li>
 <li></li>
-<li><p><span class="math inline">\(UMax_w\doteq2^w-1\)</span></p></li>
-<li><span class="math inline">\(B2U_w:\{0,1\}^w\to\{0,\cdots,2^w-1\}\)</span></li>
-<li><p>无符号编码唯一性：<span class="math inline">\(B2U_w\)</span> 是一个双射</p></li>
+<li><p>$UMax_w\doteq2^w-1$</p>
+</li>
+<li><p>$B2U_w:\{0,1\}^w\to\{0,\cdots,2^w-1\}$</p>
+</li>
+<li>无符号编码唯一性：$B2U_w$ 是一个双射</li>
 </ul>
-<h3 id="补码编码">2.2.3 补码编码</h3>
-<ul>
+<h3 id="2-2-3-补码编码"><a href="#2-2-3-补码编码" class="headerlink" title="2.2.3 补码编码"></a>2.2.3 补码编码</h3><ul>
 <li><p>定义：</p>
-<p>对向量 <span class="math inline">\(\vec x =[x_{w-1},x_{w-2},\cdots,x_0]\)</span>： <span class="math display">\[
-B2T_w(\vec x)\doteq -x_{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i
-\]</span></p></li>
-<li><p><span class="math inline">\(TMin_w=-2^{w-1}\)</span>，<span class="math inline">\(TMax_w=2^{w-1}-1\)</span></p></li>
-<li><p><span class="math inline">\(B2T_w:\{0,1\}^w\to\{TMin_w,\cdots,TMax_w\}\)</span></p></li>
+<p>对向量 $\vec x =[x_{w-1},x_{w-2},\cdots,x_0]$：</p>
+<script type="math/tex; mode=display">
+B2T_w(\vec x)\doteq -x_{w-1}2^{w-1}+\sum_{i=0}^{w-2}x_i2^i</script></li>
+<li><p>$TMin_w=-2^{w-1}$，$TMax_w=2^{w-1}-1$</p>
+</li>
+<li><p>$B2T_w:\{0,1\}^w\to\{TMin_w,\cdots,TMax_w\}$</p>
+</li>
 </ul>
-<h4 id="有符号数和无符号数转换">2.2.4 有符号数和无符号数转换</h4>
-<ul>
+<h4 id="2-2-4-有符号数和无符号数转换"><a href="#2-2-4-有符号数和无符号数转换" class="headerlink" title="2.2.4 有符号数和无符号数转换"></a>2.2.4 有符号数和无符号数转换</h4><ul>
 <li>不改变位表示</li>
-<li><span class="math inline">\(T2U_w(x)\doteq B2U_w(T2B_w(x))\)</span></li>
+<li>$T2U_w(x)\doteq B2U_w(T2B_w(x))$</li>
 </ul>
-<h4 id="c-语言中的有符号数与无符号数">2.2.5 C 语言中的有符号数与无符号数</h4>
-<ul>
+<h4 id="2-2-5-C-语言中的有符号数与无符号数"><a href="#2-2-5-C-语言中的有符号数与无符号数" class="headerlink" title="2.2.5 C 语言中的有符号数与无符号数"></a>2.2.5 C 语言中的有符号数与无符号数</h4><ul>
 <li>有符号数与无符号数参与运算：转为无符号数</li>
 </ul>
-<h4 id="扩展一个数字的位表示">2.2.6 扩展一个数字的位表示</h4>
-<ul>
-<li>无符号数：零扩展（<span class="math inline">\(\text{zero extension}\)</span>）</li>
-<li>有符号数：符号扩展（<span class="math inline">\(\text{sign extension}\)</span>）</li>
+<h4 id="2-2-6-扩展一个数字的位表示"><a href="#2-2-6-扩展一个数字的位表示" class="headerlink" title="2.2.6 扩展一个数字的位表示"></a>2.2.6 扩展一个数字的位表示</h4><ul>
+<li>无符号数：零扩展（$\text{zero extension}$）</li>
+<li>有符号数：符号扩展（$\text{sign extension}$）</li>
 </ul>
-<h4 id="截断数字">2.2.7 截断数字</h4>
-<ul>
+<h4 id="2-2-7-截断数字"><a href="#2-2-7-截断数字" class="headerlink" title="2.2.7 截断数字"></a>2.2.7 截断数字</h4><ul>
 <li>无符号截断</li>
 <li>有符号截断</li>
 </ul>
-<h3 id="整数运算">2.3 整数运算</h3>
-<h4 id="无符号加法">2.3.1 无符号加法</h4>
-<p><span class="math display">\[
+<h3 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h3><h4 id="2-3-1-无符号加法"><a href="#2-3-1-无符号加法" class="headerlink" title="2.3.1 无符号加法"></a>2.3.1 无符号加法</h4><script type="math/tex; mode=display">
 x+_w^uy=
 \begin{cases}
-x+y, &amp; x +y&lt;2^w\\\\
-x+y-2^w,&amp; 2^w\le x+y\le 2^w+1
-\end{cases}
-\]</span></p>
-<h4 id="有符号加法">2.3.2 有符号加法</h4>
-<p><span class="math display">\[
+x+y, & x +y<2^w\\\\
+x+y-2^w,& 2^w\le x+y\le 2^w+1
+\end{cases}</script><h4 id="2-3-2-有符号加法"><a href="#2-3-2-有符号加法" class="headerlink" title="2.3.2 有符号加法"></a>2.3.2 有符号加法</h4><script type="math/tex; mode=display">
 x+_w^ty=
 \begin{cases}
-x+y-2^w, &amp; 2^{w-1}\le x +y\\
-x+y, &amp; -2^{w-1}\le x+y\lt 2^{w-1}\\
-x+y+2^w, &amp; x+y&lt;-2^{w-1}
-\end{cases}
-\]</span></p>
-<h4 id="补码的非">2.3.3 补码的非</h4>
-<p><span class="math display">\[
+x+y-2^w, & 2^{w-1}\le x +y\\
+x+y, & -2^{w-1}\le x+y\lt 2^{w-1}\\
+x+y+2^w, & x+y<-2^{w-1}
+\end{cases}</script><h4 id="2-3-3-补码的非"><a href="#2-3-3-补码的非" class="headerlink" title="2.3.3 补码的非"></a>2.3.3 补码的非</h4><script type="math/tex; mode=display">
 -_w^tx=
 \begin{cases}
-TMin_w, &amp; x = TMin_w\\
--x, &amp; x &gt; TMin_w
-\end{cases}
-\]</span></p>
-<h4 id="无符号乘法">2.3.4 无符号乘法</h4>
-<p><span class="math display">\[
-x*_w^uy=(x\cdot y)\bmod 2^w
-\]</span></p>
-<h4 id="补码乘法">2.3.5 补码乘法</h4>
-<p><span class="math display">\[
-x*_w^ty=U2T_w((x\cdot y)\bmod 2^w)
-\]</span></p>
-<h4 id="乘以常数">2.3.6 乘以常数</h4>
-<ul>
-<li>乘 <span class="math inline">\(2\)</span> 的幂</li>
-<li>乘常数 <span class="math inline">\(K\)</span>：拆成 <span class="math inline">\(2\)</span> 的幂次和</li>
+TMin_w, & x = TMin_w\\
+-x, & x > TMin_w
+\end{cases}</script><h4 id="2-3-4-无符号乘法"><a href="#2-3-4-无符号乘法" class="headerlink" title="2.3.4 无符号乘法"></a>2.3.4 无符号乘法</h4><script type="math/tex; mode=display">
+x*_w^uy=(x\cdot y)\bmod 2^w</script><h4 id="2-3-5-补码乘法"><a href="#2-3-5-补码乘法" class="headerlink" title="2.3.5 补码乘法"></a>2.3.5 补码乘法</h4><script type="math/tex; mode=display">
+x*_w^ty=U2T_w((x\cdot y)\bmod 2^w)</script><h4 id="2-3-6-乘以常数"><a href="#2-3-6-乘以常数" class="headerlink" title="2.3.6 乘以常数"></a>2.3.6 乘以常数</h4><ul>
+<li>乘 $2$ 的幂</li>
+<li>乘常数 $K$：拆成 $2$ 的幂次和</li>
 </ul>
-<h4 id="除-2-的幂">2.3.7 除 <span class="math inline">\(2\)</span> 的幂</h4>
-<ul>
+<h4 id="2-3-7-除-2-的幂"><a href="#2-3-7-除-2-的幂" class="headerlink" title="2.3.7 除 $2$ 的幂"></a>2.3.7 除 $2$ 的幂</h4><ul>
 <li>无符号：逻辑右移</li>
-<li>有符号：算术右移
-<ul>
-<li>向下取整 <span class="math inline">\(x&gt;&gt;k\)</span></li>
-<li>向上取整 <span class="math inline">\((x+(1&lt;&lt;k)-1)&gt;&gt;k\)</span></li>
-</ul></li>
+<li>有符号：算术右移<ul>
+<li>向下取整 $x&gt;&gt;k$</li>
+<li>向上取整 $(x+(1&lt;<k)-1)>&gt;k$</li>
 </ul>
-<h3 id="浮点数">2.4 浮点数</h3>
-<h4 id="二进制小数">2.4.1 二进制小数</h4>
-<ul>
-<li>考虑形如 <span class="math inline">\(b_mb_{m-1}\cdots b_1b_0.b_{-1}b_{-2}\cdots b_{-n-1}b_{-n}\)</span> 的表示法，类似十进制小数，有：</li>
+</li>
 </ul>
-<p><span class="math display">\[
-b=\sum_{i=-n}^m2^i\times b_i
-\]</span></p>
-<ul>
-<li>这样的表示法精度不够，只能精确表示形如 <span class="math inline">\(x\times2^y\)</span> 的数</li>
+<h3 id="2-4-浮点数"><a href="#2-4-浮点数" class="headerlink" title="2.4 浮点数"></a>2.4 浮点数</h3><h4 id="2-4-1-二进制小数"><a href="#2-4-1-二进制小数" class="headerlink" title="2.4.1 二进制小数"></a>2.4.1 二进制小数</h4><ul>
+<li>考虑形如 $b_mb_{m-1}\cdots b_1b_0.b_{-1}b_{-2}\cdots b_{-n-1}b_{-n}$ 的表示法，类似十进制小数，有：</li>
+</ul>
+<script type="math/tex; mode=display">
+b=\sum_{i=-n}^m2^i\times b_i</script><ul>
+<li>这样的表示法精度不够，只能精确表示形如 $x\times2^y$ 的数</li>
 <li>对于其他数，增加长度可提高近似表示的精度</li>
 </ul>
-<h4 id="ieee-浮点表示">2.4.2 IEEE 浮点表示</h4>
-<p><span class="math display">\[
-V=(-1)^s\times M\times 2^E
-\]</span></p>
+<h4 id="2-4-2-IEEE-浮点表示"><a href="#2-4-2-IEEE-浮点表示" class="headerlink" title="2.4.2 IEEE 浮点表示"></a>2.4.2 IEEE 浮点表示</h4><script type="math/tex; mode=display">
+V=(-1)^s\times M\times 2^E</script><ul>
+<li>符号 $\text{(sign)}$：一个单独的符号位编码符号位 $s.$</li>
+<li><p>尾数 $\text{(significand)}$：$n$ 位小数字段 $frac=f_{n-1}\cdots f_1f_0$ 编码尾数 $M$，$M$ 的范围为 $1\sim 2-\varepsilon$ 或 $0\sim 1-\varepsilon.$</p>
+</li>
+<li><p>阶码 $\text{(exponent)}$：$k$ 位阶码字段 $exp=e_{k-1}\cdots e_1e_0$ 编码阶码 $E.$</p>
+</li>
+<li>对于单精度浮点，$k=8,n=23.$</li>
+<li><p>对于双精度浮点，$k=11,n=52.$</p>
+</li>
+<li><p>规格化与非规格化</p>
 <ul>
-<li>符号 <span class="math inline">\(\text{(sign)}\)</span>：一个单独的符号位编码符号位 <span class="math inline">\(s.\)</span></li>
-<li><p>尾数 <span class="math inline">\(\text{(significand)}\)</span>：<span class="math inline">\(n\)</span> 位小数字段 <span class="math inline">\(frac=f_{n-1}\cdots f_1f_0\)</span> 编码尾数 <span class="math inline">\(M\)</span>，<span class="math inline">\(M\)</span> 的范围为 <span class="math inline">\(1\sim 2-\varepsilon\)</span> 或 <span class="math inline">\(0\sim 1-\varepsilon.\)</span></p></li>
-<li>阶码 <span class="math inline">\(\text{(exponent)}\)</span>：<span class="math inline">\(k\)</span> 位阶码字段 <span class="math inline">\(exp=e_{k-1}\cdots e_1e_0\)</span> 编码阶码 <span class="math inline">\(E.\)</span></li>
-<li>对于单精度浮点，<span class="math inline">\(k=8,n=23.\)</span></li>
-<li><p>对于双精度浮点，<span class="math inline">\(k=11,n=52.\)</span></p></li>
-<li>规格化与非规格化
-<ul>
-<li>当 <span class="math inline">\(\text{exp}\)</span> 的位值不全为 <span class="math inline">\(0\)</span> 也不全为 <span class="math inline">\(1\)</span> 时，为规格化的值。
-<ul>
-<li>此时 <span class="math inline">\(E=e-Bias\)</span>，其中 <span class="math inline">\(Bias=2^{k-1}-1.\)</span></li>
-<li>小数字段描述小数值 <span class="math inline">\(f\)</span>，其中 <span class="math inline">\(0\le f\lt1\)</span>，二进制表示为 <span class="math inline">\(0.f_{n-1}\cdots f_1f_0.\)</span> 尾数定义为 <span class="math inline">\(M=1+f\)</span></li>
-</ul></li>
-<li>当阶码域全为 <span class="math inline">\(0\)</span> 时，所表示的数为非规格化形式。此时 <span class="math inline">\(E=1-Bias\)</span>，<span class="math inline">\(M=f\)</span>，不包含隐含的开头 <span class="math inline">\(1.\)</span></li>
-<li>特殊值（阶码全为 <span class="math inline">\(1\)</span>）
-<ul>
-<li>若小数域全为 <span class="math inline">\(0\)</span>，得到的值为 <span class="math inline">\(\inf\)</span></li>
-<li>若小数域非 <span class="math inline">\(0\)</span>，得到的值为 <span class="math inline">\(\text{NaN}\)</span></li>
-</ul></li>
-</ul></li>
+<li>当 $\text{exp}$ 的位值不全为 $0$ 也不全为 $1$ 时，为规格化的值。<ul>
+<li>此时 $E=e-Bias$，其中 $Bias=2^{k-1}-1.$</li>
+<li>小数字段描述小数值 $f$，其中 $0\le f\lt1$，二进制表示为 $0.f_{n-1}\cdots f_1f_0.$ 尾数定义为 $M=1+f$</li>
 </ul>
-<h2 id="第三章-程序的机器级表示">第三章 程序的机器级表示</h2>
-
+</li>
+<li>当阶码域全为 $0$ 时，所表示的数为非规格化形式。此时 $E=1-Bias$，$M=f$，不包含隐含的开头 $1.$</li>
+<li>特殊值（阶码全为 $1$）<ul>
+<li>若小数域全为 $0$，得到的值为 $\inf$</li>
+<li>若小数域非 $0$，得到的值为 $\text{NaN}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三章-程序的机器级表示"><a href="#第三章-程序的机器级表示" class="headerlink" title="第三章 程序的机器级表示"></a>第三章 程序的机器级表示</h2>
     </div>
 
     
@@ -612,7 +554,7 @@ V=(-1)^s\times M\times 2^E
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8"><span class="nav-number">2.</span> <span class="nav-text">第1章 计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%B0%B1%E6%98%AF%E4%BD%8D%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 信息就是位+上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%A2%AB%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E7%BF%BB%E8%AF%91%E6%88%90%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 程序被其他程序翻译成不同的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E6%98%AF%E5%A4%A7%E6%9C%89%E7%9B%8A%E5%A4%84%E7%9A%84"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 了解编译系统如何工作是大有益处的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E8%AF%BB%E5%B9%B6%E8%A7%A3%E9%87%8A%E5%82%A8%E5%AD%98%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 处理器读并解释储存在内存中的指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%BB%84%E6%88%90"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.4.1 系统的硬件组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hello-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%BF%90%E8%A1%8C"><span class="nav-number">2.4.2.</span> <span class="nav-text">1.4.2 hello 程序的运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 高速缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="nav-number">2.6.</span> <span class="nav-text">1.6 存储设备层级结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%A1%AC%E4%BB%B6"><span class="nav-number">2.7.</span> <span class="nav-text">1.7 操作系统管理硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.7.1.</span> <span class="nav-text">1.7.1 进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.7.2.</span> <span class="nav-text">1.7.2 线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">2.7.3.</span> <span class="nav-text">1.7.3 虚拟内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6"><span class="nav-number">2.7.4.</span> <span class="nav-text">1.7.4 文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C"><span class="nav-number">2.8.</span> <span class="nav-text">1.8 网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="nav-number">2.9.</span> <span class="nav-text">1.9 几个重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#amadahl-%E5%AE%9A%E5%BE%8B"><span class="nav-number">2.9.1.</span> <span class="nav-text">1.9.1 Amadahl 定律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C"><span class="nav-number">2.9.2.</span> <span class="nav-text">1.9.2 并发和并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1"><span class="nav-number">2.9.3.</span> <span class="nav-text">1.9.3 抽象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">3.1.1.</span> <span class="nav-text">2.1.1 十六进制表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.1.2 字数据大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BB%E5%9D%80%E5%92%8C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="nav-number">3.1.3.</span> <span class="nav-text">2.1.3 寻址和字节顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">3.1.4.</span> <span class="nav-text">2.1.4 表示字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E4%BB%A3%E7%A0%81"><span class="nav-number">3.1.5.</span> <span class="nav-text">2.1.5 表示代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">3.1.6.</span> <span class="nav-text">2.1.6 布尔代数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BA%A7%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.7.</span> <span class="nav-text">2.1.7 C 语言中的位级运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.8.</span> <span class="nav-text">2.1.8 C 语言中的逻辑运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.9.</span> <span class="nav-text">2.1.9 C 语言中的移位运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.2.1 整型数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2.2 无符号数的编码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E7%BC%96%E7%A0%81"><span class="nav-number">3.3.</span> <span class="nav-text">2.2.3 补码编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.2.4 有符号数和无符号数转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B8%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.2.5 C 语言中的有符号数与无符号数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97%E7%9A%84%E4%BD%8D%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.3.3.</span> <span class="nav-text">2.2.6 扩展一个数字的位表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%AA%E6%96%AD%E6%95%B0%E5%AD%97"><span class="nav-number">3.3.4.</span> <span class="nav-text">2.2.7 截断数字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">3.4.</span> <span class="nav-text">2.3 整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95"><span class="nav-number">3.4.1.</span> <span class="nav-text">2.3.1 无符号加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95"><span class="nav-number">3.4.2.</span> <span class="nav-text">2.3.2 有符号加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E7%9A%84%E9%9D%9E"><span class="nav-number">3.4.3.</span> <span class="nav-text">2.3.3 补码的非</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95"><span class="nav-number">3.4.4.</span> <span class="nav-text">2.3.4 无符号乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-number">3.4.5.</span> <span class="nav-text">2.3.5 补码乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0"><span class="nav-number">3.4.6.</span> <span class="nav-text">2.3.6 乘以常数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%A4-2-%E7%9A%84%E5%B9%82"><span class="nav-number">3.4.7.</span> <span class="nav-text">2.3.7 除 \(2\) 的幂</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">3.5.</span> <span class="nav-text">2.4 浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0"><span class="nav-number">3.5.1.</span> <span class="nav-text">2.4.1 二进制小数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ieee-%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.5.2.</span> <span class="nav-text">2.4.2 IEEE 浮点表示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.</span> <span class="nav-text">第三章 程序的机器级表示</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8"><span class="nav-number">2.</span> <span class="nav-text">第1章 计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BF%A1%E6%81%AF%E5%B0%B1%E6%98%AF%E4%BD%8D-%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 信息就是位+上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E7%A8%8B%E5%BA%8F%E8%A2%AB%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E7%BF%BB%E8%AF%91%E6%88%90%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 程序被其他程序翻译成不同的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E4%BA%86%E8%A7%A3%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E6%98%AF%E5%A4%A7%E6%9C%89%E7%9B%8A%E5%A4%84%E7%9A%84"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 了解编译系统如何工作是大有益处的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%A4%84%E7%90%86%E5%99%A8%E8%AF%BB%E5%B9%B6%E8%A7%A3%E9%87%8A%E5%82%A8%E5%AD%98%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 处理器读并解释储存在内存中的指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%BB%84%E6%88%90"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.4.1 系统的硬件组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-hello-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%BF%90%E8%A1%8C"><span class="nav-number">2.4.2.</span> <span class="nav-text">1.4.2 hello 程序的运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-number">2.5.</span> <span class="nav-text">1.5 高速缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="nav-number">2.6.</span> <span class="nav-text">1.6 存储设备层级结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%A1%AC%E4%BB%B6"><span class="nav-number">2.7.</span> <span class="nav-text">1.7 操作系统管理硬件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-1-%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.7.1.</span> <span class="nav-text">1.7.1 进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-2-%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.7.2.</span> <span class="nav-text">1.7.2 线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-3-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">2.7.3.</span> <span class="nav-text">1.7.3 虚拟内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-4-%E6%96%87%E4%BB%B6"><span class="nav-number">2.7.4.</span> <span class="nav-text">1.7.4 文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-%E7%BD%91%E7%BB%9C"><span class="nav-number">2.8.</span> <span class="nav-text">1.8 网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="nav-number">2.9.</span> <span class="nav-text">1.9 几个重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-1-Amadahl-%E5%AE%9A%E5%BE%8B"><span class="nav-number">2.9.1.</span> <span class="nav-text">1.9.1 Amadahl 定律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-2-%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C"><span class="nav-number">2.9.2.</span> <span class="nav-text">1.9.2 并发和并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-3-%E6%8A%BD%E8%B1%A1"><span class="nav-number">2.9.3.</span> <span class="nav-text">1.9.3 抽象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">3.1.1.</span> <span class="nav-text">2.1.1 十六进制表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.1.2 字数据大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-%E5%AF%BB%E5%9D%80%E5%92%8C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="nav-number">3.1.3.</span> <span class="nav-text">2.1.3 寻址和字节顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-4-%E8%A1%A8%E7%A4%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">3.1.4.</span> <span class="nav-text">2.1.4 表示字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-5-%E8%A1%A8%E7%A4%BA%E4%BB%A3%E7%A0%81"><span class="nav-number">3.1.5.</span> <span class="nav-text">2.1.5 表示代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-6-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">3.1.6.</span> <span class="nav-text">2.1.6 布尔代数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-7-C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BA%A7%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.7.</span> <span class="nav-text">2.1.7 C 语言中的位级运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-8-C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.8.</span> <span class="nav-text">2.1.8 C 语言中的逻辑运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-9-C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">3.1.9.</span> <span class="nav-text">2.1.9 C 语言中的移位运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-%E6%95%B4%E5%9E%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.2.1 整型数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2.2 无符号数的编码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E8%A1%A5%E7%A0%81%E7%BC%96%E7%A0%81"><span class="nav-number">3.3.</span> <span class="nav-text">2.2.3 补码编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.2.4 有符号数和无符号数转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B8%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.2.5 C 语言中的有符号数与无符号数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-6-%E6%89%A9%E5%B1%95%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97%E7%9A%84%E4%BD%8D%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.3.3.</span> <span class="nav-text">2.2.6 扩展一个数字的位表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-7-%E6%88%AA%E6%96%AD%E6%95%B0%E5%AD%97"><span class="nav-number">3.3.4.</span> <span class="nav-text">2.2.7 截断数字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">3.4.</span> <span class="nav-text">2.3 整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95"><span class="nav-number">3.4.1.</span> <span class="nav-text">2.3.1 无符号加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-%E6%9C%89%E7%AC%A6%E5%8F%B7%E5%8A%A0%E6%B3%95"><span class="nav-number">3.4.2.</span> <span class="nav-text">2.3.2 有符号加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-%E8%A1%A5%E7%A0%81%E7%9A%84%E9%9D%9E"><span class="nav-number">3.4.3.</span> <span class="nav-text">2.3.3 补码的非</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95"><span class="nav-number">3.4.4.</span> <span class="nav-text">2.3.4 无符号乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5-%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-number">3.4.5.</span> <span class="nav-text">2.3.5 补码乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-6-%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0"><span class="nav-number">3.4.6.</span> <span class="nav-text">2.3.6 乘以常数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-7-%E9%99%A4-2-%E7%9A%84%E5%B9%82"><span class="nav-number">3.4.7.</span> <span class="nav-text">2.3.7 除 $2$ 的幂</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">3.5.</span> <span class="nav-text">2.4 浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0"><span class="nav-number">3.5.1.</span> <span class="nav-text">2.4.1 二进制小数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-IEEE-%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.5.2.</span> <span class="nav-text">2.4.2 IEEE 浮点表示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">4.</span> <span class="nav-text">第三章 程序的机器级表示</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
